@@ -1,44 +1,49 @@
-# KMMO
-The [Kernel Module Management Operator](https://github.com/rh-ecosystem-edge/kernel-module-management) manages the deployment and lifecycle of out-of-tree kernel modules.
+## KMMO
+[Kernel Module Management (KMM) Operator](https://github.com/rh-ecosystem-edge/kernel-module-management) manages the deployment and lifecycle of out-of-tree kernel modules with OCP.
 
-For iOCP Project, KMMO is used on Day 2 to manage Intel OOT (Out-Of-Tree) dGPU drivers and firmware via Module CRD API.
+In this Project, KMM Operator is used to manage Intel dGPU drivers container images deployment on day 2.
 
-Note: KMMO project is still under development. Welcome to report issues in [iOCP](https://github.com/intel-sandbox/intel.dgpu.operator.prototype/issues) project or [KMMO project](https://github.com/rh-ecosystem-edge/kernel-module-management).
+Intel dGPU driver container images are released from [Intel Data Center GPU Driver for OpenShift Project](https://github.com/intel/intel-data-center-gpu-driver-for-openshift/tree/main/release#intel-data-center-gpu-driver-container-images-for-openshift-release)
 
-## Canary Deployment
-Canary deployment is the concept of deploying something to a subset of nodes (instead of all nodes) to ensure it does not break the entire cluster.
+### KMM Operator Working Mode 
 
-Canary deployment is used by default to prevent KMMO from deploying Intel dGPU drivers and firmware to all nodes to ensure that the entire cluster is not affected due to a potential issue from driver insmod into kernel or loaded firmware.
+* Pre-build Mode: This is the default and recommended mode. KMMO will use pre-built, certified, and released driver container images from Red Hat Ecosystem Catalog to deploy Intel dGPU drivers.
 
-As a result, prior to deplying the KMM module CRD, the cluster administrator needs to add label `intel.feature.node.kubernetes.io/dgpu-canary=true` to one or more Intel dGPU nodes for initial deployment.
+* On-premise Build Mode: With this mode, Users and build their own driver container image on-premise and then deploy it on the cluster.
 
-Note: An Intel dGPU node is a node that contains label `intel.feature.node.kubernetes.io/gpu=true`. It is labeled automatically by NFD. See [NFD README.](https://github.com/intel-sandbox/intel.dgpu.operator.prototype/tree/main/nfd/README.md)
+* CI/CD mode: This mode is used to automatically build, package the driver container image, test, certificate and release it on the Red Hat ecyosytem Catalog. It is mainly used to construct the [OOT driver CI/CD pipeline](https://github.com/intel/intel-data-center-gpu-driver-for-openshift/tree/main/pipeline#deploy-oot-driver-cicd-pipeline-on-openshift-cluster) 
 
-Below is a command for reference to add a label to a node:
+### Managing Intel dGPU driver with KMM Operator
+
+Below operations are verified on OCP-4.12 bare metal cluster.
+
+* Follow [KMMO operator installation guide](https://docs.openshift.com/container-platform/4.12/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-web-console_kernel-module-management-operator) to install the operator on OCP.
+
+* Intel dGPU driver Canary Deployment on OpenShift
+
+Canary deployment is used by default to deploy the driver only on the specific node(s). So Before depolying the driver on the nodes cluseter wide, user can get chance to verify the driver on these canary nodes. That can prevent the driver with some potential issues from damaging the cluster. 
+
+label the nodes you want to run the canary deployment
 
 ```$ oc label node dGPU_node_name intel.feature.node.kubernetes.io/dgpu-canary=true```
 
-## Install KMMO
+Note: `intel.feature.node.kubernetes.io/gpu=true` is labled by NFD to show that Intel dGPU card is detected on the node. See [Lables Desctioption](/nfd/README.md#labels-description)
 
-Follow the [KMMO operator installation steps](https://docs.openshift.com/container-platform/4.12/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-web-console_kernel-module-management-operator) to install the operator.
+* Using pre-build Mode to deploy the driver
 
-## 3 Modes for iOCP Project:
+```$ oc apply -f https://github.com//intel/intel-technology-enabling-for-openshift/blob/main/kmmo/intel-dgpu.yaml```
 
-User can select from one of the modes listed below.
+* deploy the driver on all the nodes Cluster wide
 
-### 1. Pre-build Mode 
+if the driver is running properly on the canay nodes, you can deploy the driver cluster wide.
 
-This is the default and recommended mode. KMMO will use pre-built driver container images from quay registry to deploy Intel dGPU drivers and firmware.
+comments the line `intel.feature.node.kubernetes.io/dgpu-canary: 'true'` in the intel-dgpu.yamal file and run
 
-To use this mode, run the following command:
+```$ oc apply -f https://github.com//intel/intel-technology-enabling-for-openshift/blob/main/kmmo/intel-dgpu.yaml```
 
-```$ oc apply -f https://github.com/intel-sandbox/intel.dgpu.operator.prototype/blob/main/kmmo/intel-dgpu.yaml```
+### using On-premise Build Mode
 
-### 2. On-premise Build Mode
-
-KMMO will build driver container image directly on cluster using in-cluster registry. KMMO uses OCP `Build` and `ImageStream` to support this mode.
-
-Prior to using this mode, run the following commands to create a `ConfigMap` which contains the dockerfile to build the driver container image:
+Prior to using this mode, run the following commands to create a `ConfigMap` and include the dockerfile to build the driver container image:
 
 ```$ git clone https://github.com/intel/intel-data-center-gpu-driver-for-openshift.git && cd intel-data-center-GPU-driver-for-openshift/docker```
 
@@ -46,12 +51,4 @@ Prior to using this mode, run the following commands to create a `ConfigMap` whi
 
 To use this mode, run the following command:
 
-```$ oc apply -f https://github.com/intel-sandbox/intel.dgpu.operator.prototype/blob/main/kmmo/intel-dgpu-on-premise-build-mode.yaml```
-
-### 3. CI/CD mode
-
-This mode is used to automatically build driver container image, test, and push image to quay registry to support Pre-build mode.
-
-This mode is still under development.
-
-
+```$ oc apply -f https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/kmmo/intel-dgpu-on-premise-build-mode.yaml```
