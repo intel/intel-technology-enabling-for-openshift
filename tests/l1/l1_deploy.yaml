@@ -1,0 +1,42 @@
+# Copyright (c) 2022 - 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: l1-test
+  namespace: intel-dgpu
+spec:
+  selector:
+    matchLabels:
+      app: l1-test
+  template:
+    metadata:
+      labels:
+        app: l1-test
+    spec:
+      restartPolicy: Always
+      initContainers:
+      - name: l1-test
+        seLinuxContext:
+          seLinuxOptions:
+            type: container_device_t
+        image: image-registry.openshift-image-registry.svc:5000/intel-dgpu/l1_test:latest
+        workingDir: "/iocp_test/"
+        command: ["/iocp_test/l1"]
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /dev/
+          name: dev-volume
+      containers:
+      - name: container-l1-test
+        image: >-
+          registry.access.redhat.com/ubi8-micro:latest
+        imagePullPolicy: IfNotPresent
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ "while true; do sleep 60; done;" ]
+      volumes:
+      - name: dev-volume
+        hostPath:
+          path: /dev/
+      serviceAccountName: intel-dgpu
