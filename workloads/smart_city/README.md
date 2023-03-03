@@ -1,0 +1,5 @@
+#### Smart City workload overview
+The Red Hat smart city [license plate workload](https://redhat-scholars.github.io/rhods-lp-workshop/rhods-lp-workshop/01-start-jupyter.html) deploys a license plate recognition model as a service on the cluster. 
+* **E2E solutions**: This workload is dependent on the end to end solutions for dGPU. It utilizes [RHODS](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-data-science) and the [OpenVINO operator](https://catalog.redhat.com/software/operators/detail/60649a56209af65d24b7ca9e). Please follow the e2e dGPU [README](https://github.com/intel-sandbox/intel.dgpu.operator.prototype/blob/main/e2e/dgpu/README.md) for more detail.
+* Once the end to end dGPU solutions are available in the cluster, this workload can be deployed. Please follow the  link for the workloads's [installation steps](https://redhat-scholars.github.io/rhods-lp-workshop/rhods-lp-workshop/01-start-jupyter.html). 
+* NOTE: Currently the Smart City workload has been verified with CPU only. Support with dGPU will be added in the future release.
