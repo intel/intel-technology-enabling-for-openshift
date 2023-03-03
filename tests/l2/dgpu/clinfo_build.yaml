@@ -1,0 +1,52 @@
+# Copyright (c) 2022 - 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: intel-dgpu-clinfo
+  namespace: intel-dgpu
+spec: {}
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: intel-dgpu-clinfo
+  namespace: intel-dgpu
+spec:
+  triggers:
+    - type: "ConfigChange"
+    - type: "ImageChange"
+  runPolicy: "Serial"
+  source:
+    type: Dockerfile
+    dockerfile: |
+        FROM registry.access.redhat.com/ubi8-minimal:latest 
+
+        ARG OCL_CID_VERSION=ocl-icd-2.2.12-1.el7.x86_64
+        ARG CLINFO_VERSION=clinfo-2.2.18.04.06-6.fc34.x86_64
+
+        RUN microdnf install -y \
+          glibc \
+          yum-utils 
+        
+        # install intel-opencl, ocl-cid and clinfo
+        RUN dnf install -y 'dnf-command(config-manager)' && \
+          dnf config-manager --add-repo https://repositories.intel.com/graphics/rhel/8.4/intel-graphics.repo && \
+          dnf install -y intel-opencl  \
+          https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/o/$OCL_CID_VERSION.rpm \
+          http://rpmfind.net/linux/fedora/linux/releases/34/Everything/x86_64/os/Packages/c/$CLINFO_VERSION.rpm && \
+          dnf clean all && dnf autoremove && rm -rf /var/lib/dnf/lists/*        
+  strategy:
+    type: Docker
+    noCache: true
+    dockerStrategy:
+      buildArgs:
+          - name: "OCL_CID_VERSION"
+            value: "ocl-icd-2.2.12-1.el7.x86_64"
+          - name: "CLINFO_VERSION"
+            value: "clinfo-2.2.18.04.06-6.fc34.x86_64"
+  output:
+    to:
+      kind: ImageStreamTag
+      name: intel-dgpu-clinfo:latest

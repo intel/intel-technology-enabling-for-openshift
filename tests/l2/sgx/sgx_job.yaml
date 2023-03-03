@@ -1,0 +1,21 @@
+# Copyright (c) 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: intel-sgx-job
+  namespace: intel-sgx
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers: 
+        - name: intel-sgx-job
+          image: image-registry.openshift-image-registry.svc:5000/intel-sgx/intel-sgx-workload:latest
+          imagePullPolicy: IfNotPresent
+          workingDir: "/opt/intel/"
+          command: ["/opt/intel/app"]
+          resources:
+            limits:
+              sgx.intel.com/epc: "5Mi"
