@@ -45,9 +45,9 @@ comments the line `intel.feature.node.kubernetes.io/dgpu-canary: 'true'` in the 
 
 Prior to using this mode, run the following commands to create a `ConfigMap` and include the dockerfile to build the driver container image:
 
-```$ git clone https://github.com/intel/intel-data-center-gpu-driver-for-openshift.git && cd Intel-data-center-GPU-driver-for-openshift```
+```$ git clone https://github.com/intel/intel-data-center-gpu-driver-for-openshift.git && cd intel-data-center-GPU-driver-for-openshift/docker```
 
-```$oc create -n openshift-kmm configmap intel-dgpu-dockerfile-configmap --from-file=intel-dgpu-driver.Dockerfile```
+```$oc create -n openshift-kmm configmap intel-dgpu-dockerfile-configmap --from-file=dockerfile=intel-dgpu-driver.Dockerfile```
 
 To use this mode, run the following command:
 
