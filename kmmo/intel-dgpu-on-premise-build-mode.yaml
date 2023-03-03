@@ -1,0 +1,32 @@
+# Copyright (c) 2022 - 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  labels:
+    app: intel-dgpu-driver-container-kmmo
+  name: intel-dgpu-driver-container-kmmo
+  namespace: openshift-kmm
+spec: {}
+---
+apiVersion: kmm.sigs.x-k8s.io/v1beta1
+kind: Module
+metadata:
+  name: intel-dgpu-on-premise-build-mode
+  namespace: openshift-kmm
+spec:
+  moduleLoader:
+    container:
+      modprobe:
+        moduleName: i915
+        firmwarePath: /firmware
+      kernelMappings:
+        - regexp: '^.*\.x86_64$'
+          containerImage: image-registry.openshift-image-registry.svc:5000/openshift-kmm/intel-dgpu-driver-container-kmmo:$KERNEL_FULL_VERSION
+          build:
+            dockerfileConfigMap:
+              name: intel-dgpu-dockerfile-configmap
+  selector:
+    intel.feature.node.kubernetes.io/gpu: 'true'
+    intel.feature.node.kubernetes.io/dgpu-canary: 'true'
