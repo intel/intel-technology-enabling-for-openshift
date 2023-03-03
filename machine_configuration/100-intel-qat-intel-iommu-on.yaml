@@ -1,0 +1,12 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: intel-qat
+  name: 100-intel-qat-intel-iommu-on
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+  kernelArguments:
+      - intel_iommu=on

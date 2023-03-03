@@ -1,0 +1,13 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker 
+  name: 100-alternative-fw-path-for-worker-nodes
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+  kernelArguments:
+      - firmware_class.path=/var/lib/firmware
+

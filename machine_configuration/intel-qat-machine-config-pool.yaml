@@ -1,0 +1,14 @@
+# Copyright (c) 2022 - 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfigPool
+metadata:
+  name: intel-qat
+spec:
+  machineConfigSelector:
+    matchExpressions:
+      - {key: machineconfiguration.openshift.io/role, operator: In, values: [worker, intel-qat]}
+  nodeSelector:
+    matchLabels:
+      intel.feature.node.kubernetes.io/qat: 'true'

@@ -1,0 +1,20 @@
+# Copyright (c) 2022 - 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: intel-dgpu
+  name: 100-intel-dgpu-machine-config-disable-ast
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+    storage:
+      files:
+      - contents:
+          source: data:,blacklist%20ast
+        mode: 0644
+        overwrite: true
+        path: /etc/modprobe.d/blacklist-ast.conf
