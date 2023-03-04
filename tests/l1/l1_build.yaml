@@ -22,14 +22,14 @@ spec:
     type: Dockerfile
     dockerfile: |
           FROM golang:1.16.0 AS builder
-          RUN git clone https://[git_username]:[Enter_Personal_Token_Here]@github.com/intel-sandbox/intel.dgpu.operator.prototype.git
-          WORKDIR intel.dgpu.operator.prototype/tests/l1
+          RUN git clone https://github.com/intel/intel-technology-enabling-for-openshift.git
+          WORKDIR intel-technology-enabling-for-openshift/tests/l1
           RUN make build
            
           FROM registry.access.redhat.com/ubi8-micro:latest
           RUN mkdir /iocp_test
           WORKDIR /iocp_test
-          COPY --from=builder /go/intel.dgpu.operator.prototype/tests/l1/main /iocp_test/l1
+          COPY --from=builder /go/intel-technology-enabling-for-openshift/tests/l1/main /iocp_test/l1
           ENTRYPOINT ["/iocp_test/l1"]
   strategy:
     type: Docker
