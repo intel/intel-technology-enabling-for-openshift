@@ -1,13 +1,16 @@
 ### L2 overview
 This layer consists of workloads for resource provisioning after Intel Device Plugins Operator is installed and custom resources are created.
 
-#### dGPU testing workload
-The workload used is [clinfo](https://github.com/Oblomov/clinfo), which displays the related information of dGPU card. The OCP buildconfig is leveraged to build clinfo container image and push it to the embedded repository through OCP imagestream.
-The Job pod is scheduled on a node with dGPU card and the resource ```gpu.intel.com/i915``` is registered by the dGPU device plugin.
-Below operations are verified on OCP-4.11 bare-metal cluster.
-To deploy the workload:
+#### Intel® Data Center GPU Flex Series testcase
+The testcase used is [clinfo](https://github.com/Oblomov/clinfo), which displays the related information of Intel Data Center GPU Flex Series. The OCP buildconfig is leveraged to build clinfo container image and push it to the embedded repository through OCP imagestream.
+The Job pod is scheduled on a node with Intel Data Center GPU Flex Series card and the resource ```gpu.intel.com/i915``` is registered by the GPU device plugin.
+Below operations are verified on OCP-4.12 bare-metal cluster.
+To build the testcase:
 ```
 oc apply -f clinfo_build.yaml
+```
+To deploy the job:
+```
 oc apply -f clinfo_job.yaml
 ```
 To check the clinfo pod logs:
@@ -16,7 +19,7 @@ oc get pods | grep clinfo
 oc logs <clinfo_pod_name>
 ```
 
-A sample result for clinfo detecting dGPU card:
+A sample result for clinfo detecting Intel Data Center GPU Flex Series card :
 ```
   Platform Name                                   Intel(R) OpenCL HD Graphics
 Number of devices                                 1
@@ -46,10 +49,10 @@ Number of devices                                 1
   Preferred / native vector sizes
 ```
 
-#### SGX test case
-The test case used is SGX SDK [Sample Enclave App](https://github.com/intel/linux-sgx/tree/master/SampleCode/SampleEnclave), which launches a simple SGX enclave. Similar to dGPU,  OCP buildconfig and imagestream are leveraged for the container image.
-The job pod is scheduled on a node enabled with SGX requesting enclave memory resource ```sgx.intel.com/epc```. The resource is created by the SGX device plugin. 
-Below operations are verified on OCP 4.11 bare-metal cluster.
+#### Intel® SGX test case
+The test case used is Intel SGX SDK [Sample Enclave App](https://github.com/intel/linux-sgx/tree/master/SampleCode/SampleEnclave), which launches a simple Intel SGX enclave. OCP buildconfig and imagestream are leveraged for the container image.
+The job pod is scheduled on a node enabled with Intel SGX requesting enclave memory resource ```sgx.intel.com/epc```. The resource is created by the SGX device plugin. 
+Below operations are verified on OCP 4.12 bare-metal cluster.
 To build the test case:
 ```
 oc apply -f sgx_build.yaml
