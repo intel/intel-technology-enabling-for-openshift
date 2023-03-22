@@ -82,3 +82,15 @@ Multiple operators are used to provision Intel hardware features and deploy, man
  
 **Deploy E2E Solution**
 * **[Deploy Intel AI Reference E2E Solution](e2e/inference/README.md#deploy-intel-ai-inference-e2e-solution)**
+
+# Contribute
+See [CONTRIBUTING](CONTRIBUTING.md) for more information.
+
+# License
+Distributed under the open source license. See [LICENSE](/LICENSE.txt) for more information.
+
+# Security
+To report a potential security vulnerability, please refer to [security.md](/security.md) file 
+
+# Code of Conduct
+Intel has adopted the Contributor Covenant as the Code of Conduct for all of its open source projects. See [CODE_OF_CONDUCT](/CODE_OF_CONDUCT.md) file.
