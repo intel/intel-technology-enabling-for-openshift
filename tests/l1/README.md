@@ -1,5 +1,5 @@
 ### L1 tests overview
-Layer 1 tests are used to check for the Intel hardware featurs's devices and drivers (in-tree or out-of-tree) along with setting up the [machine configuration](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/machine_configuration/README.md) through MCO and OOT drivers through [KMMO](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/kmmo/README.md) and preparing for (before) the deployment of device plugins through [Intel-device-plugins operator](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/idpo/README.md). This gives user the information on whether Intel Hardware features are well supported in the OS running on the nodes. Currently, these tests are initial and will be refined in the future releases.
+Layer 1 tests are used to check for the Intel hardware feature's devices and drivers (in-tree or out-of-tree) along with setting up the [machine configuration](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/machine_configuration/README.md) through MCO and OOT drivers through [KMMO](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/kmmo/README.md) and preparing for (before) the deployment of device plugins through [Intel-device-plugins operator](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/idpo/README.md). This gives user the information on whether Intel Hardware features are well supported in the OS running on the nodes. Currently, these tests are initial and will be refined in the future releases.
 
 #### Deployment steps
 The OCP buildconfig is leveraged to build the source code's container image and push it to the embedded repository through OCP imagestream. It is deployed as a daemonset with an initcontainer for pod completion. Information about Intel hardware features supported on every node in the cluster is the result.
@@ -14,7 +14,7 @@ The following deployment steps have been verified on OCP 4.12 baremetal cluster.
 `oc apply -f l1_deploy.yaml`
 * To check the results on a chosen node:
 `oc logs <l1-test-pod>`
-* Sample result on node with dGPU support only:
+* Sample result on node with Intel® Data Center GPU Flex Series card:
 `E0223 20:04:11.864401 1 sgx.go:22] SGX enclave file not present: stat /dev/sgx_enclave: no such file or directory`
 `E0223 20:04:11.864438 1 sgx.go:24] SGX provision file not present: stat /dev/sgx_provision: no such file or directory`
 `I0223 20:04:11.864504 1 dgpu.go:44] Card and device nodes present for dGPU`
