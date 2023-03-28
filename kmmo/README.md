@@ -11,8 +11,6 @@ Intel dGPU driver container images are released from [Intel Data Center GPU Driv
 
 * On-premise Build Mode: With this mode, Users and build their own driver container image on-premise and then deploy it on the cluster.
 
-* CI/CD mode: This mode is used to automatically build, package the driver container image, test, certificate and release it on the Red Hat ecyosytem Catalog. It is mainly used to construct the [OOT driver CI/CD pipeline](https://github.com/intel/intel-data-center-gpu-driver-for-openshift/tree/main/pipeline#deploy-oot-driver-cicd-pipeline-on-openshift-cluster) 
-
 ### Managing Intel dGPU driver with KMM Operator
 
 Below operations are verified on OCP-4.12 bare metal cluster.
@@ -27,7 +25,7 @@ label the nodes you want to run the canary deployment
 
 ```$ oc label node dGPU_node_name intel.feature.node.kubernetes.io/dgpu-canary=true```
 
-Note: `intel.feature.node.kubernetes.io/gpu=true` is labled by NFD to show that Intel dGPU card is detected on the node. See [Lables Desctioption](/nfd/README.md#labels-description)
+Note: `intel.feature.node.kubernetes.io/gpu=true` is labled by NFD to show that Intel dGPU card is detected on the node. See [NFD README](/nfd/README.md)
 
 * Using pre-build Mode to deploy the driver
 
