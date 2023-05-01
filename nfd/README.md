@@ -10,18 +10,20 @@ NFD labels the host with node-specific attributes, such as PCI cards, kernel, op
 
 2. Create NodeFeatureDiscovery instance
 
-   ```$ oc apply -f https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/nfd/node-feature-discovery-openshift.yaml```
+   ```
+   $ oc apply -f https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/nfd/node-feature-discovery-openshift.yaml
+   ```
 
 3. Create NodeFeatureRule instance
 
-   ```$ oc apply -f https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/nfd/node-feature-rules-openshift.yaml```
+   ```
+   $ oc apply -f https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/nfd/node-feature-rules-openshift.yaml
+   ```
 
 4. If NFD has been configured properly, NFD will detect and label Intel® hardware features present on each node in the cluster.
 
-    FeatureName: NFD Label
-
-    ```Intel® Data Center GPU Flex Series: intel.feature.node.kubernetes.io/gpu=true```
-    
-    ```Intel® QAT: intel.feature.node.kubernetes.io/qat=true```
-    
-    ```Intel® SGX: intel.feature.node.kubernetes.io/sgx=true```
+    Feature | Label
+    --- | ---
+    Intel® Data Center GPU Flex Series | intel.feature.node.kubernetes.io/gpu=true
+    Intel® QAT | intel.feature.node.kubernetes.io/qat=true
+    Intel® SGX | intel.feature.node.kubernetes.io/sgx=true
