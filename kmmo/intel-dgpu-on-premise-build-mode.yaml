@@ -18,6 +18,7 @@ metadata:
 spec:
   moduleLoader:
     container:
+      imagePullPolicy: Always
       modprobe:
         moduleName: i915
         firmwarePath: /firmware
