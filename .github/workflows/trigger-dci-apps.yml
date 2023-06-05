@@ -7,8 +7,19 @@ on: [workflow_dispatch, pull_request]
 
 jobs:
   using-trigger-and-wait:
-    name: make sure the trigger works in our repo
+    name: Remote Trigger for DCI Apps Job
     runs-on: ubuntu-latest
     steps:
-      - name: just a test run to echo 
-        run: echo "just a test run"
+      - uses: convictional/trigger-workflow-and-wait@v1.6.5
+        with:
+         owner: intel
+         repo:  ocpeng
+         github_token: ${{secrets.OCP_ENG_PAT}}
+         github_user: intelocpeng
+         workflow_file_name: dci-app-agent-workflow.yml
+         ref: main
+         wait_interval: 10
+         propagate_failure: true
+         trigger_workflow: true
+         wait_workflow: true
+
