@@ -23,8 +23,8 @@ spec:
     dockerfile: |
         FROM registry.access.redhat.com/ubi8-minimal:latest 
 
-        ARG OCL_ICD_VERSION=ocl-icd-2.2.12-1.el7.x86_64
-        ARG CLINFO_VERSION=clinfo-2.2.18.04.06-6.fc34.x86_64
+        ARG OCL_ICD_VERSION=ocl-icd-2.2.12-1.el8.x86_64
+        ARG CLINFO_VERSION=clinfo-3.0.21.02.21-4.el8.x86_64
 
         RUN microdnf install -y \
           glibc \
@@ -32,20 +32,21 @@ spec:
         
         # install intel-opencl, ocl-icd and clinfo
         RUN dnf install -y 'dnf-command(config-manager)' && \
-          dnf config-manager --add-repo https://repositories.intel.com/graphics/rhel/8.4/intel-graphics.repo && \
+          dnf config-manager --add-repo https://repositories.intel.com/graphics/rhel/8.6/intel-graphics.repo && \
           dnf install -y intel-opencl  \
-          https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/o/$OCL_ICD_VERSION.rpm \
-          http://rpmfind.net/linux/fedora/linux/releases/34/Everything/x86_64/os/Packages/c/$CLINFO_VERSION.rpm && \
-          dnf clean all && dnf autoremove && rm -rf /var/lib/dnf/lists/*        
+          https://vault.centos.org/centos/8/AppStream/x86_64/os/Packages/$OCL_ICD_VERSION.rpm \
+          https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/c/$CLINFO_VERSION.rpm  && \
+          dnf clean all && dnf autoremove && rm -rf /var/lib/dnf/lists/* && \
+              rm -rf /etc/yum.repos.d/intel-graphics.repo     
   strategy:
     type: Docker
     noCache: true
     dockerStrategy:
       buildArgs:
           - name: "OCL_ICD_VERSION"
-            value: "ocl-icd-2.2.12-1.el7.x86_64"
+            value: "ocl-icd-2.2.12-1.el8.x86_64"
           - name: "CLINFO_VERSION"
-            value: "clinfo-2.2.18.04.06-6.fc34.x86_64"
+            value: "clinfo-3.0.21.02.21-4.el8.x86_64"
   output:
     to:
       kind: ImageStreamTag
