@@ -1,3 +1,6 @@
+## Disclaimer
+Please note that this module is currently under development and may contain partially implemented features, therefore it is not supported in the current release.
+
 ## Test plan and architecture overview
 To ensure the whole stack is working as expected and track bugs, a layer based test architecture is needed on OCP. This plan consists of four layers. The first and second layers mentioned below, would be a part of the future automation testing framework on each OCP (x,y,z) release.
 
