@@ -13,7 +13,7 @@ spec:
       containers: 
         - name: intel-sgx-job
           image: image-registry.openshift-image-registry.svc:5000/intel-sgx/intel-sgx-workload:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           workingDir: "/opt/intel/"
           command: ["/opt/intel/app"]
           resources:
