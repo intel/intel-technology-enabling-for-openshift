@@ -1,3 +1,6 @@
+# Disclaimer
+Please note that this module is currently under development and may contain partially implemented features, therefore it is not supported in the current release.
+
 ### L1 tests overview
 Layer 1 tests are used to check for the Intel hardware feature's devices and drivers (in-tree or out-of-tree) along with setting up the [machine configuration](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/machine_configuration/README.md) through MCO and OOT drivers through [KMMO](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/kmmo/README.md) and preparing for (before) the deployment of device plugins through [Intel-device-plugins operator](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/idpo/README.md). This gives user the information on whether Intel Hardware features are well supported in the OS running on the nodes. Currently, these tests are initial and will be refined in the future releases.
 
