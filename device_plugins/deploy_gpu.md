@@ -31,7 +31,7 @@ gpudeviceplugin-sample  1         1       {"intel.feature.node.kubernetes.io/gpu
 # Using Intel Data Center GPU resource exclusively
 In this release, we only verified and support the single Intel GPU `i915` resource dedicated to the single workload pod. To achieve this, we set `sharedDevNum: 1` and `preferredAllocationPolicy: none` as default options.   
 As the cluster administrator, use the [gpu_device_plugin.yaml](/device_plugins/gpu_device_plugin.yaml) provided from the previous section Create CR via CLI or use the default options from Create CR via web Console.  
-As the application owner, when claiming the i915 release, make sure the resource limits and requests are set as shown below:
+As the application owner, when claiming the i915 resource, make sure the resource limits and requests are set as shown below:
 ```
 spec:
   containers:
