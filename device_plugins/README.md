@@ -19,9 +19,9 @@ Follow the steps below to install Intel Device Plugins Operator using OpenShift 
 2.	Verify that the status of the operator is **Succeeded**.
 
 ## Installation via command line interface (CLI)
-Apply the [install-operator.yaml]() file:
+Apply the [install_operator.yaml](/device_plugins/install_operator.yaml) file:
 ```
-$ oc apply -f 
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/device_plugins/install_operator.yaml
 ```
 
 ## Verify Installation via CLI
