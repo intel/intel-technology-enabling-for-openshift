@@ -1,50 +1,37 @@
-## Intel Device Plugins for OpenShift 
+# Setting up Intel Device Plugins Operator 
 
-### overview
+# Overview
+Intel Device Plugins are utilized to advertise Intel hardware features (resources) to a Red Hat OpenShift Container Platform (RHOCP) Cluster. This allows workloads running on pods deployed within the clusters to leverage these features. To handle the deployment and lifecycle of these device plugins, the Intel device plugins operator is used. The Intel Device Plugins container images and operator have been officially certified and published on the [Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/container-stacks/detail/61e9f2d7b9cdd99018fc5736). For more details on the upstream project, please refer to [Intel Device Plugins for Kubernetes](https://github.com/intel/intel-device-plugins-for-kubernetes).  
 
-Intel Device Plugins are used to advertise Intel hardware features (resources) to OpenShift Cluster, so the workload running on pod deployed on the Clusters can use these features. To manage deployment and lifecycle of these device plugins, Intel device plugin operator is used. Intel Device Plugin Container images and operator has been certificated and released on Red Hat Ecosystem Catalog since OCP-4.10 release. Please refer to [Intel Device Plugins for Kubernetes project](https://github.com/intel/intel-device-plugins-for-kubernetes) for detail
+# Prerequisities
+- Provisioned RHOCP 4.12 cluster. Follow steps [here](/README.md).
+- Setup Node Feature Discovery (NFD). Follow steps [here](/nfd/README.md).
+- Setup Machine Configuration. Follow steps [here](/machine_configuration/README.md).
+- Optional for Intel® Data Center GPU users: Setup out-of-tree drivers for Intel GPU provisioning. Follow the steps listed [here](/kmmo/README.md).
 
-### Deploy Intel Device Plugins on OpenShift
+# Install Intel Device Plugins Operator on Red Hat OpenShift
+## Installation via web console
+Follow the steps below to install Intel Device Plugins Operator using OpenShift web console:
+1.	In the OpenShift web console, navigate to **Operator** -> **OperatorHub**.
+2.	Search for **Intel Device Plugins Operator** in all items field -> Click **Install**.
+## Verify Installation via web console
+1.	Go to **Operator** -> **Installed Operators**.
+2.	Verify that the status of the operator is **Succeeded**.
 
-### Deploy Intel Device Plugins on OpenShift thourgh web Console
-Below operations have been verified on OCP-4.11 and OCP-4.12
-
-* Install Intel Device Plugin operator 
-
+## Installation via command line interface (CLI)
+Apply the [install-operator.yaml]() file:
 ```
-$ operator-sdk run bundle quay.io/ocpeng/intel-device-plugins-operator-bundle:0.26.0
+$ oc apply -f 
 ```
 
-* Verify Operator installation
-1.  On the OpenShift console, go to **Operator** -> **Installed Operators**
-2.  Verify the status of Intel Device Plugins Operator as **Succeeded**
+## Verify Installation via CLI
+Verify that the operator controller manager pod is up and running:
+```
+$ oc get pod | grep inteldeviceplugins-controller-manager
 
-* Deploy Intel SGX Device Plugin
-Follow the steps below to deploy Intel SGX Device Plugin Custom Resource
-1.	Go to **Operator** -> **Installed Operators**
-2.  Open **Intel Device Plugins Operator**
-3.  Navigate to tab **Intel Software Guard Extensions Device Plugin**
-4.  Click **Create SgxDevicePlugin ->** set correct parameters -> Click **Create** 
-    OR for any customizations, please select `YAML view` and edit details. Once done, click **Create**  
-5.  Verify CR by checking the status of DaemonSet **`intel-sgx-plugin`**
-6.  Now `SgxDevicePlugin` is ready to deploy any workloads
+inteldeviceplugins-controller-manager-6b8c76c867-hftqm   2/2     Running   0          17m
+```
 
-* Deploy dGPU Device Plugin
-Follow the steps below to deploy Intel GPU Device Plugin Custom Resource
-1.	Go to **Operator** -> **Installed Operators**
-2.  Open **Intel Device Plugins Operator**
-3.  Navigate to tab **Intel GPU Device Plugin**
-4.  Click **Create GpuDevicePlugin ->** set correct parameters -> Click **Create** 
-    OR for any customizations, please select `YAML view` and edit details. Once done, click **Create**  
-5.  Verify CR by checking the status of DaemonSet **`intel-gpu-plugin`**
-6.  Now `GpuDevicePlugin` is ready to deploy any workloads
-
-* Deploy Intel QAT Device Plugin
-Follow the steps below to deploy Intel QAT Device Plugin Custom Resource
-1.	Go to **Operator** -> **Installed Operators**
-2.  Open **Intel Device Plugins Operator**
-3.  Navigate to tab **Intel QuickAssist Technology Device Plugin**
-4.  Click **Create QatDevicePlugin ->** set correct parameters -> Click **Create** 
-    OR for any customizations, please select `YAML view` and edit details. Once done, click **Create**  
-5.  Verify CR by checking the status of DaemonSet **`intel-qat-plugin`**
-6.  Now `QatDevicePlugin` is ready to deploy any workloads
+# Creating Intel Device Plugin custom resource (CR)
+- To create an Intel SGX device plugin CR, follow this [link](/device_plugins/deploy_sgx.md):
+- To create an Intel GPU device plugin CR, follow this [link](/device_plugins/deploy_gpu.md):
