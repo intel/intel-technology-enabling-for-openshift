@@ -57,7 +57,7 @@ Here are some reference workloads built on the end-to-end solution and Intel har
 
 # Advanced Guide 
 This section discusses architecture and other technical details that go beyond getting started. 
-- [Architecture and Working Scope]() 
+- [Architecture and Working Scope](https://github.com/intel/intel-technology-enabling-for-openshift/wiki/Intel-Technology-Enabling-for-OpenShift-Architecture-and-Working-Scope) 
 
 # Release Notes
 Check the [link](https://github.com/intel/intel-technology-enabling-for-openshift/releases/) for the Release Notes.  
