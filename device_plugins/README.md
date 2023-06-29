@@ -7,7 +7,7 @@ Intel Device Plugins are utilized to advertise Intel hardware features (resource
 - Provisioned RHOCP 4.12 cluster. Follow steps [here](/README.md).
 - Setup Node Feature Discovery (NFD). Follow steps [here](/nfd/README.md).
 - Setup Machine Configuration. Follow steps [here](/machine_configuration/README.md).
-- Optional for Intel® Data Center GPU users: Setup out-of-tree drivers for Intel GPU provisioning. Follow the steps listed [here](/kmmo/README.md).
+- Optional: Setup out-of-tree drivers for Intel Data Center GPU provisioning. Follow the steps listed [here](/kmmo/README.md).
 
 # Install Intel Device Plugins Operator on Red Hat OpenShift
 ## Installation via web console
