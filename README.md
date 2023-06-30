@@ -1,6 +1,6 @@
 # Intel® Technology Enabling for OpenShift*
 # Overview
-The Intel Technology Enabling for OpenShift project provides Intel Data Center hardware feature-provisioning technologies with the [Red Hat OpenShift Container Platform (RHOCP)](https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform). The technology to deploy and manage the [End-to-End (E2E)](/e2e) solutions as well as the related reference workloads for these features are also included in the project.  
+The Intel Technology Enabling for OpenShift project provides Intel Data Center hardware feature-provisioning technologies with the [Red Hat OpenShift Container Platform (RHOCP)](https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform). The technology to deploy and manage the End-to-End (E2E) solutions as well as the related reference workloads for these features are also included in the project.  
 
 These Intel Data Center hardware features currently include: 
 - Intel® Software Guard Extensions (Intel® SGX) 
@@ -13,17 +13,20 @@ The following features will be included in future releases.
 - Intel® In-Memory Analytics Accelerator (Intel® IAA) 
 - Intel® FPGA N6000 
 
-See details about [Supported Intel Hardware features]().  
+See details about [Supported Intel Hardware features](/docs/supported_platforms.md#supported-intel-hardware-platforms).  
 
 Figure-1 is the [Architecture and Working Scope](https://github.com/intel/intel-technology-enabling-for-openshift/wiki/Intel-Technology-Enabling-for-OpenShift-Architecture-and-Working-Scope) of the project  
 
 ![Alt text](/docs/images/Intel-Technology-Enabling-for-OpenShift-Architecture.png)
 
-Figure-1 Intel Technology Enabling for OpenShift Architecture 
+<div align="center">
+  Figure-1 Intel Technology Enabling for OpenShift Architecture 
+</div>
+
 
 # Supported platforms 
 
-This [section]() describes the RHOCP infrastructure and Intel hardware features supported by this project. The project lifecycle and support channels can also be found [here](). 
+This [section](/docs/supported_platforms.md) describes the RHOCP infrastructure and Intel hardware features supported by this project. The project lifecycle and support channels can also be found [here](docs/supported_platforms.md#support). 
 
 # Getting started  
 ## Provisioning RHOCP cluster   
@@ -31,7 +34,7 @@ Use one of these two options to provision an RHOCP cluster:
 - Use the methods introduced in [RHOCP documentation](https://docs.openshift.com/container-platform/4.12/installing/index.html). 
 - Use [Distributed CI](https://doc.distributed-ci.io/) as we do in this project.  
 
-In this project, we provisioned RHOCP 4.12 on a bare-metal multi-node cluster. For details about the supported RHOCP infrastructure, see the [Supported Platforms]() page.
+In this project, we provisioned RHOCP 4.12 on a bare-metal multi-node cluster. For details about the supported RHOCP infrastructure, see the [Supported Platforms](/docs/supported_platforms.md) page.
 
 ## Provisioning Intel hardware features on RHOCP
 Please follow the steps below to provision the hardware features 
@@ -41,7 +44,7 @@ Please follow the steps below to provision the hardware features
 4. Setting up [Device Plugins](/device_plugins/README.md) 
 
 ## Verifying hardware feature provisioning 
-You can use the instructions in the [link]() to verify the hardware features provisioning. 
+You can use the instructions in the [link](/tests/l2/README.md) to verify the hardware features provisioning. 
 
 # Upgrade (To be added) 
 
