@@ -1,79 +1,58 @@
-### L2 overview
-This layer consists of workloads for resource provisioning after Intel Device Plugins Operator is installed and custom resources are created.
-
-#### dGPU testing workload
-The workload used is [clinfo](https://github.com/Oblomov/clinfo), which displays the related information of dGPU card. The OCP buildconfig is leveraged to build clinfo container image and push it to the embedded repository through OCP imagestream.
-The Job pod is scheduled on a node with dGPU card and the resource ```gpu.intel.com/i915``` is registered by the dGPU device plugin.
-Below operations are verified on OCP-4.11 bare-metal cluster.
-To deploy the workload:
+# Verifying Intel Hardware Feature Provisioning
+## Introduction
+After provisioning Intel hardware features on RHOCP, the respective hardware resources are exposed to the RHOCP cluster. The workload containers can request these resources. The following sample workloads help verify if these resources can be used as expected. These sample workloads container images are built and packaged on-premises through [RHOCP BuildConfig](https://docs.openshift.com/container-platform/4.12/cicd/builds/understanding-buildconfigs.html) and pushed to the embedded repository through [RHOCP ImageStream](https://docs.openshift.com/container-platform/4.12/openshift_images/image-streams-manage.html).
+## Prerequisites
+•	Provisioned RHOCP 4.12 cluster. Follow steps [here](https://github.com/intel/intel-technology-enabling-for-openshift#provisioning-rhocp-cluster). 
+•	Provisioning Intel HW features on RHOCP. Follow steps [here](https://github.com/intel/intel-technology-enabling-for-openshift#provisioning-intel-hardware-features-on-rhocp)
+### Verify Intel® Software Guard Extensions (Intel® SGX) Provisioning
+This [SampleEnclave](https://github.com/intel/linux-sgx/tree/master/SampleCode/SampleEnclave) application workload from the Intel SGX SDK runs an Intel SGX enclave utilizing the EPC resource from the Intel SGX provisioning.
+* Build the container image. 
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/ main/tests/l2/sgx/sgx_build.yaml```
+* Deploy and run the workload.
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/sgx/sgx_job.yaml```
+*	Check the results.
+```$ oc get pods
+  intel-sgx-job-4tnh5          0/1     Completed   0          2m10s
+  intel-sgx-workload-1-build   0/1     Completed   0          30s
 ```
-oc apply -f clinfo_build.yaml
-oc apply -f clinfo_job.yaml
 ```
-To check the clinfo pod logs:
+$ oc logs intel-sgx-job-4tnh5
+  Checksum(0x0x7fffac6f41e0, 100) = 0xfffd4143
+  Info: executing thread synchronization, please wait...
+  Info: SampleEnclave successfully returned.
+  Enter a character before exit ...
 ```
-oc get pods | grep clinfo
-oc logs <clinfo_pod_name>
+### Verify Intel® Data Center GPU provisioning
+This workload runs [clinfo](https://github.com/Oblomov/clinfo) utilizing the i915 resource from GPU provisioning and displays the related GPU information.
+*	Build the workload container image. 
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/clinfo_build.yaml ```
+*	Deploy and execute the workload.
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/clinfo_job.yaml```
+* Check the results.
+``` 
+  $ oc get pods
+  intel-dgpu-clinfo-1-build        0/1     Completed   0          3m20s
+  intel-dgpu-clinfo-56mh2          0/1     Completed   0          35s
 ```
-
-A sample result for clinfo detecting dGPU card:
 ```
+$ oc logs intel-dgpu-clinfo-56mh2  
   Platform Name                                   Intel(R) OpenCL HD Graphics
-Number of devices                                 1
-  Device Name                                     Intel(R) Graphics [0x56c1]
+  Number of devices                                 1
+  Device Name                                     Intel(R) Data Center GPU Flex Series 140 [0x56c1]
   Device Vendor                                   Intel(R) Corporation
   Device Vendor ID                                0x8086
   Device Version                                  OpenCL 3.0 NEO
-  Driver Version                                  22.23.23405
+  Device UUID                                     86800000-c156-0000-0000-000000000000
+  Driver UUID                                     32322e34-332e-3234-3539-352e33350000
+  Valid Device LUID                               No
+  Device LUID                                     80c6-4e56fd7f0000
+  Device Node Mask                                0
+  Device Numeric Version                          0xc00000 (3.0.0)
+  Driver Version                                  22.43.24595.35
   Device OpenCL C Version                         OpenCL C 1.2
-  Device Type                                     GPU
-  Device Profile                                  FULL_PROFILE
-  Device Available                                Yes
-  Compiler Available                              Yes
-  Linker Available                                Yes
-  Max compute units                               128
-  Max clock frequency                             2100MHz
-  Device Partition                                (core)
-    Max number of sub-devices                     0
-    Supported partition types                     None
-    Supported affinity domains                    (n/a)
-  Max work item dimensions                        3
-  Max work item sizes                             1024x1024x1024
-  Max work group size                             1024
-  Preferred work group size multiple              64
-  Max sub-groups per work group                   128
-  Sub-group sizes (Intel)                         8, 16, 32
-  Preferred / native vector sizes
-```
+  Device OpenCL C all versions                    OpenCL 
+```                                               
 
-#### SGX test case
-The test case used is SGX SDK [Sample Enclave App](https://github.com/intel/linux-sgx/tree/master/SampleCode/SampleEnclave), which launches a simple SGX enclave. Similar to dGPU,  OCP buildconfig and imagestream are leveraged for the container image.
-The job pod is scheduled on a node enabled with SGX requesting enclave memory resource ```sgx.intel.com/epc```. The resource is created by the SGX device plugin. 
-Below operations are verified on OCP 4.11 bare-metal cluster.
-To build the test case:
-```
-oc apply -f sgx_build.yaml
-```
-To deploy the job:
-```
-oc apply -f sgx_job.yaml
-```
-To check the pod logs:
-```
-oc get pods | grep sgx
-oc logs <sgx_pod_name>
-```
-Sample pod result:
-```
-Checksum(0x0x7fffac6f41e0, 100) = 0xfffd4143
-Info: executing thread synchronization, please wait...
-Info: SampleEnclave successfully returned.
-Enter a character before exit ...
-```
-On the node, the updated resources are:
-```
-oc describe <node name> | grep sgx.intel.com
-sgx.intel.com/enclave    1             1
-sgx.intel.com/epc        5Mi          5Mi
-sgx.intel.com/provision  0            0
-```
+## See Also
+For Intel SGX demos on vanilla Kubernetes, refer to [link](https://github.com/intel/intel-device-plugins-for-kubernetes/tree/main/demo/sgx-sdk-demo) 
+For GPU demos on vanilla Kubernetes, refer to [link](https://github.com/intel/intel-device-plugins-for-kubernetes/tree/main/demo/intel-opencl-icd) 
