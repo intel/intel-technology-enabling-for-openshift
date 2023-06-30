@@ -15,9 +15,9 @@ The following features will be included in future releases.
 
 See details about [Supported Intel Hardware features]().  
 
-Figure-1 is the [Architecture and Working Scope]() of the project  
+Figure-1 is the [Architecture and Working Scope](https://github.com/intel/intel-technology-enabling-for-openshift/wiki/Intel-Technology-Enabling-for-OpenShift-Architecture-and-Working-Scope) of the project  
 
-[add image filename]
+![Alt text](/docs/images/Intel-Technology-Enabling-for-OpenShift-Architecture.png)
 
 Figure-1 Intel Technology Enabling for OpenShift Architecture 
 
