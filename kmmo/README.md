@@ -1,52 +1,88 @@
-## KMMO
-[Kernel Module Management (KMM) Operator](https://github.com/rh-ecosystem-edge/kernel-module-management) manages the deployment and lifecycle of out-of-tree kernel modules with OCP.
+# Setting up Out of Tree Drivers
 
-In this Project, KMM Operator is used to manage Intel dGPU drivers container images deployment on day 2.
+# Introduction
+[Kernel module management (KMM) operator](https://github.com/rh-ecosystem-edge/kernel-module-management) manages the deployment and lifecycle of out-of-tree kernel modules on RHOCP.
 
-Intel dGPU driver container images are released from [Intel Data Center GPU Driver for OpenShift Project](https://github.com/intel/intel-data-center-gpu-driver-for-openshift/tree/main/release#intel-data-center-gpu-driver-container-images-for-openshift-release)
+In this release, KMM operator is used to manage and deploy the Intel® Data Center GPU driver container image on the RHOCP cluster.
 
-### KMM Operator Working Mode 
+Intel data center GPU driver container images are released from [Intel Data Center GPU Driver for OpenShift Project](https://github.com/intel/intel-data-center-gpu-driver-for-openshift/tree/main/release#intel-data-center-gpu-driver-container-images-for-openshift-release).
 
-* Pre-build Mode: This is the default and recommended mode. KMMO will use pre-built, certified, and released driver container images from Red Hat Ecosystem Catalog to deploy Intel dGPU drivers.
+# KMM operator working mode
+- **Pre-build mode** - This is the default and recommended mode. KMM Operator uses this pre-built and certified Intel Data Center GPU driver container image, which is published on the Red Hat Container Catalog to provision Intel Data Center GPUs on a RHOCP cluster.
+- **On-premises build mode** - Users can optionally build and deploy their own driver container images on-premises through the KMM operator.
 
-* On-premise Build Mode: With this mode, Users and build their own driver container image on-premise and then deploy it on the cluster.
+# Prerequisites
+- Provisioned RHOCP 4.12 cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
+- Setup node feature discovery. Follow steps [here](/nfd/README.md).
+- Setup machine configuration Follow steps [here](/machine_configuration/README.md).
 
-### Managing Intel dGPU driver with KMM Operator
+# Install KMM operator
+Follow the installation guide below to install the KMM operator via CLI or web console. 
+- [Install from CLI](https://docs.openshift.com/container-platform/4.12/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-cli_kernel-module-management-operator)
+- [Install from web console](https://docs.openshift.com/container-platform/4.12/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-web-console_kernel-module-management-operator)
 
-Below operations are verified on OCP-4.12 bare metal cluster.
+# Canary deployment with KMM
+Canary deployment is enabled by default to deploy the driver container image only on specific node(s) to ensure the initial deployment succeeds prior to rollout to all the eligible nodes in the cluster. This safety mechanism can reduce risk and prevent a deployment from adversely affecting the entire cluster.
 
-* Follow [KMMO operator installation guide](https://docs.openshift.com/container-platform/4.12/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-web-console_kernel-module-management-operator) to install the operator on OCP.
+# Deploy Intel Data Center GPU Driver with pre-build mode
+Follow the steps below to deploy the driver container image with pre-build mode.
+1.	Find all nodes with an Intel Data Center GPU card using the following command:
+``` 
+$ oc get nodes -l intel.feature.node.kubernetes.io/gpu=true
+```
+Example output: 
+```
+NAME         STATUS   ROLES    AGE   VERSION
+icx-dgpu-1   Ready    worker   30d   v1.25.4+18eadca
+```
 
-* Intel dGPU driver Canary Deployment on OpenShift
+2.	Label the node(s) in the cluster using the command shown below for the initial canary deployment.
+```
+$ oc label node <node_name> intel.feature.node.kubernetes.io/dgpu-canary=true
+```
 
-Canary deployment is used by default to deploy the driver only on the specific node(s). So Before depolying the driver on the nodes cluseter wide, user can get chance to verify the driver on these canary nodes. That can prevent the driver with some potential issues from damaging the cluster. 
+3.	Use pre-build mode to deploy the driver container.
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/1.0.0/kmmo/intel-dgpu.yaml   
+```
 
-label the nodes you want to run the canary deployment
+4.	After the driver is verified on the cluster through the canary deployment, simply remove the line shown below from the [`intel-dgpu.yaml`](/kmmo/intel-dgpu.yaml) file and reapply the yaml file to deploy the driver to the entire cluster. As a cluster administrator, you can also select another deployment policy.
+```
+intel.feature.node.kubernetes.io/dgpu-canary: 'true'
+```
 
-```$ oc label node dGPU_node_name intel.feature.node.kubernetes.io/dgpu-canary=true```
+# Verification
+To verify that the drivers have been loaded, follow the steps below:
+1.	List the nodes labeled with `kmm.node.kubernetes.io/intel-dgpu.ready` using the command shown below:
+```
+$ oc get nodes -l kmm.node.kubernetes.io/intel-dgpu.ready
+```
+Example output: 
+```
+NAME         STATUS   ROLES    AGE   VERSION
+icx-dgpu-1   Ready    worker   30d   v1.25.4+18eadca
+```
+The label shown above indicates that the KMM operator has successfully deployed the drivers and firmware on the node.
 
-Note: `intel.feature.node.kubernetes.io/gpu=true` is labled by NFD to show that Intel dGPU card is detected on the node. See [NFD README](/nfd/README.md)
+2.	If you want to further debug the driver on the node, follow these steps:  
+    a. Navigate to the web console (Compute -> Nodes -> Select a node that has the GPU card -> Terminal).  
+    b. Run the commands shown below in the web console terminal:  
+    ```
+    $ chroot /host 
+    $ lsmod | grep i915
+    ```
+    Ensure `i915` and `intel_vsec` are loaded in the kernel, as shown in the output below:
+    ```
+    i915                   3633152 0
+    i915_compat            16384 1 i915
+    intel_vsec             16384  1 i915
+    intel_gtt              20480  1 i915
+    video                  49152  1 i915
+    i2c_algo_bit           16384  1 i915
+    drm_kms_helper        290816  1 i915
+    drm                   589824  3 drm_kms_helper,i915
+    dmabuf                 77824  4 drm_kms_helper,i915,i915_compat,dr
+    ```
+    c. Run dmesg to ensure there are no errors in the kernel message log.
 
-* Using pre-build Mode to deploy the driver
-
-```$ oc apply -f https://github.com//intel/intel-technology-enabling-for-openshift/blob/main/kmmo/intel-dgpu.yaml```
-
-* deploy the driver on all the nodes Cluster wide
-
-if the driver is running properly on the canay nodes, you can deploy the driver cluster wide.
-
-comments the line `intel.feature.node.kubernetes.io/dgpu-canary: 'true'` in the intel-dgpu.yamal file and run
-
-```$ oc apply -f https://github.com//intel/intel-technology-enabling-for-openshift/blob/main/kmmo/intel-dgpu.yaml```
-
-### using On-premise Build Mode
-
-Prior to using this mode, run the following commands to create a `ConfigMap` and include the dockerfile to build the driver container image:
-
-```$ git clone https://github.com/intel/intel-data-center-gpu-driver-for-openshift.git && cd intel-data-center-GPU-driver-for-openshift/docker```
-
-```$oc create -n openshift-kmm configmap intel-dgpu-dockerfile-configmap --from-file=dockerfile=intel-dgpu-driver.Dockerfile```
-
-To use this mode, run the following command:
-
-```$ oc apply -f https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/kmmo/intel-dgpu-on-premise-build-mode.yaml```
+# See Also
