@@ -1,29 +1,42 @@
-## NFD
+# Setting up Node Feature Discovery
+[Node Feature Discovery (NFD) Operator](https://docs.openshift.com/container-platform/4.12/hardware_enablement/psap-node-feature-discovery-operator.html) manages the deployment and lifecycle of the NFD add-on to detect hardware features and system configuration, such as PCI cards, kernel, operating system version, etc.
 
-The [Node Feature Discovery](https://github.com/openshift/node-feature-discovery) (NFD) manages the detection of hardware features and configuration in a OCP cluster by labeling the nodes with hardware-specific information.
+# Prerequisites
+- Provisioned RHOCP 4.12 cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
 
-NFD labels the host with node-specific attributes, such as PCI cards, kernel, operating system version, and so on. In this project, NFD is used to automatically label nodes with specific hardware features such as Intel® Data Center GPU Flex Series, Intel® SGX and Intel® QAT etc.
+# Install NFD Operator
+Follow the guide below to install the NFD operator using CLI or web console. 
+- [Install from the CLI](https://docs.openshift.com/container-platform/4.12/hardware_enablement/psap-node-feature-discovery-operator.html#install-operator-cli_node-feature-discovery-operator)
+- [Install from the web console](https://docs.openshift.com/container-platform/4.12/hardware_enablement/psap-node-feature-discovery-operator.html#install-operator-web-console_node-feature-discovery-operator)
 
-### Steps to install and configure NFD operator:
+# Configure NFD Operator
+Note: As RHOCP cluster administrator, you might need to merge the NFD operator config from the following Custom Resources (CRs) with other NFD operator configs that are already applied on your cluster.  
 
-1. Follow the [NFD operator installation instructions](https://docs.openshift.com/container-platform/4.12/hardware_enablement/psap-node-feature-discovery-operator.html#install-operator-web-console_node-feature-discovery-operator) to install the NFD operator. 
+1. Create `NodeFeatureDiscovery` CR instance.
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/blob/release-1.0.0/nfd/node-feature-discovery-openshift.yaml  
+```
 
-2. Create NodeFeatureDiscovery instance
+2.	Create `NodeFeatureRule` CR instance.
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/release-1.0.0/nfd/node-feature-rules-openshift.yaml
+```
 
-   ```
-   $ oc apply -f https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/nfd/node-feature-discovery-openshift.yaml
-   ```
+# Verification 
+Use the command shown below to verify whether the nodes are labeled properly by NFD:
+```
+$ oc describe node node_name | grep intel.feature.node.kubernetes.io
+```
+Example output: 
+```
+intel.feature.node.kubernetes.io/dgpu-canary=true
+intel.feature.node.kubernetes.io/gpu=true
+```
 
-3. Create NodeFeatureRule instance
+# Labels table
+| Label | Intel hardware feature | 
+| ----- | ---------------------- |
+| `intel.feature.node.kubernetes.io/gpu=true` | Intel® Data Center GPU Flex Series | 
+| `intel.feature.node.kubernetes.io/sgx=true` | Intel® SGX | 
 
-   ```
-   $ oc apply -f https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/nfd/node-feature-rules-openshift.yaml
-   ```
-
-4. If NFD has been configured properly, NFD will detect and label Intel® hardware features present on each node in the cluster.
-
-    Feature | Label
-    --- | ---
-    Intel® Data Center GPU Flex Series | intel.feature.node.kubernetes.io/gpu=true
-    Intel® QAT | intel.feature.node.kubernetes.io/qat=true
-    Intel® SGX | intel.feature.node.kubernetes.io/sgx=true
+# See Also
