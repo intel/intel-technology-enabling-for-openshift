@@ -7,9 +7,13 @@ After provisioning Intel hardware features on RHOCP, the respective hardware res
 ### Verify Intel® Software Guard Extensions (Intel® SGX) Provisioning
 This [SampleEnclave](https://github.com/intel/linux-sgx/tree/master/SampleCode/SampleEnclave) application workload from the Intel SGX SDK runs an Intel SGX enclave utilizing the EPC resource from the Intel SGX provisioning.
 * Build the container image. 
+  
 ```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/ main/tests/l2/sgx/sgx_build.yaml```
+
 * Deploy and run the workload.
+  
 ```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/sgx/sgx_job.yaml```
+
 *	Check the results.
 ```$ oc get pods
   intel-sgx-job-4tnh5          0/1     Completed   0          2m10s
@@ -25,9 +29,13 @@ $ oc logs intel-sgx-job-4tnh5
 ### Verify Intel® Data Center GPU provisioning
 This workload runs [clinfo](https://github.com/Oblomov/clinfo) utilizing the i915 resource from GPU provisioning and displays the related GPU information.
 *	Build the workload container image. 
+
 ```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/clinfo_build.yaml ```
+
 *	Deploy and execute the workload.
+
 ```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/clinfo_job.yaml```
+
 * Check the results.
 ``` 
   $ oc get pods
