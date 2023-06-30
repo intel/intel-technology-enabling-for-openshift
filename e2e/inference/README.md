@@ -8,7 +8,7 @@ Intel AI inference end-to-end solution with RHOCP is based on the Intel® Data C
 * Setup node feature discovery (NFD). Follow the steps [here](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/nfd/README.md).
 * Setup machine configuration. Follow the steps [here](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/machine_configuration/README.md).
 * Setup out of tree drivers for Intel GPU provisioning. Follow the steps [here](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/machine_configuration/README.md).
-* Setup Intel device plugins operator and create Intel GPU device plugin [CR]([link](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/device_plugins/deploy_gpu.md))  
+* Setup Intel device plugins operator and create Intel GPU device plugin [CR]([link](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/device_plugins/deploy_gpu.md)  
 * Using Intel Data Center GPU Resource Exclusively [link](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/device_plugins/deploy_gpu.md#using-intel-data-center-gpu-resource-exclusively)
 ## Install RHODS
 The Red Hat certified RHODS operator is published at [Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/container-stacks/detail/63b85b573112fe5a95ee9a3a). You can use the command line interface (CLI) or web console to install it.
@@ -54,7 +54,12 @@ Follow the [link](https://github.com/openvinotoolkit/operator/blob/main/docs/not
 1.	From the web console, click on the ModelServer option in this [link](https://github.com/openvinotoolkit/operator/blob/v1.1.0/docs/operator_installation.md) and follow the [steps](https://github.com/openvinotoolkit/operator/blob/v1.1.0/docs/modelserver.md) to start the OVMS instance.  
 2.	To enable the Intel Data Center GPU, make sure to modify the OVMS instance options according to the screenshot below.
 
-* Add 2 screenshots 
+* Below images show gpu.intel.com/i915 resource requests and limits for OVMS
+
+![Alt text](/docs/images/Ovms-Gpu-resource-limit.png)
+
+![Alt text](/docs/images/Ovms-Gpu-resource-request.png)
+
 
 ## See Also 
 [GPU accelerated demo with OpenVINO](https://www.youtube.com/watch?v=3fTz_k4JT2A)
