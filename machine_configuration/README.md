@@ -24,7 +24,7 @@ Any contribution in this area is welcome.
 ## Set up an alternative firmware path for the cluster 
 The command below sets `/var/lib/firmware` as the alternative firmware path since the default firmware path `/lib/firmware` is read-only on RHCOS.
 ``` 
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/blob/release-1.0.0/machine_configuration/100-alternative-fw-path-for-worker-nodes.yaml/intel/intel-technology-enabling-for-openshift/blob/main/machine_configuration/100-alternative-fw-path-for-worker-nodes.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-alternative-fw-path-for-worker-nodes.yaml
 ```
 **Note**: This command reboots all the worker nodes sequentially. To avoid reboot on Day 2, the cluster administrator can perform this step on Day 1.
 
@@ -53,7 +53,7 @@ Ensure `firmware_class.path=/var/lib/firmware` is present.
 ## Create `intel-dgpu` MachineConfigPool
 The command shown below creates a custom `intel-dgpu` MachineConfigPool for worker nodes with an Intel Data Center GPU card, which is labeled with `intel.feature.node.kubernetes.io/gpu: 'true'` by [NFD](/nfd/README.md). 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/release-1.0.0/machine_configuration/intel-dgpu-machine-config-pool.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/intel-dgpu-machine-config-pool.yaml
 ```
 
 ## Verification
@@ -75,7 +75,7 @@ Run the command shown below to disable the loading of a potential conflicting dr
 
 **Note**: The `i915` driver depends on a ported `drm` module. Some other drivers, such as ast that depends on in-tree drm module might have a compatibility issues, known issue will be resolved on i915 driver for RHEL `9.x`, which will be used for RHOCP `4.13`. 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/release-1.0.0/machine_configuration/100-intel-dgpu-machine-config-disable-ast.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-dgpu-machine-config-disable-ast.yaml
 ```
 **Note**: This command will reboot the worker nodes in the `intel-dgpu` MachineConfigPool sequentially.
 
