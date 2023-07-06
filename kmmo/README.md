@@ -8,13 +8,13 @@ In this release, KMM operator is used to manage and deploy the Intel® Data Cent
 Intel data center GPU driver container images are released from [Intel Data Center GPU Driver for OpenShift Project](https://github.com/intel/intel-data-center-gpu-driver-for-openshift/tree/main/release#intel-data-center-gpu-driver-container-images-for-openshift-release).
 
 # KMM operator working mode
-- **Pre-build mode** - This is the default and recommended mode. KMM Operator uses this pre-built and certified Intel Data Center GPU driver container image, which is published on the Red Hat Container Catalog to provision Intel Data Center GPUs on a RHOCP cluster.
+- **Pre-build mode** - This is the default and recommended mode. KMM Operator uses this pre-built and certified Intel Data Center GPU driver container image, which is published on the Red Hat Ecosystem Catalog to provision Intel Data Center GPUs on a RHOCP cluster.
 - **On-premises build mode** - Users can optionally build and deploy their own driver container images on-premises through the KMM operator.
 
 # Prerequisites
 - Provisioned RHOCP 4.12 cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
 - Setup node feature discovery. Follow steps [here](/nfd/README.md).
-- Setup machine configuration Follow steps [here](/machine_configuration/README.md).
+- Setup machine configuration. Follow steps [here](/machine_configuration/README.md).
 
 # Install KMM operator
 Follow the installation guide below to install the KMM operator via CLI or web console. 
@@ -43,7 +43,7 @@ $ oc label node <node_name> intel.feature.node.kubernetes.io/dgpu-canary=true
 
 3.	Use pre-build mode to deploy the driver container.
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/1.0.0/kmmo/intel-dgpu.yaml   
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/kmmo/intel-dgpu.yaml   
 ```
 
 4.	After the driver is verified on the cluster through the canary deployment, simply remove the line shown below from the [`intel-dgpu.yaml`](/kmmo/intel-dgpu.yaml) file and reapply the yaml file to deploy the driver to the entire cluster. As a cluster administrator, you can also select another deployment policy.
