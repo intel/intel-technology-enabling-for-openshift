@@ -73,7 +73,7 @@ Ensure `intel-dgpu` MachineConfigPool is present.
 # Disable conflicting driver
 Run the command shown below to disable the loading of a potential conflicting driver, such as `ast` driver.
 
-**Note**: The `i915` driver depends on a ported `drm` module. Some other drivers, such as ast that depends on in-tree drm module might have a compatibility issues, known issue will be resolved on i915 driver for RHEL `9.x`, which will be used for RHOCP `4.13`. 
+**Note**: The `i915` driver depends on a ported `drm` module. Some other drivers, such as ast that depends on in-tree drm module might have compatibility issues. The known issue will be resolved on i915 driver for RHEL `9.x`, which will be used for RHOCP `4.13`. 
 ```
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-dgpu-machine-config-disable-ast.yaml
 ```
