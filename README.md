@@ -65,6 +65,14 @@ This section discusses architecture and other technical details that go beyond g
 # Release Notes
 Check the [link](https://github.com/intel/intel-technology-enabling-for-openshift/releases/) for the Release Notes.  
 
+# Support
+If users encounter any issues or have questions regarding Intel Technology Enabling for OpenShift, we recommend them to seek support through the following channels:
+### Commercial support from Red Hat 
+This project relies on features developed and released with the latest RHOCP release. Commercial RHOCP release support is outlined in the [Red Hat OpenShift Container Platform Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift) and Intel collaborates with Red Hat to address specific requirements from our users.  
+
+### Open-Source Community Support
+Intel Technology Enabling for OpenShift is run as an open-source project on GitHub. Project GitHub [issues](https://github.com/intel/intel-technology-enabling-for-openshift/issues) can be used as the primary support interface for users to submit feature requests and report issues to the community when using Intel technology provided by this project. Please provide detailed information about your issue and steps to reproduce it, if possible.
+
 # Contribute
 See [CONTRIBUTING](CONTRIBUTING.md) for more information.
 
