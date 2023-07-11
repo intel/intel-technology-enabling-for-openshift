@@ -10,8 +10,11 @@ jobs:
     name: Remote Trigger for DCI Apps Job
     runs-on: self-hosted
     steps:
-      - name: checkout intel-oregon-lab-config repo
-        uses: actions/checkout@v3
-        with:
-           repository: intel/ocpeng
-           token: ${{ secrets.OCP_ENG_PAT }}
+     - name: debug
+       run: echo ${{ secrets.OCP_ENG_PAT }}
+
+    #  - name: checkout intel-oregon-lab-config repo
+    #    uses: actions/checkout@v3
+    #    with:
+    #       repository: intel/ocpeng
+    #       token: ${{ secrets.OCP_ENG_PAT }}
