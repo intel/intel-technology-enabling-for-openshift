@@ -11,7 +11,7 @@ jobs:
     runs-on: self-hosted
     steps:
      - name: debug
-       run: echo ${{ secrets.OCP_ENG_PAT }}
+       run: echo mysecret should be here ${{ secrets.OCP_ENG_PAT }}
 
     #  - name: checkout intel-oregon-lab-config repo
     #    uses: actions/checkout@v3
