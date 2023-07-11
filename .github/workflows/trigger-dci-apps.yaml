@@ -19,6 +19,6 @@ jobs:
          workflow_file_name: dci-app-agent-workflow.yml
          ref: main
          wait_interval: 10
-         propagate_failure: true
+         #propagate_failure: true
          trigger_workflow: true
-         wait_workflow: true
+         #wait_workflow: true
