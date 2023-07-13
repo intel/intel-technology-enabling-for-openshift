@@ -10,7 +10,7 @@ jobs:
     name: Remote Trigger for DCI Apps Job
     runs-on: self-hosted
     steps:
-      - uses: convictional/trigger-workflow-and-wait@latest
+      - uses: convictional/trigger-workflow-and-wait@v1.65
         with:
          owner: intel
          repo:  ocpeng
