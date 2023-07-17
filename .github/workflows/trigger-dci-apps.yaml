@@ -17,7 +17,7 @@ jobs:
         with:
          owner: intel
          repo:  ocpeng
-         github_token: ${{ secrets.OCP_ENG_PAT }}
+         github_token: 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
          github_user: intelocpeng
          workflow_file_name: dci-app-agent-workflow.yml
          ref: main
