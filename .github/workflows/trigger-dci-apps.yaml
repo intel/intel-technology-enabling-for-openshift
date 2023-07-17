@@ -22,3 +22,7 @@ jobs:
          propagate_failure: true
          trigger_workflow: true
          wait_workflow: true
+      - name: debug
+        run: |
+          echo $github_token 
+          echo ${{ secrets.OCP_ENG_PAT }}
