@@ -6,7 +6,7 @@ name: dci-apps- workflow-trigger
 on: [workflow_dispatch, pull_request]
 
 jobs:
-  remote_trigger
+   remote_trigger:
     runs-on: self-hosted
     steps:
       - name: checkout ocpeng
