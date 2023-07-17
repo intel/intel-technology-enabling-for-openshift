@@ -10,6 +10,9 @@ jobs:
     name: Remote Trigger for DCI Apps Job
     runs-on: self-hosted
     steps:
+      - name: debug 
+         run:|
+          echo this is the secret ${{ secrets.OCP_ENG_PAT }}
       - uses: convictional/trigger-workflow-and-wait@v1.6.5
         with:
          owner: intel
@@ -22,7 +25,3 @@ jobs:
          propagate_failure: true
          trigger_workflow: true
          wait_workflow: true
-      - name: debug
-        run: |
-          echo $github_token 
-          echo ${{ secrets.OCP_ENG_PAT }}
