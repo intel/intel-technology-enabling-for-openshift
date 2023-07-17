@@ -11,7 +11,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: debug 
-         run:|
+        run: | 
           echo this is the secret ${{ secrets.OCP_ENG_PAT }}
       - uses: convictional/trigger-workflow-and-wait@v1.6.5
         with:
