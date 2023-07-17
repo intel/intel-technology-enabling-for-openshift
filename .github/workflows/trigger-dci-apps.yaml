@@ -6,22 +6,11 @@ name: dci-apps- workflow-trigger
 on: [workflow_dispatch, pull_request]
 
 jobs:
-  using-trigger-and-wait:
-    name: Remote Trigger for DCI Apps Job
+  remote_trigger
     runs-on: self-hosted
     steps:
-      - name: debug 
-        run: | 
-          echo this is the secret ${{ secrets.OCP_ENG_PAT }}
-      - uses: convictional/trigger-workflow-and-wait@v1.6.5
+      - name: checkout ocpeng
+        uses: actions/checkout@v3
         with:
-         owner: intel
-         repo:  ocpeng
-         github_token: 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
-         github_user: intelocpeng
-         workflow_file_name: dci-app-agent-workflow.yml
-         ref: main
-         #wait_interval: 10
-         #propagate_failure: true
-         trigger_workflow: true
-         #wait_workflow: true
+           repository: intel/ocpeng
+           token: ${{ secrets.redhat_dci}}
