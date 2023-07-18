@@ -1,3 +1,4 @@
+
 # This is CI trigger for the Intel Redhat DCI-Apps Job
 # It requires a user name and a PAT to access the private repo that contains the actual action.
 # It will trigger on a pull request - can also be run manually
@@ -6,12 +7,19 @@ name: dci-apps- workflow-trigger
 on: [workflow_dispatch, pull_request]
 
 jobs:
-   remote_trigger:
+  using-trigger-and-wait:
+    name: Remote Trigger for DCI Apps Job
     runs-on: self-hosted
     steps:
-      - name: checkout ocpeng
-        uses: actions/checkout@v3
+      - uses: convictional/trigger-workflow-and-wait@v1.6.5
         with:
-           repository: intel/ocpeng
-           token: ${{ secrets.GITHUB_TOKEN }}
-           
+         owner: intel
+         repo:  ocpeng
+         github_token: ${ {secrets.GITHUB_TOKEN} }
+         workflow_file_name: dci-app-agent-workflow.yml
+         ref: main
+         wait_interval: 10
+         propagate_failure: true
+         trigger_workflow: true
+         wait_workflow: true
+
