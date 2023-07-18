@@ -9,7 +9,7 @@ on: [workflow_dispatch, pull_request]
 jobs:
   using-trigger-and-wait:
     name: Remote Trigger for DCI Apps Job
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: convictional/trigger-workflow-and-wait@v1.6.5
         with:
