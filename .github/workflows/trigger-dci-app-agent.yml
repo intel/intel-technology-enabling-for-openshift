@@ -1,0 +1,22 @@
+# GH Action workflow to run CI facilitated by DCI
+name: Execute the RedHat DCI App Agent
+
+# Trigger the workflow on push/pull_request event on any branch in the repo
+# workflow_dispatch allows you to run this workflow manually from the Actions tab
+on: [push, pull_request, workflow_dispatch]
+
+# This workflow consists of one job "dci-app-agent-sahara" with several steps that run on self-hosted GH runner
+jobs:
+  run-dci-app-agent-sahara:
+    runs-on: self-hosted
+    steps:
+      - name: checkout intel-oregon-lab-config repo
+        uses: actions/checkout@v3
+        with:
+           repository: dci-labs/intel-oregon-lab-config
+           token: ${{secrets.GHA}}
+        
+      - name: run-dci-app-agent-sahara
+        working-directory: ./etc/dci-openshift-app-agent
+        run: ./run-dci-apps-sahara.sh
+        shell: bash
