@@ -8,7 +8,7 @@ In this release, KMM operator is used to manage and deploy the Intel® Data Cent
 Intel data center GPU driver container images are released from [Intel Data Center GPU Driver for OpenShift Project](https://github.com/intel/intel-data-center-gpu-driver-for-openshift/tree/main/release#intel-data-center-gpu-driver-container-images-for-openshift-release).
 
 # KMM operator working mode
-- **Pre-build mode** - This is the default and recommended mode. KMM Operator uses this pre-built and certified Intel Data Center GPU driver container image, which is published on the Red Hat Ecosystem Catalog to provision Intel Data Center GPUs on a RHOCP cluster.
+- **Pre-build mode** - This is the default and recommended mode. KMM Operator uses [this pre-built and certified Intel Data Center GPU driver container image](https://catalog.redhat.com/software/containers/intel/intel-data-center-gpu-driver-container/6495ee55c8b2461e35fb8264), which is published on the Red Hat Ecosystem Catalog to provision Intel Data Center GPUs on a RHOCP cluster.
 - **On-premises build mode** - Users can optionally build and deploy their own driver container images on-premises through the KMM operator.
 
 # Prerequisites
