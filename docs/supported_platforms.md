@@ -22,12 +22,13 @@ Multi-node bare metal RHOCP cluster provisioning is the primary cluster use case
 
 ## Supported Intel hardware platforms 
 
-The following Intel feature technologies are supported in the 1.0.0 release.  
+The following Intel feature technologies are supported in the 1.0.1 release.  
 
 | Intel Feature Technology                      | Intel Hardware Platform                                        |
 |-----------------------------------------------|----------------------------------------------------------------|
 | Intel® Software Guard Extensions (Intel® SGX) | [4th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/4th-gen-xeon-scalable-processors.html) <br/>  [3rd Gen Intel® Xeon® Scalable processors   ](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/3rd-gen-xeon-scalable-processors.html)                                                   |                               
 | Intel® Data Center GPU Flex Series            | [Intel Data Center GPU Flex 140](https://www.intel.com/content/www/us/en/products/sku/230020/intel-data-center-gpu-flex-140/specifications.html) <br/>  [Intel Data Center GPU Flex 170](https://www.intel.com/content/www/us/en/products/sku/230019/intel-data-center-gpu-flex-170/specifications.html)  |
+| Intel® QuickAssist Technology (Intel® QAT) | [4th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/4th-gen-xeon-scalable-processors.html) |                               
 
 ## Support 
 
