@@ -1,0 +1,18 @@
+# Copyright (c) 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: deviceplugin.intel.com/v1
+kind: QatDevicePlugin
+metadata:
+  name: qatdeviceplugin-sample
+spec:
+  image: registry.connect.redhat.com/intel/intel-qat-plugin@sha256:b3e3022314347d451042cf52123215eddf9d21059665d8a1d9c92c58e88c135c
+  initImage: registry.connect.redhat.com/intel/intel-qat-initcontainer@sha256:29653c807ba5335be84b3e54a723ecec9173d0f460e2ba07845af1c89e2f4376
+  dpdkDriver: vfio-pci
+  kernelVfDrivers:
+    - c6xxvf
+    - 4xxxvf
+  maxNumDevices: 1
+  logLevel: 4
+  nodeSelector:
+    intel.feature.node.kubernetes.io/qat: "true"
