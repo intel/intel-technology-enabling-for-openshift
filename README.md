@@ -3,11 +3,11 @@
 The Intel Technology Enabling for OpenShift project provides Intel Data Center hardware feature-provisioning technologies with the [Red Hat OpenShift Container Platform (RHOCP)](https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform). The technology to deploy and manage the End-to-End (E2E) solutions as well as the related reference workloads for these features are also included in the project.  
 
 These Intel Data Center hardware features currently include: 
-- Intel® Software Guard Extensions (Intel® SGX) 
-- Intel® Data Center GPU Flex Series 
+- **Intel® Software Guard Extensions (Intel® SGX)**
+- **Intel® Data Center GPU Flex Series**
+- **Intel® QuickAssist Technology (Intel® QAT)**
 
 The following features will be included in future releases.  
-- Intel® QuickAssist Technology (Intel® QAT) 
 - Intel® Data Center GPU Max Series 
 - Intel® Data Streaming Accelerator (Intel® DSA) 
 - Intel® In-Memory Analytics Accelerator (Intel® IAA) 
