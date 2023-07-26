@@ -1,13 +1,18 @@
-# This is CI trigger for the Intel Redhat DCI-Apps Job
+# GH Action workflow to trigger CI based on Intel Red Hat DCI Apps Job
 # It requires a user name and a PAT to access the private repo that contains the actual action.
-# It will trigger on a pull request - can also be run manually 
+# Trigger the workflow on pull_request event on main branch. The PR needs to have the 'test' label.
+# workflow_dispatch allows you to run this workflow manually from the Actions tab
 
-name: dci-apps-workflow-trigger
-on: [workflow_dispatch, pull_request]
-
+name: Trigger DCI Apps Workflow
+on: 
+  workflow_dispatch:
+  pull_request:
+     types: [ labeled ]
+     branches: main
 jobs:
   using-trigger-and-wait:
     name: Remote Trigger for DCI Apps Job
+    if: ${{ github.event.label.name == 'test' }}
     runs-on: self-hosted
     steps:
       - uses: convictional/trigger-workflow-and-wait@v1.6.5
