@@ -33,5 +33,6 @@ inteldeviceplugins-controller-manager-6b8c76c867-hftqm   2/2     Running   0    
 ```
 
 # Creating Intel Device Plugin custom resource (CR)
-- To create an Intel SGX device plugin CR, follow this [link](/device_plugins/deploy_sgx.md):
-- To create an Intel GPU device plugin CR, follow this [link](/device_plugins/deploy_gpu.md):
+- To create an Intel SGX device plugin CR, follow this [link](/device_plugins/deploy_sgx.md).
+- To create an Intel GPU device plugin CR, follow this [link](/device_plugins/deploy_gpu.md).
+- To create an Intel QAT device plugin CR, follow this [link](/device_plugins/deploy_qat.md).
