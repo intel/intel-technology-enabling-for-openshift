@@ -11,10 +11,14 @@ spec:
     metadata:
     spec:
       restartPolicy: Never
+      serviceAccountName: container-scc
       containers:
       - name: clinfo-pod
         image: image-registry.openshift-image-registry.svc:5000/intel-dgpu/intel-dgpu-clinfo:latest
         command: ["clinfo"]
+        seLinuxContext:
+          seLinuxOptions:
+            type: container_device_t
         resources:
           limits:
             gpu.intel.com/i915: 1

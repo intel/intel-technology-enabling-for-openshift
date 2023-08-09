@@ -34,6 +34,12 @@ This workload runs [clinfo](https://github.com/Oblomov/clinfo) utilizing the i91
 
 *	Deploy and execute the workload.
 
+   For the container to use /dev folder on host, use the ```container_device_t``` selinux option with a custom SCC and service account as below.
+
+```$ oc adm policy add-scc-to-user container-scc -z container-scc```
+  
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/container_scc.yaml```
+
 ```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/clinfo_job.yaml```
 
 * Check the results.
