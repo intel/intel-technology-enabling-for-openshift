@@ -1,0 +1,17 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: intel-dgpu
+  name: 100-intel-qat-vfio-pci-load
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+    storage:
+      files:
+      - contents:
+          source: data:,vfio-pci
+        mode: 0644
+        overwrite: true
+        path: /etc/modules-load.d/vfio-pci.conf

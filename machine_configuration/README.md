@@ -87,6 +87,17 @@ $ lsmod | grep ast
 ```
 Ensure that ast driver is not loaded.
 
+# Machine Configuration for Provisioning Intel QAT
+
+* Turn on intel_iommu kernel parameter for QAT
+
+For QAT, intel_iommu is a kernel parameter that needs to be turned on using the following command.
+
+```$ oc apply -f https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/machine_configuration/100-intel-qat-intel-iommu-on.yaml```
+
+Note: This will reboot the worker nodes in the Intel QAT machine config pool one by one to turn on intel_iommu kernel parameter.
+
+
 # See Also
 - [Firmware Search Path](https://docs.kernel.org/driver-api/firmware/fw_search_path.html)
 - [Red Hat OpenShift Container Platform Day-2 operations](https://www.ibm.com/cloud/architecture/content/course/red-hat-openshift-container-platform-day-2-ops/)
