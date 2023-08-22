@@ -10,9 +10,8 @@ spec:
   initImage: registry.connect.redhat.com/intel/intel-qat-initcontainer@sha256:c494debf7e3dc8be49ac7e634506db6892534c27f15b970954fff18310654dcb
   dpdkDriver: vfio-pci
   kernelVfDrivers:
-    - c6xxvf
     - 4xxxvf
-  maxNumDevices: 1
+  maxNumDevices: 128
   logLevel: 4
   nodeSelector:
     intel.feature.node.kubernetes.io/qat: "true"
