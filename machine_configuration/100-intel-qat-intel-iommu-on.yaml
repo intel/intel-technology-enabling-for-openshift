@@ -5,7 +5,7 @@ apiVersion: machineconfiguration.openshift.io/v1
 kind: MachineConfig
 metadata:
   labels:
-    machineconfiguration.openshift.io/role: intel-qat
+    machineconfiguration.openshift.io/role: worker
   name: 100-intel-qat-intel-iommu-on
 spec:
   config:
@@ -13,3 +13,5 @@ spec:
       version: 3.2.0
   kernelArguments:
       - intel_iommu=on
+  selector:
+    `intel.feature.node.kubernetes.io/qat: 'true'
