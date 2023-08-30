@@ -14,4 +14,4 @@ spec:
   kernelArguments:
       - intel_iommu=on
   selector:
-    `intel.feature.node.kubernetes.io/qat: 'true'
+    intel.feature.node.kubernetes.io/qat: 'true'
