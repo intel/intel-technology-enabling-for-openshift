@@ -1,0 +1,29 @@
+# Copyright (c) 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: intel-qat-workload
+  namespace: intel-qat
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: intel-qat-job
+        image: image-registry.openshift-image-registry.svc:5000/intel-qat/intel-qat-workload:latest
+        imagePullPolicy: IfNotPresent
+        command: ["./cpa_sample_code"]
+        securityContext:
+          capabilities:
+            add:
+              [IPC_LOCK]
+        resources:
+          requests:
+            qat.intel.com/dc: '1'
+            qat.intel.com/cy: '1'
+          limits:
+            qat.intel.com/dc: '1'
+            qat.intel.com/cy: '1'
+      serviceAccount: intel-qat
