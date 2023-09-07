@@ -12,6 +12,6 @@ spec:
     ignition:
       version: 3.2.0
   kernelArguments:
-      - intel_iommu=on
+      - intel_iommu=on modules_load=vfio-pci vfio-pci.ids=8086:4941,8086:4943
   selector:
     intel.feature.node.kubernetes.io/qat: 'true'
