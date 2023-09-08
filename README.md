@@ -7,6 +7,12 @@ These Intel Data Center hardware features currently include:
 - **Intel® Data Center GPU Flex Series**
 - **Intel® QuickAssist Technology (Intel® QAT)**
 
+| Feature | Supported OCP Version | 
+| ----- | ---------------------- |
+| Intel® SGX |  OCP 4.12.6 and above (support is only for z streams in 4.12.z where z >= 6) |
+| Intel® Data Center GPU Flex Series |  OCP 4.12.[6, 7, 25, 26, 27, 28] |
+| Intel® QAT |  OCP 4.12.26 and above (support is only for z streams in 4.12.z where z >= 26) |
+
 The following features will be included in future releases.  
 - Intel® Data Center GPU Max Series 
 - Intel® Data Streaming Accelerator (Intel® DSA) 
@@ -28,7 +34,16 @@ Figure-1 is the [Architecture and Working Scope](https://github.com/intel/intel-
 
 This [section](/docs/supported_platforms.md) describes the RHOCP infrastructure and Intel hardware features supported by this project. The project lifecycle and support channels can also be found [here](docs/supported_platforms.md#support). 
 
-# Getting started  
+# Getting started
+
+## BIOS Configuration
+Note: Please refer to your BIOS vendor for specific instructions. This is only a reference for BIOS configuration. 
+| Feature | BIOS Configuration | 
+| ----- | ---------------------- |
+| SGX | [Link](https://www.intel.com/content/www/us/en/support/articles/000087972/server-products/single-node-servers.html) |
+| GPU | [Link](https://www.intel.com/content/www/us/en/content-details/774119/virtualization-guide-for-intel-data-center-gpu-flex-series.html?wapkw=gpu%20flex%20series%20setup%20guide) |
+| QAT | [Link](https://github.com/intel/qatlib/blob/7429ee2b7c837137ed11959a3c2cc3729dc15739/INSTALL#L104) |
+
 ## Provisioning RHOCP cluster   
 Use one of these two options to provision an RHOCP cluster: 
 - Use the methods introduced in [RHOCP documentation](https://docs.openshift.com/container-platform/4.12/installing/index.html). 
