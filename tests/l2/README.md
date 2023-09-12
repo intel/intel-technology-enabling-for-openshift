@@ -1,14 +1,17 @@
 # Verifying Intel Hardware Feature Provisioning
 ## Introduction
 After provisioning Intel hardware features on RHOCP, the respective hardware resources are exposed to the RHOCP cluster. The workload containers can request these resources. The following sample workloads help verify if these resources can be used as expected. These sample workloads container images are built and packaged on-premises through [RHOCP BuildConfig](https://docs.openshift.com/container-platform/4.12/cicd/builds/understanding-buildconfigs.html) and pushed to the embedded repository through [RHOCP ImageStream](https://docs.openshift.com/container-platform/4.12/openshift_images/image-streams-manage.html).
+
 ## Prerequisites
 •	Provisioned RHOCP 4.12 cluster. Follow steps [here](https://github.com/intel/intel-technology-enabling-for-openshift#provisioning-rhocp-cluster). 
+
 •	Provisioning Intel HW features on RHOCP. Follow steps [here](https://github.com/intel/intel-technology-enabling-for-openshift#provisioning-intel-hardware-features-on-rhocp)
+
 ### Verify Intel® Software Guard Extensions (Intel® SGX) Provisioning
 This [SampleEnclave](https://github.com/intel/linux-sgx/tree/master/SampleCode/SampleEnclave) application workload from the Intel SGX SDK runs an Intel SGX enclave utilizing the EPC resource from the Intel SGX provisioning.
 * Build the container image. 
   
-```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/ main/tests/l2/sgx/sgx_build.yaml```
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/sgx/sgx_build.yaml```
 
 * Deploy and run the workload.
   
@@ -61,6 +64,76 @@ $ oc logs intel-dgpu-clinfo-56mh2
   Device OpenCL C all versions                    OpenCL 
 ```                                               
 
+### Verify Intel® QuickAssist Technology provisioning
+This workload runs [qatlib](https://github.com/intel/qatlib) sample tests. Refer to the [qatlib readme](https://github.com/intel/qatlib/blob/main/INSTALL) for more details. 
+
+*	Build the workload container image. 
+
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_build.yaml ```
+
+*	Deploy and execute the workload.
+
+    * Run with IPC_LOCK capability for pod
+  
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/qatlib_rbac.yaml```
+
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_job.yaml```
+
+* Check the results.
+``` 
+  $ oc get pods
+  intel-qat-workload-c6g9v   0/1     Completed   0          4m13s
+```
+
+
+* For all sample tests `./cpa_sample_code` 
+
+```
+$ oc logs intel-qat-workload-c6g9v
+qaeMemInit started
+icp_sal_userStartMultiProcess("SSL") started
+There are no crypto instances
+*** QA version information ***
+device ID               = 0
+software                = 23.2.0
+*** END QA version information ***
+Inst 0, Affin: 0, Dev: 0, Accel 0, EE 0, BDF ED:00:01
+Inst 1, Affin: 1, Dev: 0, Accel 0, EE 0, BDF ED:00:01
+Inst 2, Affin: 2, Dev: 0, Accel 0, EE 0, BDF ED:00:01
+Inst 3, Affin: 3, Dev: 0, Accel 0, EE 0, BDF ED:00:01
+---------------------------------------
+API                    Traditional
+Session State          STATELESS
+Algorithm              DEFLATE
+Huffman Type           STATIC
+Mode                   ASYNCHRONOUS
+CNV Enabled            YES
+Direction              COMPRESS
+Packet Size            8192
+Compression Level      1
+Corpus                 CALGARY_CORPUS
+Corpus Filename        calgary
+CNV Recovery Enabled   YES
+Number of threads      4
+Total Responses        158400
+Total Retries          2242671
+Clock Cycles Start     126150916653843
+Clock Cycles End       126151409143747
+Total Cycles           492489904
+CPU Frequency(kHz)     1700160
+Throughput(Mbps)       35920
+Compression Ratio      0.4897
+---------------------------------------
+
+Inst 0, Affin: 0, Dev: 0, Accel 0, EE 0, BDF ED:00:01
+Inst 1, Affin: 1, Dev: 0, Accel 0, EE 0, BDF ED:00:01
+Inst 2, Affin: 2, Dev: 0, Accel 0, EE 0, BDF ED:00:01
+Inst 3, Affin: 3, Dev: 0, Accel 0, EE 0, BDF ED:00:01
+---------------------------------------
+```
+
+
 ## See Also
 For Intel SGX demos on vanilla Kubernetes, refer to [link](https://github.com/intel/intel-device-plugins-for-kubernetes/tree/main/demo/sgx-sdk-demo) 
+
 For GPU demos on vanilla Kubernetes, refer to [link](https://github.com/intel/intel-device-plugins-for-kubernetes/tree/main/demo/intel-opencl-icd) 
