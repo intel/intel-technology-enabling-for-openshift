@@ -13,7 +13,7 @@ The following features will be included in future releases.
 - Intel® In-Memory Analytics Accelerator (Intel® IAA) 
 - Intel® FPGA N6000 
 
-See details about [Supported Intel Hardware features](/docs/supported_platforms.md#supported-intel-hardware-platforms).  
+See details about [Supported Intel Hardware features](/docs/supported_platforms.md#supported-intel-hardware-features) and [Supported RHOCP Versions](/docs/supported_platforms.md#supported-rhocp-versions).  
 
 Figure-1 is the [Architecture and Working Scope](https://github.com/intel/intel-technology-enabling-for-openshift/wiki/Intel-Technology-Enabling-for-OpenShift-Architecture-and-Working-Scope) of the project  
 
@@ -28,7 +28,8 @@ Figure-1 is the [Architecture and Working Scope](https://github.com/intel/intel-
 
 This [section](/docs/supported_platforms.md) describes the RHOCP infrastructure and Intel hardware features supported by this project. The project lifecycle and support channels can also be found [here](docs/supported_platforms.md#support). 
 
-# Getting started  
+# Getting started
+See reference [BIOS Configuration](/docs/supported_platforms.md#bios-configuration) required for each feature.
 ## Provisioning RHOCP cluster   
 Use one of these two options to provision an RHOCP cluster: 
 - Use the methods introduced in [RHOCP documentation](https://docs.openshift.com/container-platform/4.12/installing/index.html). 
