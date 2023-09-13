@@ -20,7 +20,7 @@ The container images, operators, and documents included in the Intel Technology 
 
 Multi-node bare metal RHOCP cluster provisioning is the primary cluster use case supported by the project. Virtual Machine technology-based infrastructures support will be included in a future release. For feature requests and related discussions, please submit a project [issue](https://github.com/intel/intel-technology-enabling-for-openshift/issues). For RHOCP infrastructure support, please contact Red Hat. 
 
-## Supported Intel hardware platforms 
+## Supported Intel Hardware Features 
 
 The following Intel feature technologies are supported in the 1.0.1 release.  
 
@@ -29,6 +29,24 @@ The following Intel feature technologies are supported in the 1.0.1 release.
 | Intel® Software Guard Extensions (Intel® SGX) | [4th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/4th-gen-xeon-scalable-processors.html) <br/>  [3rd Gen Intel® Xeon® Scalable processors   ](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/3rd-gen-xeon-scalable-processors.html)                                                   |                               
 | Intel® Data Center GPU Flex Series            | [Intel Data Center GPU Flex 140](https://www.intel.com/content/www/us/en/products/sku/230020/intel-data-center-gpu-flex-140/specifications.html) <br/>  [Intel Data Center GPU Flex 170](https://www.intel.com/content/www/us/en/products/sku/230019/intel-data-center-gpu-flex-170/specifications.html)  |
 | Intel® QuickAssist Technology (Intel® QAT) | [4th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/4th-gen-xeon-scalable-processors.html) |                               
+
+## Setting up Intel Hardware Features
+
+### BIOS Configuration
+Note: Please refer to your BIOS vendor for specific instructions. This is only a reference for BIOS configuration. 
+| Feature | BIOS Configuration | 
+| ----- | ---------------------- |
+| Intel® SGX | [Link](https://www.intel.com/content/www/us/en/support/articles/000087972/server-products/single-node-servers.html) |
+| Intel® Data Center GPU Flex Series | [Link](https://www.intel.com/content/www/us/en/content-details/774119/virtualization-guide-for-intel-data-center-gpu-flex-series.html?wapkw=gpu%20flex%20series%20setup%20guide) |
+| Intel® QAT | [Link](https://github.com/intel/qatlib/blob/7429ee2b7c837137ed11959a3c2cc3729dc15739/INSTALL#L104) |
+
+## Supported RHOCP Versions
+
+| Feature | Supported RHOCP Version | 
+| ----- | ---------------------- |
+| Intel® SGX |  RHOCP 4.12.6 and above (support is only for z streams in 4.12.z where z >= 6) |
+| Intel® Data Center GPU Flex Series |  RHOCP 4.12.[6, 7, 25, 26, 27, 28] |
+| Intel® QAT |  RHOCP 4.12.26 and above (support is only for z streams in 4.12.z where z >= 26) |
 
 ## Support 
 
