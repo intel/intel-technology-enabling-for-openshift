@@ -60,10 +60,10 @@ Users can use the steps below to customize the QAT resource configuration:
     ```
     Options:  
     `dc`: Configure all the QAT VF devices managed by the device plugin CR for compression/decompression.  
-    `sym` or `asym`: Configure all the QAT VF devices managed by the device plugin CR for cryptography 
+    `sym;asym`: Configure all the QAT VF devices managed by the device plugin CR for cryptography 
 2. Create QAT device plugin CR with `-provisioning-config` set as qat-config.  
 
 # Run Intel QAT based workloads on RHOCP
 To run the Intel QAT based workloads as an unprivileged pod (see [issue](https://github.com/intel/intel-technology-enabling-for-openshift/issues/122)). The customized `qat-scc` Security Context Constraint (SCC) is provided to bind with service account and run the QAT based workload. 
 
-See [Verify Intel QuickAssist Technology Provisioning](https://github.com/intel/intel-technology-enabling-for-openshift/tree/main/tests/l2#verify-intel-quickassist-technology-provisioning) for the detailed steps.  
+See [Verify Intel QuickAssist Technology Provisioning](/tests/l2/README.md#verify-intel®-quickassist-technology-provisioning) for the detailed steps.  
