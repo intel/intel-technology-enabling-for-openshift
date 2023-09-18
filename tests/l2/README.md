@@ -68,16 +68,20 @@ $ oc logs intel-dgpu-clinfo-56mh2
 This workload runs [qatlib](https://github.com/intel/qatlib) sample tests. Refer to the [qatlib readme](https://github.com/intel/qatlib/blob/main/INSTALL) for more details. 
 
 *	Build the workload container image
-  ```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_build.yaml ```
+
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_build.yaml ```
 
 * Create SCC intel-qat-scc for Intel QAT based workload, if this SCC is not created   
-  ```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/qatlib_scc.yaml```
+  
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/qatlib_scc.yaml```
       
 * Create the intel-qat service account to use intel-qat-scc
-  ```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/qatlib_rbac.yaml```
+  
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/qatlib_rbac.yaml```
 
 * Deploy the qatlib workload job with intel-qat service account
-  ```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_job.yaml```
+  
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_job.yaml```
 
 * Check the results.
 ``` 
