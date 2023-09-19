@@ -87,6 +87,16 @@ $ lsmod | grep ast
 ```
 Ensure that ast driver is not loaded.
 
+# Machine Configuration for Provisioning Intel QAT
+
+* Turn on `intel_iommu` kernel parameter and load `vfio-pci` at boot for QAT provisioning
+
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-qat-intel-iommu-on.yaml
+```
+
+Note: This will reboot the QAT worker nodes when changing the kernel parameter through MCO.
+
 # See Also
 - [Firmware Search Path](https://docs.kernel.org/driver-api/firmware/fw_search_path.html)
 - [Red Hat OpenShift Container Platform Day-2 operations](https://www.ibm.com/cloud/architecture/content/course/red-hat-openshift-container-platform-day-2-ops/)
