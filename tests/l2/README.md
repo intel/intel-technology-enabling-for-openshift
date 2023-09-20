@@ -31,6 +31,10 @@ $ oc logs intel-sgx-job-4tnh5
 ```
 ### Verify Intel® Data Center GPU provisioning
 This workload runs [clinfo](https://github.com/Oblomov/clinfo) utilizing the i915 resource from GPU provisioning and displays the related GPU information.
+* To work around [issue](https://github.com/intel/intel-technology-enabling-for-openshift/issues/107), please run the below command on the node with the GPU where your workload will run:
+  
+```$ setsebool container_use_devices on```
+
 *	Build the workload container image. 
 
 ```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/clinfo_build.yaml ```
