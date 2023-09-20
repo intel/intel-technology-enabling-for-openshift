@@ -47,8 +47,8 @@ For more details about the QAT device plugin configuration flags, see [Modes and
 | ---- | ---- | ---- |
 | `-dpdk-driver` | vfio-pci | Using vfio-pci driver to manage QAT VFIO device. See details [here](https://doc.dpdk.org/guides/linux_gsg/linux_drivers.html) |
 | `-kernel-vf-drivers` | 4xxxvf | Supporting 4xxx QAT device </br> **Note**: Verified on 4th Gen Intel® Xeon® Scalable processors. See details [here](https://github.com/intel/qatlib/blob/main/INSTALL#L72) |
-| `-max-num-devices ` | 128 | 128 QAT VFIO Virtual Function (VF) devices provided to QAT device plugin to manage. It is the maximum VF device it can support for 4xxx QAT device. |
-| `-provisioning-config ` | qat-config or empty | See section [QAT resource configuration](/device_plugins/deploy_qat.md#qat-resource-configuration)  |
+| `-max-num-devices ` | 128 | It is the maximum VF device it can support for 4xxx QAT device. If the number exceeds the maximum number the QAT device supports, then the maximum number will be enabled. |
+| `-provisioning-config ` | Name of ConfigMap | See section [QAT resource configuration](/device_plugins/deploy_qat.md#qat-resource-configuration)  |
 
 ## QAT Resource Configuration
 In this release, if the user does not configure the QAT resources through the device plugin `-provisioning-config` flag. The device plugin will configure half of the QAT VFIO VF devices for compression/decompression and the other half for cryptography.
@@ -56,12 +56,12 @@ In this release, if the user does not configure the QAT resources through the de
 Users can use the steps below to customize the QAT resource configuration:  
 1. Create the configmap for qat resource configuration 
     ```
-    $ oc create configmap --namespace=openshift-operators --from-literal "qat.conf=ServicesEnabled=<option>" qat-config 
+    $ oc create configmap --namespace=openshift-operators --from-literal "qat.conf=ServicesEnabled=<option>" Name of ConfigMap 
     ```
     Options:  
     `dc`: Configure all the QAT VF devices managed by the device plugin CR for compression/decompression.  
     `sym;asym`: Configure all the QAT VF devices managed by the device plugin CR for cryptography 
-2. Create QAT device plugin CR with `-provisioning-config` set as qat-config.  
+2. Create QAT device plugin CR with -provisioning-config set as the name of the ConfigMap (created in step 1) in the qat_device_plugin.yaml file or set ConfigMap name in the provisioning-config option from web console.  
 
 # Run Intel QAT based workloads on RHOCP
 To run the Intel QAT based workloads as an unprivileged pod (see [issue](https://github.com/intel/intel-technology-enabling-for-openshift/issues/122)). The customized `qat-scc` Security Context Constraint (SCC) is provided to bind with service account and run the QAT based workload. 
