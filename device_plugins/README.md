@@ -6,8 +6,11 @@ Intel Device Plugins are utilized to advertise Intel hardware features (resource
 # Prerequisities
 - Provisioned RHOCP 4.12 cluster. Follow steps [here](/README.md).
 - Setup Node Feature Discovery (NFD). Follow steps [here](/nfd/README.md).
-- Setup Machine Configuration. Follow steps [here](/machine_configuration/README.md).
-- Optional: Setup out-of-tree drivers for Intel Data Center GPU provisioning. Follow the steps listed [here](/kmmo/README.md).
+- Follow the additional prerequisites for provisioning Intel® Data Center GPU: 
+    - Configure Machine Configuration (MCO) for Intel Data Center GPU. Follow steps [here](/machine_configuration/README.md#machine-configuration-for-intel®-data-center-gpu).
+    - Setup out of tree drivers for Intel Data Center GPU provisioning. Follow the steps listed [here](/kmmo/README.md). 
+- Follow the additional prerequisites for provisioning Intel® QuickAssist Technology: 
+    - Configure MCO for provisioning Intel QAT. Follow steps [here](/machine_configuration/README.md#machine-configuration-for-provisioning-intel-qat).
 
 # Install Intel Device Plugins Operator on Red Hat OpenShift
 ## Installation via web console
@@ -31,6 +34,16 @@ $ oc get pod | grep inteldeviceplugins-controller-manager
 
 inteldeviceplugins-controller-manager-6b8c76c867-hftqm   2/2     Running   0          17m
 ```
+
+# Resources Provided by Intel Device Plugins
+The resources are the user interface for customers to claim and consume the hardware features provided by Intel Device Plugins from the user pods. See below table for the details:
+
+| Feature | Resources | Description | Usage |
+| ------- | --------- | ----------- | ----- |
+| Intel SGX | `sgx.intel.com/epc` | Intel SGX EPC memory for user pod to claim | [Link](https://github.com/intel/intel-technology-enabling-for-openshift/blob/64a6c86f3be25459c14ea988e892f9f5d873a8ca/tests/l2/sgx/sgx_job.yaml#L21) |
+| Intel Data Center GPU Flex Series | `gpu.intel.com/i915 ` | Intel Data Center GPU Card for user pod to claim | [Link](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/device_plugins/deploy_gpu.md#using-intel-data-center-gpu-resource-exclusively) |
+| Intel QAT | `qat.intel.com/cy` </br> `qat.intel.com/dc` | `cy`: Intel QAT VFIO Virtual Function device configured for cryptography for user pod to claim </br> `dc`: Intel QAT VFIO Virtual Function device configured for cryptography for user pod to claim | [Link](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/tests/l2/qat/qatlib_job.yaml#L24) </br> [Link](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/tests/l2/qat/qatlib_job.yaml#L28) |
+
 
 # Creating Intel Device Plugin custom resource (CR)
 - To create an Intel SGX device plugin CR, follow this [link](/device_plugins/deploy_sgx.md).
