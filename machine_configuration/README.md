@@ -87,7 +87,7 @@ $ lsmod | grep ast
 ```
 Ensure that ast driver is not loaded.
 
-# Machine Configuration for Provisioning Intel QAT
+# Machine Configuration for Provisioning Intel® QAT
 
 * Turn on `intel_iommu` kernel parameter and load `vfio-pci` at boot for QAT provisioning
 
