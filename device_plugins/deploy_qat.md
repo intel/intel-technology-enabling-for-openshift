@@ -50,7 +50,10 @@ For more details about the QAT device plugin configuration flags, see [Modes and
 | `-max-num-devices ` | 128 | It is the maximum VF device it can support for 4xxx QAT device. If the number exceeds the maximum number the QAT device supports, then the maximum number will be enabled. |
 | `-provisioning-config ` | Name of ConfigMap | See section [QAT resource configuration](/device_plugins/deploy_qat.md#qat-resource-configuration)  |
 
-## QAT Resource Configuration
+## QAT Resource Configuration (experimental)
+
+**NOTE**: In this release, this is an experimental feature. The efforts to [enhance this feature](https://github.com/intel/intel-device-plugins-for-kubernetes/issues/1529) and [make it more stable](https://github.com/intel/intel-device-plugins-for-kubernetes/issues/1542) are on going.
+
 In this release, if the user does not configure the QAT resources through the device plugin `-provisioning-config` flag. The device plugin will configure half of the QAT VFIO VF devices for compression/decompression and the other half for cryptography.
 
 Users can use the steps below to customize the QAT resource configuration:  
@@ -61,7 +64,7 @@ Users can use the steps below to customize the QAT resource configuration:
     Options:  
     `dc`: Configure all the QAT VF devices managed by the device plugin CR for compression/decompression.  
     `sym;asym`: Configure all the QAT VF devices managed by the device plugin CR for cryptography 
-2. Create QAT device plugin CR with -provisioning-config set as the name of the ConfigMap (created in step 1) in the qat_device_plugin.yaml file or set ConfigMap name in the provisioning-config option from web console.  
+2. Create QAT device plugin CR with -provisioning-config set as the name of the ConfigMap (created in step 1) in the qat_device_plugin.yaml file or set ConfigMap name in the provisioning-config option from web console. 
 
 # Run Intel QAT based workloads on RHOCP
 To run the Intel QAT based workloads as an unprivileged pod (see [issue](https://github.com/intel/intel-technology-enabling-for-openshift/issues/122)). The customized `qat-scc` Security Context Constraint (SCC) is provided to bind with service account and run the QAT based workload. 
