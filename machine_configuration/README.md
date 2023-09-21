@@ -95,7 +95,7 @@ Ensure that ast driver is not loaded.
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-qat-intel-iommu-on.yaml
 ```
 
-Note: This will reboot the QAT worker nodes when changing the kernel parameter through MCO.
+Note: This will reboot the worker nodes when changing the kernel parameter through MCO.
 
 # See Also
 - [Firmware Search Path](https://docs.kernel.org/driver-api/firmware/fw_search_path.html)
