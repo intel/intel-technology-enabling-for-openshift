@@ -1,0 +1,40 @@
+# Copyright (c) 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: intel-dgpu-hwinfo
+  namespace: intel-dgpu
+spec: {}
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: intel-dgpu-hwinfo
+  namespace: intel-dgpu
+spec:
+  triggers:
+    - type: "ConfigChange"
+    - type: "ImageChange"
+  runPolicy: "Serial"
+  source:
+    type: Dockerfile
+    dockerfile: | 
+        ARG BUILDER=registry.access.redhat.com/ubi9-minimal:latest
+        FROM ${BUILDER} 
+        RUN microdnf -y update && \
+          rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm && \
+          microdnf install -y hwinfo
+        ENTRYPOINT  ["hwinfo"]
+  strategy:
+    type: Docker
+    noCache: true
+    dockerStrategy:
+      buildArgs:
+          - name: "BUILDER"
+            value: "registry.access.redhat.com/ubi9-minimal:latest"
+  output:
+    to:
+      kind: ImageStreamTag
+      name: intel-dgpu-hwinfo:latest
