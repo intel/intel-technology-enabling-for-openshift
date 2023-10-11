@@ -30,6 +30,7 @@ $ oc logs intel-sgx-job-4tnh5
   Enter a character before exit ...
 ```
 ### Verify Intel® Data Center GPU provisioning
+#### clinfo
 This workload runs [clinfo](https://github.com/Oblomov/clinfo) utilizing the i915 resource from GPU provisioning and displays the related GPU information.
 * To work around [issue](https://github.com/intel/intel-technology-enabling-for-openshift/issues/107), please run the below command on the node with the GPU where your workload will run:
   
@@ -67,6 +68,49 @@ $ oc logs intel-dgpu-clinfo-56mh2
   Device OpenCL C Version                         OpenCL C 1.2
   Device OpenCL C all versions                    OpenCL 
 ```                                               
+#### hwinfo
+
+This workload runs ```hwinfo``` utilizing the i915 resource from GPU provisioning and displays the related GPU information. Refer to [link](https://dgpu-docs.intel.com/driver/installation.html#verify-install)
+
+
+*	Build the workload container image. 
+
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/hwinfo_build.yaml ```
+
+*	Deploy and execute the workload.
+
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/hwinfo_job.yaml```
+
+* Check the results
+``` 
+  $ oc get pods
+  intel-dgpu-hwinfo-1-build   0/1     Completed   0          111m
+  intel-dgpu-hwinfo-l4572     0/1     Completed   0          110m
+```
+```
+$ oc logs intel-dgpu-hwinfo-l4572  
+  88: PCI 3700.0: 0300 VGA compatible controller (VGA)
+  [Created at pci.386]
+  Unique ID: ug9x.K5dXxUXtHX2
+  Parent ID: QGIh.mr2N3fBJq5F
+  SysFS ID: /devices/pci0000:30/0000:30:02.0/0000:31:00.0/0000:32:00.0/0000:33:00.0/0000:34:08.0/0000:35:00.0/0000:36:01.0/0000:37:00.0
+  SysFS BusID: 0000:37:00.0
+  Hardware Class: graphics card
+  Model: "Intel VGA compatible controller"
+  Vendor: pci 0x8086 "Intel Corporation"
+  Device: pci 0x56c1
+  SubVendor: pci 0x8086 "Intel Corporation"
+  SubDevice: pci 0x4905
+  Revision: 0x04
+  Driver: "i915"
+  Driver Modules: "i915"
+  Memory Range: 0xd0000000-0xd0ffffff (rw,non-prefetchable)
+  Memory Range: 0x3afc00000000-0x3afdffffffff (ro,non-prefetchable)
+  IRQ: 928 (86 events)
+  Module Alias: "pci:v00008086d000056C1sv00008086sd00004905bc03sc00i00"
+  Config Status: cfg=new, avail=yes, need=no, active=unknown
+  Attached to: #29 (PCI bridge)
+```                        
 
 ### Verify Intel® QuickAssist Technology provisioning
 This workload runs [qatlib](https://github.com/intel/qatlib) sample tests. Refer to the [qatlib readme](https://github.com/intel/qatlib/blob/main/INSTALL) for more details. 
