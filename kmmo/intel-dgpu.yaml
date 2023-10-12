@@ -9,6 +9,7 @@ metadata:
 spec:
   moduleLoader:
     container:
+      inTreeModuleToRemove: i915
       modprobe:
         moduleName: i915
         firmwarePath: /firmware

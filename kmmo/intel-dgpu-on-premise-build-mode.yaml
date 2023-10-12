@@ -18,6 +18,7 @@ metadata:
 spec:
   moduleLoader:
     container:
+      inTreeModuleToRemove: i915
       imagePullPolicy: Always
       modprobe:
         moduleName: i915
