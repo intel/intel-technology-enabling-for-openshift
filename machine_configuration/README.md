@@ -89,13 +89,26 @@ Ensure that ast driver is not loaded.
 
 # Machine Configuration for Provisioning Intel® QAT
 
-* Turn on `intel_iommu` kernel parameter and load `vfio-pci` at boot for QAT provisioning
+* Turn on `intel_iommu` kernel parameter and load `vfio_pci` at boot for QAT provisioning
 
 ```
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-qat-intel-iommu-on.yaml
 ```
 
 Note: This will reboot the worker nodes when changing the kernel parameter through MCO.
+
+## Verification
+Navigate to the node terminal on the web console (Compute -> Nodes -> Select a node -> Terminal). Run the following commands in the terminal.
+```
+$ cat /proc/cmdline
+```
+Ensure that `intel_iommu=on` is present.
+
+```
+$ chroot /host
+$ lsmod | grep vfio_pci
+```
+Ensure that `vfio_pci` driver is present.
 
 # See Also
 - [Firmware Search Path](https://docs.kernel.org/driver-api/firmware/fw_search_path.html)
