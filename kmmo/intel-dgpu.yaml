@@ -14,7 +14,7 @@ spec:
         firmwarePath: /firmware
       kernelMappings:
         - regexp: '^.*\.x86_64$'
-          containerImage: registry.connect.redhat.com/intel/intel-data-center-gpu-driver-container:1.1.0-$KERNEL_FULL_VERSION
+          containerImage: registry.connect.redhat.com/intel/intel-data-center-gpu-driver-container:2.0.0-$KERNEL_FULL_VERSION
   selector:
     intel.feature.node.kubernetes.io/gpu: 'true'
     intel.feature.node.kubernetes.io/dgpu-canary: 'true'
