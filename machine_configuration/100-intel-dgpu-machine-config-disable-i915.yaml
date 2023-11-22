@@ -1,0 +1,25 @@
+# Copyright (c) 2022 - 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: intel-dgpu
+  name: 100-intel-dgpu-machine-config-disable-i915
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+    storage:
+      files:
+      - contents:
+          source: data:,blacklist%20i915
+        mode: 0644
+        overwrite: true
+        path: /etc/modprobe.d/blacklist-i915.conf
+      - contents:
+          source: data:,blacklist%20intel_vsec
+        mode: 0644
+        overwrite: true
+        path: /etc/modprobe.d/blacklist-intel-vsec.conf
