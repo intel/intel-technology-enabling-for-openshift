@@ -1,0 +1,13 @@
+apiVersion: dashboard.opendatahub.io/v1
+kind: AcceleratorProfile
+metadata:
+  name: intel-gpu-flex-series
+spec:
+  displayName: Intel® Data Center GPU Flex Series
+  description: Intel Data Center GPU for inference 
+  enabled: true
+  identifier: gpu.intel.com/i915
+  tolerations:
+  - effect: NoSchedule
+    key: gpu.intel.com/flex
+    operator: Exists

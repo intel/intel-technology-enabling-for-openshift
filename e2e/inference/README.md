@@ -31,30 +31,17 @@ To enable the interactive mode, the OpenVINO notebook CR needs to be created and
 1.	Click on the ```create Notebook``` option in this [link](https://github.com/red-hat-data-services/odh-deployer) from the web console and follow these [steps](https://github.com/openvinotoolkit/operator/blob/main/docs/notebook_in_rhods.md) to create the notebook CR.
 2.	Enable Intel Data Center GPU 
 
-**Note:** The  Intel Data Center GPU option is not visible in the RHODS UI at this time of release. For more details, please refer to this [issue](https://github.com/opendatahub-io/odh-dashboard/issues/956). Until this issue is resolved, please follow the steps below to enable the Intel Data Center GPU.
+Create AcceleratoProfile in the ```redhat-ods-applications``` namespace 
 
-a.	Search for the OpenVINO Notebook Server from web console ```Search -> Notebook -> Jupyter-nb-<ocp-user>``` in the namespace ```rhods-notebooks```.
+```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/e2e/inference/accelerator_profile.yaml``` .
 
-b.	Navigate to notebook yaml and modify the yaml file according to the example shown below.
+3. Navigate to ```openvino-notebooks``` ImageStream and add the above created ```AcceleratorProfile``` key to the annotation field
+```opendatahub.io/recommended-accelerators: '["gpu.intel.com/flex"]'```
 
- ```   
-    containers:
-       name: jupyter-nb-<ocp-user-name>
-       resources:
-         limits:
-           cpu: '14'
-           gpu.intel.com/i915: '1'
-           memory: 56Gi
-         requests: 
-           cpu: '7'
-           gpu.intel.com/i915: '1'
-           memory: 56Gi
-  ```  
+4.	Navigate to ```rhods-dashboard``` route and choose the OpenVINO notebook image and accelerator ```intel-gpu-flex-series```. Notebook server is now running with GPU.
 
-c.	This operation respawns the notebook server to use the Intel Data Center GPU.
+5.	Follow the [link](https://github.com/openvinotoolkit/operator/blob/main/docs/notebook_in_rhods.md) to execute the sample Jupyter Notebook. There are 60+ sample notebooks 	available with this notebook image. For the details on the notebooks with Intel Data Center 	GPU, please check this [link](https://github.com/openvinotoolkit/openvino_notebooks).
 
-3.	Run sample Jupyter Notebooks.
-Follow the [link](https://github.com/openvinotoolkit/operator/blob/main/docs/notebook_in_rhods.md) to execute the sample Jupyter Notebook There are 60+ sample notebooks 	available with this notebook image. For the details on the notebooks with Intel Data Center 	GPU, please check this [link](https://github.com/openvinotoolkit/openvino_notebooks).
 ## Work with deployment mode
 1.	From the web console, click on the ModelServer option in this [link](https://github.com/openvinotoolkit/operator/blob/v1.1.0/docs/operator_installation.md) and follow the [steps](https://github.com/openvinotoolkit/operator/blob/v1.1.0/docs/modelserver.md) to start the OVMS instance.  
 2.	To enable the Intel Data Center GPU, make sure to modify the OVMS instance options according to the screenshot below.
