@@ -31,28 +31,6 @@ To enable the interactive mode, the OpenVINO notebook CR needs to be created and
 1.	Click on the ```create Notebook``` option in this [link](https://github.com/red-hat-data-services/odh-deployer) from the web console and follow these [steps](https://github.com/openvinotoolkit/operator/blob/main/docs/notebook_in_rhods.md) to create the notebook CR.
 2.	Enable Intel Data Center GPU 
 
-**Note:** The  Intel Data Center GPU option is not visible in the RHODS UI at this time of release. For more details, please refer to this [issue](https://github.com/opendatahub-io/odh-dashboard/issues/956). Until this issue is resolved, please follow the steps below to enable the Intel Data Center GPU.
-
-a.	Search for the OpenVINO Notebook Server from web console ```Search -> Notebook -> Jupyter-nb-<ocp-user>``` in the namespace ```rhods-notebooks```.
-
-b.	Navigate to notebook yaml and modify the yaml file according to the example shown below.
-
- ```   
-    containers:
-       name: jupyter-nb-<ocp-user-name>
-       resources:
-         limits:
-           cpu: '14'
-           gpu.intel.com/i915: '1'
-           memory: 56Gi
-         requests: 
-           cpu: '7'
-           gpu.intel.com/i915: '1'
-           memory: 56Gi
-  ```  
-
-c.	This operation respawns the notebook server to use the Intel Data Center GPU.
-
 3.	Run sample Jupyter Notebooks.
 Follow the [link](https://github.com/openvinotoolkit/operator/blob/main/docs/notebook_in_rhods.md) to execute the sample Jupyter Notebook There are 60+ sample notebooks 	available with this notebook image. For the details on the notebooks with Intel Data Center 	GPU, please check this [link](https://github.com/openvinotoolkit/openvino_notebooks).
 ## Work with deployment mode
