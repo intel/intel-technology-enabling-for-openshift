@@ -31,23 +31,6 @@ To enable the interactive mode, the OpenVINO notebook CR needs to be created and
 1.	Click on the ```create Notebook``` option in this [link](https://github.com/red-hat-data-services/odh-deployer) from the web console and follow these [steps](https://github.com/openvinotoolkit/operator/blob/main/docs/notebook_in_rhods.md) to create the notebook CR.
 2.	Enable Intel Data Center GPU - **Technical Preview feature**
 
-Create AcceleratoProfile in the ```redhat-ods-applications``` namespace 
-
-```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/e2e/inference/accelerator_profile.yaml``` 
-
-3. Navigate to ```openvino-notebooks``` ImageStream and add the above created ```AcceleratorProfile``` key to the annotation field:
-
-```opendatahub.io/recommended-accelerators: '["gpu.intel.com/flex-140"]'```
-Below image shows this update.
-
-![Alt text](/docs/images/openvino-accelerator-field.png)
-
-4. If step 2 is successful, ```Intel® Data Center GPU Flex Series 140 accelerator``` is shown in the accelerator dropdown menu in ```rhods-dashboard```. Users can run OpenVINO notebook image with Intel® Data Center GPU Flex Series 140 card. Below image shows the dropdown menu. 
-   
-![Alt text](/docs/images/accelerator-profile-dropdown.png) 
-
-5. For more details on RHODS and Jupyter notebook, follow the [link](https://github.com/openvinotoolkit/operator/blob/main/docs/notebook_in_rhods.md). For the details on specific notebooks please check this [link](https://github.com/openvinotoolkit/openvino_notebooks).
-
 ## Work with deployment mode
 1.	From the web console, click on the ModelServer option in this [link](https://github.com/openvinotoolkit/operator/blob/v1.1.0/docs/operator_installation.md) and follow the [steps](https://github.com/openvinotoolkit/operator/blob/v1.1.0/docs/modelserver.md) to start the OVMS instance.  
 2.	To enable the Intel Data Center GPU, make sure to modify the OVMS instance options according to the screenshot below.
