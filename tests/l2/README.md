@@ -113,7 +113,7 @@ $ oc logs intel-dgpu-hwinfo-l4572
 ```                        
 
 ### Verify Intel® QuickAssist Technology provisioning
-This workload runs [qatlib](https://github.com/intel/qatlib) sample tests. Refer to the [qatlib readme](https://github.com/intel/qatlib/blob/main/INSTALL) for more details. 
+This workload runs [qatlib](https://github.com/intel/qatlib) sample tests. Refer to the [qatlib readme](https://github.com/intel/qatlib/blob/main/INSTALL) for more details. The buildconfig uses subscription-manager with one's RedHat account to enable repos for RPM packages of qatlib. Please update the buildconfig with login credentials before deploying it. Further enhancements with entitlement builds and subscription secrets will added in future releases. 
 
 *	Build the workload container image
 
@@ -138,7 +138,7 @@ This workload runs [qatlib](https://github.com/intel/qatlib) sample tests. Refer
 ```
 
 
-* For all sample tests `./cpa_sample_code` 
+* For all sample tests `cpa_sample_code` 
 
 ```
 $ oc logs intel-qat-workload-c6g9v

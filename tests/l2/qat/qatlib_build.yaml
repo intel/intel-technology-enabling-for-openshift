@@ -21,39 +21,23 @@ spec:
   source:
     type: Dockerfile
     dockerfile: |
-        
-        FROM registry.access.redhat.com/ubi8/ubi 
-        ARG QATLIB_VERSION
 
-        RUN dnf -y update && \
-            dnf install -y gcc \
-              make \
-              automake \ 
-              autoconf \
-              libtool \
-              http://mirror.centos.org/centos/8-stream/PowerTools/x86_64/os/Packages/nasm-2.15.03-3.el8.x86_64.rpm \
-              openssl-devel \
-              zlib-devel \
-              git && \
-              git clone -b $QATLIB_VERSION https://github.com/intel/qatlib
-            
-          RUN cd /qatlib && \
-              ./autogen.sh && \
-              ./configure \
-              --prefix=/usr \
-              --enable-systemd=no && \
-              make -j && \
-              make install samples-install
-
-          WORKDIR  /usr/bin
-          ENTRYPOINT  ["/usr/bin/cpa_sample_code"]
+        ARG BUILDER=registry.access.redhat.com/ubi9:latest
+        FROM ${BUILDER} 
+        RUN subscription-manager register  --username=username --password=password && \
+          subscription-manager attach --auto && \
+          dnf repolist --disablerepo=* && \
+          subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms  && \
+          dnf -y update && \
+          dnf install -y  qatlib qatlib-tests
+       
   strategy:
     type: Docker
     noCache: true
     dockerStrategy:
       buildArgs:
-          - name: "QATLIB_VERSION"
-            value: "23.08.0"
+        - name: "BUILDER"
+          value: "registry.access.redhat.com/ubi9:latest"
 
   output:
     to:
