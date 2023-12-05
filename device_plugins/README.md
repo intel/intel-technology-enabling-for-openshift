@@ -4,7 +4,7 @@
 Intel Device Plugins are utilized to advertise Intel hardware features (resources) to a Red Hat OpenShift Container Platform (RHOCP) Cluster. This allows workloads running on pods deployed within the clusters to leverage these features. To handle the deployment and lifecycle of these device plugins, the [Intel Device Plugins Operator](https://catalog.redhat.com/software/container-stacks/detail/61e9f2d7b9cdd99018fc5736) is used. The Intel Device Plugins container images and operator have been officially certified and published on the [Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/container-stacks/detail/61e9f2d7b9cdd99018fc5736). For more details on the upstream project, please refer to [Intel Device Plugins for Kubernetes](https://github.com/intel/intel-device-plugins-for-kubernetes).  
 
 # Prerequisities
-- Provisioned RHOCP 4.12 cluster. Follow steps [here](/README.md).
+- Provisioned RHOCP cluster. Follow steps [here](/README.md).
 - Setup Node Feature Discovery (NFD). Follow steps [here](/nfd/README.md).
 - Follow the additional prerequisites for provisioning Intel® Data Center GPU: 
     - Configure Machine Configuration (MCO) for Intel Data Center GPU. Follow steps [here](/machine_configuration/README.md#machine-configuration-for-intel®-data-center-gpu).
