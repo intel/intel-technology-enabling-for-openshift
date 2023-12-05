@@ -16,7 +16,7 @@ If the configuration cannot be set as the default setting, we recommend using so
 Any contribution in this area is welcome. 
 
 # Prerequisites 
-- Provisioned RHOCP 4.12 cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
+- Provisioned RHOCP 4.13 cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
 - Setup node feature discovery (NFD). Follow steps [here](/nfd/README.md).
 
 # General configuration 
@@ -70,12 +70,12 @@ intel-dgpu   rendered-intel-dgpu-58fb5f4d72fe6041abb066880e112acd   True      Fa
 ```
 Ensure `intel-dgpu` MachineConfigPool is present.
 
-# Disable conflicting driver
-Run the command shown below to disable the loading of a potential conflicting driver, such as `ast` driver.
+# Disable incompatible in-tree drivers
+Run the command shown below to disable the loading of incompatible in-tree drivers, including `i915` and `intel_vsec` driver.
 
-**Note**: The `i915` driver depends on a ported `drm` module. Some other drivers, such as ast that depends on in-tree drm module might have a compatibility issue. The known issue will be resolved on i915 driver for RHEL `9.x`, which will be used for RHOCP `4.13`. 
+**Note**: The in-tree i915 and intel_vsec driver do not provide support for the Intel Data Center GPU cards. As a result, it is required as a prerequisite to disable loading of the in-tree drivers.
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-dgpu-machine-config-disable-ast.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-dgpu-machine-config-disable-i915.yaml
 ```
 **Note**: This command will reboot the worker nodes in the `intel-dgpu` MachineConfigPool sequentially.
 
@@ -83,9 +83,10 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 Navigate to the node terminal on the web console (Compute -> Nodes -> Select a node -> Terminal). Run the following commands in the terminal.
 ```
 $ chroot /host
-$ lsmod | grep ast
+$ lsmod | grep i915
+$ lsmod | grep intel_vsec
 ```
-Ensure that ast driver is not loaded.
+Ensure that i915 and intel_vsec driver is not loaded.
 
 # Machine Configuration for Provisioning Intel® QAT
 
