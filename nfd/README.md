@@ -1,13 +1,13 @@
 # Setting up Node Feature Discovery
-[Node Feature Discovery (NFD) Operator](https://docs.openshift.com/container-platform/4.12/hardware_enablement/psap-node-feature-discovery-operator.html) manages the deployment and lifecycle of the NFD add-on to detect hardware features and system configuration, such as PCI cards, kernel, operating system version, etc.
+[Node Feature Discovery (NFD) Operator](https://docs.openshift.com/container-platform/4.13/hardware_enablement/psap-node-feature-discovery-operator.html) manages the deployment and lifecycle of the NFD add-on to detect hardware features and system configuration, such as PCI cards, kernel, operating system version, etc.
 
 # Prerequisites
-- Provisioned RHOCP 4.12 cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
+- Provisioned RHOCP cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
 
 # Install NFD Operator
 Follow the guide below to install the NFD operator using CLI or web console. 
-- [Install from the CLI](https://docs.openshift.com/container-platform/4.12/hardware_enablement/psap-node-feature-discovery-operator.html#install-operator-cli_node-feature-discovery-operator)
-- [Install from the web console](https://docs.openshift.com/container-platform/4.12/hardware_enablement/psap-node-feature-discovery-operator.html#install-operator-web-console_node-feature-discovery-operator)
+- [Install from the CLI](https://docs.openshift.com/container-platform/4.13/hardware_enablement/psap-node-feature-discovery-operator.html#install-operator-cli_node-feature-discovery-operator)
+- [Install from the web console](https://docs.openshift.com/container-platform/4.13/hardware_enablement/psap-node-feature-discovery-operator.html#install-operator-web-console_node-feature-discovery-operator)
 
 # Configure NFD Operator
 Note: As RHOCP cluster administrator, you might need to merge the NFD operator config from the following Custom Resources (CRs) with other NFD operator configs that are already applied on your cluster.  
