@@ -12,14 +12,14 @@ Intel data center GPU driver container images are released from [Intel Data Cent
 - **On-premises build mode** - Users can optionally build and deploy their own driver container images on-premises through the KMM operator.
 
 # Prerequisites
-- Provisioned RHOCP 4.12 cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
+- Provisioned RHOCP cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
 - Setup node feature discovery. Follow steps [here](/nfd/README.md).
 - Setup machine configuration. Follow steps [here](/machine_configuration/README.md).
 
 # Install KMM operator
 Follow the installation guide below to install the KMM operator via CLI or web console. 
-- [Install from CLI](https://docs.openshift.com/container-platform/4.12/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-cli_kernel-module-management-operator)
-- [Install from web console](https://docs.openshift.com/container-platform/4.12/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-web-console_kernel-module-management-operator)
+- [Install from CLI](https://docs.openshift.com/container-platform/4.13/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-cli_kernel-module-management-operator)
+- [Install from web console](https://docs.openshift.com/container-platform/4.13/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-web-console_kernel-module-management-operator)
 
 # Canary deployment with KMM
 Canary deployment is enabled by default to deploy the driver container image only on specific node(s) to ensure the initial deployment succeeds prior to rollout to all the eligible nodes in the cluster. This safety mechanism can reduce risk and prevent a deployment from adversely affecting the entire cluster.
