@@ -113,9 +113,11 @@ $ oc logs intel-dgpu-hwinfo-l4572
 ```                        
 
 ### Verify Intel® QuickAssist Technology provisioning
-This workload runs [qatlib](https://github.com/intel/qatlib) sample tests. Refer to the [qatlib readme](https://github.com/intel/qatlib/blob/main/INSTALL) for more details. 
+This workload runs [qatlib](https://github.com/intel/qatlib) sample tests using RedHat built and distributed Qatlib RPM packages from the codeready-builder-for-rhel-9-x86_64-rpms repo. Refer to the [qatlib readme](https://github.com/intel/qatlib/blob/main/INSTALL) for more details. 
 
 *	Build the workload container image
+
+Please replace the credentials in buildconfig yaml with your RedHat account login credentials. 
 
 ```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_build.yaml ```
 
@@ -138,7 +140,7 @@ This workload runs [qatlib](https://github.com/intel/qatlib) sample tests. Refer
 ```
 
 
-* For all sample tests `./cpa_sample_code` 
+* For all sample tests `cpa_sample_code` 
 
 ```
 $ oc logs intel-qat-workload-c6g9v
