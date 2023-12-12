@@ -1,14 +1,14 @@
 # Overview
-Intel AI inference end-to-end solution with RHOCP is based on the Intel® Data Center GPU Flex Series provisioning, Intel® OpenVINO™, and [Red Hat OpenShift Data Science](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-data-science) (RHODS) on RHOCP. There are two AI inference modes verified with Intel® Xeon® processors and Intel Data Center GPU Flex Series with RHOCP-4.12.
+Intel AI inference end-to-end solution with RHOCP is based on the Intel® Data Center GPU Flex Series provisioning, Intel® OpenVINO™, and [Red Hat OpenShift Data Science](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-data-science) (RHODS) on RHOCP. There are two AI inference modes verified with Intel® Xeon® processors and Intel Data Center GPU Flex Series with RHOCP.
 * Interactive mode – RHODS provides OpenVINO based Jupyter Notebooks for users to interactively debug the inference applications or [optimize the models](https://docs.openvino.ai/2023.0/openvino_docs_MO_DG_Deep_Learning_Model_Optimizer_DevGuide.html) on RHOCP using data center GPU cards or Intel Xeon processors.
 * Deployment mode – [OpenVINO Model Sever](https://github.com/openvinotoolkit/model_server) (OVMS) can be used to deploy the inference workloads in data center and edge computing environments on RHOCP.  
 ## Prerequisites
-* Provisioned RHOCP 4.12 cluster. Follow steps [here](https://github.com/intel/intel-technology-enabling-for-openshift/tree/main#provisioning-rhocp-cluster)
-* Provisioning Intel Data Center GPU Flex Series. Follow steps [here](https://github.com/intel/intel-technology-enabling-for-openshift/tree/main#provisioning-intel-hardware-features-on-rhocp)
-  * Setup node feature discovery (NFD). Follow the steps [here](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/nfd/README.md)
-  * Setup machine configuration. Follow the steps [here](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/machine_configuration/README.md)
-  * Setup out of tree drivers for Intel GPU provisioning. Follow the steps [here](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/machine_configuration/README.md)
-  * Setup Intel device plugins operator and create Intel GPU device plugin. Follow the steps [here](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/device_plugins/README.md)  
+* Provisioned RHOCP cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster)
+* Provisioning Intel Data Center GPU Flex Series. Follow steps [here](/README.md#provisioning-intel-hardware-features-on-rhocp)
+  * Setup node feature discovery (NFD). Follow the steps [here](/nfd/README.md)
+  * Setup machine configuration. Follow the steps [here](/machine_configuration/README.md)
+  * Setup out of tree drivers for Intel GPU provisioning. Follow the steps [here](/kmmo/README.md)
+  * Setup Intel device plugins operator and create Intel GPU device plugin. Follow the steps [here](/device_plugins/README.md)  
 
 ## Install RHODS
 The Red Hat certified RHODS operator is published at [Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/container-stacks/detail/63b85b573112fe5a95ee9a3a). You can use the command line interface (CLI) or web console to install it.
