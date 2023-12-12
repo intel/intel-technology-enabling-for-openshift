@@ -70,12 +70,10 @@ intel-dgpu   rendered-intel-dgpu-58fb5f4d72fe6041abb066880e112acd   True      Fa
 ```
 Ensure `intel-dgpu` MachineConfigPool is present.
 
-# Disable conflicting driver
-Run the command shown below to disable the loading of a potential conflicting driver, such as `ast` driver.
-
-**Note**: The `i915` driver depends on a ported `drm` module. Some other drivers, such as ast that depends on in-tree drm module might have a compatibility issue. The known issue will be resolved on i915 driver for RHEL `9.x`, which will be used for RHOCP `4.13`. 
+# Disable in-tree drivers
+Run the command shown below to disable the loading of in-tree drivers 'i915' and 'intel_vsec'.
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-dgpu-machine-config-disable-ast.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-dgpu-machine-config-disable-intree-i915-vsec.yaml
 ```
 **Note**: This command will reboot the worker nodes in the `intel-dgpu` MachineConfigPool sequentially.
 
@@ -83,9 +81,10 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 Navigate to the node terminal on the web console (Compute -> Nodes -> Select a node -> Terminal). Run the following commands in the terminal.
 ```
 $ chroot /host
-$ lsmod | grep ast
+$ lsmod | grep i915
+$ lsmod | grep intel_vsec
 ```
-Ensure that ast driver is not loaded.
+Ensure that the in-tree i915 and intel_vsec driver is not loaded.
 
 # Machine Configuration for Provisioning Intel® QAT
 
