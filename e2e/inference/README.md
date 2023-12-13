@@ -2,6 +2,9 @@
 Intel AI inference end-to-end solution with RHOCP is based on the Intel® Data Center GPU Flex Series provisioning, Intel® OpenVINO™, and [Red Hat OpenShift Data Science](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-data-science) (RHODS) on RHOCP. There are two AI inference modes verified with Intel® Xeon® processors and Intel Data Center GPU Flex Series with RHOCP-4.12.
 * Interactive mode – RHODS provides OpenVINO based Jupyter Notebooks for users to interactively debug the inference applications or [optimize the models](https://docs.openvino.ai/2023.0/openvino_docs_MO_DG_Deep_Learning_Model_Optimizer_DevGuide.html) on RHOCP using data center GPU cards or Intel Xeon processors.
 * Deployment mode – [OpenVINO Model Sever](https://github.com/openvinotoolkit/model_server) (OVMS) can be used to deploy the inference workloads in data center and edge computing environments on RHOCP.  
+
+**NOTE**: To ensure the AI inference workloads work properly, please follow the workaround section in the [known SeLinux regression issue](https://github.com/intel/intel-technology-enabling-for-openshift/issues/107).
+
 ## Prerequisites
 * Provisioned RHOCP 4.12 cluster. Follow steps [here](https://github.com/intel/intel-technology-enabling-for-openshift/tree/main#provisioning-rhocp-cluster)
 * Provisioning Intel Data Center GPU Flex Series. Follow steps [here](https://github.com/intel/intel-technology-enabling-for-openshift/tree/main#provisioning-intel-hardware-features-on-rhocp)
