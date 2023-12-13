@@ -1,11 +1,11 @@
 # Verifying Intel Hardware Feature Provisioning
 ## Introduction
-After provisioning Intel hardware features on RHOCP, the respective hardware resources are exposed to the RHOCP cluster. The workload containers can request these resources. The following sample workloads help verify if these resources can be used as expected. These sample workloads container images are built and packaged on-premises through [RHOCP BuildConfig](https://docs.openshift.com/container-platform/4.12/cicd/builds/understanding-buildconfigs.html) and pushed to the embedded repository through [RHOCP ImageStream](https://docs.openshift.com/container-platform/4.12/openshift_images/image-streams-manage.html).
+After provisioning Intel hardware features on RHOCP, the respective hardware resources are exposed to the RHOCP cluster. The workload containers can request these resources. The following sample workloads help verify if these resources can be used as expected. These sample workloads container images are built and packaged on-premises through [RHOCP BuildConfig](https://docs.openshift.com/container-platform/4.13/cicd/builds/understanding-buildconfigs.html) and pushed to the embedded repository through [RHOCP ImageStream](https://docs.openshift.com/container-platform/4.13/openshift_images/image-streams-manage.html).
 
 ## Prerequisites
-•	Provisioned RHOCP 4.12 cluster. Follow steps [here](https://github.com/intel/intel-technology-enabling-for-openshift#provisioning-rhocp-cluster). 
+•	Provisioned RHOCP cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster). 
 
-•	Provisioning Intel HW features on RHOCP. Follow steps [here](https://github.com/intel/intel-technology-enabling-for-openshift#provisioning-intel-hardware-features-on-rhocp)
+•	Provisioning Intel HW features on RHOCP. Follow steps [here](/README.md#provisioning-intel-hardware-features-on-rhocp)
 
 ### Verify Intel® Software Guard Extensions (Intel® SGX) Provisioning
 This [SampleEnclave](https://github.com/intel/linux-sgx/tree/master/SampleCode/SampleEnclave) application workload from the Intel SGX SDK runs an Intel SGX enclave utilizing the EPC resource from the Intel SGX provisioning.
