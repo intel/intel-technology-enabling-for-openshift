@@ -44,9 +44,9 @@ Note: Please refer to your BIOS vendor for specific instructions. This is only a
 
 | Feature | Supported RHOCP Version | 
 | ----- | ---------------------- |
-| Intel SGX |  RHOCP 4.12.6 and above (support is only for z streams in 4.12.z where z >= 6) </br> RHOCP 4.13.10 and above (support is only for z streams in 4.13.z where z >= 10)|
-| Intel Data Center GPU Flex Series |  RHOCP 4.12.[6, 7, 25, 26, 27, 28] </br> RHOCP 4.13.[10, 11] |
-| Intel QAT |  RHOCP 4.12.26 and above (support is only for z streams in 4.12.z where z >= 26) </br> RHOCP 4.13.10 and above (support is only for z streams in 4.13.z where z >= 10) |
+| Intel SGX |  RHOCP 4.13.10 and above (support is only for z streams in 4.13.z where z >= 10)|
+| Intel Data Center GPU Flex Series |  RHOCP 4.13.[10, 11] |
+| Intel QAT |  RHOCP 4.13.10 and above (support is only for z streams in 4.13.z where z >= 10) |
 
 ## Support 
 
