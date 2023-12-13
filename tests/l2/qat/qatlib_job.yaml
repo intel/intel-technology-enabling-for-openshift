@@ -14,7 +14,7 @@ spec:
       - name: intel-qat-job
         image: image-registry.openshift-image-registry.svc:5000/intel-qat/intel-qat-workload:latest
         imagePullPolicy: IfNotPresent
-        command: ["./cpa_sample_code"]
+        command: ["cpa_sample_code"]
         securityContext:
           capabilities:
             add:
