@@ -18,8 +18,8 @@ Intel data center GPU driver container images are released from [Intel Data Cent
 
 # Install KMM operator
 Follow the installation guide below to install the KMM operator via CLI or web console. 
-- [Install from CLI](https://docs.openshift.com/container-platform/4.13/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-cli_kernel-module-management-operator)
-- [Install from web console](https://docs.openshift.com/container-platform/4.13/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-web-console_kernel-module-management-operator)
+- [Install from CLI](https://docs.openshift.com/container-platform/4.14/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-cli_kernel-module-management-operator)
+- [Install from web console](https://docs.openshift.com/container-platform/4.14/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-web-console_kernel-module-management-operator)
 
 # Canary deployment with KMM
 Canary deployment is enabled by default to deploy the driver container image only on specific node(s) to ensure the initial deployment succeeds prior to rollout to all the eligible nodes in the cluster. This safety mechanism can reduce risk and prevent a deployment from adversely affecting the entire cluster.
@@ -42,6 +42,8 @@ $ oc label node <node_name> intel.feature.node.kubernetes.io/dgpu-canary=true
 ```
 
 3.	Use pre-build mode to deploy the driver container.
+
+Note: If the KMM Operator version < 2.0.2, please use the steps in the workaround section of [#194](https://github.com/intel/intel-technology-enabling-for-openshift/issues/194) to workaround this known issue before running below command.
 ```
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/kmmo/intel-dgpu.yaml   
 ```
