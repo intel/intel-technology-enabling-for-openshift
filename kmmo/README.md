@@ -53,9 +53,9 @@ intel.feature.node.kubernetes.io/dgpu-canary: 'true'
 
 # Verification
 To verify that the drivers have been loaded, follow the steps below:
-1.	List the nodes labeled with `kmm.node.kubernetes.io/intel-dgpu.ready` using the command shown below:
+1.	List the nodes labeled with `kmm.node.kubernetes.io/openshift-kmm.intel-dgpu.ready` using the command shown below:
 ```
-$ oc get nodes -l kmm.node.kubernetes.io/intel-dgpu.ready
+$ oc get nodes -l kmm.node.kubernetes.io/openshift-kmm.intel-dgpu.ready
 ```
 Example output: 
 ```
