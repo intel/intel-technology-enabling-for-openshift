@@ -15,6 +15,8 @@ The following features will be included in future releases.
 
 See details about [Supported Intel Hardware features](/docs/supported_platforms.md#supported-intel-hardware-features) and [Supported RHOCP Versions](/docs/supported_platforms.md#supported-rhocp-versions).  
 
+For detailed information about releases, please refer [Release Information](/docs/releases.md#release-information).
+
 Figure-1 is the [Architecture and Working Scope](https://github.com/intel/intel-technology-enabling-for-openshift/wiki/Intel-Technology-Enabling-for-OpenShift-Architecture-and-Working-Scope) of the project  
 
 ![Alt text](/docs/images/Intel-Technology-Enabling-for-OpenShift-Architecture.png)
