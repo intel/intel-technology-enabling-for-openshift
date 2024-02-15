@@ -13,7 +13,7 @@ spec: {}
 apiVersion: kmm.sigs.x-k8s.io/v1beta1
 kind: Module
 metadata:
-  name: intel-dgpu-on-premise-build-mode
+  name: intel-dgpu-on-premise-build
   namespace: openshift-kmm
 spec:
   moduleLoader:
