@@ -1,7 +1,7 @@
 # Setting up Machine Configuration
 
 # Introduction
-Machine configuration operation is used to configure [Red Hat Enterprise Linux CoreOS (RHCOS)](https://docs.openshift.com/container-platform/4.13/architecture/architecture-rhcos.html) on each node in a RHOCP cluster.
+Machine configuration operation is used to configure [Red Hat Enterprise Linux CoreOS (RHCOS)](https://docs.openshift.com/container-platform/4.14/architecture/architecture-rhcos.html) on each node in a RHOCP cluster.
 
 [Machine config operator](https://github.com/openshift/machine-config-operator) (MCO) is provided by Red Hat to manage the operating system and machine configuration. In this project through the MCO, cluster administrators can configure and update the kernel to provision Intel Hardware features on the worker nodes.
 
