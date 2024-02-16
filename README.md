@@ -52,7 +52,7 @@ You can use the instructions in the [link](/tests/l2/README.md) to verify the ha
 # Reference end-to-end solution 
 The reference end-to-end solution is based on Intel hardware feature provisioning provided by this project. 
 
-[Intel AI Inferencing Solution](/e2e/inference/README.md) with [OpenVINO](https://github.com/openvinotoolkit/openvino) and [RHODS](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-data-science) 
+[Intel AI Inferencing Solution](/e2e/inference/README.md) with [OpenVINO](https://github.com/openvinotoolkit/openvino) and [RHOAI](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-data-science) 
 
 # Reference workloads 
 Here are some reference workloads built on the end-to-end solution and Intel hardware feature provisioning in this project. 
