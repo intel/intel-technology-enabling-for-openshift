@@ -21,10 +21,11 @@ spec:
   source:
     type: Dockerfile
     dockerfile: |
-        FROM registry.access.redhat.com/ubi8-minimal:latest 
+        ARG BUILDER=registry.access.redhat.com/ubi9-minimal:latest 
+        FROM ${BUILDER}  
 
-        ARG OCL_ICD_VERSION=ocl-icd-2.2.12-1.el8.x86_64
-        ARG CLINFO_VERSION=clinfo-3.0.21.02.21-4.el8.x86_64
+        ARG OCL_ICD_VERSION=ocl-icd-2.2.13-4.el9.x86_64
+        ARG CLINFO_VERSION=clinfo-3.0.21.02.21-4.el9.x86_64
 
         RUN microdnf install -y \
           glibc \
@@ -32,10 +33,10 @@ spec:
         
         # install intel-opencl, ocl-icd and clinfo
         RUN dnf install -y 'dnf-command(config-manager)' && \
-          dnf config-manager --add-repo https://repositories.intel.com/graphics/rhel/8.6/intel-graphics.repo && \
+          dnf config-manager --add-repo https://repositories.intel.com/gpu/rhel/9.0/lts/2350/unified/intel-gpu-9.0.repo && \
           dnf install -y intel-opencl  \
-          https://vault.centos.org/centos/8/AppStream/x86_64/os/Packages/$OCL_ICD_VERSION.rpm \
-          https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/c/$CLINFO_VERSION.rpm  && \
+          https://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/Packages/$OCL_ICD_VERSION.rpm  \
+          https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/c/$CLINFO_VERSION.rpm && \
           dnf clean all && dnf autoremove && rm -rf /var/lib/dnf/lists/* && \
               rm -rf /etc/yum.repos.d/intel-graphics.repo     
   strategy:
@@ -43,10 +44,12 @@ spec:
     noCache: true
     dockerStrategy:
       buildArgs:
+          - name: "BUILDER"
+            value: "registry.access.redhat.com/ubi9-minimal:latest"
           - name: "OCL_ICD_VERSION"
-            value: "ocl-icd-2.2.12-1.el8.x86_64"
+            value: "ocl-icd-2.2.13-4.el9.x86_64"
           - name: "CLINFO_VERSION"
-            value: "clinfo-3.0.21.02.21-4.el8.x86_64"
+            value: "clinfo-3.0.21.02.21-4.el9.x86_64"
   output:
     to:
       kind: ImageStreamTag
