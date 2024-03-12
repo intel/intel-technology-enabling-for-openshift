@@ -24,6 +24,21 @@ Follow the installation guide below to install the KMM operator via CLI or web c
 # Canary deployment with KMM
 Canary deployment is enabled by default to deploy the driver container image only on specific node(s) to ensure the initial deployment succeeds prior to rollout to all the eligible nodes in the cluster. This safety mechanism can reduce risk and prevent a deployment from adversely affecting the entire cluster.
 
+# Set alternative firmware path at runtime with KMM
+Follow the steps below to set the alternative firmware path at runtime.
+
+1. Update KMM operator `ConfigMap` to set `worker.setFirmwareClassPath` to `/var/lib/firmware`
+``` 
+$ oc patch configmap kmm-operator-manager-config -n openshift-kmm --type='json' -p='[{"op": "add", "path": "/data/controller_config.yaml", "value": "healthProbeBindAddress: :8081\nmetricsBindAddress: 127.0.0.1:8080\nleaderElection:\n  enabled: true\n  resourceID: kmm.sigs.x-k8s.io\nwebhook:\n  disableHTTP2: true\n  port: 9443\nworker:\n  runAsUser: 0\n  seLinuxType: spc_t\n  setFirmwareClassPath: /var/lib/firmware"}]'
+```
+
+2. Delete the KMM operator controller pod for `ConfigMap` changes to take effect.
+``` 
+$ oc get pods -n openshift-kmm | grep -i "kmm-operator-controller-" | awk '{print $1}' | xargs oc delete pod -n openshift-kmm
+```
+
+For more details, see [link.](https://openshift-kmm.netlify.app/documentation/firmwares/#setting-the-kernels-firmware-search-path)
+
 # Deploy Intel Data Center GPU Driver with pre-build mode
 Follow the steps below to deploy the driver container image with pre-build mode.
 1.	Find all nodes with an Intel Data Center GPU card using the following command:
