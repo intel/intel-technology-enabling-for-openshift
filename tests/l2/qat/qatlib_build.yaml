@@ -24,7 +24,7 @@ spec:
         
         ARG BUILDER=registry.access.redhat.com/ubi9:latest
         FROM ${BUILDER} 
-        RUN subscription-manager register  --username=username --password=password && \
+        RUN subscription-manager register  --username=${USERNAME} --password=${PASSWORD} && \
             subscription-manager attach --auto && \
             dnf repolist --disablerepo=* && \
             subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms  && \
@@ -37,6 +37,17 @@ spec:
       buildArgs:
           - name: "BUILDER"
             value: "registry.access.redhat.com/ubi9:latest"
+      env:
+          - name: "USERNAME"
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: rh-auth
+          - name: "PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: rh-auth
 
   output:
     to:
