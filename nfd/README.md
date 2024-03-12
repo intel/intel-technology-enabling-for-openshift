@@ -36,7 +36,7 @@ intel.feature.node.kubernetes.io/gpu=true
 # Labels Table
 | Label | Intel hardware feature | 
 | ----- | ---------------------- |
-| `intel.feature.node.kubernetes.io/gpu=true` | Intel® Data Center GPU Flex Series | 
+| `intel.feature.node.kubernetes.io/gpu=true` | Intel® Data Center GPU Flex Series or Intel® Data Center GPU Max Series | 
 | `intel.feature.node.kubernetes.io/sgx=true` | Intel® SGX | 
 | `intel.feature.node.kubernetes.io/qat=true` | Intel® QAT | 
 
