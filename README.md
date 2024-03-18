@@ -5,10 +5,10 @@ The Intel Technology Enabling for OpenShift project provides Intel Data Center h
 These Intel Data Center hardware features currently include: 
 - **Intel® Software Guard Extensions (Intel® SGX)**
 - **Intel® Data Center GPU Flex Series**
+- **Intel® Data Center GPU Max Series** 
 - **Intel® QuickAssist Technology (Intel® QAT)**
 
 The following features will be included in future releases.  
-- Intel® Data Center GPU Max Series 
 - Intel® Data Streaming Accelerator (Intel® DSA) 
 - Intel® In-Memory Analytics Accelerator (Intel® IAA) 
 - Intel® FPGA N6000 
