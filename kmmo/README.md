@@ -57,8 +57,6 @@ $ oc label node <node_name> intel.feature.node.kubernetes.io/dgpu-canary=true
 ```
 
 3.	Use pre-build mode to deploy the driver container.
-
-Note: If the KMM Operator version < 2.0.2, please use the steps in the workaround section of [#194](https://github.com/intel/intel-technology-enabling-for-openshift/issues/194) to workaround this known issue before running below command.
 ```
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/kmmo/intel-dgpu.yaml   
 ```
