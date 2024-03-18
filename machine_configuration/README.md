@@ -19,43 +19,6 @@ Any contribution in this area is welcome.
 - Provisioned RHOCP cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
 - Setup node feature discovery (NFD). Follow steps [here](/nfd/README.md).
 
-# Machine configuration for Intel® Data Center GPU
-## Create `intel-dgpu` MachineConfigPool
-The command shown below creates a custom `intel-dgpu` MachineConfigPool for worker nodes with an Intel Data Center GPU card, which is labeled with `intel.feature.node.kubernetes.io/gpu: 'true'` by [NFD](/nfd/README.md). 
-```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/intel-dgpu-machine-config-pool.yaml
-```
-
-## Verification
-### From the web console
-Navigate to the Compute -> MachineConfigPools section and ensure `intel-dgpu` MachineConfigPool is present.
-### From the CLI 
-```
-$ oc get mcp
-```
-Output: 
-```
-NAME         CONFIG                                                 UPDATED   UPDATING   DEGRADED   MACHINECOUNT   
-intel-dgpu   rendered-intel-dgpu-58fb5f4d72fe6041abb066880e112acd   True      False      False      1             
-```
-Ensure `intel-dgpu` MachineConfigPool is present.
-
-# Disable in-tree drivers
-Run the command shown below to disable the loading of in-tree drivers 'i915' and 'intel_vsec'.
-```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-dgpu-machine-config-disable-intree-i915-vsec.yaml
-```
-**Note**: This command will reboot the worker nodes in the `intel-dgpu` MachineConfigPool sequentially.
-
-## Verification
-Navigate to the node terminal on the web console (Compute -> Nodes -> Select a node -> Terminal). Run the following commands in the terminal.
-```
-$ chroot /host
-$ lsmod | grep i915
-$ lsmod | grep intel_vsec
-```
-Ensure that the in-tree i915 and intel_vsec driver is not loaded.
-
 # Machine Configuration for Provisioning Intel® QAT
 
 * Turn on `intel_iommu` kernel parameter and load `vfio_pci` at boot for QAT provisioning
