@@ -22,12 +22,13 @@ Multi-node bare metal RHOCP cluster provisioning is the primary cluster use case
 
 ## Supported Intel Hardware Features 
 
-The following Intel feature technologies are supported in the 1.2.0 release.  
+The following Intel feature technologies are supported in the 1.2.1 release.  
 
 | Intel Feature Technology                      | Intel Hardware Platform                                        |
 |-----------------------------------------------|----------------------------------------------------------------|
 | Intel® Software Guard Extensions (Intel® SGX) | [5th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon/5th-gen-xeon-scalable-processors.html) <br/>  [4th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/4th-gen-xeon-scalable-processors.html) <br/>  [3rd Gen Intel® Xeon® Scalable processors   ](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/3rd-gen-xeon-scalable-processors.html)                                                   |                               
 | Intel® Data Center GPU Flex Series            | [Intel Data Center GPU Flex 140](https://www.intel.com/content/www/us/en/products/sku/230020/intel-data-center-gpu-flex-140/specifications.html) <br/>  [Intel Data Center GPU Flex 170](https://www.intel.com/content/www/us/en/products/sku/230019/intel-data-center-gpu-flex-170/specifications.html)  |
+| Intel® Data Center GPU Max Series            | [Intel Data Center GPU Max 1100](https://www.intel.com/content/www/us/en/products/sku/232876/intel-data-center-gpu-max-1100/specifications.html) <br/>  [Intel Data Center GPU Max 1550](https://www.intel.com/content/www/us/en/products/sku/232873/intel-data-center-gpu-max-1550/specifications.html)  |
 | Intel® QuickAssist Technology (Intel® QAT) | [5th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon/5th-gen-xeon-scalable-processors.html) <br/>  [4th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/4th-gen-xeon-scalable-processors.html) |                               
 
 ## Setting up Intel Hardware Features
@@ -38,6 +39,7 @@ Note: Please refer to your BIOS vendor for specific instructions. This is only a
 | ----- | ---------------------- |
 | Intel SGX | [Link](https://www.intel.com/content/www/us/en/support/articles/000087972/server-products/single-node-servers.html) |
 | Intel Data Center GPU Flex Series | [Link](https://www.intel.com/content/www/us/en/content-details/774119/virtualization-guide-for-intel-data-center-gpu-flex-series.html?wapkw=gpu%20flex%20series%20setup%20guide) |
+| Intel Data Center GPU Max Series | [Link](https://dgpu-docs.intel.com/system-user-guides/DNP-Max-1100-userguide/DNP-Max-1100-userguide.html#bios-setup) |
 | Intel QAT | [Link](https://github.com/intel/qatlib/blob/7429ee2b7c837137ed11959a3c2cc3729dc15739/INSTALL#L104) |
 
 ## Supported RHOCP Versions
@@ -46,6 +48,7 @@ Note: Please refer to your BIOS vendor for specific instructions. This is only a
 | ----- | ---------------------- |
 | Intel SGX |  RHOCP 4.14.11 and above (support is only for z streams in 4.14.z where z >= 11) |
 | Intel Data Center GPU Flex Series |  RHOCP 4.14.11 and above (support is only for z streams in 4.14.z where z >= 11) |
+| Intel Data Center GPU Max Series |  RHOCP 4.14.11 and above (support is only for z streams in 4.14.z where z >= 11) |
 | Intel QAT |  RHOCP 4.14.11 and above (support is only for z streams in 4.14.z where z >= 11) |
 
 ## Support 
