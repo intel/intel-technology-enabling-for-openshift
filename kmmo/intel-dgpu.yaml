@@ -12,6 +12,7 @@ spec:
       modprobe:
         moduleName: i915
         firmwarePath: /firmware
+      inTreeModuleToRemove: intel_vsec
       kernelMappings:
         - regexp: '^.*\.x86_64$'
           containerImage: registry.connect.redhat.com/intel/intel-data-center-gpu-driver-container:2.2.0-$KERNEL_FULL_VERSION
