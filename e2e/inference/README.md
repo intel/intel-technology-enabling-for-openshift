@@ -7,7 +7,6 @@ Intel AI inference end-to-end solution with RHOCP is based on the Intel® Data C
 * Provisioned RHOCP cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster)
 * Provisioning Intel Data Center GPU Flex Series. Follow steps [here](/README.md#provisioning-intel-hardware-features-on-rhocp)
   * Setup node feature discovery (NFD). Follow the steps [here](/nfd/README.md)
-  * Setup machine configuration. Follow the steps [here](/machine_configuration/README.md)
   * Setup out of tree drivers for Intel GPU provisioning. Follow the steps [here](/kmmo/README.md)
   * Setup Intel device plugins operator and create Intel GPU device plugin. Follow the steps [here](/device_plugins/README.md)  
 
