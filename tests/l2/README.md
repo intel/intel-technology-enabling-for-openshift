@@ -30,6 +30,7 @@ $ oc logs intel-sgx-job-4tnh5
   Enter a character before exit ...
 ```
 ### Verify Intel® Data Center GPU provisioning
+It is supported for Intel® Data Center GPU Flex and Max Series. 
 #### clinfo
 This workload runs [clinfo](https://github.com/Oblomov/clinfo) utilizing the i915 resource from GPU provisioning and displays the related GPU information.
 
@@ -81,32 +82,32 @@ This workload runs ```hwinfo``` utilizing the i915 resource from GPU provisionin
 * Check the results
 ``` 
   $ oc get pods
-  intel-dgpu-hwinfo-1-build   0/1     Completed   0          111m
-  intel-dgpu-hwinfo-l4572     0/1     Completed   0          110m
+  intel-dgpu-hwinfo-1-build   0/1     Completed   0          2m23s
+  intel-dgpu-hwinfo-44k4d     0/1     Completed   0          106s
 ```
 ```
-$ oc logs intel-dgpu-hwinfo-l4572  
-  88: PCI 3700.0: 0300 VGA compatible controller (VGA)
+$ oc logs intel-dgpu-hwinfo-44k4d  
+ 282: PCI aa00.0: 0380 Display controller
   [Created at pci.386]
-  Unique ID: ug9x.K5dXxUXtHX2
-  Parent ID: QGIh.mr2N3fBJq5F
-  SysFS ID: /devices/pci0000:30/0000:30:02.0/0000:31:00.0/0000:32:00.0/0000:33:00.0/0000:34:08.0/0000:35:00.0/0000:36:01.0/0000:37:00.0
-  SysFS BusID: 0000:37:00.0
+  Unique ID: YxOB.+ER_Ec9Ujm4
+  Parent ID: xBFW.xbjkZcxCQYD
+  SysFS ID: /devices/pci0000:a7/0000:a7:01.0/0000:a8:00.0/0000:a9:01.0/0000:aa:00.0
+  SysFS BusID: 0000:aa:00.0
   Hardware Class: graphics card
-  Model: "Intel VGA compatible controller"
+  Model: "Intel Display controller"
   Vendor: pci 0x8086 "Intel Corporation"
-  Device: pci 0x56c1
+  Device: pci 0x0bda
   SubVendor: pci 0x8086 "Intel Corporation"
-  SubDevice: pci 0x4905
-  Revision: 0x04
+  SubDevice: pci 0x0000
+  Revision: 0x2f
   Driver: "i915"
   Driver Modules: "i915"
-  Memory Range: 0xd0000000-0xd0ffffff (rw,non-prefetchable)
-  Memory Range: 0x3afc00000000-0x3afdffffffff (ro,non-prefetchable)
-  IRQ: 928 (86 events)
-  Module Alias: "pci:v00008086d000056C1sv00008086sd00004905bc03sc00i00"
+  Memory Range: 0x44fe3f000000-0x44fe3fffffff (ro,non-prefetchable)
+  Memory Range: 0x447000000000-0x447fffffffff (ro,non-prefetchable)
+  IRQ: 511 (140 events)
+  Module Alias: "pci:v00008086d00000BDAsv00008086sd00000000bc03sc80i00"
   Config Status: cfg=new, avail=yes, need=no, active=unknown
-  Attached to: #29 (PCI bridge)
+  Attached to: #89 (PCI bridge)
 ```                        
 
 ### Verify Intel® QuickAssist Technology provisioning
