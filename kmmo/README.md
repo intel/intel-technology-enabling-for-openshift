@@ -14,7 +14,6 @@ Intel data center GPU driver container images are released from [Intel Data Cent
 # Prerequisites
 - Provisioned RHOCP cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
 - Setup node feature discovery. Follow steps [here](/nfd/README.md).
-- Setup machine configuration. Follow steps [here](/machine_configuration/README.md).
 
 # Install KMM operator
 Follow the installation guide below to install the KMM operator via CLI or web console. 
