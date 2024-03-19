@@ -41,7 +41,7 @@ The resources are the user interface for customers to claim and consume the hard
 | Feature | Resources | Description | Usage |
 | ------- | --------- | ----------- | ----- |
 | Intel® SGX | `sgx.intel.com/epc` | Intel SGX EPC memory for user pod to claim | [Link](https://github.com/intel/intel-technology-enabling-for-openshift/blob/64a6c86f3be25459c14ea988e892f9f5d873a8ca/tests/l2/sgx/sgx_job.yaml#L21) |
-| Intel® Data Center GPU Flex Series | `gpu.intel.com/i915 ` | Intel Data Center GPU Card for user pod to claim | [Link](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/device_plugins/deploy_gpu.md#using-intel-data-center-gpu-resource-exclusively) |
+| Intel® Data Center GPU Flex Series </br> Intel® Data Center GPU Max Series | `gpu.intel.com/i915 ` | Intel Data Center GPU Card for user pod to claim | [Link](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/device_plugins/deploy_gpu.md#using-intel-data-center-gpu-resource-exclusively) |
 | Intel® QAT | `qat.intel.com/cy` </br> `qat.intel.com/dc` | `cy`: Intel QAT VFIO Virtual Function device configured for cryptography for user pod to claim </br> `dc`: Intel QAT VFIO Virtual Function device configured for cryptography for user pod to claim | [Link](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/tests/l2/qat/qatlib_job.yaml#L24) </br> [Link](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/tests/l2/qat/qatlib_job.yaml#L28) |
 
 
