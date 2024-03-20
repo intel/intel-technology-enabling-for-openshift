@@ -7,7 +7,6 @@ Intel Device Plugins are utilized to advertise Intel hardware features (resource
 - Provisioned RHOCP cluster. Follow steps [here](/README.md).
 - Setup Node Feature Discovery (NFD). Follow steps [here](/nfd/README.md).
 - Follow the additional prerequisites for provisioning Intel® Data Center GPU: 
-    - Configure Machine Configuration (MCO) for Intel Data Center GPU. Follow steps [here](/machine_configuration/README.md#machine-configuration-for-intel®-data-center-gpu).
     - Setup out of tree drivers for Intel Data Center GPU provisioning. Follow the steps listed [here](/kmmo/README.md). 
 - Follow the additional prerequisites for provisioning Intel® QuickAssist Technology: 
     - Configure MCO for provisioning Intel QAT. Follow steps [here](/machine_configuration/README.md#machine-configuration-for-provisioning-intel-qat).
