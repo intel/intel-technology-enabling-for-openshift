@@ -22,6 +22,7 @@ spec:
       modprobe:
         moduleName: i915
         firmwarePath: /firmware
+      inTreeModuleToRemove: intel_vsec
       kernelMappings:
         - regexp: '^.*\.x86_64$'
           containerImage: image-registry.openshift-image-registry.svc:5000/openshift-kmm/intel-dgpu-driver-container-kmmo:$KERNEL_FULL_VERSION
