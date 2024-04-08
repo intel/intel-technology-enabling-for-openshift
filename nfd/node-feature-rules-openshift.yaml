@@ -5,6 +5,7 @@ apiVersion: nfd.openshift.io/v1alpha1
 kind: NodeFeatureRule
 metadata:
   name: intel-dp-devices
+  namespace: openshift-nfd
 spec:
   rules:
     - name: "intel.gpu"
