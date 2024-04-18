@@ -1,0 +1,72 @@
+name: Publish Documentation
+on:
+  push:
+    branches:
+        - main
+        - release-v1.2.1
+        - release-v1.2.0
+permissions:
+  contents: read
+
+jobs:
+  build:
+    permissions:
+      contents: write  # for Git to git push
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-venv git
+    - uses: actions/checkout@v4
+      with:
+        ref: main
+    - name: Set up doc directory
+      run: |
+        mkdir $HOME/output
+        touch $HOME/output/.nojekyll
+    - name: Build latest
+      run: |
+        GITHUB_SHA=$(git rev-parse HEAD)
+        export GITHUB_SHA
+        export CURRENT_VERSION=main
+        rm -rf _work/venv
+        make vhtml
+        mv _build/html/* $HOME/output/
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        ref: release-v1.2.1
+    - name: Build release-v1.2.1
+      run: |
+        GITHUB_SHA=$(git rev-parse HEAD)
+        export GITHUB_SHA
+        export CURRENT_VERSION=v1.2.1
+        rm -rf _work/venv
+        make vhtml
+        mv _build/html $HOME/output/v1.2.1
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        ref: release-v1.2.0
+    - name: Build release-v1.2.0
+      run: |
+        GITHUB_SHA=$(git rev-parse HEAD)
+        export GITHUB_SHA
+        export CURRENT_VERSION=v1.2.0
+        rm -rf _work/venv
+        make vhtml
+        mv _build/html $HOME/output/v1.2.0
+    - name: Deploy the docs
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        cd $HOME/output
+        git init
+        git config --global user.name "${GITHUB_ACTOR}"
+        git config --global user.email "${GITHUB_ACTOR}@github.com"
+        git add .
+        git commit -m "latest html output"
+        git push -f https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:gh-pages
