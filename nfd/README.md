@@ -12,12 +12,7 @@ Follow the guide below to install the NFD operator using CLI or web console.
 # Configure NFD Operator
 Note: As RHOCP cluster administrator, you might need to merge the NFD operator config from the following Custom Resources (CRs) with other NFD operator configs that are already applied on your cluster.  
 
-1. Create `NodeFeatureDiscovery` CR instance.
-```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/nfd/node-feature-discovery-openshift.yaml 
-```
-
-2.	Create `NodeFeatureRule` CR instance.
+1.	Create `NodeFeatureRule` CR instance.
 ```
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/nfd/node-feature-rules-openshift.yaml
 ```
