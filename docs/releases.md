@@ -1,6 +1,7 @@
 # Release Information
 | Intel Technology Enabling for OpenShift Release | Red Hat OpenShift Version | Intel Data Center GPU drivers for OpenShift Version | KMM Operator Version | NFD Operator Version | OpenVINO Operator Version | RedHat OpenShift AI Operator Version | Intel Device Plugins Operator Version | Intel SGX | Intel QAT | Intel Data Center GPU Flex Series | Intel Data Center GPU Max Series | Notes |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1.2.1 | 4.15 | [2.2.0](https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v2.2.0) | 2.0.2 | 4.15.0 | 1.1.0 | 2.8.0 | 0.28.0 | yes | yes | Yes | Yes (Dev Preview) | 4.15.6 and above |
 | 1.2.1 | 4.14 | [2.2.0](https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v2.2.0) | 2.0.2 | 4.14.0 | 1.1.0 | 2.8.0 | 0.28.0 | yes | yes | Yes | Yes (Dev Preview) | 4.14.11 and above |
 | 1.2.0 | 4.14 | [2.1.0](https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v2.1.0) | 2.0.2 | 4.14.0 | 1.1.0 | 2.6.0 | 0.28.0 | yes | yes | Yes | No | 4.14.11 and above |
 | 1.1.0 | 4.13 | [2.0.0](https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v2.0.0) | 1.1.2 | 4.13.0 | 1.1.0 | 2.4.0 | 0.28.0 | yes | Yes | Yes | No | 4.13.10 and above |
