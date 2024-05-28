@@ -1,0 +1,48 @@
+name: Publish Documentation
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    permissions:
+      contents: write  # for Git to git push
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-venv git
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        ref: main
+    - name: Set up doc directory
+      run: |
+        mkdir $HOME/output
+        touch $HOME/output/.nojekyll
+        echo "<meta http-equiv=\"refresh\" content=\"0; URL='development/index.html'\" />" >"$HOME/output/index.html"
+    - name: Build devel
+      run: |
+        export GITHUB_SHA=$(git rev-parse HEAD)
+        export GITHUB_SHA_REF=$(git rev-parse --abbrev-ref HEAD)
+        rm -rf _work/venv
+        make vhtml
+        mv _build/html $HOME/output/development
+    - name: Deploy the docs
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        cd $HOME/output
+        git init
+        git config --global user.name "${GITHUB_ACTOR}"
+        git config --global user.email "${GITHUB_ACTOR}@github.com"
+        git add .
+        git commit -m "latest html output"
+        git push -f https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:gh-pages
