@@ -1,0 +1,65 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: intel-dgpu-intelvpl
+  namespace: intel-dgpu
+spec: {}
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: intel-dgpu-intelvpl
+  namespace: intel-dgpu
+spec:
+  triggers:
+    - type: "ConfigChange"
+    - type: "ImageChange"
+  runPolicy: "Serial"
+  source:
+    type: Dockerfile
+    dockerfile: |
+        ARG BUILDER=registry.access.redhat.com/ubi9:latest
+        FROM ${BUILDER}
+        RUN subscription-manager register --username=${USERNAME} --password=${PASSWORD} && \
+            subscription-manager attach --auto && \
+            subscription-manager repos --enable rhel-9-for-x86_64-appstream-rpms && \
+            dnf -y update && \
+            dnf install -y flex bison gcc gcc-c++ make autoconf libtool cmake git gdb \
+              libva libva-devel libdrm libdrm-devel
+        RUN dnf install -y 'dnf-command(config-manager)' && \
+            dnf config-manager --add-repo \
+            https://repositories.intel.com/gpu/rhel/9.2/lts/2350/unified/intel-gpu-9.2.repo
+        RUN dnf -y update && \
+            dnf install -y libva-utils intel-gmmlib-devel libvpl2 libvpl-devel libvpl-tools \
+              libmfx
+        RUN git clone -b intel-media-23.4.3 --single-branch https://github.com/intel/media-driver.git && \
+              cd media-driver && mkdir media-driver build && cd build && \
+                cmake -D ENABLE_PRODUCTION_KMD=ON ../ && make -j $(nproc) && make install
+        # we need this for testing samples
+        RUN git clone https://github.com/intel/libvpl.git
+        ENTRYPOINT  ["/bin/sh"]
+  strategy:
+    type: Docker
+    noCache: true
+    dockerStrategy:
+      buildArgs:
+          - name: "BUILDER"
+            value: "registry.access.redhat.com/ubi9:latest"
+      env:
+          - name: "USERNAME"
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: rh-auth
+          - name: "PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: rh-auth
+  output:
+    to:
+      kind: ImageStreamTag
+      name: intel-dgpu-intelvpl:latest

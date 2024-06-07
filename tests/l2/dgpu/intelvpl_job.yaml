@@ -1,0 +1,22 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: intel-dgpu-intelvpl
+  namespace: intel-dgpu
+spec:
+  template:
+    metadata:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: intelvpl-pod
+        image: image-registry.openshift-image-registry.svc:5000/intel-dgpu/intel-dgpu-intelvpl:latest
+        command: ["vpl-inspect"]
+        resources:
+          limits:
+            gpu.intel.com/i915: 1
+        imagePullPolicy: IfNotPresent
+      serviceAccountName: intel-dgpu
