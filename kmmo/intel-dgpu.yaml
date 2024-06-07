@@ -12,7 +12,10 @@ spec:
       modprobe:
         moduleName: i915
         firmwarePath: /firmware
-      inTreeModuleToRemove: intel_vsec
+        modulesLoadingOrder:
+          - i915
+          - mei_gsc
+      inTreeModulesToRemove: [i915, intel_vsec, mei_gsc, mei_me]
       kernelMappings:
         - regexp: '^.*\.x86_64$'
           containerImage: registry.connect.redhat.com/intel/intel-data-center-gpu-driver-container:2.2.0-$KERNEL_FULL_VERSION
