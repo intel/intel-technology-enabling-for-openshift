@@ -57,6 +57,14 @@ else:
     version = "development"
 
 
+# Versions list with URLs using tags displayed in the lower left corner
+from git import Repo
+versions_to_exclude = set(['v1.0.0', 'v1.0.1','v1.1.0', 'v1.2.0', 'v1.2.1'])
+repo = Repo( search_parent_directories=True )
+github_repo = "/intel-technology-enabling-for-openshift/"
+release_versions = [("development", github_repo)]
+tags = reversed([tag.name for tag in repo.tags])
+release_versions.extend((str(tag), github_repo + tag) for tag in tags if str(tag) not in versions_to_exclude)
 
 # -- General configuration ---------------------------------------------------
 
@@ -68,6 +76,7 @@ else:
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['myst_parser', 'sphinx_md', ]
+myst_heading_anchors = 5
 # myst_enable_extensions = [
 #     "html_admonition",
 # ]
@@ -107,6 +116,7 @@ html_context = {
     'github_version': 'main/',
     'versions_menu': True,
     'version': version,
+    'versions': release_versions,
 }
 html_css_files = [
     'custom.css',
