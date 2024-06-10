@@ -1,0 +1,23 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: intel-dgpu-vainfo
+  namespace: intel-dgpu
+spec:
+  template:
+    metadata:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: vainfo-pod
+        image: image-registry.openshift-image-registry.svc:5000/intel-dgpu/intel-dgpu-vainfo:latest
+        command: ["vainfo"]
+        args: ["--display", "drm", "--device", "/dev/dri/renderD128"]
+        resources:
+          limits:
+            gpu.intel.com/i915: 1
+        imagePullPolicy: IfNotPresent
+
