@@ -10,15 +10,19 @@ After provisioning Intel hardware features on RHOCP, the respective hardware res
 ### Verify Intel® Software Guard Extensions (Intel® SGX) Provisioning
 This [SampleEnclave](https://github.com/intel/linux-sgx/tree/master/SampleCode/SampleEnclave) application workload from the Intel SGX SDK runs an Intel SGX enclave utilizing the EPC resource from the Intel SGX provisioning.
 * Build the container image. 
-  
-```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/sgx/sgx_build.yaml```
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/sgx/sgx_build.yaml
+```
 
 * Deploy and run the workload.
   
-```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/sgx/sgx_job.yaml```
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/sgx/sgx_job.yaml
+```
 
 *	Check the results.
-```$ oc get pods
+```
+  $ oc get pods
   intel-sgx-job-4tnh5          0/1     Completed   0          2m10s
   intel-sgx-workload-1-build   0/1     Completed   0          30s
 ```
@@ -36,11 +40,15 @@ This workload runs [clinfo](https://github.com/Oblomov/clinfo) utilizing the i91
 
 *	Build the workload container image. 
 
-```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/clinfo_build.yaml ```
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/clinfo_build.yaml 
+```
 
 *	Deploy and execute the workload.
 
-```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/clinfo_job.yaml```
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/clinfo_job.yaml
+```
 
 * Check the results.
 ``` 
@@ -73,11 +81,15 @@ This workload runs ```hwinfo``` utilizing the i915 resource from GPU provisionin
 
 *	Build the workload container image. 
 
-```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/hwinfo_build.yaml ```
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/hwinfo_build.yaml
+```
 
 *	Deploy and execute the workload.
 
-```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/hwinfo_job.yaml```
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/hwinfo_job.yaml
+```
 
 * Check the results
 ``` 
@@ -117,19 +129,27 @@ This workload runs [qatlib](https://github.com/intel/qatlib) sample tests using 
 
 Please replace the credentials in buildconfig yaml with your RedHat account login credentials. 
 
-```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_build.yaml ```
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_build.yaml 
+```
 
 * Create SCC intel-qat-scc for Intel QAT based workload, if this SCC is not created   
   
-```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/qatlib_scc.yaml```
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/qatlib_scc.yaml
+```
       
 * Create the intel-qat service account to use intel-qat-scc
   
-```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/qatlib_rbac.yaml```
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/qatlib_rbac.yaml
+```
 
 * Deploy the qatlib workload job with intel-qat service account
   
-```$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_job.yaml```
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_job.yaml
+```
 
 * Check the results.
 ``` 
