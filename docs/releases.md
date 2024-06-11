@@ -12,7 +12,7 @@
 ## Reference Links
 - [Intel Device Plugins Operator](https://catalog.redhat.com/software/container-stacks/detail/61e9f2d7b9cdd99018fc5736)
 - [Kernel Module Management Operator](https://catalog.redhat.com/software/container-stacks/detail/6524b0876df0b7666fb33cfa)
-- [NFD Operator]()
+- [NFD Operator](https://docs.openshift.com/container-platform/4.15/hardware_enablement/psap-node-feature-discovery-operator.html)
 - [OpenVINO Operator](https://catalog.redhat.com/software/container-stacks/detail/60649a56209af65d24b7ca9e)
 - [Red Hat OpenShift AI Operator](https://catalog.redhat.com/software/container-stacks/detail/63b85b573112fe5a95ee9a3a)
 - Intel Data Center GPU Drivers for OpenShift - [Red Hat Container Catalog](https://catalog.redhat.com/software/containers/intel/intel-data-center-gpu-driver-container/6495ee55c8b2461e35fb8264)
