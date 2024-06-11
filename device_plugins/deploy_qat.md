@@ -48,7 +48,7 @@ For more details about the QAT device plugin configuration flags, see [Modes and
 | `-dpdk-driver` | vfio-pci | Using vfio-pci driver to manage QAT VFIO device. See details [here](https://doc.dpdk.org/guides/linux_gsg/linux_drivers.html) |
 | `-kernel-vf-drivers` | 4xxxvf | Supporting 4xxx QAT device </br> **Note**: Verified on 4th Gen Intel® Xeon® Scalable processors. See details [here](https://github.com/intel/qatlib/blob/main/INSTALL#L72) |
 | `-max-num-devices ` | 128 | It is the maximum VF device it can support for 4xxx QAT device. If the number exceeds the maximum number the QAT device supports, then the maximum number will be enabled. |
-| `-provisioning-config ` | Name of ConfigMap | See section [QAT resource configuration](/device_plugins/deploy_qat.md#qat-resource-configuration)  |
+| `-provisioning-config ` | Name of ConfigMap | See section [QAT resource configuration](/device_plugins/deploy_qat.md#qat-resource-configuration-experimental)  |
 
 ## QAT Resource Configuration (experimental)
 
@@ -69,4 +69,4 @@ Users can use the steps below to customize the QAT resource configuration:
 # Run Intel QAT based workloads on RHOCP
 To run the Intel QAT based workloads as an unprivileged pod (see [issue](https://github.com/intel/intel-technology-enabling-for-openshift/issues/122)). The customized `qat-scc` Security Context Constraint (SCC) is provided to bind with service account and run the QAT based workload. 
 
-See [Verify Intel QuickAssist Technology Provisioning](/tests/l2/README.md#verify-intel®-quickassist-technology-provisioning) for the detailed steps.  
+See [Verify Intel QuickAssist Technology Provisioning](/tests/l2/README.md#verify-intel-quickassist-technology-provisioning) for the detailed steps.  
