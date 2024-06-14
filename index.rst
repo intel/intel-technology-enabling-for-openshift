@@ -16,7 +16,7 @@ Intel® Technology Enabling for OpenShift*
    :maxdepth: 2
    :caption: Releases:
    
-   docs/releases.md
+   docs/releases.rst
    
 .. toctree::
    :maxdepth: 2
