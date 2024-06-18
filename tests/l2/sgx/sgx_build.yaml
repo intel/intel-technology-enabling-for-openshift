@@ -23,10 +23,10 @@ spec:
     dockerfile: |
         ARG BUILDER=registry.access.redhat.com/ubi9:latest 
         ARG BASE=registry.access.redhat.com/ubi9-minimal:latest
-        ARG LINUX_SGX_VERSION=2.22
+        ARG LINUX_SGX_VERSION=2.24
         FROM ${BUILDER} AS builder
 
-        ARG SGX_SDK=sgx_linux_x64_sdk_2.22.100.3.bin
+        ARG SGX_SDK=sgx_linux_x64_sdk_2.24.100.3.bin
         ARG LINUX_SGX_VERSION
 
         RUN dnf -y update && \
@@ -85,9 +85,9 @@ spec:
           - name: "BASE"
             value: "registry.access.redhat.com/ubi9-minimal:9.2"
           - name: "SGX_SDK"
-            value: "sgx_linux_x64_sdk_2.22.100.3.bin"
+            value: "sgx_linux_x64_sdk_2.24.100.3.bin"
           - name: "LINUX_SGX_VERSION"
-            value: "2.22"
+            value: "2.24"
   output:
     to:
       kind: ImageStreamTag
