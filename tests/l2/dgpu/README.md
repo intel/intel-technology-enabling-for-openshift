@@ -87,5 +87,161 @@ $ oc logs intel-dgpu-hwinfo-44k4d
   Attached to: #89 (PCI bridge)
 ```                        
 
+### Verify Media feature provisioning for Intel® Data Center GPU
+It is verified on Intel® Data Center GPU Flex Series.
+
+#### VAInfo
+This workload runs [vainfo](https://github.com/intel/libva-utils) utilizing the i915 resource from GPU provisioning and displays the Media features supported by the GPU.
+
+*	Build the workload container image.
+
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/vainfo_build.yaml
+```
+
+*	Deploy and execute the workload.
+
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/vainfo_job.yaml
+```
+
+* Check the results.
+```
+  $ oc get pods -n intel-dgpu
+  NAME                        READY   STATUS      RESTARTS   AGE
+  intel-dgpu-vainfo-1-build   0/1     Completed   0          9m49s
+  intel-dgpu-vainfo-rbdvz     0/1     Completed   0          45s
+```
+```
+$ oc logs intel-dgpu-vainfo-rbdvz -n intel-dgpu
+vainfo: VA-API version: 1.20 (libva 2.20.0)
+vainfo: Driver version: Intel iHD driver for Intel(R) Gen Graphics - 23.4.3 (a9f272496)
+vainfo: Supported profile and entrypoints
+      VAProfileNone                   : VAEntrypointVideoProc
+      VAProfileNone                   : VAEntrypointStats
+      VAProfileMPEG2Simple            : VAEntrypointVLD
+      VAProfileMPEG2Main              : VAEntrypointVLD
+      VAProfileH264Main               : VAEntrypointVLD
+      VAProfileH264Main               : VAEntrypointEncSliceLP
+      VAProfileH264High               : VAEntrypointVLD
+      VAProfileH264High               : VAEntrypointEncSliceLP
+      VAProfileJPEGBaseline           : VAEntrypointVLD
+      VAProfileJPEGBaseline           : VAEntrypointEncPicture
+      VAProfileH264ConstrainedBaseline: VAEntrypointVLD
+      VAProfileH264ConstrainedBaseline: VAEntrypointEncSliceLP
+      VAProfileHEVCMain               : VAEntrypointVLD
+      VAProfileHEVCMain               : VAEntrypointEncSliceLP
+      VAProfileHEVCMain10             : VAEntrypointVLD
+      VAProfileHEVCMain10             : VAEntrypointEncSliceLP
+      VAProfileVP9Profile0            : VAEntrypointVLD
+      VAProfileVP9Profile1            : VAEntrypointVLD
+      VAProfileVP9Profile2            : VAEntrypointVLD
+      VAProfileVP9Profile3            : VAEntrypointVLD
+      VAProfileHEVCMain12             : VAEntrypointVLD
+      VAProfileHEVCMain422_10         : VAEntrypointVLD
+      VAProfileHEVCMain422_10         : VAEntrypointEncSliceLP
+      VAProfileHEVCMain422_12         : VAEntrypointVLD
+      VAProfileHEVCMain444            : VAEntrypointVLD
+      VAProfileHEVCMain444            : VAEntrypointEncSliceLP
+      VAProfileHEVCMain444_10         : VAEntrypointVLD
+      VAProfileHEVCMain444_10         : VAEntrypointEncSliceLP
+      VAProfileHEVCMain444_12         : VAEntrypointVLD
+      VAProfileHEVCSccMain            : VAEntrypointVLD
+      VAProfileHEVCSccMain            : VAEntrypointEncSliceLP
+      VAProfileHEVCSccMain10          : VAEntrypointVLD
+      VAProfileHEVCSccMain10          : VAEntrypointEncSliceLP
+      VAProfileHEVCSccMain444         : VAEntrypointVLD
+      VAProfileHEVCSccMain444         : VAEntrypointEncSliceLP
+      VAProfileAV1Profile0            : VAEntrypointVLD
+      VAProfileAV1Profile0            : VAEntrypointEncSliceLP
+      VAProfileHEVCSccMain444_10      : VAEntrypointVLD
+      VAProfileHEVCSccMain444_10      : VAEntrypointEncSliceLP
+```
+#### Using libvpl
+This workload runs various test programs from [libvpl](https://github.com/intel/libvpl) utilizing the i915 resource from GPU provisioning and displays the Video Processing Library (VPL) fetures supported by the GPU.
+
+*	Build the workload container image.
+
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/intelvpl_build.yaml
+```
+
+*	Deploy and execute the workload.
+
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/intelvpl_job.yaml
+```
+
+* Check the results.
+```
+$ oc get pods -n intel-dgpu
+  NAME                          READY   STATUS      RESTARTS   AGE
+  intel-dgpu-intelvpl-1-build   0/1     Completed   0          26m
+  intel-dgpu-intelvpl-f68tb     0/1     Completed   0          15m
+```
+```
+$ oc logs intel-dgpu-intelvpl-f68tb -n intel-dgpu
+
+Implementation #0: mfxhw64
+  Library path: /usr/lib64/libmfxhw64.so.1.35
+  AccelerationMode: MFX_ACCEL_MODE_VIA_VAAPI
+  ApiVersion: 1.35
+  Impl: MFX_IMPL_TYPE_HARDWARE
+  VendorImplID: 0x0000
+  ImplName: mfxhw64
+  License:
+  Version: 1.2
+  Keywords: MSDK,x64
+  VendorID: 0x8086
+  mfxAccelerationModeDescription:
+    Version: 1.0
+    Mode: MFX_ACCEL_MODE_VIA_VAAPI
+  mfxPoolPolicyDescription:
+    Version: 1.0
+  mfxDeviceDescription:
+    MediaAdapterType: MFX_MEDIA_UNKNOWN
+    DeviceID: 56c1/0
+    Version: 1.1
+  mfxDecoderDescription:
+    Version: 0.0
+  mfxEncoderDescription:
+    Version: 0.0
+  mfxVPPDescription:
+    Version: 0.0
+  NumExtParam: 0
+  Warning - MFX_IMPLCAPS_SURFACE_TYPES not supported
+
+Implementation #1: mfxhw64
+  Library path: /usr/lib64/libmfxhw64.so.1.35
+  AccelerationMode: MFX_ACCEL_MODE_VIA_VAAPI
+  ApiVersion: 1.35
+  Impl: MFX_IMPL_TYPE_HARDWARE
+  VendorImplID: 0x0001
+  ImplName: mfxhw64
+  License:
+  Version: 1.2
+  Keywords: MSDK,x64
+  VendorID: 0x8086
+  mfxAccelerationModeDescription:
+    Version: 1.0
+    Mode: MFX_ACCEL_MODE_VIA_VAAPI
+  mfxPoolPolicyDescription:
+    Version: 1.0
+  mfxDeviceDescription:
+    MediaAdapterType: MFX_MEDIA_UNKNOWN
+    DeviceID: 56c1/1
+    Version: 1.1
+  mfxDecoderDescription:
+    Version: 0.0
+  mfxEncoderDescription:
+    Version: 0.0
+  mfxVPPDescription:
+    Version: 0.0
+  NumExtParam: 0
+  Warning - MFX_IMPLCAPS_SURFACE_TYPES not supported
+
+Total number of implementations found = 2
+```
+
 ## See Also
 For GPU demos on vanilla Kubernetes, refer to [link](https://github.com/intel/intel-device-plugins-for-kubernetes/tree/main/demo/intel-opencl-icd) 
