@@ -57,7 +57,7 @@ $ oc label node <node_name> intel.feature.node.kubernetes.io/dgpu-canary=true
 
 3.	Use pre-build mode to deploy the driver container.
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/kmmo/intel-dgpu.yaml   
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/kmmo/intel-dgpu.yaml   
 ```
 
 4.	After the driver is verified on the cluster through the canary deployment, simply remove the line shown below from the [`intel-dgpu.yaml`](/kmmo/intel-dgpu.yaml) file and reapply the yaml file to deploy the driver to the entire cluster. As a cluster administrator, you can also select another deployment policy.
