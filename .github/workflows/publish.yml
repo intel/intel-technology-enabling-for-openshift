@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - release-v1.3.0
 
 permissions:
   contents: read
@@ -34,6 +35,17 @@ jobs:
         rm -rf _work/venv
         make vhtml
         mv _build/html $HOME/output/development
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        ref: release-v1.3.0
+    - name: Build release-v1.3.0
+      run: |
+        export GITHUB_SHA=$(git rev-parse HEAD)
+        export GITHUB_SHA_REF=$(git rev-parse --abbrev-ref HEAD)
+        rm -rf _work/venv
+        make vhtml
+        mv _build/html $HOME/output/v1.3.0
     - name: Deploy the docs
       shell: bash
       env:
