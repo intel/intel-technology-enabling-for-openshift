@@ -6,8 +6,8 @@ kind: QatDevicePlugin
 metadata:
   name: qatdeviceplugin-sample
 spec:
-  image: registry.connect.redhat.com/intel/intel-qat-plugin@sha256:9be0e18ccb2e895bb3d47797787e744f69ab7ae113772417968a72b9b7ce53f3
-  initImage: registry.connect.redhat.com/intel/intel-qat-initcontainer@sha256:8d935dd9d62e9e69afaab8a01594354529e774ed15dabc5d96ff91016851d191
+  image: registry.connect.redhat.com/intel/intel-qat-plugin@sha256:540d5aa47bc2e1058a3a0a437b9ba31e6c0803f0fb5f3d1c539d990f74006b99
+  initImage: registry.connect.redhat.com/intel/intel-qat-initcontainer@sha256:43532ade63c5930c80480a23c45ea14c61d298fbe9cd76dcd52080680811e1c5
   dpdkDriver: vfio-pci
   kernelVfDrivers:
     - 4xxxvf
