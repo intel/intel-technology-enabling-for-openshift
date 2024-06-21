@@ -3,9 +3,10 @@ Release Information
 
 .. list-table:: 
    :header-rows: 1
-   :widths: 15 10 10 10 10 10 10 10
+   :widths: 15 10 10 10 10 10 10 10 10
 
    * - **Release**
+     - 1.3.0
      - 1.2.1
      - 1.2.1
      - 1.2.0
@@ -14,6 +15,7 @@ Release Information
      - 1.0.0
      - \-
    * - **Red Hat OpenShift Version**
+     - 4.15
      - 4.15
      - 4.14
      - 4.14
@@ -24,12 +26,14 @@ Release Information
    * - **Intel Data Center GPU drivers for OpenShift Version**
      - `2.2.0 <https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v2.2.0>`_
      - `2.2.0 <https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v2.2.0>`_
+     - `2.2.0 <https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v2.2.0>`_
      - `2.1.0 <https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v2.1.0>`_
      - `2.0.0 <https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v2.0.0>`_
      - `1.1.0 <https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v1.1.0>`_
      - `1.0.0 <https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v1.0.0>`_
      - 
    * - **KMM Operator Version**
+     - 2.1.1
      - 2.0.2
      - 2.0.2
      - 2.0.2
@@ -39,6 +43,7 @@ Release Information
      - \-
    * - **NFD Operator Version**
      - 4.15.0
+     - 4.15.0
      - 4.14.0
      - 4.14.0
      - 4.13.0
@@ -46,6 +51,7 @@ Release Information
      - 4.12.0
      - \-
    * - **OpenVINO Operator Version**
+     - 1.2.0
      - 1.1.0
      - 1.1.0
      - 1.1.0
@@ -54,6 +60,7 @@ Release Information
      - 1.1.0
      - \-
    * - **RedHat OpenShift AI Operator Version**
+     - 2.9.1
      - 2.8.0
      - 2.8.0
      - 2.6.0
@@ -62,6 +69,7 @@ Release Information
      - 1.28.1
      - \-
    * - **Intel Device Plugins Operator Version**
+     - 0.29.0
      - 0.28.0
      - 0.28.0
      - 0.28.0
@@ -75,9 +83,11 @@ Release Information
      - yes
      - yes
      - yes
+     - yes
      - Yes
      - Yes
    * - **Intel QAT**
+     - yes
      - yes
      - yes
      - yes
@@ -86,6 +96,7 @@ Release Information
      - No
      - No
    * - **Intel Data Center GPU Flex Series**
+     - yes
      - Yes
      - Yes
      - Yes
@@ -96,12 +107,14 @@ Release Information
    * - **Intel Data Center GPU Max Series**
      - Yes (Dev Preview)
      - Yes (Dev Preview)
+     - Yes (Dev Preview)
      - No
      - No
      - No
      - No
      - No
    * - **Notes**
+     - 4.15.15 and above
      - 4.15.6 and above
      - 4.14.11 and above
      - 4.14.11 and above
