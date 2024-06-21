@@ -11,6 +11,22 @@ Intel® Technology Enabling for OpenShift*
    :caption: Contents:
 
    README.md
+   nfd/README.md
+   machine_configuration/README.md
+   kmmo/README.md
+   device_plugins/README.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: One-Click Deployment:
+
+   one_click/README.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: End-to-end Solutions:
+
+   e2e/inference/README.md
 
 .. toctree::
    :maxdepth: 2
