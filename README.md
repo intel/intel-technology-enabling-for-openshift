@@ -8,7 +8,7 @@ These Intel Data Center hardware features currently include:
 - **Intel® Data Center GPU Max Series** 
 - **Intel® QuickAssist Technology (Intel® QAT)**
 
-The following features will be included in future releases.  
+The following features will be included in future releases:  
 - Intel® Data Streaming Accelerator (Intel® DSA) 
 
 Intel AI hardware and optimized software solutions are integrated into Red Hat OpenShift AI for ease of provisioning and configuration. The [Habana AI Operator](https://catalog.redhat.com/software/container-stacks/detail/64342b3bcbfbb9a6588ce8dd?gs&q=habana) is used to provision Intel® Gaudi® accelerators and released on the Red Hat Ecosystem Catalog.
