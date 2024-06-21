@@ -1,29 +1,29 @@
 # Setting up Out of Tree Drivers
 
-# Introduction
+## Introduction
 [Kernel module management (KMM) operator](https://github.com/rh-ecosystem-edge/kernel-module-management) manages the deployment and lifecycle of out-of-tree kernel modules on RHOCP.
 
 In this release, KMM operator is used to manage and deploy the Intel® Data Center GPU driver container image on the RHOCP cluster.
 
 Intel data center GPU driver container images are released from [Intel Data Center GPU Driver for OpenShift Project](https://github.com/intel/intel-data-center-gpu-driver-for-openshift/tree/main/release#intel-data-center-gpu-driver-container-images-for-openshift-release).
 
-# KMM operator working mode
+## KMM operator working mode
 - **Pre-build mode** - This is the default and recommended mode. KMM Operator uses [this pre-built and certified Intel Data Center GPU driver container image](https://catalog.redhat.com/software/containers/intel/intel-data-center-gpu-driver-container/6495ee55c8b2461e35fb8264), which is published on the Red Hat Ecosystem Catalog to provision Intel Data Center GPUs on a RHOCP cluster.
 - **On-premises build mode** - Users can optionally build and deploy their own driver container images on-premises through the KMM operator.
 
-# Prerequisites
+## Prerequisites
 - Provisioned RHOCP cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
 - Setup node feature discovery. Follow steps [here](/nfd/README.md).
 
-# Install KMM operator
+## Install KMM operator
 Follow the installation guide below to install the KMM operator via CLI or web console. 
 - [Install from CLI](https://docs.openshift.com/container-platform/4.14/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-cli_kernel-module-management-operator)
 - [Install from web console](https://docs.openshift.com/container-platform/4.14/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-web-console_kernel-module-management-operator)
 
-# Canary deployment with KMM
+## Canary deployment with KMM
 Canary deployment is enabled by default to deploy the driver container image only on specific node(s) to ensure the initial deployment succeeds prior to rollout to all the eligible nodes in the cluster. This safety mechanism can reduce risk and prevent a deployment from adversely affecting the entire cluster.
 
-# Set alternative firmware path at runtime with KMM
+## Set alternative firmware path at runtime with KMM
 Follow the steps below to set the alternative firmware path at runtime.
 
 1. Update KMM operator `ConfigMap` to set `worker.setFirmwareClassPath` to `/var/lib/firmware`
@@ -38,7 +38,7 @@ $ oc get pods -n openshift-kmm | grep -i "kmm-operator-controller-" | awk '{prin
 
 For more details, see [link.](https://openshift-kmm.netlify.app/documentation/firmwares/#setting-the-kernels-firmware-search-path)
 
-# Deploy Intel Data Center GPU Driver with pre-build mode
+## Deploy Intel Data Center GPU Driver with pre-build mode
 Follow the steps below to deploy the driver container image with pre-build mode.
 1.	Find all nodes with an Intel Data Center GPU card using the following command:
 ``` 
@@ -65,7 +65,7 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 intel.feature.node.kubernetes.io/dgpu-canary: 'true'
 ```
 
-# Verification
+## Verification
 To verify that the drivers have been loaded, follow the steps below:
 1.	List the nodes labeled with `kmm.node.kubernetes.io/openshift-kmm.intel-dgpu.ready` using the command shown below:
 ```
@@ -99,4 +99,4 @@ The label shown above indicates that the KMM operator has successfully deployed 
     ```
     c. Run dmesg to ensure there are no errors in the kernel message log.
 
-# See Also
+## See Also

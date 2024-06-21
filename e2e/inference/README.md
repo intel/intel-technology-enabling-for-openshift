@@ -1,4 +1,6 @@
-# Overview
+# Intel AI Inference End-to-End Solution
+
+## Overview
 Intel AI inference end-to-end solution with RHOCP is based on the Intel® Data Center GPU Flex Series provisioning, Intel® OpenVINO™, and [Red Hat OpenShift AI](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai) (RHOAI) on RHOCP. There are two AI inference modes verified with Intel® Xeon® processors and Intel Data Center GPU Flex Series with RHOCP.
 * Interactive mode – RHOAI provides OpenVINO based Jupyter Notebooks for users to interactively debug the inference applications or [optimize the models](https://docs.openvino.ai/2023.0/openvino_docs_MO_DG_Deep_Learning_Model_Optimizer_DevGuide.html) on RHOCP using data center GPU cards or Intel Xeon processors.
 * Deployment mode – [OpenVINO Model Sever](https://github.com/openvinotoolkit/model_server) (OVMS) can be used to deploy the inference workloads in data center and edge computing environments on RHOCP.  
@@ -26,6 +28,7 @@ The OpenVINO operator is published at [Red Hat Ecosystem Catalog](https://catalo
 ### Install using CLI (To be added)
 ### Install using Web Console
 Follow this [link](https://github.com/openvinotoolkit/operator/blob/v1.1.0/docs/operator_installation.md#operator-instalation)  to install the operator via the web console. 
+
 ## Work with Interactive Mode
 To enable the interactive mode, the OpenVINO notebook CR needs to be created and integrated with RHOAI.  
 1.	Click on the `create Notebook` option from the web console and follow these [steps](https://github.com/openvinotoolkit/operator/blob/main/docs/notebook_in_rhods.md#integration-with-openshift-data-science-and-open-data-hub) to create the notebook CR.
