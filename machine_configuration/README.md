@@ -1,6 +1,6 @@
 # Setting up Machine Configuration
 
-# Introduction
+## Introduction
 Machine configuration operation is used to configure [Red Hat Enterprise Linux CoreOS (RHCOS)](https://docs.openshift.com/container-platform/4.14/architecture/architecture-rhcos.html) on each node in a RHOCP cluster.
 
 [Machine config operator](https://github.com/openshift/machine-config-operator) (MCO) is provided by Red Hat to manage the operating system and machine configuration. In this project through the MCO, cluster administrators can configure and update the kernel to provision Intel Hardware features on the worker nodes.
@@ -15,11 +15,11 @@ If the configuration cannot be set as the default setting, we recommend using so
 
 Any contribution in this area is welcome. 
 
-# Prerequisites 
+## Prerequisites 
 - Provisioned RHOCP cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
 - Setup node feature discovery (NFD). Follow steps [here](/nfd/README.md).
 
-# Machine Configuration for Provisioning Intel® QAT
+## Machine Configuration for Provisioning Intel® QAT
 
 * Turn on `intel_iommu` kernel parameter and load `vfio_pci` at boot for QAT provisioning
 
@@ -42,5 +42,5 @@ $ lsmod | grep vfio_pci
 ```
 Ensure that `vfio_pci` driver is present.
 
-# See Also
+## See Also
 - [Red Hat OpenShift Container Platform Day-2 operations](https://www.ibm.com/cloud/architecture/content/course/red-hat-openshift-container-platform-day-2-ops/)
