@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verify Intel® Data Center GPU provisioning &mdash; Intel® Technology Enabling for OpenShift*</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Intel® Technology Enabling for OpenShift*
+          </a>
+              <div class="version">
+                v1.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">Intel® Technology Enabling for OpenShift*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nfd/README.html">Setting up Node Feature Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../machine_configuration/README.html">Setting up Machine Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../kmmo/README.html">Setting up Out of Tree Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../device_plugins/README.html">Setting up Intel Device Plugins Operator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">One-Click Deployment:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../one_click/README.html">Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">End-to-end Solutions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../e2e/inference/README.html">Intel AI Inference End-to-End Solution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html">Release Information</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Platforms:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/supported_platforms.html">Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Intel® Technology Enabling for OpenShift*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Verify Intel® Data Center GPU provisioning</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/tests/l2/dgpu/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="verify-intel-data-center-gpu-provisioning">
+<h1>Verify Intel® Data Center GPU provisioning<a class="headerlink" href="#verify-intel-data-center-gpu-provisioning" title="Permalink to this heading"></a></h1>
+<p>It is supported for Intel® Data Center GPU Flex and Max Series.</p>
+<section id="clinfo">
+<h2>clinfo<a class="headerlink" href="#clinfo" title="Permalink to this heading"></a></h2>
+<p>This workload runs <a class="reference external" href="https://github.com/Oblomov/clinfo">clinfo</a> utilizing the i915 resource from GPU provisioning and displays the related GPU information.</p>
+<ul class="simple">
+<li><p>Build the workload container image.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/tests/l2/dgpu/clinfo_build.yaml 
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Deploy and execute the workload.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/tests/l2/dgpu/clinfo_job.yaml
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Check the results.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  $ oc get pods
+  intel-dgpu-clinfo-1-build        0/1     Completed   0          3m20s
+  intel-dgpu-clinfo-56mh2          0/1     Completed   0          35s
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc logs intel-dgpu-clinfo-56mh2  
+  Platform Name                                   Intel(R) OpenCL HD Graphics
+  Number of devices                                 1
+  Device Name                                     Intel(R) Data Center GPU Flex Series 140 [0x56c1]
+  Device Vendor                                   Intel(R) Corporation
+  Device Vendor ID                                0x8086
+  Device Version                                  OpenCL 3.0 NEO
+  Device UUID                                     86800000-c156-0000-0000-000000000000
+  Driver UUID                                     32322e34-332e-3234-3539-352e33350000
+  Valid Device LUID                               No
+  Device LUID                                     80c6-4e56fd7f0000
+  Device Node Mask                                0
+  Device Numeric Version                          0xc00000 (3.0.0)
+  Driver Version                                  22.43.24595.35
+  Device OpenCL C Version                         OpenCL C 1.2
+  Device OpenCL C all versions                    OpenCL 
+</pre></div>
+</div>
+</section>
+<section id="hwinfo">
+<h2>hwinfo<a class="headerlink" href="#hwinfo" title="Permalink to this heading"></a></h2>
+<p>This workload runs <code class="docutils literal notranslate"><span class="pre">hwinfo</span></code> utilizing the i915 resource from GPU provisioning and displays the related GPU information. Refer to <a class="reference external" href="https://dgpu-docs.intel.com/driver/installation.html#verify-install">link</a></p>
+<ul class="simple">
+<li><p>Build the workload container image.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/tests/l2/dgpu/hwinfo_build.yaml
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Deploy and execute the workload.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/tests/l2/dgpu/hwinfo_job.yaml
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Check the results</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  $ oc get pods
+  intel-dgpu-hwinfo-1-build   0/1     Completed   0          2m23s
+  intel-dgpu-hwinfo-44k4d     0/1     Completed   0          106s
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc logs intel-dgpu-hwinfo-44k4d  
+ 282: PCI aa00.0: 0380 Display controller
+  [Created at pci.386]
+  Unique ID: YxOB.+ER_Ec9Ujm4
+  Parent ID: xBFW.xbjkZcxCQYD
+  SysFS ID: /devices/pci0000:a7/0000:a7:01.0/0000:a8:00.0/0000:a9:01.0/0000:aa:00.0
+  SysFS BusID: 0000:aa:00.0
+  Hardware Class: graphics card
+  Model: &quot;Intel Display controller&quot;
+  Vendor: pci 0x8086 &quot;Intel Corporation&quot;
+  Device: pci 0x0bda
+  SubVendor: pci 0x8086 &quot;Intel Corporation&quot;
+  SubDevice: pci 0x0000
+  Revision: 0x2f
+  Driver: &quot;i915&quot;
+  Driver Modules: &quot;i915&quot;
+  Memory Range: 0x44fe3f000000-0x44fe3fffffff (ro,non-prefetchable)
+  Memory Range: 0x447000000000-0x447fffffffff (ro,non-prefetchable)
+  IRQ: 511 (140 events)
+  Module Alias: &quot;pci:v00008086d00000BDAsv00008086sd00000000bc03sc80i00&quot;
+  Config Status: cfg=new, avail=yes, need=no, active=unknown
+  Attached to: #89 (PCI bridge)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="verify-media-feature-provisioning-for-intel-data-center-gpu">
+<h1>Verify Media feature provisioning for Intel® Data Center GPU<a class="headerlink" href="#verify-media-feature-provisioning-for-intel-data-center-gpu" title="Permalink to this heading"></a></h1>
+<p>It is verified on Intel® Data Center GPU Flex Series.</p>
+<section id="vainfo">
+<h2>VAInfo<a class="headerlink" href="#vainfo" title="Permalink to this heading"></a></h2>
+<p>This workload runs <a class="reference external" href="https://github.com/intel/libva-utils">vainfo</a> utilizing the i915 resource from GPU provisioning and displays the Media features supported by the GPU.</p>
+<ul class="simple">
+<li><p>Build the workload container image.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/tests/l2/dgpu/vainfo_build.yaml
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Deploy and execute the workload.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/tests/l2/dgpu/vainfo_job.yaml
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Check the results.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  $ oc get pods -n intel-dgpu
+  NAME                        READY   STATUS      RESTARTS   AGE
+  intel-dgpu-vainfo-1-build   0/1     Completed   0          9m49s
+  intel-dgpu-vainfo-rbdvz     0/1     Completed   0          45s
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc logs intel-dgpu-vainfo-rbdvz -n intel-dgpu
+vainfo: VA-API version: 1.20 (libva 2.20.0)
+vainfo: Driver version: Intel iHD driver for Intel(R) Gen Graphics - 23.4.3 (a9f272496)
+vainfo: Supported profile and entrypoints
+      VAProfileNone                   : VAEntrypointVideoProc
+      VAProfileNone                   : VAEntrypointStats
+      VAProfileMPEG2Simple            : VAEntrypointVLD
+      VAProfileMPEG2Main              : VAEntrypointVLD
+      VAProfileH264Main               : VAEntrypointVLD
+      VAProfileH264Main               : VAEntrypointEncSliceLP
+      VAProfileH264High               : VAEntrypointVLD
+      VAProfileH264High               : VAEntrypointEncSliceLP
+      VAProfileJPEGBaseline           : VAEntrypointVLD
+      VAProfileJPEGBaseline           : VAEntrypointEncPicture
+      VAProfileH264ConstrainedBaseline: VAEntrypointVLD
+      VAProfileH264ConstrainedBaseline: VAEntrypointEncSliceLP
+      VAProfileHEVCMain               : VAEntrypointVLD
+      VAProfileHEVCMain               : VAEntrypointEncSliceLP
+      VAProfileHEVCMain10             : VAEntrypointVLD
+      VAProfileHEVCMain10             : VAEntrypointEncSliceLP
+      VAProfileVP9Profile0            : VAEntrypointVLD
+      VAProfileVP9Profile1            : VAEntrypointVLD
+      VAProfileVP9Profile2            : VAEntrypointVLD
+      VAProfileVP9Profile3            : VAEntrypointVLD
+      VAProfileHEVCMain12             : VAEntrypointVLD
+      VAProfileHEVCMain422_10         : VAEntrypointVLD
+      VAProfileHEVCMain422_10         : VAEntrypointEncSliceLP
+      VAProfileHEVCMain422_12         : VAEntrypointVLD
+      VAProfileHEVCMain444            : VAEntrypointVLD
+      VAProfileHEVCMain444            : VAEntrypointEncSliceLP
+      VAProfileHEVCMain444_10         : VAEntrypointVLD
+      VAProfileHEVCMain444_10         : VAEntrypointEncSliceLP
+      VAProfileHEVCMain444_12         : VAEntrypointVLD
+      VAProfileHEVCSccMain            : VAEntrypointVLD
+      VAProfileHEVCSccMain            : VAEntrypointEncSliceLP
+      VAProfileHEVCSccMain10          : VAEntrypointVLD
+      VAProfileHEVCSccMain10          : VAEntrypointEncSliceLP
+      VAProfileHEVCSccMain444         : VAEntrypointVLD
+      VAProfileHEVCSccMain444         : VAEntrypointEncSliceLP
+      VAProfileAV1Profile0            : VAEntrypointVLD
+      VAProfileAV1Profile0            : VAEntrypointEncSliceLP
+      VAProfileHEVCSccMain444_10      : VAEntrypointVLD
+      VAProfileHEVCSccMain444_10      : VAEntrypointEncSliceLP
+</pre></div>
+</div>
+</section>
+<section id="using-libvpl">
+<h2>Using libvpl<a class="headerlink" href="#using-libvpl" title="Permalink to this heading"></a></h2>
+<p>This workload runs various test programs from <a class="reference external" href="https://github.com/intel/libvpl">libvpl</a> utilizing the i915 resource from GPU provisioning and displays the Video Processing Library (VPL) fetures supported by the GPU.</p>
+<ul class="simple">
+<li><p>Build the workload container image.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/tests/l2/dgpu/intelvpl_build.yaml
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Deploy and execute the workload.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/tests/l2/dgpu/intelvpl_job.yaml
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Check the results.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pods -n intel-dgpu
+  NAME                          READY   STATUS      RESTARTS   AGE
+  intel-dgpu-intelvpl-1-build   0/1     Completed   0          26m
+  intel-dgpu-intelvpl-f68tb     0/1     Completed   0          15m
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc logs intel-dgpu-intelvpl-f68tb -n intel-dgpu
+
+Implementation #0: mfxhw64
+  Library path: /usr/lib64/libmfxhw64.so.1.35
+  AccelerationMode: MFX_ACCEL_MODE_VIA_VAAPI
+  ApiVersion: 1.35
+  Impl: MFX_IMPL_TYPE_HARDWARE
+  VendorImplID: 0x0000
+  ImplName: mfxhw64
+  License:
+  Version: 1.2
+  Keywords: MSDK,x64
+  VendorID: 0x8086
+  mfxAccelerationModeDescription:
+    Version: 1.0
+    Mode: MFX_ACCEL_MODE_VIA_VAAPI
+  mfxPoolPolicyDescription:
+    Version: 1.0
+  mfxDeviceDescription:
+    MediaAdapterType: MFX_MEDIA_UNKNOWN
+    DeviceID: 56c1/0
+    Version: 1.1
+  mfxDecoderDescription:
+    Version: 0.0
+  mfxEncoderDescription:
+    Version: 0.0
+  mfxVPPDescription:
+    Version: 0.0
+  NumExtParam: 0
+  Warning - MFX_IMPLCAPS_SURFACE_TYPES not supported
+
+Implementation #1: mfxhw64
+  Library path: /usr/lib64/libmfxhw64.so.1.35
+  AccelerationMode: MFX_ACCEL_MODE_VIA_VAAPI
+  ApiVersion: 1.35
+  Impl: MFX_IMPL_TYPE_HARDWARE
+  VendorImplID: 0x0001
+  ImplName: mfxhw64
+  License:
+  Version: 1.2
+  Keywords: MSDK,x64
+  VendorID: 0x8086
+  mfxAccelerationModeDescription:
+    Version: 1.0
+    Mode: MFX_ACCEL_MODE_VIA_VAAPI
+  mfxPoolPolicyDescription:
+    Version: 1.0
+  mfxDeviceDescription:
+    MediaAdapterType: MFX_MEDIA_UNKNOWN
+    DeviceID: 56c1/1
+    Version: 1.1
+  mfxDecoderDescription:
+    Version: 0.0
+  mfxEncoderDescription:
+    Version: 0.0
+  mfxVPPDescription:
+    Version: 0.0
+  NumExtParam: 0
+  Warning - MFX_IMPLCAPS_SURFACE_TYPES not supported
+
+Total number of implementations found = 2
+</pre></div>
+</div>
+</section>
+</section>
+<section id="see-also">
+<h1>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading"></a></h1>
+<p>For GPU demos on vanilla Kubernetes, refer to <a class="reference external" href="https://github.com/intel/intel-device-plugins-for-kubernetes/tree/main/demo/intel-opencl-icd">link</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Intel® Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Versions</span>
+      v1.3.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/">development</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.0">v1.3.0</a></dd>
+           </strong> 
+        
+      </dl>
+      
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

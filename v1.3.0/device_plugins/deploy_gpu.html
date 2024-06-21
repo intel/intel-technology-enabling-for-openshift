@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Intel GPU Device Plugin CR &mdash; Intel® Technology Enabling for OpenShift*</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Intel® Technology Enabling for OpenShift*
+          </a>
+              <div class="version">
+                v1.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Intel® Technology Enabling for OpenShift*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nfd/README.html">Setting up Node Feature Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machine_configuration/README.html">Setting up Machine Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kmmo/README.html">Setting up Out of Tree Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Setting up Intel Device Plugins Operator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">One-Click Deployment:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../one_click/README.html">Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">End-to-end Solutions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../e2e/inference/README.html">Intel AI Inference End-to-End Solution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/releases.html">Release Information</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Platforms:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/supported_platforms.html">Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Intel® Technology Enabling for OpenShift*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Create Intel GPU Device Plugin CR</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/device_plugins/deploy_gpu.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="create-intel-gpu-device-plugin-cr">
+<h1>Create Intel GPU Device Plugin CR<a class="headerlink" href="#create-intel-gpu-device-plugin-cr" title="Permalink to this heading"></a></h1>
+<section id="create-cr-via-web-console">
+<h2>Create CR via web console<a class="headerlink" href="#create-cr-via-web-console" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Go to <strong>Operator</strong> -&gt; <strong>Installed Operators</strong>.</p></li>
+<li><p>Open <strong>Intel Device Plugins Operator</strong>.</p></li>
+<li><p>Navigate to tab <strong>Intel GPU Device Plugin</strong>.</p></li>
+<li><p>Click <strong>Create GpuDevicePlugin</strong> -&gt; set correct parameters -&gt; Click <strong>Create</strong>.</p></li>
+<li><p>Optional: If you want to  make any customizations, select YAML view and edit the details. Once you are done, click <strong>Create</strong>.</p></li>
+</ol>
+</section>
+<section id="verify-via-web-console">
+<h2>Verify via web console<a class="headerlink" href="#verify-via-web-console" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Verify CR by checking the status of <strong>Workloads</strong> -&gt; <strong>DaemonSet</strong> -&gt; <strong>intel-gpu-plugin</strong>.</p></li>
+<li><p>Now <code class="docutils literal notranslate"><span class="pre">GpuDevicePlugin</span></code> is created.</p></li>
+</ol>
+</section>
+<section id="create-cr-via-cli">
+<h2>Create CR via CLI<a class="headerlink" href="#create-cr-via-cli" title="Permalink to this heading"></a></h2>
+<p>Apply the CR yaml file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f  https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/device_plugins/gpu_device_plugin.yaml
+</pre></div>
+</div>
+</section>
+<section id="verify-via-cli">
+<h2>Verify via CLI<a class="headerlink" href="#verify-via-cli" title="Permalink to this heading"></a></h2>
+<p>Verify that the device plugin CR is ready:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get GpuDevicePlugin 
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NAME</span>		        <span class="n">DESIRED</span>	  <span class="n">READY</span>	  <span class="n">NODE</span> <span class="n">SELECTOR</span>	                                    <span class="n">AGE</span>
+<span class="n">gpudeviceplugin</span><span class="o">-</span><span class="n">sample</span>  <span class="mi">1</span>         <span class="mi">1</span>       <span class="p">{</span><span class="s2">&quot;intel.feature.node.kubernetes.io/gpu&quot;</span><span class="p">:</span><span class="s2">&quot;true&quot;</span><span class="p">}</span>   <span class="mi">3</span><span class="n">m12s</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="using-intel-data-center-gpu-resource-exclusively">
+<h1>Using Intel Data Center GPU resource exclusively<a class="headerlink" href="#using-intel-data-center-gpu-resource-exclusively" title="Permalink to this heading"></a></h1>
+<p>In this release, we only verified and support the single Intel GPU <code class="docutils literal notranslate"><span class="pre">i915</span></code> resource dedicated to the single workload pod. To achieve this, we set <code class="docutils literal notranslate"><span class="pre">sharedDevNum:</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">preferredAllocationPolicy:</span> <span class="pre">none</span></code> as default options.<br />
+As the cluster administrator, use the <a class="reference download internal" download="" href="../_downloads/d7680499f3a30a9d47976f0f38439d17/gpu_device_plugin.yaml"><span class="xref download myst">gpu_device_plugin.yaml</span></a> provided from the previous section Create CR via CLI or use the default options from Create CR via web Console.<br />
+As the application owner, when claiming the i915 resource, make sure the resource limits and requests are set as shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spec</span><span class="p">:</span>
+  <span class="n">containers</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">gpu</span><span class="o">-</span><span class="n">pod</span>
+      <span class="n">resources</span><span class="p">:</span>
+        <span class="n">limits</span><span class="p">:</span>
+          <span class="n">gpu</span><span class="o">.</span><span class="n">intel</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">i915</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="n">requests</span><span class="p">:</span>
+          <span class="n">gpu</span><span class="o">.</span><span class="n">intel</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">i915</span><span class="p">:</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>For more details, please refer to this <a class="reference external" href="https://github.com/intel/intel-device-plugins-for-kubernetes/issues/1408">issue</a>.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Intel® Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Versions</span>
+      v1.3.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/">development</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.0">v1.3.0</a></dd>
+           </strong> 
+        
+      </dl>
+      
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

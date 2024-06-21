@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setting up Out of Tree Drivers &mdash; Intel® Technology Enabling for OpenShift*</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setting up Intel Device Plugins Operator" href="../device_plugins/README.html" />
+    <link rel="prev" title="Setting up Machine Configuration" href="../machine_configuration/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Intel® Technology Enabling for OpenShift*
+          </a>
+              <div class="version">
+                v1.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Intel® Technology Enabling for OpenShift*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nfd/README.html">Setting up Node Feature Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machine_configuration/README.html">Setting up Machine Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting up Out of Tree Drivers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kmm-operator-working-mode">KMM operator working mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-kmm-operator">Install KMM operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#canary-deployment-with-kmm">Canary deployment with KMM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-alternative-firmware-path-at-runtime-with-kmm">Set alternative firmware path at runtime with KMM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploy-intel-data-center-gpu-driver-with-pre-build-mode">Deploy Intel Data Center GPU Driver with pre-build mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../device_plugins/README.html">Setting up Intel Device Plugins Operator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">One-Click Deployment:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../one_click/README.html">Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">End-to-end Solutions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../e2e/inference/README.html">Intel AI Inference End-to-End Solution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/releases.html">Release Information</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Platforms:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/supported_platforms.html">Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Intel® Technology Enabling for OpenShift*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Setting up Out of Tree Drivers</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/kmmo/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setting-up-out-of-tree-drivers">
+<h1>Setting up Out of Tree Drivers<a class="headerlink" href="#setting-up-out-of-tree-drivers" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p><a class="reference external" href="https://github.com/rh-ecosystem-edge/kernel-module-management">Kernel module management (KMM) operator</a> manages the deployment and lifecycle of out-of-tree kernel modules on RHOCP.</p>
+<p>In this release, KMM operator is used to manage and deploy the Intel® Data Center GPU driver container image on the RHOCP cluster.</p>
+<p>Intel data center GPU driver container images are released from <a class="reference external" href="https://github.com/intel/intel-data-center-gpu-driver-for-openshift/tree/main/release#intel-data-center-gpu-driver-container-images-for-openshift-release">Intel Data Center GPU Driver for OpenShift Project</a>.</p>
+</section>
+<section id="kmm-operator-working-mode">
+<h2>KMM operator working mode<a class="headerlink" href="#kmm-operator-working-mode" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Pre-build mode</strong> - This is the default and recommended mode. KMM Operator uses <a class="reference external" href="https://catalog.redhat.com/software/containers/intel/intel-data-center-gpu-driver-container/6495ee55c8b2461e35fb8264">this pre-built and certified Intel Data Center GPU driver container image</a>, which is published on the Red Hat Ecosystem Catalog to provision Intel Data Center GPUs on a RHOCP cluster.</p></li>
+<li><p><strong>On-premises build mode</strong> - Users can optionally build and deploy their own driver container images on-premises through the KMM operator.</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Provisioned RHOCP cluster. Follow steps <a class="reference internal" href="../README.html#provisioning-rhocp-cluster"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>Setup node feature discovery. Follow steps <a class="reference internal" href="../nfd/README.html"><span class="std std-doc">here</span></a>.</p></li>
+</ul>
+</section>
+<section id="install-kmm-operator">
+<h2>Install KMM operator<a class="headerlink" href="#install-kmm-operator" title="Permalink to this heading"></a></h2>
+<p>Follow the installation guide below to install the KMM operator via CLI or web console.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.openshift.com/container-platform/4.14/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-cli_kernel-module-management-operator">Install from CLI</a></p></li>
+<li><p><a class="reference external" href="https://docs.openshift.com/container-platform/4.14/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-web-console_kernel-module-management-operator">Install from web console</a></p></li>
+</ul>
+</section>
+<section id="canary-deployment-with-kmm">
+<h2>Canary deployment with KMM<a class="headerlink" href="#canary-deployment-with-kmm" title="Permalink to this heading"></a></h2>
+<p>Canary deployment is enabled by default to deploy the driver container image only on specific node(s) to ensure the initial deployment succeeds prior to rollout to all the eligible nodes in the cluster. This safety mechanism can reduce risk and prevent a deployment from adversely affecting the entire cluster.</p>
+</section>
+<section id="set-alternative-firmware-path-at-runtime-with-kmm">
+<h2>Set alternative firmware path at runtime with KMM<a class="headerlink" href="#set-alternative-firmware-path-at-runtime-with-kmm" title="Permalink to this heading"></a></h2>
+<p>Follow the steps below to set the alternative firmware path at runtime.</p>
+<ol class="arabic simple">
+<li><p>Update KMM operator <code class="docutils literal notranslate"><span class="pre">ConfigMap</span></code> to set <code class="docutils literal notranslate"><span class="pre">worker.setFirmwareClassPath</span></code> to <code class="docutils literal notranslate"><span class="pre">/var/lib/firmware</span></code></p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc patch configmap kmm-operator-manager-config -n openshift-kmm --type=&#39;json&#39; -p=&#39;[{&quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/data/controller_config.yaml&quot;, &quot;value&quot;: &quot;healthProbeBindAddress: :8081\nmetricsBindAddress: 127.0.0.1:8080\nleaderElection:\n  enabled: true\n  resourceID: kmm.sigs.x-k8s.io\nwebhook:\n  disableHTTP2: true\n  port: 9443\nworker:\n  runAsUser: 0\n  seLinuxType: spc_t\n  setFirmwareClassPath: /var/lib/firmware&quot;}]&#39;
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Delete the KMM operator controller pod for <code class="docutils literal notranslate"><span class="pre">ConfigMap</span></code> changes to take effect.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pods -n openshift-kmm | grep -i &quot;kmm-operator-controller-&quot; | awk &#39;{print $1}&#39; | xargs oc delete pod -n openshift-kmm
+</pre></div>
+</div>
+<p>For more details, see <a class="reference external" href="https://openshift-kmm.netlify.app/documentation/firmwares/#setting-the-kernels-firmware-search-path">link.</a></p>
+</section>
+<section id="deploy-intel-data-center-gpu-driver-with-pre-build-mode">
+<h2>Deploy Intel Data Center GPU Driver with pre-build mode<a class="headerlink" href="#deploy-intel-data-center-gpu-driver-with-pre-build-mode" title="Permalink to this heading"></a></h2>
+<p>Follow the steps below to deploy the driver container image with pre-build mode.</p>
+<ol class="arabic simple">
+<li><p>Find all nodes with an Intel Data Center GPU card using the following command:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get nodes -l intel.feature.node.kubernetes.io/gpu=true
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NAME</span>         <span class="n">STATUS</span>   <span class="n">ROLES</span>    <span class="n">AGE</span>   <span class="n">VERSION</span>
+<span class="n">icx</span><span class="o">-</span><span class="n">dgpu</span><span class="o">-</span><span class="mi">1</span>   <span class="n">Ready</span>    <span class="n">worker</span>   <span class="mi">30</span><span class="n">d</span>   <span class="n">v1</span><span class="mf">.25.4</span><span class="o">+</span><span class="mi">18</span><span class="n">eadca</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Label the node(s) in the cluster using the command shown below for the initial canary deployment.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc label node &lt;node_name&gt; intel.feature.node.kubernetes.io/dgpu-canary=true
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Use pre-build mode to deploy the driver container.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/kmmo/intel-dgpu.yaml   
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>After the driver is verified on the cluster through the canary deployment, simply remove the line shown below from the <a class="reference download internal" download="" href="../_downloads/69368102d75fa35b72230921fd685d2d/intel-dgpu.yaml"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">intel-dgpu.yaml</span></code></span></a> file and reapply the yaml file to deploy the driver to the entire cluster. As a cluster administrator, you can also select another deployment policy.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">intel</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">kubernetes</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">dgpu</span><span class="o">-</span><span class="n">canary</span><span class="p">:</span> <span class="s1">&#39;true&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Permalink to this heading"></a></h2>
+<p>To verify that the drivers have been loaded, follow the steps below:</p>
+<ol class="arabic simple">
+<li><p>List the nodes labeled with <code class="docutils literal notranslate"><span class="pre">kmm.node.kubernetes.io/openshift-kmm.intel-dgpu.ready</span></code> using the command shown below:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get nodes -l kmm.node.kubernetes.io/openshift-kmm.intel-dgpu.ready
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NAME</span>         <span class="n">STATUS</span>   <span class="n">ROLES</span>    <span class="n">AGE</span>   <span class="n">VERSION</span>
+<span class="n">icx</span><span class="o">-</span><span class="n">dgpu</span><span class="o">-</span><span class="mi">1</span>   <span class="n">Ready</span>    <span class="n">worker</span>   <span class="mi">30</span><span class="n">d</span>   <span class="n">v1</span><span class="mf">.25.4</span><span class="o">+</span><span class="mi">18</span><span class="n">eadca</span>
+</pre></div>
+</div>
+<p>The label shown above indicates that the KMM operator has successfully deployed the drivers and firmware on the node.</p>
+<ol class="arabic" start="2">
+<li><p>If you want to further debug the driver on the node, follow these steps:<br />
+a. Navigate to the web console (Compute -&gt; Nodes -&gt; Select a node that has the GPU card -&gt; Terminal).<br />
+b. Run the commands shown below in the web console terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ chroot /host 
+$ lsmod | grep i915
+</pre></div>
+</div>
+<p>Ensure <code class="docutils literal notranslate"><span class="pre">i915</span></code> and <code class="docutils literal notranslate"><span class="pre">intel_vsec</span></code> are loaded in the kernel, as shown in the output below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i915</span>                   <span class="mi">3633152</span> <span class="mi">0</span>
+<span class="n">i915_compat</span>            <span class="mi">16384</span> <span class="mi">1</span> <span class="n">i915</span>
+<span class="n">intel_vsec</span>             <span class="mi">16384</span>  <span class="mi">1</span> <span class="n">i915</span>
+<span class="n">intel_gtt</span>              <span class="mi">20480</span>  <span class="mi">1</span> <span class="n">i915</span>
+<span class="n">video</span>                  <span class="mi">49152</span>  <span class="mi">1</span> <span class="n">i915</span>
+<span class="n">i2c_algo_bit</span>           <span class="mi">16384</span>  <span class="mi">1</span> <span class="n">i915</span>
+<span class="n">drm_kms_helper</span>        <span class="mi">290816</span>  <span class="mi">1</span> <span class="n">i915</span>
+<span class="n">drm</span>                   <span class="mi">589824</span>  <span class="mi">3</span> <span class="n">drm_kms_helper</span><span class="p">,</span><span class="n">i915</span>
+<span class="n">dmabuf</span>                 <span class="mi">77824</span>  <span class="mi">4</span> <span class="n">drm_kms_helper</span><span class="p">,</span><span class="n">i915</span><span class="p">,</span><span class="n">i915_compat</span><span class="p">,</span><span class="n">dr</span>
+</pre></div>
+</div>
+<p>c. Run dmesg to ensure there are no errors in the kernel message log.</p>
+</li>
+</ol>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../machine_configuration/README.html" class="btn btn-neutral float-left" title="Setting up Machine Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../device_plugins/README.html" class="btn btn-neutral float-right" title="Setting up Intel Device Plugins Operator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Intel® Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Versions</span>
+      v1.3.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/">development</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.0">v1.3.0</a></dd>
+           </strong> 
+        
+      </dl>
+      
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

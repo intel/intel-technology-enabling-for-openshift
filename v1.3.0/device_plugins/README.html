@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setting up Intel Device Plugins Operator &mdash; Intel® Technology Enabling for OpenShift*</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”" href="../one_click/README.html" />
+    <link rel="prev" title="Setting up Out of Tree Drivers" href="../kmmo/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Intel® Technology Enabling for OpenShift*
+          </a>
+              <div class="version">
+                v1.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Intel® Technology Enabling for OpenShift*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nfd/README.html">Setting up Node Feature Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machine_configuration/README.html">Setting up Machine Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kmmo/README.html">Setting up Out of Tree Drivers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting up Intel Device Plugins Operator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisities">Prerequisities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-intel-device-plugins-operator-on-red-hat-openshift">Install Intel Device Plugins Operator on Red Hat OpenShift</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-via-web-console">Installation via web console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verify-installation-via-web-console">Verify Installation via web console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-via-command-line-interface-cli">Installation via command line interface (CLI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verify-installation-via-cli">Verify Installation via CLI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#resources-provided-by-intel-device-plugins">Resources Provided by Intel Device Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-intel-device-plugin-custom-resource-cr">Creating Intel Device Plugin custom resource (CR)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">One-Click Deployment:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../one_click/README.html">Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">End-to-end Solutions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../e2e/inference/README.html">Intel AI Inference End-to-End Solution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/releases.html">Release Information</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Platforms:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/supported_platforms.html">Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Intel® Technology Enabling for OpenShift*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Setting up Intel Device Plugins Operator</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/device_plugins/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setting-up-intel-device-plugins-operator">
+<h1>Setting up Intel Device Plugins Operator<a class="headerlink" href="#setting-up-intel-device-plugins-operator" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>Intel Device Plugins are utilized to advertise Intel hardware features (resources) to a Red Hat OpenShift Container Platform (RHOCP) Cluster. This allows workloads running on pods deployed within the clusters to leverage these features. To handle the deployment and lifecycle of these device plugins, the <a class="reference external" href="https://catalog.redhat.com/software/container-stacks/detail/61e9f2d7b9cdd99018fc5736">Intel Device Plugins Operator</a> is used. The Intel Device Plugins container images and operator have been officially certified and published on the <a class="reference external" href="https://catalog.redhat.com/software/container-stacks/detail/61e9f2d7b9cdd99018fc5736">Red Hat Ecosystem Catalog</a>. For more details on the upstream project, please refer to <a class="reference external" href="https://github.com/intel/intel-device-plugins-for-kubernetes">Intel Device Plugins for Kubernetes</a>.</p>
+</section>
+<section id="prerequisities">
+<h2>Prerequisities<a class="headerlink" href="#prerequisities" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Provisioned RHOCP cluster. Follow steps <a class="reference internal" href="../README.html"><span class="std std-doc">here</span></a>.</p></li>
+<li><p>Setup Node Feature Discovery (NFD). Follow steps <a class="reference internal" href="../nfd/README.html"><span class="std std-doc">here</span></a>.</p></li>
+<li><p>Follow the additional prerequisites for provisioning Intel® Data Center GPU:</p>
+<ul>
+<li><p>Setup out of tree drivers for Intel Data Center GPU provisioning. Follow the steps listed <a class="reference internal" href="../kmmo/README.html"><span class="std std-doc">here</span></a>.</p></li>
+</ul>
+</li>
+<li><p>Follow the additional prerequisites for provisioning Intel® QuickAssist Technology:</p>
+<ul>
+<li><p>Configure MCO for provisioning Intel QAT. Follow steps <a class="reference internal" href="../machine_configuration/README.html#machine-configuration-for-provisioning-intel-qat"><span class="std std-ref">here</span></a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="install-intel-device-plugins-operator-on-red-hat-openshift">
+<h2>Install Intel Device Plugins Operator on Red Hat OpenShift<a class="headerlink" href="#install-intel-device-plugins-operator-on-red-hat-openshift" title="Permalink to this heading"></a></h2>
+<section id="installation-via-web-console">
+<h3>Installation via web console<a class="headerlink" href="#installation-via-web-console" title="Permalink to this heading"></a></h3>
+<p>Follow the steps below to install Intel Device Plugins Operator using OpenShift web console:</p>
+<ol class="arabic simple">
+<li><p>In the OpenShift web console, navigate to <strong>Operator</strong> -&gt; <strong>OperatorHub</strong>.</p></li>
+<li><p>Search for <strong>Intel Device Plugins Operator</strong> in all items field -&gt; Click <strong>Install</strong>.</p></li>
+</ol>
+</section>
+<section id="verify-installation-via-web-console">
+<h3>Verify Installation via web console<a class="headerlink" href="#verify-installation-via-web-console" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Go to <strong>Operator</strong> -&gt; <strong>Installed Operators</strong>.</p></li>
+<li><p>Verify that the status of the operator is <strong>Succeeded</strong>.</p></li>
+</ol>
+</section>
+<section id="installation-via-command-line-interface-cli">
+<h3>Installation via command line interface (CLI)<a class="headerlink" href="#installation-via-command-line-interface-cli" title="Permalink to this heading"></a></h3>
+<p>Apply the <a class="reference download internal" download="" href="../_downloads/d7713c814c6f11263d4352e35f0826f0/install_operator.yaml"><span class="xref download myst">install_operator.yaml</span></a> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/device_plugins/install_operator.yaml
+</pre></div>
+</div>
+</section>
+<section id="verify-installation-via-cli">
+<h3>Verify Installation via CLI<a class="headerlink" href="#verify-installation-via-cli" title="Permalink to this heading"></a></h3>
+<p>Verify that the operator controller manager pod is up and running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pod | grep inteldeviceplugins-controller-manager
+
+inteldeviceplugins-controller-manager-6b8c76c867-hftqm   2/2     Running   0          17m
+</pre></div>
+</div>
+</section>
+</section>
+<section id="resources-provided-by-intel-device-plugins">
+<h2>Resources Provided by Intel Device Plugins<a class="headerlink" href="#resources-provided-by-intel-device-plugins" title="Permalink to this heading"></a></h2>
+<p>The resources are the user interface for customers to claim and consume the hardware features provided by Intel Device Plugins from the user pods. See below table for the details:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Resources</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Intel® SGX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sgx.intel.com/epc</span></code></p></td>
+<td><p>Intel SGX EPC memory for user pod to claim</p></td>
+<td><p><a class="reference external" href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/64a6c86f3be25459c14ea988e892f9f5d873a8ca/tests/l2/sgx/sgx_job.yaml#L21">Link</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Intel® Data Center GPU Flex Series </br> Intel® Data Center GPU Max Series</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gpu.intel.com/i915</span> </code></p></td>
+<td><p>Intel Data Center GPU Card for user pod to claim</p></td>
+<td><p><a class="reference external" href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/device_plugins/deploy_gpu.md#using-intel-data-center-gpu-resource-exclusively">Link</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Intel® QAT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qat.intel.com/cy</span></code> </br> <code class="docutils literal notranslate"><span class="pre">qat.intel.com/dc</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cy</span></code>: Intel QAT VFIO Virtual Function device configured for cryptography for user pod to claim </br> <code class="docutils literal notranslate"><span class="pre">dc</span></code>: Intel QAT VFIO Virtual Function device configured for cryptography for user pod to claim</p></td>
+<td><p><a class="reference external" href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/tests/l2/qat/qatlib_job.yaml#L24">Link</a> </br> <a class="reference external" href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/tests/l2/qat/qatlib_job.yaml#L28">Link</a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="creating-intel-device-plugin-custom-resource-cr">
+<h2>Creating Intel Device Plugin custom resource (CR)<a class="headerlink" href="#creating-intel-device-plugin-custom-resource-cr" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>To create an Intel SGX device plugin CR, follow this <a class="reference internal" href="deploy_sgx.html"><span class="std std-doc">link</span></a>.</p></li>
+<li><p>To create an Intel GPU device plugin CR, follow this <a class="reference internal" href="deploy_gpu.html"><span class="std std-doc">link</span></a>.</p></li>
+<li><p>To create an Intel QAT device plugin CR, follow this <a class="reference internal" href="deploy_qat.html"><span class="std std-doc">link</span></a>.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../kmmo/README.html" class="btn btn-neutral float-left" title="Setting up Out of Tree Drivers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../one_click/README.html" class="btn btn-neutral float-right" title="Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Intel® Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Versions</span>
+      v1.3.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/">development</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.0">v1.3.0</a></dd>
+           </strong> 
+        
+      </dl>
+      
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

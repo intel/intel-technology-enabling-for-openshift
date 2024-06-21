@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Intel QAT Device Plugin CR &mdash; Intel® Technology Enabling for OpenShift*</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Intel® Technology Enabling for OpenShift*
+          </a>
+              <div class="version">
+                v1.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Intel® Technology Enabling for OpenShift*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nfd/README.html">Setting up Node Feature Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machine_configuration/README.html">Setting up Machine Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kmmo/README.html">Setting up Out of Tree Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Setting up Intel Device Plugins Operator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">One-Click Deployment:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../one_click/README.html">Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">End-to-end Solutions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../e2e/inference/README.html">Intel AI Inference End-to-End Solution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/releases.html">Release Information</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Platforms:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/supported_platforms.html">Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Intel® Technology Enabling for OpenShift*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Create Intel QAT Device Plugin CR</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/device_plugins/deploy_qat.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="create-intel-qat-device-plugin-cr">
+<h1>Create Intel QAT Device Plugin CR<a class="headerlink" href="#create-intel-qat-device-plugin-cr" title="Permalink to this heading"></a></h1>
+<section id="create-a-cr-via-web-console">
+<h2>Create a CR via web console<a class="headerlink" href="#create-a-cr-via-web-console" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Go to <strong>Operator</strong> -&gt; <strong>Installed Operators</strong>.</p></li>
+<li><p>Open <strong>Intel Device Plugins Operator</strong>.</p></li>
+<li><p>Navigate to tab <strong>Intel QuickAssist Technology Device Plugin</strong>.</p></li>
+<li><p>Click <strong>Create QatDevicePlugin</strong> -&gt; set correct parameters -&gt; Click <strong>Create</strong></p></li>
+<li><p>Optional: If you want to make any customizations, select YAML view and edit the details. When you are done, click <strong>Create</strong>.</p></li>
+</ol>
+</section>
+<section id="verify-via-web-console">
+<h2>Verify via web console<a class="headerlink" href="#verify-via-web-console" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Verify CR by checking the status of <strong>Workloads</strong> -&gt; <strong>DaemonSet</strong> -&gt; <strong>intel-qat-plugin</strong>.</p></li>
+<li><p>Now <code class="docutils literal notranslate"><span class="pre">QatDevicePlugin</span></code> is created.</p></li>
+</ol>
+</section>
+<section id="create-cr-via-cli">
+<h2>Create CR via CLI<a class="headerlink" href="#create-cr-via-cli" title="Permalink to this heading"></a></h2>
+<p>Apply the CR yaml file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/device_plugins/qat_device_plugin.yaml
+</pre></div>
+</div>
+</section>
+<section id="verify-via-cli">
+<h2>Verify via CLI<a class="headerlink" href="#verify-via-cli" title="Permalink to this heading"></a></h2>
+<p>Verify that the device plugin CR is ready:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get QatDevicePlugin
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NAME</span>		        <span class="n">DESIRED</span>		<span class="n">READY</span>	<span class="n">NODE</span> <span class="n">SELECTOR</span>	                                    <span class="n">AGE</span>
+<span class="n">qatdeviceplugin</span><span class="o">-</span><span class="n">sample</span>  <span class="mi">1</span> 	        <span class="mi">1</span>       <span class="p">{</span><span class="s2">&quot;intel.feature.node.kubernetes.io/qat&quot;</span><span class="p">:</span><span class="s2">&quot;true&quot;</span><span class="p">}</span>     <span class="mi">3</span><span class="n">h27m</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="verify-qat-device-plugin">
+<h1>Verify QAT Device Plugin<a class="headerlink" href="#verify-qat-device-plugin" title="Permalink to this heading"></a></h1>
+<p>After the plugin is deployed, use below command to verify QAT resources:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc describe node &lt;node name&gt; | grep qat.intel.com  
+ qat.intel.com/cy: 32 
+ qat.intel.com/cy: 32 
+ qat.intel.com/dc: 32 
+ qat.intel.com/dc: 32 
+</pre></div>
+</div>
+</section>
+<section id="qat-device-plugin-configuration">
+<h1>QAT Device Plugin Configuration<a class="headerlink" href="#qat-device-plugin-configuration" title="Permalink to this heading"></a></h1>
+<blockquote>
+<div><p><strong>Note</strong>: The QAT device plugin can be configured with the flags. In this release, only the configurations in the table below are verified and supported on RHOCP.</p>
+</div></blockquote>
+<p>For more details about the QAT device plugin configuration flags, see <a class="reference external" href="https://github.com/intel/intel-device-plugins-for-kubernetes/blob/main/cmd/qat_plugin/README.md#modes-and-configuration-options">Modes and Configurations Options</a>.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Flag</p></th>
+<th class="head"><p>Configuration</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-dpdk-driver</span></code></p></td>
+<td><p>vfio-pci</p></td>
+<td><p>Using vfio-pci driver to manage QAT VFIO device. See details <a class="reference external" href="https://doc.dpdk.org/guides/linux_gsg/linux_drivers.html">here</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-kernel-vf-drivers</span></code></p></td>
+<td><p>4xxxvf</p></td>
+<td><p>Supporting 4xxx QAT device </br> <strong>Note</strong>: Verified on 4th Gen Intel® Xeon® Scalable processors. See details <a class="reference external" href="https://github.com/intel/qatlib/blob/main/INSTALL#L72">here</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-max-num-devices</span> </code></p></td>
+<td><p>128</p></td>
+<td><p>It is the maximum VF device it can support for 4xxx QAT device. If the number exceeds the maximum number the QAT device supports, then the maximum number will be enabled.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-provisioning-config</span> </code></p></td>
+<td><p>Name of ConfigMap</p></td>
+<td><p>See section <a class="reference internal" href="#qat-resource-configuration-experimental"><span class="std std-ref">QAT resource configuration</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="qat-resource-configuration-experimental">
+<h2>QAT Resource Configuration (experimental)<a class="headerlink" href="#qat-resource-configuration-experimental" title="Permalink to this heading"></a></h2>
+<p><strong>NOTE</strong>: In this release, this is an experimental feature. The efforts to <a class="reference external" href="https://github.com/intel/intel-device-plugins-for-kubernetes/issues/1529">enhance this feature</a> and <a class="reference external" href="https://github.com/intel/intel-device-plugins-for-kubernetes/issues/1542">make it more stable</a> are on going.</p>
+<p>In this release, if the user does not configure the QAT resources through the device plugin <code class="docutils literal notranslate"><span class="pre">-provisioning-config</span></code> flag. The device plugin will configure half of the QAT VFIO VF devices for compression/decompression and the other half for cryptography.</p>
+<p>Users can use the steps below to customize the QAT resource configuration:</p>
+<ol class="arabic">
+<li><p>Create the configmap for qat resource configuration</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc create configmap --namespace=openshift-operators --from-literal &quot;qat.conf=ServicesEnabled=&lt;option&gt;&quot; Name of ConfigMap 
+</pre></div>
+</div>
+<p>Options:<br />
+<code class="docutils literal notranslate"><span class="pre">dc</span></code>: Configure all the QAT VF devices managed by the device plugin CR for compression/decompression.<br />
+<code class="docutils literal notranslate"><span class="pre">sym;asym</span></code>: Configure all the QAT VF devices managed by the device plugin CR for cryptography</p>
+</li>
+<li><p>Create QAT device plugin CR with -provisioning-config set as the name of the ConfigMap (created in step 1) in the qat_device_plugin.yaml file or set ConfigMap name in the provisioning-config option from web console.</p></li>
+</ol>
+</section>
+</section>
+<section id="run-intel-qat-based-workloads-on-rhocp">
+<h1>Run Intel QAT based workloads on RHOCP<a class="headerlink" href="#run-intel-qat-based-workloads-on-rhocp" title="Permalink to this heading"></a></h1>
+<p>To run the Intel QAT based workloads as an unprivileged pod (see <a class="reference external" href="https://github.com/intel/intel-technology-enabling-for-openshift/issues/122">issue</a>). The customized <code class="docutils literal notranslate"><span class="pre">qat-scc</span></code> Security Context Constraint (SCC) is provided to bind with service account and run the QAT based workload.</p>
+<p>See <a class="reference internal" href="../tests/l2/README.html#verify-intel-quickassist-technology-provisioning"><span class="std std-ref">Verify Intel QuickAssist Technology Provisioning</span></a> for the detailed steps.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Intel® Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Versions</span>
+      v1.3.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/">development</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.0">v1.3.0</a></dd>
+           </strong> 
+        
+      </dl>
+      
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

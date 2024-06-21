@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intel® Technology Enabling for OpenShift* &mdash; Intel® Technology Enabling for OpenShift*</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Setting up Node Feature Discovery" href="nfd/README.html" />
+    <link rel="prev" title="Intel® Technology Enabling for OpenShift*" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Intel® Technology Enabling for OpenShift*
+          </a>
+              <div class="version">
+                v1.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Intel® Technology Enabling for OpenShift*</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#releases-and-supported-platforms">Releases and Supported Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#provisioning-rhocp-cluster">Provisioning RHOCP cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#provisioning-intel-hardware-features-on-rhocp">Provisioning Intel hardware features on RHOCP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verifying-hardware-feature-provisioning">Verifying hardware feature provisioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#upgrade-to-be-added">Upgrade (To be added)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference-end-to-end-solution">Reference end-to-end solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference-workloads">Reference workloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-guide">Advanced Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#release-notes">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#support">Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#commercial-support-from-red-hat">Commercial support from Red Hat</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#open-source-community-support">Open-Source Community Support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#contribute">Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-of-conduct">Code of Conduct</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nfd/README.html">Setting up Node Feature Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_configuration/README.html">Setting up Machine Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmmo/README.html">Setting up Out of Tree Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="device_plugins/README.html">Setting up Intel Device Plugins Operator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">One-Click Deployment:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="one_click/README.html">Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">End-to-end Solutions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="e2e/inference/README.html">Intel AI Inference End-to-End Solution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/releases.html">Release Information</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Platforms:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/supported_platforms.html">Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Intel® Technology Enabling for OpenShift*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Intel® Technology Enabling for OpenShift*</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intel-technology-enabling-for-openshift">
+<h1>Intel® Technology Enabling for OpenShift*<a class="headerlink" href="#intel-technology-enabling-for-openshift" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>The Intel Technology Enabling for OpenShift project provides Intel Data Center hardware feature-provisioning technologies with the <a class="reference external" href="https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform">Red Hat OpenShift Container Platform (RHOCP)</a>. The technology to deploy and manage Intel Enterprise AI End-to-End (E2E) solutions and the related reference workloads for these features are also included in the project.</p>
+<p>These Intel Data Center hardware features currently include:</p>
+<ul class="simple">
+<li><p><strong>Intel® Software Guard Extensions (Intel® SGX)</strong></p></li>
+<li><p><strong>Intel® Data Center GPU Flex Series</strong></p></li>
+<li><p><strong>Intel® Data Center GPU Max Series</strong></p></li>
+<li><p><strong>Intel® QuickAssist Technology (Intel® QAT)</strong></p></li>
+</ul>
+<p>The following features will be included in future releases.</p>
+<ul class="simple">
+<li><p>Intel® Data Streaming Accelerator (Intel® DSA)</p></li>
+</ul>
+<p>Intel AI hardware and optimized software solutions are integrated into Red Hat OpenShift AI for ease of provisioning and configuration. The <a class="reference external" href="https://catalog.redhat.com/software/container-stacks/detail/64342b3bcbfbb9a6588ce8dd?gs&amp;amp;q=habana">Habana AI Operator</a> is used to provision Intel® Gaudi® accelerators and released on the Red Hat Ecosystem Catalog.</p>
+<p>Red Hat Distributed CI* (DCI) based CI/CD pipeline is leveraged to enable and test this E2E solution with each RHOCP release to ensure new features and improvements can be promptly available.</p>
+<p>The <a class="reference external" href="https://github.com/opea-project">Open Platform for Enterprise AI (OPEA)</a> RAG workloads are used to validate and optimize Intel enterprise AI E2E solutions.</p>
+<p><img alt="Alt text" src="_images/Intel-Technology-Enabling-for-OpenShift-Architecture.png" /></p>
+<div align="center">
+  Figure-1 Intel Technology Enabling for OpenShift Architecture 
+</div>
+</section>
+<section id="releases-and-supported-platforms">
+<h2>Releases and Supported Platforms<a class="headerlink" href="#releases-and-supported-platforms" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="docs/supported_platforms.html#supported-intel-hardware-features"><span class="std std-ref">Supported Intel hardware features</span></a> and <a class="reference internal" href="docs/supported_platforms.html#supported-rhocp-versions"><span class="std std-ref">supported RHOCP versions</span></a></p></li>
+<li><p><a class="reference internal" href="docs/releases.html"><span class="std std-doc">Release details</span></a></p></li>
+</ul>
+</section>
+<section id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h2>
+<p>See reference <a class="reference internal" href="docs/supported_platforms.html#bios-configuration"><span class="std std-ref">BIOS Configuration</span></a> required for each feature.</p>
+<section id="provisioning-rhocp-cluster">
+<h3>Provisioning RHOCP cluster<a class="headerlink" href="#provisioning-rhocp-cluster" title="Permalink to this heading"></a></h3>
+<p>Use one of these two options to provision an RHOCP cluster:</p>
+<ul class="simple">
+<li><p>Use the methods introduced in <a class="reference external" href="https://docs.openshift.com/container-platform/4.14/installing/index.html">RHOCP documentation</a>.</p></li>
+<li><p>Use <a class="reference external" href="https://doc.distributed-ci.io/">Distributed CI</a> as we do in this project.</p></li>
+</ul>
+<p>In this project, we provisioned RHOCP 4.14 on a bare-metal multi-node cluster. For details about the supported RHOCP infrastructure, see the <a class="reference internal" href="docs/supported_platforms.html"><span class="std std-doc">Supported Platforms</span></a> page.</p>
+</section>
+<section id="provisioning-intel-hardware-features-on-rhocp">
+<h3>Provisioning Intel hardware features on RHOCP<a class="headerlink" href="#provisioning-intel-hardware-features-on-rhocp" title="Permalink to this heading"></a></h3>
+<p>Please follow the steps below to provision the hardware features</p>
+<ol class="arabic simple">
+<li><p>Setting up <a class="reference internal" href="nfd/README.html"><span class="std std-doc">Node Feature Discovery</span></a></p></li>
+<li><p>Setting up <a class="reference internal" href="machine_configuration/README.html"><span class="std std-doc">Machine Configuration</span></a></p></li>
+<li><p>Setting up <a class="reference internal" href="kmmo/README.html"><span class="std std-doc">Out of Tree Drivers</span></a></p></li>
+<li><p>Setting up <a class="reference internal" href="device_plugins/README.html"><span class="std std-doc">Device Plugins</span></a></p></li>
+</ol>
+</section>
+<section id="verifying-hardware-feature-provisioning">
+<h3>Verifying hardware feature provisioning<a class="headerlink" href="#verifying-hardware-feature-provisioning" title="Permalink to this heading"></a></h3>
+<p>You can use the instructions in the <a class="reference internal" href="tests/l2/README.html"><span class="std std-doc">link</span></a> to verify the hardware features provisioning.</p>
+</section>
+</section>
+<section id="upgrade-to-be-added">
+<h2>Upgrade (To be added)<a class="headerlink" href="#upgrade-to-be-added" title="Permalink to this heading"></a></h2>
+</section>
+<section id="reference-end-to-end-solution">
+<h2>Reference end-to-end solution<a class="headerlink" href="#reference-end-to-end-solution" title="Permalink to this heading"></a></h2>
+<p>The reference end-to-end solution is based on Intel hardware feature provisioning provided by this project.</p>
+<p><a class="reference internal" href="e2e/inference/README.html"><span class="std std-doc">Intel AI Inferencing Solution</span></a> with <a class="reference external" href="https://github.com/openvinotoolkit/openvino">OpenVINO</a> and <a class="reference external" href="https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-data-science">RHOAI</a></p>
+</section>
+<section id="reference-workloads">
+<h2>Reference workloads<a class="headerlink" href="#reference-workloads" title="Permalink to this heading"></a></h2>
+<p>Here are some reference workloads built on the end-to-end solution and Intel hardware feature provisioning in this project.</p>
+<ul class="simple">
+<li><p>Large Language Model (To be added)</p></li>
+<li><p>Open Federated Learning (To be added)</p></li>
+</ul>
+</section>
+<section id="advanced-guide">
+<h2>Advanced Guide<a class="headerlink" href="#advanced-guide" title="Permalink to this heading"></a></h2>
+<p>This section discusses architecture and other technical details that go beyond getting started.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/intel/intel-technology-enabling-for-openshift/wiki/Intel-Technology-Enabling-for-OpenShift-Architecture-and-Working-Scope">Architecture and Working Scope</a></p></li>
+</ul>
+</section>
+<section id="release-notes">
+<h2>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this heading"></a></h2>
+<p>Check the <a class="reference external" href="https://github.com/intel/intel-technology-enabling-for-openshift/releases/">link</a> for the Release Notes.</p>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading"></a></h2>
+<p>If users encounter any issues or have questions regarding Intel Technology Enabling for OpenShift, we recommend them to seek support through the following channels:</p>
+<section id="commercial-support-from-red-hat">
+<h3>Commercial support from Red Hat<a class="headerlink" href="#commercial-support-from-red-hat" title="Permalink to this heading"></a></h3>
+<p>This project relies on features developed and released with the latest RHOCP release. Commercial RHOCP release support is outlined in the <a class="reference external" href="https://access.redhat.com/support/policy/updates/openshift">Red Hat OpenShift Container Platform Life Cycle Policy</a> and Intel collaborates with Red Hat to address specific requirements from our users.</p>
+<section id="open-source-community-support">
+<h4>Open-Source Community Support<a class="headerlink" href="#open-source-community-support" title="Permalink to this heading"></a></h4>
+<p>Intel Technology Enabling for OpenShift is run as an open-source project on GitHub. Project GitHub <a class="reference external" href="https://github.com/intel/intel-technology-enabling-for-openshift/issues">issues</a> can be used as the primary support interface for users to submit feature requests and report issues to the community when using Intel technology provided by this project. Please provide detailed information about your issue and steps to reproduce it, if possible.</p>
+</section>
+</section>
+</section>
+<section id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this heading"></a></h2>
+<p>See <a class="reference internal" href="CONTRIBUTING.html"><span class="std std-doc">CONTRIBUTING</span></a> for more information.</p>
+</section>
+<section id="security">
+<h2>Security<a class="headerlink" href="#security" title="Permalink to this heading"></a></h2>
+<p>To report a potential security vulnerability, please refer to <a class="reference internal" href="security.html"><span class="std std-doc">security.md</span></a> file.</p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
+<p>Distributed under the open source license. See <a class="reference download internal" download="" href="_downloads/61e0bdf7e1b43c5c93d9488b22e04170/LICENSE.txt"><span class="xref download myst">LICENSE</span></a> for more information.</p>
+</section>
+<section id="code-of-conduct">
+<h2>Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Permalink to this heading"></a></h2>
+<p>Intel has adopted the Contributor Covenant as the Code of Conduct for all of its open source projects. See <a class="reference internal" href="CODE_OF_CONDUCT.html"><span class="std std-doc">CODE_OF_CONDUCT</span></a> file.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Intel® Technology Enabling for OpenShift*" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nfd/README.html" class="btn btn-neutral float-right" title="Setting up Node Feature Discovery" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Intel® Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Versions</span>
+      v1.3.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/">development</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.0">v1.3.0</a></dd>
+           </strong> 
+        
+      </dl>
+      
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setting up Machine Configuration &mdash; Intel® Technology Enabling for OpenShift*</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setting up Out of Tree Drivers" href="../kmmo/README.html" />
+    <link rel="prev" title="Setting up Node Feature Discovery" href="../nfd/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Intel® Technology Enabling for OpenShift*
+          </a>
+              <div class="version">
+                v1.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Intel® Technology Enabling for OpenShift*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nfd/README.html">Setting up Node Feature Discovery</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting up Machine Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#machine-configuration-for-provisioning-intel-qat">Machine Configuration for Provisioning Intel® QAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kmmo/README.html">Setting up Out of Tree Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../device_plugins/README.html">Setting up Intel Device Plugins Operator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">One-Click Deployment:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../one_click/README.html">Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">End-to-end Solutions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../e2e/inference/README.html">Intel AI Inference End-to-End Solution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/releases.html">Release Information</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Platforms:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/supported_platforms.html">Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Intel® Technology Enabling for OpenShift*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Setting up Machine Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/machine_configuration/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setting-up-machine-configuration">
+<h1>Setting up Machine Configuration<a class="headerlink" href="#setting-up-machine-configuration" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>Machine configuration operation is used to configure <a class="reference external" href="https://docs.openshift.com/container-platform/4.14/architecture/architecture-rhcos.html">Red Hat Enterprise Linux CoreOS (RHCOS)</a> on each node in a RHOCP cluster.</p>
+<p><a class="reference external" href="https://github.com/openshift/machine-config-operator">Machine config operator</a> (MCO) is provided by Red Hat to manage the operating system and machine configuration. In this project through the MCO, cluster administrators can configure and update the kernel to provision Intel Hardware features on the worker nodes.</p>
+<p>MCO is one of the technologies used in this project to manage the machine configuration. In current OCP, MCO might reboot the node to enable the machine configuration. Since rebooting the node is undesirable, alternative machine configuration technologies are under investigation. For more details, see this <a class="reference external" href="https://github.com/intel/intel-technology-enabling-for-openshift/issues/34">issue</a>.</p>
+<p>The best approach is to work with the RHCOS team to push the RHCOS configuration as the default configuration for a RHOCP cluster on <a class="reference external" href="https://www.ibm.com/cloud/architecture/content/course/red-hat-openshift-container-platform-day-2-ops/">Day 0</a>.</p>
+<p>For some general configuration, we recommend you set it up while provisioning the cluster on <a class="reference external" href="https://www.ibm.com/cloud/architecture/content/course/red-hat-openshift-container-platform-day-2-ops/">Day 1</a>.</p>
+<p>If the configuration cannot be set as the default setting, we recommend using some operator to set the configuration on the fly without rebooting the node on <a class="reference external" href="https://www.ibm.com/cloud/architecture/content/course/red-hat-openshift-container-platform-day-2-ops/">Day 2</a>.</p>
+<p>Any contribution in this area is welcome.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Provisioned RHOCP cluster. Follow steps <a class="reference internal" href="../README.html#provisioning-rhocp-cluster"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>Setup node feature discovery (NFD). Follow steps <a class="reference internal" href="../nfd/README.html"><span class="std std-doc">here</span></a>.</p></li>
+</ul>
+</section>
+<section id="machine-configuration-for-provisioning-intel-qat">
+<h2>Machine Configuration for Provisioning Intel® QAT<a class="headerlink" href="#machine-configuration-for-provisioning-intel-qat" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Turn on <code class="docutils literal notranslate"><span class="pre">intel_iommu</span></code> kernel parameter and load <code class="docutils literal notranslate"><span class="pre">vfio_pci</span></code> at boot for QAT provisioning</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/machine_configuration/100-intel-qat-intel-iommu-on.yaml
+</pre></div>
+</div>
+<p>Note: This will reboot the worker nodes when changing the kernel parameter through MCO.</p>
+</section>
+<section id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Permalink to this heading"></a></h2>
+<p>Navigate to the node terminal on the web console (Compute -&gt; Nodes -&gt; Select a node -&gt; Terminal). Run the following commands in the terminal.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat /proc/cmdline
+</pre></div>
+</div>
+<p>Ensure that <code class="docutils literal notranslate"><span class="pre">intel_iommu=on</span></code> is present.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ chroot /host
+$ lsmod | grep vfio_pci
+</pre></div>
+</div>
+<p>Ensure that <code class="docutils literal notranslate"><span class="pre">vfio_pci</span></code> driver is present.</p>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ibm.com/cloud/architecture/content/course/red-hat-openshift-container-platform-day-2-ops/">Red Hat OpenShift Container Platform Day-2 operations</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../nfd/README.html" class="btn btn-neutral float-left" title="Setting up Node Feature Discovery" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../kmmo/README.html" class="btn btn-neutral float-right" title="Setting up Out of Tree Drivers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Intel® Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Versions</span>
+      v1.3.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/">development</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.0">v1.3.0</a></dd>
+           </strong> 
+        
+      </dl>
+      
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intel AI Inference End-to-End Solution &mdash; Intel® Technology Enabling for OpenShift*</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Release Information" href="../../docs/releases.html" />
+    <link rel="prev" title="Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”" href="../../one_click/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Intel® Technology Enabling for OpenShift*
+          </a>
+              <div class="version">
+                v1.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Intel® Technology Enabling for OpenShift*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nfd/README.html">Setting up Node Feature Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../machine_configuration/README.html">Setting up Machine Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../kmmo/README.html">Setting up Out of Tree Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../device_plugins/README.html">Setting up Intel Device Plugins Operator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">One-Click Deployment:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../one_click/README.html">Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">End-to-end Solutions:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Intel AI Inference End-to-End Solution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-rhoai">Install RHOAI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-using-cli-to-be-added">Install using CLI (To be added)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-using-web-console">Install using Web Console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verification">Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#install-openvino-operator">Install OpenVINO Operator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Install using CLI (To be added)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Install using Web Console</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#work-with-interactive-mode">Work with Interactive Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#work-with-deployment-mode">Work with Deployment Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/releases.html">Release Information</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Platforms:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/supported_platforms.html">Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Intel® Technology Enabling for OpenShift*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Intel AI Inference End-to-End Solution</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/e2e/inference/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intel-ai-inference-end-to-end-solution">
+<h1>Intel AI Inference End-to-End Solution<a class="headerlink" href="#intel-ai-inference-end-to-end-solution" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>Intel AI inference end-to-end solution with RHOCP is based on the Intel® Data Center GPU Flex Series provisioning, Intel® OpenVINO™, and <a class="reference external" href="https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai">Red Hat OpenShift AI</a> (RHOAI) on RHOCP. There are two AI inference modes verified with Intel® Xeon® processors and Intel Data Center GPU Flex Series with RHOCP.</p>
+<ul class="simple">
+<li><p>Interactive mode – RHOAI provides OpenVINO based Jupyter Notebooks for users to interactively debug the inference applications or <a class="reference external" href="https://docs.openvino.ai/2023.0/openvino_docs_MO_DG_Deep_Learning_Model_Optimizer_DevGuide.html">optimize the models</a> on RHOCP using data center GPU cards or Intel Xeon processors.</p></li>
+<li><p>Deployment mode – <a class="reference external" href="https://github.com/openvinotoolkit/model_server">OpenVINO Model Sever</a> (OVMS) can be used to deploy the inference workloads in data center and edge computing environments on RHOCP.</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Provisioned RHOCP cluster. Follow steps <a class="reference internal" href="../../README.html#provisioning-rhocp-cluster"><span class="std std-ref">here</span></a></p></li>
+<li><p>Provisioning Intel Data Center GPU Flex Series. Follow steps <a class="reference internal" href="../../README.html#provisioning-intel-hardware-features-on-rhocp"><span class="std std-ref">here</span></a></p>
+<ul>
+<li><p>Setup node feature discovery (NFD). Follow the steps <a class="reference internal" href="../../nfd/README.html"><span class="std std-doc">here</span></a></p></li>
+<li><p>Setup out of tree drivers for Intel GPU provisioning. Follow the steps <a class="reference internal" href="../../kmmo/README.html"><span class="std std-doc">here</span></a></p></li>
+<li><p>Setup Intel device plugins operator and create Intel GPU device plugin. Follow the steps <a class="reference internal" href="../../device_plugins/README.html"><span class="std std-doc">here</span></a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="install-rhoai">
+<h2>Install RHOAI<a class="headerlink" href="#install-rhoai" title="Permalink to this heading"></a></h2>
+<p>The Red Hat certified RHOAI operator is published at <a class="reference external" href="https://catalog.redhat.com/software/container-stacks/detail/63b85b573112fe5a95ee9a3a">Red Hat Ecosystem Catalog</a>. You can use the command line interface (CLI) or web console to install it.</p>
+<section id="install-using-cli-to-be-added">
+<h3>Install using CLI (To be added)<a class="headerlink" href="#install-using-cli-to-be-added" title="Permalink to this heading"></a></h3>
+</section>
+<section id="install-using-web-console">
+<h3>Install using Web Console<a class="headerlink" href="#install-using-web-console" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>On the RHOCP web console, click Operators → OperatorHub.</p></li>
+<li><p>Search RedHat OpenShift AI Operator and click Install. The operator is installed in the namespace <code class="docutils literal notranslate"><span class="pre">redhat-ods-operator</span></code>.</p></li>
+</ol>
+</section>
+<section id="verification">
+<h3>Verification<a class="headerlink" href="#verification" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Navigate to Operators → Installed Operators page.</p></li>
+<li><p>Ensure that in the redhat-ods-operator namespace, RedHat OpenShift AI status is InstallSucceeded</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Search</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Routes</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">rhods-dashboard</span></code> from the web console and access the RHOAI UI link.<br />
+<strong>Note:</strong> When installing the operator, the default <code class="docutils literal notranslate"><span class="pre">kfdef</span></code> Custom Resource (CR) is created. This CR enables the dashboard for users to browse and launch Jupyter Notebooks projects on an RHOCP cluster. Please refer to this <a class="reference external" href="https://github.com/red-hat-data-services/odh-deployer">link</a> for more details about <code class="docutils literal notranslate"><span class="pre">kfdef</span></code>.</p></li>
+</ol>
+</section>
+</section>
+<section id="install-openvino-operator">
+<h2>Install OpenVINO Operator<a class="headerlink" href="#install-openvino-operator" title="Permalink to this heading"></a></h2>
+<p>The OpenVINO operator is published at <a class="reference external" href="https://catalog.redhat.com/software/container-stacks/detail/60649a56209af65d24b7ca9e">Red Hat Ecosystem Catalog</a>. You can use the CLI or web console to install it.</p>
+<section id="id1">
+<h3>Install using CLI (To be added)<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+</section>
+<section id="id2">
+<h3>Install using Web Console<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>Follow this <a class="reference external" href="https://github.com/openvinotoolkit/operator/blob/v1.1.0/docs/operator_installation.md#operator-instalation">link</a>  to install the operator via the web console.</p>
+</section>
+</section>
+<section id="work-with-interactive-mode">
+<h2>Work with Interactive Mode<a class="headerlink" href="#work-with-interactive-mode" title="Permalink to this heading"></a></h2>
+<p>To enable the interactive mode, the OpenVINO notebook CR needs to be created and integrated with RHOAI.</p>
+<ol class="arabic simple">
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">Notebook</span></code> option from the web console and follow these <a class="reference external" href="https://github.com/openvinotoolkit/operator/blob/main/docs/notebook_in_rhods.md#integration-with-openshift-data-science-and-open-data-hub">steps</a> to create the notebook CR.</p></li>
+<li><p>Enable Intel Data Center GPU on RHOAI Dashboard- <strong>Technical Preview feature</strong></p></li>
+</ol>
+<p>Create <code class="docutils literal notranslate"><span class="pre">AcceleratorProfile</span></code> in the <code class="docutils literal notranslate"><span class="pre">redhat-ods-applications</span></code> namespace</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.0/e2e/inference/accelerator_profile.yaml
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">openvino-notebooks</span></code> ImageStream and add the above created <code class="docutils literal notranslate"><span class="pre">AcceleratorProfile</span></code> key to the annotation field, as shown in the image below:</p></li>
+</ol>
+<p><img alt="Alt text" src="../../_images/openvino-accelerator-field.png" /></p>
+<ol class="arabic simple" start="4">
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">Search</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Networking</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Routes</span></code> from the web console and access <code class="docutils literal notranslate"><span class="pre">rhods-dashboard</span></code> route in the <code class="docutils literal notranslate"><span class="pre">redhat-ods-applications</span></code> namespace, as in the image below. Click on the location link to launch RHOAI dashboard.</p></li>
+</ol>
+<p><img alt="Alt text" src="../../_images/rhods-dashboard-route.png" /></p>
+<ol class="arabic simple" start="5">
+<li><p>If step 2 is successful, <code class="docutils literal notranslate"><span class="pre">Intel®</span> <span class="pre">Data</span> <span class="pre">Center</span> <span class="pre">GPU</span> <span class="pre">Flex</span> <span class="pre">Series</span> <span class="pre">140</span> </code> is shown in the accelerator dropdown menu in <code class="docutils literal notranslate"><span class="pre">rhods-dashboard</span></code>. Users can run OpenVINO notebook image with Intel® Data Center GPU Flex Series 140 card.</p></li>
+</ol>
+<p><img alt="Alt text" src="../../_images/accelerator-profile-dropdown.png" /></p>
+<p>Follow the <a class="reference external" href="https://github.com/openvinotoolkit/operator/blob/main/docs/notebook_in_rhods.md#integration-with-openshift-data-science-and-open-data-hub">link</a> for more details on the available Jupyter Notebooks.</p>
+</section>
+<section id="work-with-deployment-mode">
+<h2>Work with Deployment Mode<a class="headerlink" href="#work-with-deployment-mode" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>From the web console, click on the ModelServer option in this <a class="reference external" href="https://github.com/openvinotoolkit/operator/blob/v1.1.0/docs/operator_installation.md#operator-instalation">link</a> and follow the <a class="reference external" href="https://github.com/openvinotoolkit/operator/blob/v1.1.0/docs/modelserver.md#managing-model-servers-via-operator">steps</a> to start the OVMS instance.</p></li>
+<li><p>To enable the Intel Data Center GPU, make sure to modify the OVMS instance options according to the screenshot below.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Below images show <code class="docutils literal notranslate"><span class="pre">gpu.intel.com/i915</span></code> resource requests and limits for OVMS</p></li>
+</ul>
+<p><img alt="Alt text" src="../../_images/Ovms-Gpu-resource-limit.png" /></p>
+<p><img alt="Alt text" src="../../_images/Ovms-Gpu-resource-request.png" /></p>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading"></a></h2>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=3fTz_k4JT2A">GPU accelerated demo with OpenVINO</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../one_click/README.html" class="btn btn-neutral float-left" title="Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../docs/releases.html" class="btn btn-neutral float-right" title="Release Information" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Intel® Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Versions</span>
+      v1.3.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/">development</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.0">v1.3.0</a></dd>
+           </strong> 
+        
+      </dl>
+      
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
