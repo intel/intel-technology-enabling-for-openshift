@@ -1,6 +1,6 @@
 # Intel® Technology Enabling for OpenShift*
 ## Overview
-The Intel Technology Enabling for OpenShift project provides Intel Data Center hardware feature-provisioning technologies with the [Red Hat OpenShift Container Platform (RHOCP)](https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform). The technology to deploy and manage the End-to-End (E2E) solutions as well as the related reference workloads for these features are also included in the project.  
+The Intel Technology Enabling for OpenShift project provides Intel Data Center hardware feature-provisioning technologies with the [Red Hat OpenShift Container Platform (RHOCP)](https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform). The technology to deploy and manage Intel Enterprise AI End-to-End (E2E) solutions and the related reference workloads for these features are also included in the project.  
 
 These Intel Data Center hardware features currently include: 
 - **Intel® Software Guard Extensions (Intel® SGX)**
@@ -10,14 +10,12 @@ These Intel Data Center hardware features currently include:
 
 The following features will be included in future releases.  
 - Intel® Data Streaming Accelerator (Intel® DSA) 
-- Intel® In-Memory Analytics Accelerator (Intel® IAA) 
-- Intel® FPGA N6000 
 
-See details about [Supported Intel Hardware features](/docs/supported_platforms.md#supported-intel-hardware-features) and [Supported RHOCP Versions](/docs/supported_platforms.md#supported-rhocp-versions).  
+Intel AI hardware and optimized software solutions are integrated into Red Hat OpenShift AI for ease of provisioning and configuration. The [Habana AI Operator](https://catalog.redhat.com/software/container-stacks/detail/64342b3bcbfbb9a6588ce8dd?gs&q=habana) is used to provision Intel® Gaudi® accelerators and released on the Red Hat Ecosystem Catalog.
 
-For detailed information about releases, please refer [Release Information](/docs/releases.rst).
+Red Hat Distributed CI* (DCI) based CI/CD pipeline is leveraged to enable and test this E2E solution with each RHOCP release to ensure new features and improvements can be promptly available.
 
-Figure-1 is the [Architecture and Working Scope](https://github.com/intel/intel-technology-enabling-for-openshift/wiki/Intel-Technology-Enabling-for-OpenShift-Architecture-and-Working-Scope) of the project  
+The [Open Platform for Enterprise AI (OPEA)](https://github.com/opea-project) RAG workloads are used to validate and optimize Intel enterprise AI E2E solutions.
 
 ![Alt text](/docs/images/Intel-Technology-Enabling-for-OpenShift-Architecture.png)
 
@@ -25,13 +23,13 @@ Figure-1 is the [Architecture and Working Scope](https://github.com/intel/intel-
   Figure-1 Intel Technology Enabling for OpenShift Architecture 
 </div>
 
-
-## Supported platforms 
-
-This [section](/docs/supported_platforms.md) describes the RHOCP infrastructure and Intel hardware features supported by this project. The project lifecycle and support channels can also be found [here](docs/supported_platforms.md#support). 
+## Releases and Supported Platforms 
+- [Supported Intel hardware features](/docs/supported_platforms.md#supported-intel-hardware-features) and [supported RHOCP versions](/docs/supported_platforms.md#supported-rhocp-versions)  
+- [Release details](/docs/releases.rst)
 
 ## Getting started
 See reference [BIOS Configuration](/docs/supported_platforms.md#bios-configuration) required for each feature.
+
 ### Provisioning RHOCP cluster   
 Use one of these two options to provision an RHOCP cluster: 
 - Use the methods introduced in [RHOCP documentation](https://docs.openshift.com/container-platform/4.14/installing/index.html). 
