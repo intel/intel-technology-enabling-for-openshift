@@ -5,9 +5,7 @@ Red Hat [Ansible](https://www.ansible.com/) and Operator technologies are used f
 
 The referenced Ansible playbooks here can be used by the cluster administrators to customize their own playbooks.
 
-```{note}   
-It is recommended to start from [Get started](/README.md#getting-started) to get familiar with the installation and configuration of the general operator before composing the first playbook.
-```
+**Note:** It is recommended to start from [Get started](/README.md#getting-started) to get familiar with the installation and configuration of the general operator before composing the first playbook.
 
 ## Reference Playbook – Intel Data Center GPU Provisioning
 
