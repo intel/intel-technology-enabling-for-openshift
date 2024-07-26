@@ -1,0 +1,30 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from https://docs.habana.ai/en/latest/Orchestration/HabanaAI_Operator/Environment_Setup.html#id2
+#
+apiVersion: nfd.openshift.io/v1
+kind: NodeFeatureDiscovery
+metadata:
+  name: nfd-instance
+  namespace: openshift-nfd
+spec:
+  extraLabelNs:
+    - habana.ai
+  instance: ''
+  operand:
+    image: >-
+      registry.redhat.io/openshift4/ose-node-feature-discovery@sha256:edd2adfdf423d6a1eb7e8c1e388d9cf5fbc829e7e66c7bc955e9b2a6f50d1a47
+    servicePort: 12000
+  topologyupdater: false
+  workerConfig:
+    configData: |
+      core:
+        sleepInterval: 60s
+      sources:
+        pci:
+          deviceClassWhitelist:
+            - "0200"
+            - "03"
+            - "12"
+          deviceLabelFields:
+            - "vendor"

@@ -1,0 +1,22 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from https://docs.habana.ai/en/latest/Orchestration/HabanaAI_Operator/Deploying_HabanaAI_Operator.html#id3
+#
+apiVersion: habana.ai/v1
+kind: DeviceConfig
+metadata:
+   name: habana-ai
+   namespace: habana-ai-operator
+spec:
+   devicePlugin:
+      image: vault.habana.ai/docker-k8s-device-plugin/docker-k8s-device-plugin
+      version: 1.15.1
+   driver:
+      image: image-registry.openshift-image-registry.svc:5000/habana-ai-operator/habana-ai-driver
+      version: 1.15.1-15
+   habanaRuntime:
+      image: vault.habana.ai/habana-ocp-operator/1.15.1/habana-runtime
+      version: 1.15.1-15
+   nodeMetrics:
+      image: vault.habana.ai/gaudi-metric-exporter/metric-exporter
+      version: 1.15.1-15
