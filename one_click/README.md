@@ -12,7 +12,6 @@ The referenced Ansible playbooks here can be used by the cluster administrators 
 This playbook demonstrates the one-click provisioning of Intel Data Center GPU  on an RHOCP cluster. The steps involved are installation and configuration of general Operators including Node Feature Discovery (NFD) operator, Kernel Module Management (KMM) operator, and the Intel Device Plugins Operator. 
 
 ### Prerequisite
-
 Before running the playbook, ensure the following prerequisites are met:
 - Provisioned RHOCP Cluster
 - Red Hat Enterprise Linux (RHEL) system with [Ansible](https://docs.ansible.com/ansible/2.9/installation_guide/intro_installation.html#installing-ansible-on-rhel-centos-or-fedora) installed and configured with a `kubeconfig` to connect to your RHOCP cluster.
@@ -23,8 +22,27 @@ To run the ansible playbook, clone this repository to your RHEL system. Navigate
 $ git clone https://github.com/intel/intel-technology-enabling-for-openshift.git
 $ cd intel-technology-enabling-for-openshift/one_click 
 ```
-
 Execute below single command to provision Intel Data Center GPU:
 ```
 $ ansible-playbook gpu_provisioning_playbook.yaml
+```
+
+## Reference Playbook – Habana Gaudi Provisioning
+This playbook demonstrates the one-click provisioning of Habana Gaudi Accelerator on an RHOCP cluster. The steps involved are installation and configuration of general Operators including Node Feature Discovery (NFD) operator, Kernel Module Management (KMM) operator, and the HabanaAI Operator. The playbook also creates the Gaudi `DeviceConfig` CR which deploys the Gaudi Out-of-Tree drivers, Gaudi device plugins, Habana container runtime and Habana node metrics.
+
+### Prerequisite
+Before running the playbook, ensure the following prerequisites are met:
+- Provisioned RHOCP Cluster
+- Red Hat Enterprise Linux (RHEL) system with [Ansible](https://docs.ansible.com/ansible/2.9/installation_guide/intro_installation.html#installing-ansible-on-rhel-centos-or-fedora) installed and configured with a `kubeconfig` to connect to your RHOCP cluster.
+- Set Firmware search path using MCO, follow [Update Kernel Firmware Search Path with MCO](/gaudi/README.md#update-kernel-firmware-search-path-with-mco).
+
+### Run the Playbook
+To run the ansible playbook, clone this repository to your RHEL system. Navigate to the directory containing the playbook. 
+```
+$ git clone https://github.com/intel/intel-technology-enabling-for-openshift.git
+$ cd intel-technology-enabling-for-openshift/one_click 
+```
+Execute below single command to provision Habana Gaudi Accelerator:
+```
+$ ansible-playbook gaudi_provisioning_playbook.yaml
 ```

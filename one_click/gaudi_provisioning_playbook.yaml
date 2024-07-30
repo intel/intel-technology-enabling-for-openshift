@@ -1,0 +1,171 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+- hosts: localhost
+  vars: 
+    kubeconfig_path: "~/.kube/config"
+  environment:
+    KUBECONFIG: "{{ kubeconfig_path }}" 
+  tasks:  
+    - name: Install Dependencies
+      tags: 
+        - install_dependencies
+      block:
+      - name: NFD - Install Node Feature Discovery Operator
+        tags: 
+          - nfd
+        block:
+          - name: NFD - Create openshift-nfd namespace
+            k8s:
+              name: openshift-nfd
+              api_version: v1
+              kind: Namespace
+              state: present
+              wait: yes
+          - name: NFD - Create an nfd-operator group v1
+            k8s:
+              definition:
+                apiVersion: operators.coreos.com/v1
+                kind: OperatorGroup
+                metadata:
+                  generateName: openshift-nfd-
+                  name: openshift-nfd
+                  namespace: openshift-nfd
+                spec:
+                  targetNamespaces:
+                  - openshift-nfd
+              wait: yes
+          - name: NFD - Create subscription for RH NFD operator
+            k8s:
+              definition:
+                apiVersion: operators.coreos.com/v1alpha1
+                kind: Subscription
+                metadata:
+                  name: nfd
+                  namespace: openshift-nfd
+                spec:
+                  channel: "stable"
+                  installPlanApproval: Automatic
+                  name: nfd
+                  source: redhat-operators
+                  sourceNamespace: openshift-marketplace
+              wait: yes
+              wait_condition:
+                reason: AllCatalogSourcesHealthy
+                type: CatalogSourcesUnhealthy
+                status: 'False'
+          - name: NFD - Wait until the nfd-operator-controller Deployment is available
+            k8s_info:
+              kind: Deployment
+              wait: yes
+              name: nfd-controller-manager
+              namespace: openshift-nfd
+              wait_condition:
+                type: Available
+                status: 'True'
+                reason: MinimumReplicasAvailable
+      - name: KMM - Install Kernel Module Management Operator
+        tags: 
+          - kmm
+        block: 
+        - name: KMM - Create openshift-kmm namespace
+          k8s:
+            name: openshift-kmm
+            api_version: v1
+            kind: Namespace
+            state: present
+            wait: yes
+        - name: KMM - Create OperatorGroup v1 in openshift-kmm namespace
+          k8s:
+            definition:
+              apiVersion: operators.coreos.com/v1
+              kind: OperatorGroup
+              metadata:
+                name: kernel-module-management
+                namespace: openshift-kmm
+            wait: yes
+        - name: KMM - Create Subscription for KMM Operator
+          k8s:
+            definition:
+              apiVersion: operators.coreos.com/v1alpha1
+              kind: Subscription
+              metadata:
+                name: kernel-module-management
+                namespace: openshift-kmm
+              spec:
+                channel: stable
+                installPlanApproval: Automatic
+                name: kernel-module-management
+                source: redhat-operators
+                sourceNamespace: openshift-marketplace
+            wait: yes
+            wait_condition:
+              reason: AllCatalogSourcesHealthy
+              type: CatalogSourcesUnhealthy
+              status: 'False'
+        - name: KMM - Wait until the kmm-operator-controller Deployment is available
+          k8s_info:
+            kind: Deployment
+            wait: yes
+            name: kmm-operator-controller
+            namespace: openshift-kmm
+            wait_condition:
+              type: Available
+              status: 'True'
+              reason: MinimumReplicasAvailable
+      - name: Install HabanaAI Operator
+        tags: 
+          - habana-ai
+        block:
+          - name: Install HabanaAI Operator
+            k8s:
+              state: present
+              src: "../gaudi/gaudi_install_operator.yaml"
+              wait: yes
+          - name: Wait until the Habana controller-manager Deployment is available
+            k8s_info:
+              kind: Deployment
+              wait: yes
+              name: controller-manager
+              namespace: habana-ai-operator
+              wait_condition:
+                type: Available
+                status: 'True'
+                reason: MinimumReplicasAvailable
+    - name: NFD - Install NFD CRs
+      block:
+        - name: NFD - Create NFD discovery instance for Habana Gaudi
+          k8s:
+            state: present
+            src: "../gaudi/gaudi_nfd_instance_openshift.yaml"
+            wait: yes 
+    - name: Install Habana Gaudi DeviceConfig CR
+      block: 
+        - name: Create Habana Gaudi DeviceConfig
+          k8s:
+            state: present
+            src: "../gaudi/gaudi_device_config.yaml"
+            wait: yes
+    - name: Verify Habana Gaudi Resources 
+      tags: 
+        - gaudi_resource_test
+      block: 
+        - name: Get Gaudi Node Resource Information
+          kubernetes.core.k8s_info:
+            api: v1
+            kind: Node
+            label_selectors:
+              - "kmm.node.kubernetes.io/habana-ai-operator.habana-ai-module.device-plugin-ready="
+              - "kmm.node.kubernetes.io/habana-ai-operator.habana-ai-module.ready="
+            wait: yes
+            wait_timeout: 120
+          register: cluster_nodes_info
+          until:
+            - cluster_nodes_info.resources is defined
+        - name: Print cluster resources
+          debug: 
+            msg: 
+            - "Please verify Capacity and Allocatable Habana Gaudi Resources on the node - "
+            - "Capacity: { 
+                'habana.ai/gaudi': {{ cluster_nodes_info.resources[0].status.capacity['habana.ai/gaudi'] }},"
+            - "Allocatable Resources: { 
+                'habana.ai/gaudi': {{ cluster_nodes_info.resources[0].status.allocatable['habana.ai/gaudi'] }},"
