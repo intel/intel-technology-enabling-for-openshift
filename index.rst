@@ -15,6 +15,7 @@ Intel® Technology Enabling for OpenShift*
    machine_configuration/README.md
    kmmo/README.md
    device_plugins/README.md
+   gaudi/README.md
 
 .. toctree::
    :maxdepth: 2
