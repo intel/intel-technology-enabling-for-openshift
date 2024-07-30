@@ -3,7 +3,7 @@
 ## Overview
 [Habana AI Operator](https://catalog.redhat.com/software/container-stacks/detail/64342b3bcbfbb9a6588ce8dd) is used to provision Intel Gaudi Accelerator with OpenShift. The steps and yaml files mentioned in this document to provision the Gaudi accelerator are based on [HabanaAI Operator for OpenShift](https://docs.habana.ai/en/latest/Orchestration/HabanaAI_Operator/index.html).
 
-If you are familiar with the steps here to manually provision the accelerator, the Red Hat certified Operator and Ansible based [One-Click](/one_click/README.md) solution can be used as a reference to provision the accelerator automatically.
+If you are familiar with the steps here to manually provision the accelerator, the Red Hat certified Operator and Ansible based [One-Click](/one_click/README.md#reference-playbook-–-habana-gaudi-provisioning) solution can be used as a reference to provision the accelerator automatically.
 
 ## Prerequisities
 - To Provision RHOCP cluster, follow steps [here](/README.md#provisioning-rhocp-cluster).
