@@ -1,0 +1,121 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: chatqna-megaservice-pvc-0
+  namespace: opea-chatqna
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: chatqna-megaservice-pvc-1
+  namespace: opea-chatqna
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: chatqna-megaservice-pvc-2
+  namespace: opea-chatqna
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatqna-megaservice
+  namespace: opea-chatqna
+spec:
+  selector:
+    matchLabels:
+      app: chatqna-megaservice
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: chatqna-megaservice
+    spec:
+      serviceAccount: opea-chatqna
+      containers:
+        - name: chatqna-megaservice
+          image: 'image-registry.openshift-image-registry.svc:5000/opea-chatqna/chatqna-megaservice:latest'
+          env:
+            - name: EMBED_MODEL
+              value: BAAI/bge-base-en-v1.5
+            - name: HUGGINGFACEHUB_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key:  HUGGINGFACEHUB_API_TOKEN
+                  name: hf-token
+            - name: MODEL_SIZE
+              value: 70b
+            - name: PYTHONPATH
+              value: $PYTHONPATH:/ws:/home/user:/home/user/qna-app/app
+            - name: RAG_UPLOAD_DIR
+              value: /upload_dir
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_HOST
+              value: "redis-vector-db"
+            - name: REDIS_SCHEMA
+              value: schema_dim_768.yml
+            - name: TGI_ENDPOINT
+              value: http://xxx.xxx.xxx.xxx:xxx
+          ports:
+            - containerPort: 8000
+          command:
+            - /bin/bash
+            - '-c'
+            - |
+              cd /ws && \
+              python ingest.py /ws/data_intel/ && \
+              cd /home/user/qna-app && \
+              python app/server.py
+          volumeMounts:
+          - mountPath: /ws
+            name: chatqna-megaservice-pvc-0
+          - mountPath: /test
+            name: chatqna-megaservice-pvc-1
+          - mountPath: /upload_dir
+            name: chatqna-megaservice-pvc-2
+      volumes:
+      - name: chatqna-megaservice-pvc-0
+        persistentVolumeClaim:
+          claimName: chatqna-megaservice-pvc-0
+      - name: chatqna-megaservice-pvc-1
+        persistentVolumeClaim:
+          claimName: chatqna-megaservice-pvc-1
+      - name: chatqna-megaservice-pvc-2
+        persistentVolumeClaim:
+          claimName: chatqna-megaservice-pvc-2
+---
+# Chatqna megaservice Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: chatqna-megaservice
+  namespace: opea-chatqna
+spec:
+  type: ClusterIP
+  selector:
+    app: chatqna-megaservice
+  ports:
+  - port: 8000
+    targetPort: 8000
