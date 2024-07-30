@@ -1,0 +1,16 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from https://docs.habana.ai/en/latest/Orchestration/HabanaAI_Operator/Environment_Setup.html#installing-intel-gaudi-firmware
+#
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: firmware-path
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+  kernelArguments:
+    - 'firmware_class.path=/var/lib/firmware'
