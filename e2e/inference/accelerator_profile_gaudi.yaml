@@ -1,0 +1,11 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+apiVersion: dashboard.opendatahub.io/v1
+kind: AcceleratorProfile
+metadata:
+  name: Intel Gaudi AI Accelerator
+spec:
+  displayName: Intel Gaudi AI Accelerator
+  description: Intel Gaudi AI Accelerator 
+  enabled: true
+  identifier: habana.ai/gaudi
