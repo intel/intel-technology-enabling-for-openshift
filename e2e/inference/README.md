@@ -36,10 +36,10 @@ To enable the interactive mode, the OpenVINO notebook CR needs to be created and
 
 Create `AcceleratorProfile` in the `redhat-ods-applications` namespace 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/e2e/inference/accelerator_profile.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/e2e/inference/accelerator_profile_flex140.yaml
 ```
 
-1. Navigate to `openvino-notebooks` ImageStream and add the above created `AcceleratorProfile` key to the annotation field, as shown in the image below:
+3. Navigate to `openvino-notebooks` ImageStream and add the above created `AcceleratorProfile` key to the annotation field, as shown in the image below:
 
 ![Alt text](/docs/images/openvino-accelerator-field.png)
 
@@ -63,6 +63,18 @@ Follow the [link](https://github.com/openvinotoolkit/operator/blob/main/docs/not
 
 ![Alt text](/docs/images/Ovms-Gpu-resource-request.png)
 
+# Enable Intel Gaudi AI Accelerator with RHOAI
+
+* From web console:
+
+  To enable and use the Intel Gaudi accelerator on RHOAI web console, follow the [documentation](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/2.11/html/working_with_accelerators/intel-gaudi-ai-accelerator-integration_accelerators#enabling-intel-gaudi-ai-accelerators_accelerators).
+* From cli:
+  
+  Deploy the ```accelerator_profile_gaudi.yaml``` in the redhat-ods-applications namespace.
+
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/e2e/inference/accelerator_profile_gaudi.yaml
+```
 
 ## See Also 
 [GPU accelerated demo with OpenVINO](https://www.youtube.com/watch?v=3fTz_k4JT2A)
