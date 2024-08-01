@@ -15,13 +15,13 @@ If you are familiar with the steps here to manually provision the accelerator, t
 
 The default kernel firmware search path `/lib/firmware` in RHCOS is not writable. Command below can be used to add path `/var/lib/fimware` into the firmware search path list.
 ```
-oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/gaudi/gaudi_firmware_path.yaml
+oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.1/gaudi/gaudi_firmware_path.yaml
 ```
 
 ## Label Gaudi Accelerator Nodes With NFD
 NFD operator can be used to configure NFD to automatically detect the Gaudi accelerators and label the nodes for the flowing provisioning steps.
 ```
-oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/gaudi/gaudi_nfd_instance_openshift.yaml
+oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.1/gaudi/gaudi_nfd_instance_openshift.yaml
 ```
 Verify NFD has labelled the node correctly:
 ```
@@ -42,7 +42,7 @@ Follow the steps below to install HabanaAI Operator using OpenShift web console:
 
 ### Installation via Command Line Interface (CLI)
 ```
-oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/gaudi/gaudi_install_operator.yaml
+oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.1/gaudi/gaudi_install_operator.yaml
 ```
 
 ### Verify Installation via CLI
@@ -70,7 +70,7 @@ To create a Habana Gaudi device plugin CR, follow the steps below.
 ### Create CR via CLI
 Apply the CR yaml file:
 ```
-oc apply -f  https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/gaudi/gaudi_device_config.yaml
+oc apply -f  https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.3.1/gaudi/gaudi_device_config.yaml
 ```
 
 ### Verify the DeviceConfig CR is created
