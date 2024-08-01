@@ -1,13 +1,12 @@
 # Intel® Technology Enabling for OpenShift*
 ## Overview
-The Intel Technology Enabling for OpenShift project provides Intel Data Center hardware feature-provisioning technologies with the [Red Hat OpenShift Container Platform (RHOCP)](https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform). The technology to deploy and manage Intel Enterprise AI End-to-End (E2E) solutions and the related reference workloads for these features are also included in the project.  
+The Intel Technology Enabling for OpenShift project focuses on Intel’s enterprise AI and cloud native foundation for [Red Hat OpenShift Container Platform (RHOCP)](https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform) solution enablement and innovation including Intel data center hardware features, Intel technology enhanced AI platform and the referenced AI workloads provisioning for OpenShift.
 
-These Intel Data Center hardware features currently include: 
-- **Intel® Software Guard Extensions (Intel® SGX)**
+These Intel Data Center hardware features include: 
 - **Intel® Data Center GPU Flex Series**
 - **Intel® Data Center GPU Max Series** 
+- **Intel® Software Guard Extensions (Intel® SGX)**
 - **Intel® QuickAssist Technology (Intel® QAT)**
-- **Intel® Gaudi® AI Accelerator**
 
 The following features will be included in future releases:  
 - Intel® Data Streaming Accelerator (Intel® DSA) 
@@ -16,7 +15,7 @@ Intel AI hardware and optimized software solutions are integrated into Red Hat O
 
 Red Hat Distributed CI* (DCI) based CI/CD pipeline is leveraged to enable and test this E2E solution with each RHOCP release to ensure new features and improvements can be promptly available.
 
-The [Open Platform for Enterprise AI (OPEA)](https://github.com/opea-project) RAG workloads are used to validate and optimize Intel enterprise AI E2E solutions.
+The [Open Platform for Enterprise AI (OPEA)](https://github.com/opea-project) Retrieval-Augmented Generation (RAG) workloads are used to validate and optimize Intel enterprise AI foundation for OpenShift.
 
 ![Alt text](/docs/images/Intel-Technology-Enabling-for-OpenShift-Architecture.png)
 
