@@ -39,6 +39,10 @@ Use one of these two options to provision an RHOCP cluster:
 In this project, we provisioned RHOCP 4.14 on a bare-metal multi-node cluster. For details about the supported RHOCP infrastructure, see the [Supported Platforms](/docs/supported_platforms.md) page.
 
 ### Provisioning Intel hardware features on RHOCP
+If you are familiar with the steps mentioned below to provision the accelerators, you can use [One-Click](/one_click/README.md) solution as a reference to provision the accelerator automatically.
+
+Follow [Setting up HabanaAI Operator](/gaudi/README.md) to provision Intel Gaudi AI accelerator.  
+
 Please follow the steps below to provision the hardware features 
 1. Setting up [Node Feature Discovery](/nfd/README.md) 
 2. Setting up [Machine Configuration](/machine_configuration/README.md) 
