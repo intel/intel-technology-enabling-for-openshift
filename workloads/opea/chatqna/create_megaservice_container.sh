@@ -7,7 +7,7 @@ namespace="opea-chatqna"
 repo="https://github.com/opea-project/GenAIExamples.git"
 yaml_url="https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/workloads/opea/chatqna/chatqna_megaservice_buildconfig.yaml"
 
-oc $namespace &&
+oc project $namespace &&
     git clone --depth 1 --branch $tag $repo && 
         cd GenAIExamples/ChatQnA/deprecated/langchain/docker &&
             oc extract secret/knative-serving-cert -n istio-system --to=. --keys=tls.crt &&
