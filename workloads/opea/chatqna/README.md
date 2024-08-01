@@ -11,8 +11,8 @@ The workload is based on the [OPEA ChatQnA Application](https://github.com/opea-
 
     **Note**: Refer to [documentation](https://docs.openshift.com/container-platform/4.16/storage/index.html) for setting up other types of persistent storages.
 * Provisioned Intel Gaudi accelerator on RHOCP cluster. Follow steps [here](/gaudi/README.md)
-* RHOAI is installed. Follow steps [here](../inference/README.md/#install-rhoai) 
-* The Intel Gaudi AI accelerator is enabled with RHOAI. Follow steps [here]((../inference/README.md/#enable-intel-gaudi-ai-accelerator-with-rhoai))
+* RHOAI is installed. Follow steps [here](/e2e/inference/README.md/#install-rhoai) 
+* The Intel Gaudi AI accelerator is enabled with RHOAI. Follow steps [here](/e2e/inference/README.md/#enable-intel-gaudi-ai-accelerator-with-rhoai)
 * Minio based S3 service ready for RHOAI. Follow steps [here](https://ai-on-openshift.io/tools-and-applications/minio/minio/#create-a-matching-data-connection-for-minio)
 
 ## Deploy Model Serving for OPEA ChatQnA Microservices with RHOAI
@@ -33,7 +33,7 @@ The workload is based on the [OPEA ChatQnA Application](https://github.com/opea-
 
 ### Launch the Model Serving with Intel Gaudi AI Accelerator
 
-* Click on the Settings and choose ```ServingRuntime```. Copy or import the [tgi_gaudi_servingruntime.yaml](tgi-gaudi-servingruntime.yaml). The [tgi-gaudi](https://github.com/huggingface/tgi-gaudi) serving runtime is used. Follow the image below.
+* Click on the Settings and choose ```ServingRuntime```. Copy or import the [tgi_gaudi_servingruntime.yaml](tgi_gaudi_servingruntime.yaml). The [tgi-gaudi](https://github.com/huggingface/tgi-gaudi) serving runtime is used. Follow the image below.
 
 ![Alt text](/docs/images/tgi-serving-runtime.png)
 
