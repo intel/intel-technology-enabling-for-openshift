@@ -1,0 +1,60 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: chatqna-megaservice
+  namespace: opea-chatqna
+spec: {}
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: chatqna-megaservice
+  namespace: opea-chatqna
+spec:
+  triggers:
+    - type: "ConfigChange"
+    - type: "ImageChange"
+  runPolicy: "Serial"
+  source:
+    dockerfile: |
+      FROM langchain/langchain:latest
+
+      RUN apt-get update -y && apt-get install -y --no-install-recommends --fix-missing \
+      libgl1-mesa-glx \
+      libjemalloc-dev
+
+      RUN useradd -m -s /bin/bash user && \
+      mkdir -p /home/user && \
+      chown -R user /home/user/
+
+      USER user
+      COPY requirements.txt /tmp/requirements.txt
+      
+      USER root
+      COPY tls.crt /rhoai-ca/tls.crt
+      RUN cat /rhoai-ca/tls.crt  | tee -a '/usr/lib/ssl/cert.pem'
+
+      USER user
+      RUN pip install --no-cache-dir --upgrade pip && \
+      pip install --no-cache-dir -r /tmp/requirements.txt
+
+      ENV PYTHONPATH=$PYTHONPATH:/ws:/home/user:/home/user/qna-app/app
+
+      WORKDIR /home/user/qna-app
+      COPY qna-app /home/user/qna-app
+
+      ENTRYPOINT ["/usr/bin/sleep", "infinity"]
+  triggers:
+    - type: ConfigChange
+  runPolicy: SerialLatestOnly
+  strategy:
+    type: Docker
+    dockerStrategy: {}
+  postCommit: {}
+  output:
+    to:
+      kind: ImageStreamTag
+      name: chatqna-megaservice:latest
