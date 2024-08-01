@@ -35,9 +35,15 @@ The workload is based on the [OPEA ChatQnA Application](https://github.com/opea-
 
 * Click on the Settings and choose ```ServingRuntime```. Copy or import the [tgi_gaudi_servingruntime.yaml](tgi-gaudi-servingruntime.yaml). The [tgi-gaudi](https://github.com/huggingface/tgi-gaudi) serving runtime is used. Follow the image below.
 
+![Alt text](/docs/images/tgi-serving-runtime.png)
+
 * In the project ```OPEA-chatqna-modserving``` --> ```Models``` section and follow the image below.
 
+![Alt text](/docs/images/rhoai-deploy-model.png)
+
 * The model server is now in the creation state. Once ready, the status will be updated to green and the inference endpoint can be seen. Refer to the image below. 
+
+![Alt text](/docs/images/model-server-status.png)
 
 ## Deploy ChatQnA Megaservice and Database
 
