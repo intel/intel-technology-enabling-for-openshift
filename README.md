@@ -7,6 +7,7 @@ These Intel Data Center hardware features currently include:
 - **Intel® Data Center GPU Flex Series**
 - **Intel® Data Center GPU Max Series** 
 - **Intel® QuickAssist Technology (Intel® QAT)**
+- **Intel® Gaudi® AI Accelerator**
 
 The following features will be included in future releases:  
 - Intel® Data Streaming Accelerator (Intel® DSA) 
@@ -55,10 +56,8 @@ The reference end-to-end solution is based on Intel hardware feature provisionin
 [Intel AI Inferencing Solution](/e2e/inference/README.md) with [OpenVINO](https://github.com/openvinotoolkit/openvino) and [RHOAI](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-data-science) 
 
 ## Reference workloads 
-Here are some reference workloads built on the end-to-end solution and Intel hardware feature provisioning in this project. 
+Here are the reference workloads built on the end-to-end solution and Intel hardware feature provisioning in this project. 
 - [OPEA Workloads](workloads/opea/chatqna/README.md)
-- Large Language Model (To be added) 
-- Open Federated Learning (To be added) 
 
 ## Advanced Guide 
 This section discusses architecture and other technical details that go beyond getting started. 
