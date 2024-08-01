@@ -56,6 +56,7 @@ The reference end-to-end solution is based on Intel hardware feature provisionin
 
 ## Reference workloads 
 Here are some reference workloads built on the end-to-end solution and Intel hardware feature provisioning in this project. 
+- [OPEA Workloads](workloads/opea/chatqna/README.md)
 - Large Language Model (To be added) 
 - Open Federated Learning (To be added) 
 
