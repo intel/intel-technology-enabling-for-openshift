@@ -112,16 +112,16 @@
               type: Available
               status: 'True'
               reason: MinimumReplicasAvailable
-      - name: Install HabanaAI Operator
+      - name: Install Intel Gaudi Base Operator
         tags: 
-          - habana-ai
+          - intel-gaudi
         block:
-          - name: Install HabanaAI Operator
+          - name: Install Intel Gaudi Base Operator
             k8s:
               state: present
               src: "../gaudi/gaudi_install_operator.yaml"
               wait: yes
-          - name: Wait until the Habana controller-manager Deployment is available
+          - name: Wait until the Intel Gaudi controller-manager Deployment is available
             k8s_info:
               kind: Deployment
               wait: yes
@@ -133,19 +133,19 @@
                 reason: MinimumReplicasAvailable
     - name: NFD - Install NFD CRs
       block:
-        - name: NFD - Create NFD discovery instance for Habana Gaudi
+        - name: NFD - Create NFD discovery instance for Intel Gaudi
           k8s:
             state: present
             src: "../gaudi/gaudi_nfd_instance_openshift.yaml"
             wait: yes 
-    - name: Install Habana Gaudi DeviceConfig CR
+    - name: Install Intel Gaudi DeviceConfig CR
       block: 
-        - name: Create Habana Gaudi DeviceConfig
+        - name: Create Intel Gaudi DeviceConfig
           k8s:
             state: present
             src: "../gaudi/gaudi_device_config.yaml"
             wait: yes
-    - name: Verify Habana Gaudi Resources 
+    - name: Verify Intel Gaudi Resources 
       tags: 
         - gaudi_resource_test
       block: 
@@ -154,8 +154,8 @@
             api: v1
             kind: Node
             label_selectors:
-              - "kmm.node.kubernetes.io/habana-ai-operator.habana-ai-module.device-plugin-ready="
-              - "kmm.node.kubernetes.io/habana-ai-operator.habana-ai-module.ready="
+              - "kmm.node.kubernetes.io/habana-ai-operator.intel-gaudi-module.device-plugin-ready="
+              - "kmm.node.kubernetes.io/habana-ai-operator.intel-gaudi-module.ready="
             wait: yes
             wait_timeout: 120
           register: cluster_nodes_info

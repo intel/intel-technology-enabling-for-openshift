@@ -27,8 +27,8 @@ Execute below single command to provision Intel Data Center GPU:
 $ ansible-playbook gpu_provisioning_playbook.yaml
 ```
 
-## Reference Playbook – Habana Gaudi Provisioning
-This playbook demonstrates the one-click provisioning of Habana Gaudi Accelerator on an RHOCP cluster. The steps involved are installation and configuration of general Operators including Node Feature Discovery (NFD) operator, Kernel Module Management (KMM) operator, and the HabanaAI Operator. The playbook also creates the Gaudi `DeviceConfig` CR which deploys the Gaudi Out-of-Tree drivers, Gaudi device plugins, Habana container runtime and Habana node metrics.
+## Reference Playbook – Intel Gaudi Provisioning
+This playbook demonstrates the one-click provisioning of Intel Gaudi AI Accelerator on an RHOCP cluster. The steps involved are installation and configuration of general Operators including Node Feature Discovery (NFD) operator, Kernel Module Management (KMM) operator, and the Intel Gaudi Base Operator. The playbook also creates the Gaudi `DeviceConfig` CR which deploys the Gaudi Out-of-Tree drivers, Gaudi device plugins, Habana container runtime and Habana node metrics.
 
 ### Prerequisite
 Before running the playbook, ensure the following prerequisites are met:
@@ -42,7 +42,7 @@ To run the ansible playbook, clone this repository to your RHEL system. Navigate
 $ git clone https://github.com/intel/intel-technology-enabling-for-openshift.git
 $ cd intel-technology-enabling-for-openshift/one_click 
 ```
-Execute below single command to provision Habana Gaudi Accelerator:
+Execute below single command to provision Intel Gaudi Accelerator:
 ```
 $ ansible-playbook gaudi_provisioning_playbook.yaml
 ```
