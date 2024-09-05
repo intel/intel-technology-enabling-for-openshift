@@ -1,7 +1,7 @@
-# Setting up HabanaAI Operator
+# Setting up Intel Gaudi Base Operator
 
 ## Overview
-[Habana AI Operator](https://catalog.redhat.com/software/container-stacks/detail/64342b3bcbfbb9a6588ce8dd) is used to provision Intel Gaudi Accelerator with OpenShift. The steps and yaml files mentioned in this document to provision the Gaudi accelerator are based on [HabanaAI Operator for OpenShift](https://docs.habana.ai/en/latest/Orchestration/HabanaAI_Operator/index.html).
+[Intel Gaudi Base Operator](https://catalog.redhat.com/software/container-stacks/detail/6683b2cce45daa25e36bddcb) is used to provision Intel Gaudi Accelerator with OpenShift. The steps and yaml files mentioned in this document to provision the Gaudi accelerator are based on [Intel Gaudi Base Operator for OpenShift](https://docs.habana.ai/en/latest/Orchestration/Intel_Gaudi_Base_Operator/index.html).
 
 If you are familiar with the steps here to manually provision the accelerator, the Red Hat certified Operator and Ansible based [One-Click](/one_click/README.md#reference-playbook-–-habana-gaudi-provisioning) solution can be used as a reference to provision the accelerator automatically.
 
@@ -19,7 +19,7 @@ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-fo
 ```
 
 ## Label Gaudi Accelerator Nodes With NFD
-NFD operator can be used to configure NFD to automatically detect the Gaudi accelerators and label the nodes for the flowing provisioning steps.
+NFD operator can be used to configure NFD to automatically detect the Gaudi accelerators and label the nodes for the following provisioning steps.
 ```
 oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/gaudi/gaudi_nfd_instance_openshift.yaml
 ```
@@ -31,11 +31,11 @@ oc get no -o json | jq '.items[].metadata.labels' | grep pci-1da3
 ```
 NFD detects underlying Gaudi Accelerator using its PCI device class and the vendor ID.
 
-## Install HabanaAI Operator on Red Hat OpenShift
+## Install Intel Gaudi Base Operator on Red Hat OpenShift
 ### Installation via web console
-Follow the steps below to install HabanaAI Operator using OpenShift web console:
+Follow the steps below to install Intel Gaudi Base Operator using OpenShift web console:
 1.	In the OpenShift web console, navigate to **Operator** -> **OperatorHub**.
-2.	Search for **HabanaAI Operator** in all items field -> Click **Install**.
+2.	Search for **Intel Gaudi Base Operator** in all items field -> Click **Install**.
 ### Verify Installation via web console
 1.	Go to **Operator** -> **Installed Operators**.
 2.	Verify that the status of the operator is **Succeeded**.
@@ -54,14 +54,14 @@ NAME                                  READY   STATUS    RESTARTS   AGE
 controller-manager-6c8459d9cb-fqs8h   2/2     Running   0          25m
 ```
 
-## Creating Habana AI Operator DeviceConfig Instance
+## Creating Intel Gaudi Base Operator DeviceConfig Instance
 To create a Habana Gaudi device plugin CR, follow the steps below.
 
 ### Create CR via web console
 1.	Go to **Operator** -> **Installed Operators**.
-2.	Open **HabanaAI Operator**.
+2.	Open **Intel Gaudi Base Operator**.
 3.	Navigate to tab **Device Config**.
-4.	Click **Create DeviceConfig** -> set correct parameters -> Click **Create**. To set correct parameters please refer [Using RedHat OpenShift Console](https://docs.habana.ai/en/latest/Orchestration/HabanaAI_Operator/Deploying_HabanaAI_Operator.html#id2).
+4.	Click **Create DeviceConfig** -> set correct parameters -> Click **Create**. To set correct parameters please refer [Using RedHat OpenShift Console](https://docs.habana.ai/en/latest/Orchestration/Intel_Gaudi_Base_Operator/Deploying_Intel_Gaudi_Base_Operator.html#id2).
 
 ### Verify via web console
 1.	Verify CR by checking the status of **Workloads** -> **DaemonSet** -> **habana-ai-module-device-plugin-xxxxx**.
