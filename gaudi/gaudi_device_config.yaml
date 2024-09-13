@@ -15,7 +15,7 @@ spec:
       image: image-registry.openshift-image-registry.svc:5000/habana-ai-operator/habana-ai-driver
       version: 1.17.1-40
    habanaRuntime:
-      image: vault.habana.ai/habana-ocp-operator/1.15.1/habana-runtime
+      image: vault.habana.ai/habana-ocp-operator/1.17.1/habana-runtime
       version: 1.17.1-40
    nodeMetrics:
       image: vault.habana.ai/gaudi-metric-exporter/metric-exporter
