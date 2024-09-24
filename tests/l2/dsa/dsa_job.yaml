@@ -1,0 +1,29 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: intel-dsa-workload
+  namespace: intel-dsa
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: intel-dsa-job
+        image: image-registry.openshift-image-registry.svc:5000/intel-dsa/intel-dsa-workload:latest
+        imagePullPolicy: IfNotPresent
+        workingDir: "/usr/libexec/accel-config/test/"
+        command:
+          - "./dsa_user_test_runner.sh"
+        args:
+          - "--skip-config"
+        capabilities:
+          add:
+            [SYS_RAWIO]
+        resources:
+          limits:
+            dsa.intel.com/wq-user-dedicated: 1
+      restartPolicy: Never
+      serviceAccountName: intel-dsa
