@@ -8,7 +8,7 @@ metadata:
   namespace: openshift-nfd
 spec:
   operand:
-    image: quay.io/openshift/origin-node-feature-discovery:4.15
+    image: quay.io/openshift/origin-node-feature-discovery:4.16
     imagePullPolicy: Always
     servicePort: 12000
   workerConfig:
