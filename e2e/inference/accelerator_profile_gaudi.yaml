@@ -3,7 +3,7 @@
 apiVersion: dashboard.opendatahub.io/v1
 kind: AcceleratorProfile
 metadata:
-  name: Intel Gaudi AI Accelerator
+  name: intel-gaudi-ai-accelerator
 spec:
   displayName: Intel Gaudi AI Accelerator
   description: Intel Gaudi AI Accelerator 
