@@ -1,0 +1,14 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+kind: DsaDevicePlugin
+apiVersion: deviceplugin.intel.com/v1
+metadata:
+  name: dsadeviceplugin-sample
+spec:
+  image: 'quay.io/ocpeng/intel-dsa-plugin:0.29.0'
+  initImage: 'quay.io/ocpeng/intel-idxd-config-initcontainer:0.29.0'
+  logLevel: 4
+  nodeSelector:
+    intel.feature.node.kubernetes.io/dsa: 'true'
+  sharedDevNum: 10
