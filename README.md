@@ -7,9 +7,7 @@ These Intel Data Center hardware features include:
 - **Intel® Data Center GPU Max Series** 
 - **Intel® Software Guard Extensions (Intel® SGX)**
 - **Intel® QuickAssist Technology (Intel® QAT)**
-
-The following features will be included in future releases:  
-- Intel® Data Streaming Accelerator (Intel® DSA) 
+- **Intel® Data Streaming Accelerator (Intel® DSA)** 
 
 Intel AI hardware and optimized software solutions are integrated into Red Hat OpenShift AI for ease of provisioning and configuration. The [Habana AI Operator](https://catalog.redhat.com/software/container-stacks/detail/64342b3bcbfbb9a6588ce8dd?gs&q=habana) is used to provision Intel® Gaudi® accelerators and released on the Red Hat Ecosystem Catalog.
 
@@ -32,10 +30,10 @@ See reference [BIOS Configuration](/docs/supported_platforms.md#bios-configurati
 
 ### Provisioning RHOCP cluster   
 Use one of these two options to provision an RHOCP cluster: 
-- Use the methods introduced in [RHOCP documentation](https://docs.openshift.com/container-platform/4.14/installing/index.html). 
+- Use the methods introduced in [RHOCP documentation](https://docs.openshift.com/container-platform/4.16/installing/index.html). 
 - Use [Distributed CI](https://doc.distributed-ci.io/) as we do in this project.  
 
-In this project, we provisioned RHOCP 4.14 on a bare-metal multi-node cluster. For details about the supported RHOCP infrastructure, see the [Supported Platforms](/docs/supported_platforms.md) page.
+In this project, we provisioned RHOCP 4.16 on a bare-metal multi-node cluster. For details about the supported RHOCP infrastructure, see the [Supported Platforms](/docs/supported_platforms.md) page.
 
 ### Provisioning Intel hardware features on RHOCP
 If you are familiar with the steps mentioned below to provision the accelerators, you can use [One-Click](/one_click/README.md) solution as a reference to provision the accelerator automatically.
