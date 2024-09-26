@@ -1,0 +1,42 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: hccl-demo-workload
+  namespace: hccl-demo
+---
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: hccl-demo-workload
+  namespace: hccl-demo
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'hccl-demo-workload:latest'
+  strategy:
+    type: Docker
+  source:
+    type: Dockerfile
+    dockerfile: |
+      ARG BUILDER=vault.habana.ai/gaudi-docker/1.17.1/rhel9.4/habanalabs/pytorch-installer-2.3.1:1.17.1-40
+      FROM ${BUILDER} AS builder
+
+      WORKDIR /
+      RUN git clone https://github.com/HabanaAI/hccl_demo.git \
+          && cd hccl_demo \
+          && make
+
+      WORKDIR /
+      RUN git clone https://github.com/HabanaAI/hccl_ofi_wrapper.git \
+          && export LIBFABRIC_ROOT=/opt/habanalabs/libfabric-1.20.0 \
+          && cd hccl_ofi_wrapper \
+          && make \ 
+          && cp libhccl_ofi_wrapper.so /usr/lib/habanalabs/libhccl_ofi_wrapper.so \
+          && ldconfig \
+          && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/habanalabs/
+
+      WORKDIR /hccl_demo
+  triggers:
+    - type: ConfigChange
+  runPolicy: Serial
