@@ -1,0 +1,60 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: intel-dsa-workload
+  namespace: intel-dsa
+spec: {}
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: intel-dsa-workload
+  namespace: intel-dsa
+spec:
+  triggers:
+    - type: "ConfigChange"
+    - type: "ImageChange"
+  runPolicy: "Serial"
+  source:
+    type: Dockerfile
+    dockerfile: |
+        
+        ARG BUILDER=registry.access.redhat.com/ubi9:latest
+        FROM ${BUILDER} 
+        RUN subscription-manager register  --username=${USERNAME} --password=${PASSWORD} && \
+            subscription-manager attach --auto && \
+            dnf repolist --disablerepo=* && \
+            subscription-manager repos --enable rhel-9-for-x86_64-baseos-rpms --enable codeready-builder-for-rhel-9-x86_64-rpms && \
+            dnf -y update && \
+            dnf install -y gcc g++ make cmake autoconf automake libtool pkg-config \
+              git asciidoc xmlto libuuid-devel json-c-devel zlib-devel openssl-devel \
+              pciutils accel-config
+        RUN git clone -b accel-config-v4.1.8 https://github.com/intel/idxd-config && \
+          cd idxd-config && ./autogen.sh && ./configure CFLAGS='-g -O2' --prefix=/usr \
+          --sysconfdir=/etc --libdir=/usr/lib64 --enable-test=yes && make && make install
+  strategy:
+    type: Docker
+    noCache: true
+    dockerStrategy:
+      buildArgs:
+          - name: "BUILDER"
+            value: "registry.access.redhat.com/ubi9:latest"
+      env:
+          - name: "USERNAME"
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: rh-auth
+          - name: "PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: rh-auth
+
+  output:
+    to:
+      kind: ImageStreamTag
+      name: intel-dsa-workload:latest
