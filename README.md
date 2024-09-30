@@ -22,7 +22,7 @@ The [Open Platform for Enterprise AI (OPEA)](https://github.com/opea-project) Re
 </div>
 
 ## Releases and Supported Platforms 
-- [Supported Intel hardware features](/docs/supported_platforms.md#supported-intel-hardware-features) and [supported RHOCP versions](/docs/supported_platforms.md#supported-rhocp-versions)  
+- [Supported Intel hardware features](/docs/supported_platforms.md#supported-intel-hardware-features) 
 - [Release details](/docs/releases.rst)
 
 ## Getting started

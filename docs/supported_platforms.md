@@ -44,16 +44,6 @@ Note: Please refer to your BIOS vendor for specific instructions. This is only a
 | Intel QAT | [Link](https://github.com/intel/qatlib/blob/7429ee2b7c837137ed11959a3c2cc3729dc15739/INSTALL#L104) |
 | Intel DSA | [Link](https://cdrdv2-public.intel.com/759709/353216-data-streaming-accelerator-user-guide-003.pdf) |
 
-## Supported RHOCP Versions
-
-| Feature | Supported RHOCP Version | 
-| ----- | ---------------------- |
-| Intel SGX |  RHOCP 4.14.11 and above (support is only for z streams in 4.14.z where z >= 11) |
-| Intel Data Center GPU Flex Series |  RHOCP 4.14.11 and above (support is only for z streams in 4.14.z where z >= 11) |
-| Intel Data Center GPU Max Series |  RHOCP 4.14.11 and above (support is only for z streams in 4.14.z where z >= 11) |
-| Intel QAT |  RHOCP 4.14.11 and above (support is only for z streams in 4.14.z where z >= 11) |
-| Intel DSA | RHOCP 4.16.3 and above (support is only for z streams in 4.16.z where z >= 3) |
-
 ## Support 
 
 ### Project life cycle introduction 
