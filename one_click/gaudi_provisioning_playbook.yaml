@@ -131,6 +131,25 @@
                 type: Available
                 status: 'True'
                 reason: MinimumReplicasAvailable
+      - name: Install Intel Gaudi AI SW Tools Operator
+        tags: 
+          - intel-gaudi-ai-sw-tools
+        block:
+          - name: Install Intel Gaudi AI SW Tools Operator
+            k8s:
+              state: present
+              src: "../gaudi/gaudi_install_notebooks_operator.yaml"
+              wait: yes
+          - name: Wait until the gaudi-ai-sw-tools-operator-controller-manager Deployment is available
+            k8s_info:
+              kind: Deployment
+              wait: yes
+              name: gaudi-ai-sw-tools-operator-controller-manager
+              namespace: openshift-operators
+              wait_condition:
+                type: Available
+                status: 'True'
+                reason: MinimumReplicasAvailable
     - name: NFD - Install NFD CRs
       block:
         - name: NFD - Create NFD discovery instance for Intel Gaudi
@@ -169,3 +188,11 @@
                 'habana.ai/gaudi': {{ cluster_nodes_info.resources[0].status.capacity['habana.ai/gaudi'] }},"
             - "Allocatable Resources: { 
                 'habana.ai/gaudi': {{ cluster_nodes_info.resources[0].status.allocatable['habana.ai/gaudi'] }},"
+    - name: Install GaudiAIToolsContainer CR
+      block: 
+        - name: Create GaudiAIToolsContainer CR
+          k8s:
+            state: present
+            src: "https://raw.githubusercontent.com/intel/ai-containers/refs/heads/main/enterprise/redhat/openshift-ai/gaudi/crd-sample.yaml"
+            namespace: redhat-ods-applications
+            wait: yes
