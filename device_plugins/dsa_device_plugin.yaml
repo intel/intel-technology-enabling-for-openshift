@@ -6,8 +6,8 @@ apiVersion: deviceplugin.intel.com/v1
 metadata:
   name: dsadeviceplugin-sample
 spec:
-  image: 'quay.io/ocpeng/intel-dsa-plugin:0.29.0'
-  initImage: 'quay.io/ocpeng/intel-idxd-config-initcontainer:0.29.0'
+  image: registry.connect.redhat.com/intel/intel-dsa-plugin@sha256:092575515739bf9a0f5982c3605b63382bc4d1250128269434c2bfe4a27ec99d
+  initImage: registry.connect.redhat.com/intel/intel-idxd-config-initcontainer@sha256:649e4f4e7f362ba054fb85a67e3baa23ec9649c68df356d1e33721ca3eef2f6b
   logLevel: 4
   nodeSelector:
     intel.feature.node.kubernetes.io/dsa: 'true'
