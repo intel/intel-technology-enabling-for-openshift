@@ -15,3 +15,6 @@ Please refer to Intel SGX provisioning validation tests [here](sgx/README.md)
 
 ### Verify Intel® QuickAssist Technology provisioning
 Please refer to Intel QAT provisioning validation tests [here](qat/README.md)
+
+### Verify Intel® Data Streaming Accelerator provisioning
+Please refer to Intel DSA provisioning validation tests [here](dsa/README.md)
