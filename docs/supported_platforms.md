@@ -4,7 +4,7 @@ Before provisioning the Intel hardware and software technology with RHOCP, users
 
 ## Multi-node bare metal RHOCP cluster provisioning 
 
-The software and hardware technology included in this project are developed, integrated, and tested on the multi-mode bare metal RHOCP 4.14 cluster. Refer to Red Hat’s documentation for instructions to [install a user-provisioned cluster on bare metal](https://docs.openshift.com/container-platform/4.14/installing/installing_bare_metal/installing-bare-metal.html#installation-machine-requirements_installing-bare-metal) and reach out to Red Hat for support in provisioning your bare metal cluster.  
+The software and hardware technology included in this project are developed, integrated, and tested on the multi-mode bare metal RHOCP 4.16 cluster. Refer to Red Hat’s documentation for instructions to [install a user-provisioned cluster on bare metal](https://docs.openshift.com/container-platform/4.16/installing/installing_bare_metal/installing-bare-metal.html#installation-machine-requirements_installing-bare-metal) and reach out to Red Hat for support in provisioning your bare metal cluster.  
 
 The related container images and operators required to enable the Intel technology included in this project have been certified with Red Hat and published on the [Red Hat Ecosystem Catalog](https://catalog.redhat.com/software). Users identifying issues or feature requests related to the Intel Technology Enabling for OpenShift project are encouraged to submit [issues](https://github.com/intel/intel-technology-enabling-for-openshift/issues) to engage and collaborate with the open source community.  
 
@@ -14,7 +14,7 @@ The SNO cluster is supported by RHOCP; however, SNO resource restrictions for so
 
 ## Cloud Service Provider (CSP) managed RHOCP cluster 
 
-The container images, operators, and documents included in the Intel Technology Enabling for OpenShift project are intended for multi-node bare metal RHOCP cluster provisioning. While RHOCP may be installed with the major CSP environments, refer to Red Hat’s documentation for [selecting an installation method and preparing a cluster](https://docs.openshift.com/container-platform/4.14/installing/installing-preparing.html#installing-preparing-install-manage) for CSP details and consult Red Hat or your CSP for specific support. Any contributions in this area are welcomed.  
+The container images, operators, and documents included in the Intel Technology Enabling for OpenShift project are intended for multi-node bare metal RHOCP cluster provisioning. While RHOCP may be installed with the major CSP environments, refer to Red Hat’s documentation for [selecting an installation method and preparing a cluster](https://docs.openshift.com/container-platform/4.16/installing/installing-preparing.html#installing-preparing-install-manage) for CSP details and consult Red Hat or your CSP for specific support. Any contributions in this area are welcomed.  
 
 ## Virtual Machine (VM) based RHOCP cluster 
 
@@ -22,11 +22,11 @@ Multi-node bare metal RHOCP cluster provisioning is the primary cluster use case
 
 ## Supported Intel Hardware Features 
 
-The following Intel feature technologies are supported in the 1.2.1 release.  
+The following Intel feature technologies are supported in this release.  
 
 | Intel Feature Technology                      | Intel Hardware Platform                                        |
 |-----------------------------------------------|----------------------------------------------------------------|
-| Intel® Software Guard Extensions (Intel® SGX) | [5th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon/5th-gen-xeon-scalable-processors.html) <br/>  [4th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/4th-gen-xeon-scalable-processors.html) <br/>  [3rd Gen Intel® Xeon® Scalable processors   ](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/3rd-gen-xeon-scalable-processors.html)                                                   |                               
+| Intel® Software Guard Extensions (Intel® SGX) | [6th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/details/processors/xeon/xeon6-product-brief.html) <br/>  [5th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon/5th-gen-xeon-scalable-processors.html) <br/>  [4th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/4th-gen-xeon-scalable-processors.html) <br/>  [3rd Gen Intel® Xeon® Scalable processors   ](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/3rd-gen-xeon-scalable-processors.html)                                                   |                               
 | Intel® Data Center GPU Flex Series            | [Intel Data Center GPU Flex 140](https://www.intel.com/content/www/us/en/products/sku/230020/intel-data-center-gpu-flex-140/specifications.html) <br/>  [Intel Data Center GPU Flex 170](https://www.intel.com/content/www/us/en/products/sku/230019/intel-data-center-gpu-flex-170/specifications.html)  |
 | Intel® Data Center GPU Max Series            | [Intel Data Center GPU Max 1100](https://www.intel.com/content/www/us/en/products/sku/232876/intel-data-center-gpu-max-1100/specifications.html) <br/>  [Intel Data Center GPU Max 1550](https://www.intel.com/content/www/us/en/products/sku/232873/intel-data-center-gpu-max-1550/specifications.html)  |
 | Intel® QuickAssist Technology (Intel® QAT) | [6th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/details/processors/xeon/xeon6-product-brief.html) <br/> [5th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon/5th-gen-xeon-scalable-processors.html) <br/>  [4th Gen Intel® Xeon® Scalable processors](https://www.intel.com/content/www/us/en/products/docs/processors/xeon-accelerated/4th-gen-xeon-scalable-processors.html) |
