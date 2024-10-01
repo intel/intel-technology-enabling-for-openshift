@@ -19,12 +19,12 @@ Any contribution in this area is welcome.
 - Provisioned RHOCP cluster. Follow steps [here](/README.md#provisioning-rhocp-cluster).
 - Setup node feature discovery (NFD). Follow steps [here](/nfd/README.md).
 
-## Machine Configuration for Provisioning Intel® QAT
+## Machine Configuration for Provisioning Intel® QAT and Intel® DSA
 
-* Turn on `intel_iommu` kernel parameter and load `vfio_pci` at boot for QAT provisioning
+* Turn on `intel_iommu,sm_on` kernel parameter and load `vfio_pci` at boot for QAT and DSA provisioning
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-qat-intel-iommu-on.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-iommu-on.yaml
 ```
 
 Note: This will reboot the worker nodes when changing the kernel parameter through MCO.
@@ -34,7 +34,7 @@ Navigate to the node terminal on the web console (Compute -> Nodes -> Select a n
 ```
 $ cat /proc/cmdline
 ```
-Ensure that `intel_iommu=on` is present.
+Ensure that `intel_iommu=on,sm_on` is present.
 
 ```
 $ chroot /host
