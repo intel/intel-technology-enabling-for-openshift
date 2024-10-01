@@ -19,11 +19,11 @@ spec:
           - "./dsa_user_test_runner.sh"
         args:
           - "--skip-config"
-        capabilities:
-          add:
-            [SYS_RAWIO]
+        securityContext:
+          capabilities:
+            add:
+              [SYS_RAWIO]
         resources:
           limits:
             dsa.intel.com/wq-user-dedicated: 1
-      restartPolicy: Never
       serviceAccountName: intel-dsa
