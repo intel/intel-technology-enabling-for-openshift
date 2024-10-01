@@ -6,7 +6,7 @@ kind: GpuDevicePlugin
 metadata:
   name: gpudeviceplugin-sample
 spec:
-  image: registry.connect.redhat.com/intel/intel-gpu-plugin@sha256:5918b7e59a4f58de5c36b0cd739637a3ad070b5f5e249f1f30d391f3b4f43614
+  image: registry.connect.redhat.com/intel/intel-gpu-plugin@sha256:963caf1e6e16b5e297671c536eec04dc57cf45f5cc5cf458bdcafa56bdb97972
   preferredAllocationPolicy: none
   sharedDevNum: 1
   logLevel: 4
