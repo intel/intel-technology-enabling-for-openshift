@@ -4,7 +4,7 @@
 System Management Interface Tool (hl-smi) utility tool obtains information and monitors data of the Intel Gaudi AI accelerators.
 `hl-smi` tool is packaged with the Gaudi base image. Run below command to deploy and execute the tool:
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/hl-smi_job.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.4.0/tests/gaudi/l2/hl-smi_job.yaml
 ```
 
 Verify Output:
@@ -41,7 +41,7 @@ HCCL (Habana Collective Communication Library) demo is a program that demonstrat
 
 Build the workload container image:
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/hccl_build.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.4.0/tests/gaudi/l2/hccl_build.yaml
 ```
 Create service account with required permissions: 
 ```
@@ -50,7 +50,7 @@ $ oc adm policy add-scc-to-user anyuid -z hccl-demo-anyuid-sa -n hccl-demo
 ```
 Deploy and execute the workload:
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/hccl_job.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.4.0/tests/gaudi/l2/hccl_job.yaml
 ```
 
 Verify Output:

@@ -65,7 +65,7 @@ For example:
 ```
   
 ``` 
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/workloads/opea/chatqna/persistent_volumes.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.4.0/workloads/opea/chatqna/persistent_volumes.yaml
 
 ```
 
@@ -86,7 +86,7 @@ create_megaservice_container.sh
 
 ### Deploy Redis Vector Database Service
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/workloads/opea/chatqna/redis_deployment_service.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.4.0/workloads/opea/chatqna/redis_deployment_service.yaml
 
 ```
 
@@ -109,7 +109,7 @@ redis-vector-db       ClusterIP   1.2.3.4          <none>        6379/TCP,8001/T
 Update the inference endpoint from the <image name> in the chatqna_megaservice_deployment.
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/workloads/opea/chatqna/chatqna_megaservice_deployment.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.4.0/workloads/opea/chatqna/chatqna_megaservice_deployment.yaml
 ```
 
 Check that the pod and service are running:
