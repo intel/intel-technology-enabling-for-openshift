@@ -10,7 +10,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: hl-smi-workload
-          image: vault.habana.ai/gaudi-docker/1.17.1/rhel9.4/habanalabs/pytorch-installer-2.3.1:1.17.1-40
+          image: vault.habana.ai/gaudi-docker/1.18.0/rhel9.4/habanalabs/pytorch-installer-2.4.0:1.18.0-524
           command: ["hl-smi"]
           resources:
             limits:
