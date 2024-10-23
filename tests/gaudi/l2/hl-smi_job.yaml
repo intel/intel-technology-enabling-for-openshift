@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: hl-smi-workload
-  namespace: hl-smi-demo
+  namespace: gaudi-validation
 spec:
   template:
     metadata:
