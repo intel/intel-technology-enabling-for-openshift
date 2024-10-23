@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: hccl-demo-workload
-  namespace: hccl-demo
+  namespace: gaudi-validation
 spec:
   template:
     metadata:

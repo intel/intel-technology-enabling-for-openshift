@@ -45,8 +45,8 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 ```
 Create service account with required permissions: 
 ```
-$ oc create sa hccl-demo-anyuid-sa -n hccl-demo
-$ oc adm policy add-scc-to-user anyuid -z hccl-demo-anyuid-sa -n hccl-demo
+$ oc create sa hccl-demo-anyuid-sa -n gaudi-validation
+$ oc adm policy add-scc-to-user anyuid -z hccl-demo-anyuid-sa -n gaudi-validation
 ```
 Deploy and execute the workload:
 ```
