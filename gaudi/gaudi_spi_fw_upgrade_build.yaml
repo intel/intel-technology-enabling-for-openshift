@@ -1,0 +1,39 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: gaudi-spi-fw-upgrade
+  namespace: gaudi-spi-fw-upgrade
+---
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: gaudi-spi-fw-upgrade
+  namespace: gaudi-spi-fw-upgrade
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: gaudi-spi-fw-upgrade:1.18.0-524
+  strategy:
+    type: Docker
+  source:
+    type: Dockerfile
+    dockerfile: >+
+      ARG
+      BUILDER=vault.habana.ai/gaudi-docker/1.18.0/rhel9.4/habanalabs/pytorch-installer-2.4.0:1.18.0-524
+
+      FROM ${BUILDER} AS builder
+
+      RUN echo "[habanalabs]" > /etc/yum.repos.d/habanalabs.repo && \
+        echo "name=Habana RH9 Linux repo" >> /etc/yum.repos.d/habanalabs.repo && \
+        echo "baseurl=https://vault.habana.ai/artifactory/rhel/9/9.4" >> /etc/yum.repos.d/habanalabs.repo && \
+        echo "gpgkey=https://vault.habana.ai/artifactory/api/v2/repositories/rhel/keyPairs/primary/public" >> /etc/yum.repos.d/habanalabs.repo && \
+        echo "gpgcheck=1" >> /etc/yum.repos.d/habanalabs.repo
+     
+      RUN yum makecache && dnf install -y habanalabs-firmware-odm           
+  triggers:
+    - type: ConfigChange
+  runPolicy: Serial
