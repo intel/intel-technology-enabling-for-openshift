@@ -6,25 +6,25 @@ This workload runs [qatlib](https://github.com/intel/qatlib) sample tests using 
 Please replace the credentials in buildconfig yaml with your RedHat account login credentials. 
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_build.yaml 
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.0/tests/l2/qat/qatlib_build.yaml 
 ```
 
 * Create SCC intel-qat-scc for Intel QAT based workload, if this SCC is not created   
   
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/qatlib_scc.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.0/security/qatlib_scc.yaml
 ```
       
 * Create the intel-qat service account to use intel-qat-scc
   
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/qatlib_rbac.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.0/security/qatlib_rbac.yaml
 ```
 
 * Deploy the qatlib workload job with intel-qat service account
   
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_job.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.0/tests/l2/qat/qatlib_job.yaml
 ```
 
 * Check the results.
