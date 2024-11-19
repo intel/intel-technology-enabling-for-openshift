@@ -29,7 +29,7 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 
 * Check the results.
 ``` 
-  $ oc get pods
+  $ oc get pods -n intel-qat
   intel-qat-workload-c6g9v   0/1     Completed   0          4m13s
 ```
 
@@ -37,7 +37,7 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 * For all sample tests `cpa_sample_code` 
 
 ```
-$ oc logs intel-qat-workload-c6g9v
+$ oc logs intel-qat-workload-c6g9v -n intel-qat
 qaeMemInit started
 icp_sal_userStartMultiProcess("SSL") started
 There are no crypto instances
