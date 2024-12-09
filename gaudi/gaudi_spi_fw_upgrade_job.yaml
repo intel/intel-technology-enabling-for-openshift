@@ -1,0 +1,21 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gaudi-spi-firmware-upgrade
+  namespace: gaudi-spi-fw-upgrade
+spec:
+  template:
+    metadata:
+    spec:
+      restartPolicy: Never
+      serviceAccountName: gaudi-fw-upgrade-sa
+      containers:
+        - name: gaudi-spi-firmware-upgrade
+          securityContext:
+            privileged: true
+          image: image-registry.openshift-image-registry.svc:5000/gaudi-spi-fw-upgrade/gaudi-spi-fw-upgrade:1.18.0-524
+          command: [ "hl-fw-loader", "-y" ]
+          imagePullPolicy: Always
