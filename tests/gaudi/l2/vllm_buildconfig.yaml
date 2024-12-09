@@ -1,0 +1,35 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: vllm-workload
+  namespace: gaudi-validation
+spec: {}
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: vllm-workload
+  namespace: gaudi-validation
+spec:
+  triggers:
+    - type: "ConfigChange"
+    - type: "ImageChange"
+  runPolicy: "Serial"
+  source:
+    git:
+      uri: https://github.com/opendatahub-io/vllm.git
+      ref: main-gaudi
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile.hpu.ubi
+      buildArgs:
+        - name: "BASE_IMAGE"
+          value: "vault.habana.ai/gaudi-docker/1.18.0/rhel9.4/habanalabs/pytorch-installer-2.4.0:1.18.0-524"
+  output:
+    to:
+      kind: ImageStreamTag
+      name: vllm-workload:latest
