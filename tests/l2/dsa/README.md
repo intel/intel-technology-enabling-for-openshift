@@ -29,13 +29,13 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 
 * Check the results.
 ``` 
-  $ oc get pods
+  $ oc get pods -n <namespace_name>
   intel-dsa-workload-244xm   0/1     Completed   0          3m12s
 ```
 
 * sample test logs
 ```
-$ oc logs intel-dsa-workload-244xm
+$ oc logs intel-dsa-workload-244xm -n <namespace_name>
 dsa0/wq0.1
 dsa0
 Testing with 'block on fault' flag ON
