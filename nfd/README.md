@@ -23,9 +23,13 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 ```
 
 ## Verification 
+Use the following command to get the node name
+```
+$ oc get nodes
+```
 Use the command shown below to verify whether the nodes are labeled properly by NFD:
 ```
-$ oc describe node node_name | grep intel.feature.node.kubernetes.io
+$ oc describe node <node_name> | grep intel.feature.node.kubernetes.io
 ```
 Example output: 
 ```
