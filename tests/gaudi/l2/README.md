@@ -9,12 +9,12 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 
 Verify Output:
 ```
-$ oc get pods
+$ oc get pods -n gaudi-validation
 NAME                         READY   STATUS      RESTARTS   AGE
 hl-smi-workload-2-f5qgs      0/1     Completed   0          27m
 ```
 ```
-$ oc logs hl-smi-workload-2-f5qgs
+$ oc logs hl-smi-workload-2-f5qgs -n gaudi-validation
 +-----------------------------------------------------------------------------+
 | HL-SMI Version:                                hl-1.17.1-fw-51.5.0          |
 | Driver Version:                                     1.17.1-78932ae          |
@@ -55,13 +55,13 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 
 Verify Output:
 ``` 
-$ oc get pods
+$ oc get pods -n gaudi-validation
 NAME                         READY   STATUS      RESTARTS   AGE
 hccl-demo-workload-1-build   0/1     Completed   0          23m
 hccl-demo-workload-wq8mx     0/1     Completed   0          10m
 ```
 ```
-$ oc logs hccl-demo-workload-wq8mx
+$ oc logs hccl-demo-workload-wq8mx -n gaudi-validation
 Affinity: Numa mapping directory: /tmp/affinity_topology_output
 Affinity: Script has not been executed before, going to execute...
 Affinity: Script has finished successfully
