@@ -46,3 +46,22 @@ Execute below single command to provision Intel Gaudi Accelerator:
 ```
 $ ansible-playbook gaudi_provisioning_playbook.yaml
 ```
+
+## Reference Playbook – Intel Gaudi Provisioning and SW Stack Validation
+This playbook demonstrates the one-click solution to validate Gaudi provisioning and software stack on RHOCP. This playbook validates L1, L2 and L3 level test cases in [Verify Intel® Gaudi® AI Accelerator Provisioning](/tests/gaudi/l2/README.md).
+
+### Prerequisite
+Before running the playbook, ensure the following prerequisites are met:
+- Provisioned RHOCP cluster
+- RHOCP cluster with provisioned with Intel Gaudi Base Operator. Refer [Setting up Intel Gaudi Base Operator](/gaudi/README.md#setting-up-intel-gaudi-base-operator)
+
+### Run the Playbook
+To run the ansible playbook, clone this repository to your RHEL system. Navigate to the directory containing the playbook. 
+```
+$ git clone https://github.com/intel/intel-technology-enabling-for-openshift.git
+$ cd intel-technology-enabling-for-openshift/one_click 
+```
+Execute below single command to Validate Intel Gaudi accelerator provisioning and SW stack:
+```
+$ ansible-playbook gaudi_validation_playbook.yaml
+```
