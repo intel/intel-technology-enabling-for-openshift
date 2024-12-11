@@ -117,3 +117,6 @@ The resources provided are the user interface for customers to claim and consume
 | Feature | Resources | Description |
 | ------- | --------- | ----------- |
 | Habana Gaudi | `habana.ai/gaudi` | Number of Habana Gaudi Card resources ready to claim | 
+
+## Upgrade Intel Gaudi SPI Firmware
+Refer [Upgrade Intel Gaudi SPI Firmware](/gaudi/Gaudi-SPI-Firmware-Upgrade.md) to upgrade the SPI Firmware on Intel Gaudi.
