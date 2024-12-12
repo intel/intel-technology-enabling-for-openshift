@@ -12,6 +12,7 @@ spec:
         - name: hl-smi-workload
           image: vault.habana.ai/gaudi-docker/1.18.0/rhel9.4/habanalabs/pytorch-installer-2.4.0:1.18.0-524
           command: ["hl-smi"]
+          # args: ["--fw-version"]
           resources:
             limits:
               habana.ai/gaudi: 8

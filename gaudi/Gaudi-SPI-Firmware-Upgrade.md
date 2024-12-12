@@ -10,6 +10,8 @@ To upgrade Intel Gaudi SPI Firmware, follow below steps:
     ```
 
 ## SPI Firmware Upgrade
+Check the Gaudi firmware version using the [hl-smi workload](/tests/gaudi/l2/hl-smi_job.yaml) with the argument ```--fw-version```. Follow the upgrade process as below.
+
 Build the container image with `habanalabs-firmware-odm` tool:
 ```
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/gaudi/gaudi_spi_fw_upgrade_build.yaml
