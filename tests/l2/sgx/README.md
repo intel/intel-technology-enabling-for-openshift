@@ -13,12 +13,12 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 
 *	Check the results.
 ```
-  $ oc get pods
+  $ oc get pods -n intel-sgx
   intel-sgx-job-4tnh5          0/1     Completed   0          2m10s
   intel-sgx-workload-1-build   0/1     Completed   0          30s
 ```
 ```
-$ oc logs intel-sgx-job-4tnh5
+$ oc logs intel-sgx-job-4tnh5 -n intel-sgx
   Checksum(0x0x7fffac6f41e0, 100) = 0xfffd4143
   Info: executing thread synchronization, please wait...
   Info: SampleEnclave successfully returned.
