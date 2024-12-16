@@ -75,8 +75,6 @@ Welcome to HCCL demo
 [BENCHMARK]     Algo Bandwidth : 147.548069 GB/s
 ####################################################################################################
 ```
-<<<<<<< HEAD
-=======
 
 ## vLLM 
 vLLM is a serving engine for LLM's. The following workloads deploys a VLLM server with an LLM using Intel Gaudi. Refer to [Intel Gaudi vLLM fork](https://github.com/HabanaAI/vllm-fork.git) for more details.
@@ -85,7 +83,7 @@ Build the workload container image:
 ```
 git clone https://github.com/HabanaAI/vllm-fork.git --branch v1.18.0
 
-cd vllm/
+cd vllm-fork/
 
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/vllm_buildconfig.yaml
 
@@ -175,4 +173,3 @@ sh-5.1# curl http://vllm-workload.gaudi-validation.svc.cluster.local:8000/v1/com
       }'
 {"id":"cmpl-9a0442d0da67411081837a3a32a354f2","object":"text_completion","created":1730321284,"model":"meta-llama/Llama-3.1-8B","choices":[{"index":0,"text":" group of individual stars that forms a pattern or figure","logprobs":null,"finish_reason":"length","stop_reason":null}],"usage":{"prompt_tokens":5,"total_tokens":15,"completion_tokens":10}}
 ```
->>>>>>> 46ef40e (tests_gaudi: Added L2 vllm workload)
