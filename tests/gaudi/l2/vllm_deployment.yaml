@@ -1,0 +1,66 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: vllm-workload-pvc
+  namespace: gaudi-validation
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 60Gi
+  storageClassName: ""  # Add your storage class
+  volumeMode: Filesystem
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm-workload
+  namespace: gaudi-validation
+labels:
+    app: vllm-workload
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vllm-workload
+  template:
+    metadata:
+      labels:
+        app: vllm-workload
+    spec:
+      containers:
+        - name: vllm-container
+          image: image-registry.openshift-image-registry.svc:5000/gaudi-validation/vllm-workload:latest
+          command: [ "/bin/bash", "-c", "--" ]
+          args: ["vllm serve meta-llama/Llama-3.1-8B"] # Add the model 
+          ports:
+          - containerPort: 8000
+          resources:
+            limits:
+              habana.ai/gaudi: 1
+          env:
+            - name: HF_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: hf-token
+                  key: hf-token
+            - name: HF_HOME
+              value: /home/vllm/.cache/huggingface
+            - name: HF_HUB_OFFLINE
+              value: "0"
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: hf-cache 
+              mountPath: /home/vllm/.cache
+            - name: shm
+              mountPath: /dev/shm
+      volumes:
+        - name: hf-cache
+          persistentVolumeClaim:
+            claimName: vllm-workload-pvc
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: "2Gi"
