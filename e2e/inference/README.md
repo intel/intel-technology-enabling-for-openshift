@@ -75,6 +75,8 @@ Follow the [link](https://github.com/openvinotoolkit/operator/blob/main/docs/not
 ```
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/e2e/inference/accelerator_profile_gaudi.yaml
 ```
+## Intel Gaudi AI Accelerator with Intel® Gaudi AI Software Tools Containers on OpenShift AI
+To use Intel Gaudi AI Accelerator with Intel® Gaudi AI Software Tools Containers on OpenShift AI, follow the [documentation](https://github.com/intel/ai-containers/blob/main/enterprise/redhat/openshift-ai/gaudi/README.md).
 
 ## See Also 
 [GPU accelerated demo with OpenVINO](https://www.youtube.com/watch?v=3fTz_k4JT2A)
