@@ -61,7 +61,7 @@ To create a Habana Gaudi device plugin CR, follow the steps below.
 1.	Go to **Operator** -> **Installed Operators**.
 2.	Open **Intel Gaudi Base Operator**.
 3.	Navigate to tab **Device Config**.
-4.	Click **Create DeviceConfig** -> set correct parameters -> Click **Create**. To set correct parameters please refer [Using RedHat OpenShift Console](https://docs.habana.ai/en/latest/Orchestration/Intel_Gaudi_Base_Operator/Deploying_Intel_Gaudi_Base_Operator.html#id2).
+4.	Click **Create DeviceConfig** -> set correct parameters -> Click **Create**. To set correct parameters please refer [Using RedHat OpenShift Console](https://docs.habana.ai/en/latest/Installation_Guide/Additional_Installation/Intel_Gaudi_Base_Operator/Deploying_Intel_Gaudi_Base_Operator.html?highlight=openshift#id2).
 
 ### Verify via web console
 1.	Verify CR by checking the status of **Workloads** -> **DaemonSet** -> **habana-ai-module-device-plugin-xxxxx**.
