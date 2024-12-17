@@ -10,13 +10,13 @@ metadata:
 spec:
    devicePlugin:
       image: vault.habana.ai/docker-k8s-device-plugin/docker-k8s-device-plugin
-      version: 1.17.1
+      version: 1.18.0
    driver:
       image: image-registry.openshift-image-registry.svc:5000/habana-ai-operator/habana-ai-driver
-      version: 1.17.1-40
+      version: 1.18.0-524
    habanaRuntime:
-      image: vault.habana.ai/habana-ocp-operator/1.17.1/habana-runtime
-      version: 1.17.1-40
+      image: vault.habana.ai/habana-ocp-operator/1.18.0/habana-runtime
+      version: 1.18.0-524
    nodeMetrics:
       image: vault.habana.ai/gaudi-metric-exporter/metric-exporter
-      version: 1.17.1-40
+      version: 1.18.0-524
