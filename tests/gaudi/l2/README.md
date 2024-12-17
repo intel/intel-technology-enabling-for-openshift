@@ -173,3 +173,21 @@ sh-5.1# curl http://vllm-workload.gaudi-validation.svc.cluster.local:8000/v1/com
       }'
 {"id":"cmpl-9a0442d0da67411081837a3a32a354f2","object":"text_completion","created":1730321284,"model":"meta-llama/Llama-3.1-8B","choices":[{"index":0,"text":" group of individual stars that forms a pattern or figure","logprobs":null,"finish_reason":"length","stop_reason":null}],"usage":{"prompt_tokens":5,"total_tokens":15,"completion_tokens":10}}
 ```
+
+## Check firmware version with hl-smi
+System Management Interface Tool (hl-smi) utility tool obtains information and monitors data of the Intel Gaudi AI accelerators.
+Run below command to check firmware version with the tool:
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/hl-smi-firmware_job.yaml
+```
+
+Verify Output:
+```
+$ oc get pods -n gaudi-validation
+NAME                      READY   STATUS      RESTARTS   AGE
+hl-smi-firmware-pxhsn     0/1     Completed   0          11s
+```
+```
+$ oc logs hl-smi-firmware-pxhsn -n gaudi-validation
+        Firmware [SPI] Version          : Preboot version hl-gaudi2-1.16.0-fw-50.1.2-sec-9 (May 26 2024 - 11:33:04)
+```
