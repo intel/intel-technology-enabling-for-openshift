@@ -11,7 +11,7 @@ spec:
       serviceAccountName: hccl-demo-anyuid-sa
       containers:
         - name: hccl-demo-workload
-          image: image-registry.openshift-image-registry.svc:5000/hccl-demo/hccl-demo-workload:1.18.0-524
+          image: image-registry.openshift-image-registry.svc:5000/gaudi-validation/hccl-demo-workload:1.18.0-524
           workingDir: "/hccl_demo"
           command: ["/bin/bash",  "-c", "--"]
           ## sleep for 20 seconds to avoid race condition 
