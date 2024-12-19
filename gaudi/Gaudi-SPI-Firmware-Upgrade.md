@@ -8,6 +8,7 @@ To upgrade Intel Gaudi SPI Firmware, follow below steps:
     $ lsmod | grep habana
     
     ```
+  - Check the firmware version following the [firmware version check](https://github.com/intel/intel-technology-enabling-for-openshift/tree/main/tests/gaudi/l2#check-firmware-version-with-hl-smi).
 
 ## SPI Firmware Upgrade
 Build the container image with `habanalabs-firmware-odm` tool:
@@ -37,15 +38,4 @@ $ oc logs gaudi-spi-firmware-upgrade-ndmjp
 ####
 #### Finished sending firmware: OK
 ```
-Verify using `hl-smi` tool: 
-```
-sh-5.1$ hl-smi -L | grep SPI
-    Firmware [SPI] Version          : Preboot version hl-gaudi2-1.18.0-fw-53.1.1-sec-9 (Oct 02 2024 - 11:52:39)
-    Firmware [SPI] Version          : Preboot version hl-gaudi2-1.18.0-fw-53.1.1-sec-9 (Oct 02 2024 - 11:52:39)
-    Firmware [SPI] Version          : Preboot version hl-gaudi2-1.18.0-fw-53.1.1-sec-9 (Oct 02 2024 - 11:52:39)
-    Firmware [SPI] Version          : Preboot version hl-gaudi2-1.18.0-fw-53.1.1-sec-9 (Oct 02 2024 - 11:52:39)
-    Firmware [SPI] Version          : Preboot version hl-gaudi2-1.18.0-fw-53.1.1-sec-9 (Oct 02 2024 - 11:52:39)
-    Firmware [SPI] Version          : Preboot version hl-gaudi2-1.18.0-fw-53.1.1-sec-9 (Oct 02 2024 - 11:52:39)
-    Firmware [SPI] Version          : Preboot version hl-gaudi2-1.18.0-fw-53.1.1-sec-9 (Oct 02 2024 - 11:52:39)
-    Firmware [SPI] Version          : Preboot version hl-gaudi2-1.18.0-fw-53.1.1-sec-9 (Oct 02 2024 - 11:52:39)
-```
+Verify by following the [firmware version check](https://github.com/intel/intel-technology-enabling-for-openshift/tree/main/tests/gaudi/l2#check-firmware-version-with-hl-smi). 
