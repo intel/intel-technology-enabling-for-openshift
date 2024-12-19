@@ -79,6 +79,10 @@ Welcome to HCCL demo
 ## vLLM 
 vLLM is a serving engine for LLM's. The following workloads deploys a VLLM server with an LLM using Intel Gaudi. Refer to [Intel Gaudi vLLM fork](https://github.com/HabanaAI/vllm-fork.git) for more details.
 
+Use the gaudi-validation project
+```
+$ oc project gaudi-validation
+```
 Build the workload container image:
 ```
 git clone https://github.com/HabanaAI/vllm-fork.git --branch v1.18.0
@@ -104,6 +108,7 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 ```
 meta-llama/Llama-3.1-8B model is used in this deployment and the hugging face token is used to access such gated models.
 * For the PV setup with NFS, refer to [documentation](https://docs.openshift.com/container-platform/4.17/storage/persistent_storage/persistent-storage-nfs.html).
+* The vLLM pod needs to access the host's shared memory for tensor parallel inference, which is mounted as a volume.
 ```
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/vllm_deployment.yaml
 ```
@@ -160,7 +165,27 @@ Loading safetensors checkpoint shards: 75% Completed | 3/4 [00:10<00:03, 3.59s/i
 Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:11<00:00, 2.49s/it]
 Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:11<00:00, 2.93s/it]
 ```
-Run inference requests using the service url.
+
+* The internal service url is used to run inference requests to the vLLM server. This service is only accessible from pods running within the same namespace i.e gaudi-validation. Run the below commands to create a sample pod and run requests.
+
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/test-pod.yaml
+```
+
+Check for the pod
+
+```
+$ oc get pods
+NAME                           READY   STATUS      RESTARTS   AGE
+test                           1/1     Running     0          2s
+```
+
+Use the command below to enter pod terminal to run curl requests
+
+```
+$ oc debug pod/test
+```
+
 ```
 sh-5.1# curl  "http://vllm-workload.gaudi-validation.svc.cluster.local:8000/v1/models"{"object":"list","data":[{"id":"meta-llama/Llama-3.1-8B","object":"model","created":1730317412,"owned_by":"vllm","root":"meta-llama/Llama-3.1-8B","parent":null,"max_model_len":131072,"permission":[{"id":"modelperm-452b2bd990834aa5a9416d083fcc4c9e","object":"model_permission","created":1730317412,"allow_create_engine":false,"allow_sampling":true,"allow_logprobs":true,"allow_search_indices":false,"allow_view":true,"allow_fine_tuning":false,"organization":"*","group":null,"is_blocking":false}]}]}
 ```
