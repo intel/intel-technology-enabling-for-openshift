@@ -1,3 +1,5 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -64,3 +66,15 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: "2Gi"
+      livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 10
+      readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 5
