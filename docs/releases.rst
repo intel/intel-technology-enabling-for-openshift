@@ -3,9 +3,10 @@ Release Information
 
 .. list-table:: 
    :header-rows: 1
-   :widths: 15 10 10 10 10 10 10 10 10 10 10 10
+   :widths: 15 10 10 10 10 10 10 10 10 10 10 10 10
 
    * - **Release**
+     - 1.5.1
      - 1.5.0
      - 1.4.0
      - 1.3.1 for OPEA & Gaudi
@@ -19,6 +20,7 @@ Release Information
      - \-
    * - **Red Hat OpenShift Version**
      - 4.17
+     - 4.17
      - 4.16
      - 4.14
      - 4.15
@@ -31,6 +33,7 @@ Release Information
      - 4.10
    * - **Intel Data Center GPU drivers for OpenShift Version**
      - Driver release work in progress for 4.17
+     - Driver release work in progress for 4.17
      - Driver release work in progress for 4.16
      - same as 4.14 releases
      - `2.2.0 <https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v2.2.0>`_
@@ -40,8 +43,9 @@ Release Information
      - `2.0.0 <https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v2.0.0>`_
      - `1.1.0 <https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v1.1.0>`_
      - `1.0.0 <https://github.com/intel/intel-data-center-gpu-driver-for-openshift/releases/tag/v1.0.0>`_
-     - 
+     - \-
    * - **KMM Operator Version**
+     - 2.1.1
      - 2.1.1
      - 2.1.1
      - same as 4.14 releases
@@ -54,6 +58,7 @@ Release Information
      - 1.0.1
      - \-
    * - **NFD Operator Version**
+     - 4.17.0
      - 4.17.0
      - 4.16.0
      - 4.14.0
@@ -68,6 +73,7 @@ Release Information
    * - **OpenVINO Operator Version**
      - NA
      - NA
+     - NA
      - same as 4.14 releases
      - 1.2.0
      - 1.1.0
@@ -78,6 +84,7 @@ Release Information
      - 1.1.0
      - \-
    * - **RedHat OpenShift AI Operator Version**
+     - NA
      - 2.13.1
      - 2.13.0
      - 2.10.0
@@ -90,6 +97,7 @@ Release Information
      - 1.28.1
      - \-
    * - **Intel Device Plugins Operator Version**
+     - 0.29.1
      - 0.29.1
      - 0.29.1
      - 0.28.0
@@ -111,9 +119,11 @@ Release Information
      - yes
      - yes
      - yes
+     - yes
      - Yes
      - Yes
    * - **Intel QAT**
+     - yes
      - yes
      - yes
      - yes
@@ -126,6 +136,7 @@ Release Information
      - No
      - No
    * - **Intel DSA**
+     - yes
      - yes
      - yes
      - \-
@@ -142,6 +153,7 @@ Release Information
      - yes
      - yes
      - yes
+     - yes
      - Yes
      - Yes
      - Yes
@@ -150,6 +162,7 @@ Release Information
      - Yes
      - No
    * - **Intel Data Center GPU Max Series**
+     - yes
      - yes
      - yes
      - yes
@@ -162,6 +175,7 @@ Release Information
      - No
      - No
    * - **Notes**
+     - Intel Data Center GPU Driver release work in progress for 4.17
      - Intel Data Center GPU Driver release work in progress for 4.17
      - Intel Data Center GPU Driver release work in progress for 4.16
      - 4.14.20 and above
