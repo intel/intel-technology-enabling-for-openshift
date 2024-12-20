@@ -1,6 +1,8 @@
 # Upgrade Intel Gaudi SPI Firmware
 To upgrade Intel Gaudi SPI Firmware, follow below steps: 
 
+**NOTE:** Currently this is only supported on Single Node OpenShift cluster. Multi node cluster support will be added in the future.
+
 ## Prerequisites
 - Make sure Gaudi drivers are unloaded.
   - On Red Hat OpenShift, delete existing deviceConfig Custom Resource. Verify output on the node using below command: 
