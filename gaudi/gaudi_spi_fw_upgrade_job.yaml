@@ -16,6 +16,6 @@ spec:
         - name: gaudi-spi-firmware-upgrade
           securityContext:
             privileged: true
-          image: image-registry.openshift-image-registry.svc:5000/gaudi-spi-fw-upgrade/gaudi-spi-fw-upgrade:1.18.0-524
+          image: image-registry.openshift-image-registry.svc:5000/gaudi-spi-fw-upgrade/gaudi-spi-fw-upgrade:1.19.1-26
           command: [ "hl-fw-loader", "-y" ]
           imagePullPolicy: Always
