@@ -1,0 +1,120 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from https://docs.habana.ai/en/latest/Installation_Guide/Additional_Installation/Kubernetes_Installation/Kubernetes_Operator.html#id2
+#
+apiVersion: habanalabs.habana.ai/v1
+kind: ClusterPolicy
+metadata:
+  name: habana-ai
+spec:
+  image_registry: vault.habana.ai
+  driver:
+    driver_loader:
+      images:
+        ubuntu_22.04:
+          repository: vault.habana.ai/habana-ai-operator/driver/ubuntu22.04/driver-installer
+          tag: 1.19.1-26
+        rhel_8.6:
+          repository: vault.habana.ai/habana-ai-operator/driver/rhel8.6/driver-installer
+          tag: 1.19.1-26
+        rhel_9.2:
+          repository: vault.habana.ai/habana-ai-operator/driver/rhel9.2/driver-installer
+          tag: 1.19.1-26
+        rhel_9.4:
+          repository: vault.habana.ai/habana-ai-operator/driver/rhel9.4/driver-installer
+          tag: 1.19.1-26
+        tencentos_3.1:
+          repository: vault.habana.ai/habana-ai-operator/driver/tencentos3.1/driver-installer
+          tag: 1.19.1-26
+      resources:
+        limits:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+        requests:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+      repo_server: vault.habana.ai
+      repo_path: artifactory/gaudi-installer/repos
+      mlnx_ofed_repo_path: artifactory/gaudi-installer/deps
+      mlnx_ofed_version: mlnx-ofed-5.8-2.0.3.0-rhel8.4-x86_64.tar.gz
+      hugepages: hugepages_number_int_optional
+      external_ports: turn_on_external_port_bool_optional
+      firmware_flush: flush_firmware_on_the_gaudi_cards_bool_optional
+    driver_runner:
+      image:
+        repository: vault.habana.ai/habana-ai-operator/driver/rhel9.4/driver-installer
+        tag: 1.19.1-26
+      resources:
+        limits:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+        requests:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+  device_plugin:
+    image:
+      repository: vault.habana.ai/docker-k8s-device-plugin/docker-k8s-device-plugin
+      tag: 1.19.1
+    resources:
+      limits:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+      requests:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+  runtime:
+    runner:
+      image:
+        repository: vault.habana.ai/habana-ai-operator/habana-container-runtime
+        tag: 1.19.1-26
+      resources:
+        limits:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+        requests:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+    configuration:
+      container_engine: one_of_containerd_docker_crio
+      engine_container_runtime_configuration: container_engine_configuration_optional
+      habana_container_runtime_configuration: container_runtime_configuration_optional
+  metric_exporter:
+    runner:
+      image:
+        repository: vault.habana.ai/gaudi-metric-exporter/metric-exporter
+        tag: 1.19.1-26
+      resources:
+        limits:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+        requests:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+    port: 41611
+    interval: 20
+  feature_discovery:
+    runner:
+      image:
+        repository: vault.habana.ai/habana-ai-operator/habanalabs-feature-discovery
+        tag: 1.19.1-26
+      resources:
+        limits:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+        requests:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+    nfd_plugin: boolean_nfd_installed
+  bmc_monitoring:
+    image:
+      repository: vault.habana.ai/habana-bmc-exporter/bmc-exporter
+      tag: 1.19.1-26
+    resources:
+      limits:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+      requests:
+          cpu: cpu_str_or_int_optional
+          memory: memory_str_optional
+  node_selector:
+    key_optional: value_optional
