@@ -1,0 +1,58 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ServingRuntime
+metadata:
+  name: tgi-gaudi-serving-runtime
+spec:
+  containers:
+  - name: kserve-container
+    image: ghcr.io/huggingface/tgi-gaudi:1.2.1
+    args:
+    - --model-id
+    - /mnt/models/
+    - --port=8080
+    - --num-shard=3 #Number of GPU's
+    - --sharded=true
+    - --json-output
+    env: #Add variables according to the chosen model
+    - name: HF_HOME
+      value: /tmp/hf_home
+    - name: HF_OFFLINE 
+      value: "1"
+    - name: TRANSFORMERS_OFFLINE
+      value: "1"
+    - name: HF_HUB_CACHE
+      value: /mnt/models
+    - name: HUGGING_FACE_HUB_TOKEN
+      valueFrom:
+        secretKeyRef:
+          key: HUGGING_FACE_HUB_TOKEN
+          name: hf-token
+    resources:
+      limits:
+        cpu: "16"
+        memory: 128Gi
+      requests:
+        cpu: "16"
+        memory: 128Gi
+    readinessProbe:
+      exec:
+        command:
+        - curl
+        - localhost:8080/health
+      initialDelaySeconds: 500
+    livenessProbe:
+      exec:
+        command:
+        - curl
+        - localhost:8080/health
+      initialDelaySeconds: 500
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+  multiModel: false
+  supportedModelFormats:
+  - autoSelect: true
+    name: llm
