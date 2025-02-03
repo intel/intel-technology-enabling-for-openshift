@@ -37,6 +37,7 @@ $ oc describe node <node name> | grep qat.intel.com
  qat.intel.com/dc: 32 
  qat.intel.com/dc: 32 
  ```
+**Note**: By default the device plugin creates half resources each for `qat.intel.com/cy` and `qat.intel.com/dc` respectively.
 
 # QAT Device Plugin Configuration
 > **Note**: The QAT device plugin can be configured with the flags. In this release, only the configurations in the table below are verified and supported on RHOCP. 
@@ -59,11 +60,17 @@ In this release, if the user does not configure the QAT resources through the de
 Users can use the steps below to customize the QAT resource configuration:  
 1. Create the configmap for qat resource configuration 
     ```
-    $ oc create configmap --namespace=openshift-operators --from-literal "qat.conf=ServicesEnabled=<option>" Name of ConfigMap 
+    $ oc create configmap --namespace=openshift-operators --from-literal "qat.conf=ServicesEnabled=<option>" <name-of-configmap> 
     ```
     Options:  
-    `dc`: Configure all the QAT VF devices managed by the device plugin CR for compression/decompression.  
-    `sym;asym`: Configure all the QAT VF devices managed by the device plugin CR for cryptography 
+    `dc`: Configure all the QAT VF devices managed by the device plugin CR for compression/decompression. The resource created is `qat.intel.com/dc`.
+
+    `sym;asym`: Configure all the QAT VF devices managed by the device plugin CR for cryptography. The resource created is `qat.intel.com/cy`.
+
+    `sym;dc`: Configure all the QAT VF devices managed by the device plugin CR for symmetric compression/decompression. The resource created is `qat.intel.com/sym-dc`.
+
+    `asym;dc`:Configure all the QAT VF devices managed by the device plugin CR for asymmetric compression/decompression. The resource created is `qat.intel.com/asym-dc`.
+
 2. Create QAT device plugin CR with -provisioning-config set as the name of the ConfigMap (created in step 1) in the qat_device_plugin.yaml file or set ConfigMap name in the provisioning-config option from web console. 
 
 # Run Intel QAT based workloads on RHOCP
