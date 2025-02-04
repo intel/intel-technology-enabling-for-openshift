@@ -20,14 +20,17 @@ spec:
   runPolicy: "Serial"
   source:
     type: Dockerfile
+    git:
+        uri: https://github.com/HabanaAI/vllm-fork.git
+        ref: v0.6.4.post2+Gaudi-1.19.0
     dockerfile: |
-        ARG BASE_IMAGE=vault.habana.ai/gaudi-docker/1.18.0/rhel9.4/habanalabs/pytorch-installer-2.4.0:1.18.0-524
+        ARG BASE_IMAGE=vault.habana.ai/gaudi-docker/1.19.1/rhel9.4/habanalabs/pytorch-installer-2.5.1:1.19.1-26
         FROM ${BASE_IMAGE} as habana-base
 
         USER root
 
         ENV VLLM_TARGET_DEVICE="hpu"
-        ENV HABANA_SOFTWARE_VERSION="1.18.0-524"
+        ENV HABANA_SOFTWARE_VERSION="1.19.1"
 
         RUN dnf -y update --best --allowerasing --skip-broken && dnf clean all
 
@@ -129,7 +132,7 @@ spec:
     dockerStrategy:
       buildArgs:
         - name: "BASE_IMAGE"
-          value: "vault.habana.ai/gaudi-docker/1.18.0/rhel9.4/habanalabs/pytorch-installer-2.4.0:1.18.0-524"
+          value: "vault.habana.ai/gaudi-docker/1.19.1/rhel9.4/habanalabs/pytorch-installer-2.5.1:1.19.1-26"
   output:
     to:
       kind: ImageStreamTag
