@@ -85,13 +85,8 @@ $ oc project gaudi-validation
 ```
 Build the workload container image:
 ```
-git clone https://github.com/HabanaAI/vllm-fork.git --branch v1.18.0
-
-cd vllm-fork/
-
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/vllm_buildconfig.yaml
 
-$ oc start-build vllm-workload --from-dir=./ --follow
 ```
 Check if the build has completed
 ```
