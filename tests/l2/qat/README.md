@@ -1,6 +1,22 @@
 ### Verify Intel® QuickAssist Technology provisioning
 This workload runs [qatlib](https://github.com/intel/qatlib) sample tests using RedHat built and distributed Qatlib RPM packages from the codeready-builder-for-rhel-9-x86_64-rpms repo. Refer to the [qatlib readme](https://github.com/intel/qatlib/blob/main/INSTALL) for more details. 
+### As a prerequisite - configure the OCP 4.16 QAT nodes to be do sym-dc :
+The ConfigMap to enable sym-dc since there is no way to have cy and dc in two different endPoints 
+https://github.com/intel/intel-device-plugins-for-kubernetes/blob/5f305b4a96314c5486256baa330434ad48d147e3/cmd/qat_plugin/dpdkdrv/dpdkdrv.go#L418
+or
+https://github.com/intel/intel-device-plugins-for-kubernetes/blob/b19c91f8f1b935edade27e46848686025f3d96db/cmd/qat_plugin/dpdkdrv/dpdkdrv.go#L449
 
+:
+```
+apiVersion: v1
+data:
+  qat.conf: ServicesEnabled=sym;dc
+kind: ConfigMap
+metadata:
+  name: qat-services-cm
+  namespace: openshift-operators
+
+```
 *	Build the workload container image
 
 Please replace the credentials in buildconfig yaml with your RedHat account login credentials. 
@@ -20,8 +36,52 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 ```
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/qatlib_rbac.yaml
 ```
+Please replace above qatlib_rbac.yaml with this (namespace: intel-qat goes into metadata:)
+```
+# Copyright (c) 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: intel-qat
+  namespace: intel-qat
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: intel-qat
+  namespace: intel-qat
+rules:
+- apiGroups:
+  - security.openshift.io
+  resources:
+  - securitycontextconstraints
+  resourceNames:
+  - intel-qat-scc
+  verbs:
+  - use
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: intel-qat
+  namespace: intel-qat
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: intel-qat
+subjects:
+- kind: ServiceAccount
+  name: intel-qat
+  #namespace: intel-qat
+
+```
 
 * Deploy the qatlib workload job with intel-qat service account
+
+in the bellow job replace the request and limits for cy: 1 and dc: 1 by one single line in each:
+qat.intel.com/sym-dc: '2' #Or maybe 1 . can work?
   
 ```
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/qat/qatlib_job.yaml
