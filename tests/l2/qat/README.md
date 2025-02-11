@@ -1,6 +1,12 @@
 ### Verify Intel® QuickAssist Technology provisioning
 This workload runs [qatlib](https://github.com/intel/qatlib) sample tests using RedHat built and distributed Qatlib RPM packages from the codeready-builder-for-rhel-9-x86_64-rpms repo. Refer to the [qatlib readme](https://github.com/intel/qatlib/blob/main/INSTALL) for more details. 
 
+* Create and use ```intel-qat``` namespace for the workload
+
+```
+$ oc new-project intel-qat
+```
+
 *	Build the workload container image
 
 Please replace the credentials in buildconfig yaml with your RedHat account login credentials. 
