@@ -37,6 +37,7 @@ $ oc describe node <node name> | grep qat.intel.com
  qat.intel.com/dc: 32 
  qat.intel.com/dc: 32 
  ```
+**Note**: By default the device plugin registers half resources each for `qat.intel.com/cy` and `qat.intel.com/dc` respectively. For more details about the QAT resources configuration, please refer to the QAT Device Plugin Configuration section below.
 
 # QAT Device Plugin Configuration
 > **Note**: The QAT device plugin can be configured with the flags. In this release, only the configurations in the table below are verified and supported on RHOCP. 
@@ -54,16 +55,25 @@ For more details about the QAT device plugin configuration flags, see [Modes and
 
 **NOTE**: In this release, this is an experimental feature. The efforts to [enhance this feature](https://github.com/intel/intel-device-plugins-for-kubernetes/issues/1529) and [make it more stable](https://github.com/intel/intel-device-plugins-for-kubernetes/issues/1542) are on going.
 
-In this release, if the user does not configure the QAT resources through the device plugin `-provisioning-config` flag. The device plugin will configure half of the QAT VFIO VF devices for compression/decompression and the other half for cryptography.
-
 Users can use the steps below to customize the QAT resource configuration:  
 1. Create the configmap for qat resource configuration 
     ```
-    $ oc create configmap --namespace=openshift-operators --from-literal "qat.conf=ServicesEnabled=<option>" Name of ConfigMap 
+    $ oc create configmap --namespace=openshift-operators --from-literal "qat.conf=ServicesEnabled=<option>" <name-of-configmap> 
     ```
-    Options:  
-    `dc`: Configure all the QAT VF devices managed by the device plugin CR for compression/decompression.  
-    `sym;asym`: Configure all the QAT VF devices managed by the device plugin CR for cryptography 
+    Options- (refer to [link](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-driver-qat) for more details):  
+    `dc` : Configure all the QAT VF devices managed by the device plugin CR for compression services. The resource created is `qat.intel.com/dc`.
+
+    `sym;asym` and `asym;sym`: Configure all the QAT VF devices managed by the device plugin CR for crypto services. The resource created is `qat.intel.com/cy`.
+
+    `sym;dc` and `dc;sym` : Configure all the QAT VF devices managed by the device plugin CR for symmetric crypto and compression services. The resource created is `qat.intel.com/sym-dc`.
+
+    `asym;dc` and `dc;asym`: Configure all the QAT VF devices managed by the device plugin CR for asymmetric crypto and compression services. The resource created is `qat.intel.com/asym-dc`.
+
+    `sym`: Configure all the QAT VF devices managed by the device plugin CR for running symmetric crypto services. The resource created is `qat.intel.com/cy`. 
+
+    `asym`: Configure all the QAT VF devices managed by the device plugin CR for running asymmetric crypto services. The resource created is `qat.intel.com/cy`. 
+
+
 2. Create QAT device plugin CR with -provisioning-config set as the name of the ConfigMap (created in step 1) in the qat_device_plugin.yaml file or set ConfigMap name in the provisioning-config option from web console. 
 
 # Run Intel QAT based workloads on RHOCP
