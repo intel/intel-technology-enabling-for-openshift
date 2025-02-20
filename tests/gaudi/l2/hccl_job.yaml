@@ -1,3 +1,6 @@
+# Copyright (c) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -11,7 +14,7 @@ spec:
       serviceAccountName: hccl-demo-anyuid-sa
       containers:
         - name: hccl-demo-workload
-          image: image-registry.openshift-image-registry.svc:5000/gaudi-validation/hccl-demo-workload:1.18.0-524
+          image: image-registry.openshift-image-registry.svc:5000/gaudi-validation/hccl-demo-workload:1.19.1-26
           workingDir: "/hccl_demo"
           command: ["/bin/bash",  "-c", "--"]
           ## sleep for 20 seconds to avoid race condition 
