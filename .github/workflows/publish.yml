@@ -8,6 +8,7 @@ on:
       - release-v1.4.0
       - release-v1.5.0
       - release-v1.5.1
+      - release-v1.5.2
 
 permissions:
   contents: read
@@ -94,6 +95,17 @@ jobs:
         rm -rf _work/venv
         make vhtml
         mv _build/html $HOME/output/v1.5.1
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        ref: release-v1.5.2
+    - name: Build release-v1.5.2
+      run: |
+        export GITHUB_SHA=$(git rev-parse HEAD)
+        export GITHUB_SHA_REF=$(git rev-parse --abbrev-ref HEAD)
+        rm -rf _work/venv
+        make vhtml
+        mv _build/html $HOME/output/v1.5.2
     - name: Deploy the docs
       shell: bash
       env:
