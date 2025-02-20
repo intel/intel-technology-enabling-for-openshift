@@ -4,7 +4,7 @@
 System Management Interface Tool (hl-smi) utility tool obtains information and monitors data of the Intel Gaudi AI accelerators.
 `hl-smi` tool is packaged with the Gaudi base image. Run below command to deploy and execute the tool:
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/hl-smi_job.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.2/tests/gaudi/l2/hl-smi_job.yaml
 ```
 
 Verify Output:
@@ -41,7 +41,7 @@ HCCL (Habana Collective Communication Library) demo is a program that demonstrat
 
 Build the workload container image:
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/hccl_build.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.2/tests/gaudi/l2/hccl_build.yaml
 ```
 Create service account with required permissions: 
 ```
@@ -50,7 +50,7 @@ $ oc adm policy add-scc-to-user anyuid -z hccl-demo-anyuid-sa -n gaudi-validatio
 ```
 Deploy and execute the workload:
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/hccl_job.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.2/tests/gaudi/l2/hccl_job.yaml
 ```
 
 Verify Output:
@@ -85,7 +85,7 @@ $ oc project gaudi-validation
 ```
 Build the workload container image:
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/vllm_buildconfig.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.2/tests/gaudi/l2/vllm_buildconfig.yaml
 
 ```
 Check if the build has completed
@@ -99,13 +99,13 @@ gaudi-validation   vllm-workload-1    Docker   Dockerfile   Complete   7 minutes
 Deploy the workload:
 * Update the hugging face token in the ```vllm_hf_secret.yaml``` file, refer to [link](https://huggingface.co/docs/hub/en/security-tokens) for more details. 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/vllm_hf_secret.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.2/tests/gaudi/l2/vllm_hf_secret.yaml
 ```
 meta-llama/Llama-3.1-8B model is used in this deployment and the hugging face token is used to access such gated models.
 * For the PV setup with NFS, refer to [documentation](https://docs.openshift.com/container-platform/4.17/storage/persistent_storage/persistent-storage-nfs.html).
 * The vLLM pod needs to access the host's shared memory for tensor parallel inference, which is mounted as a volume.
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/vllm_deployment.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.2/tests/gaudi/l2/vllm_deployment.yaml
 ```
 Create the vllm service
 ```
@@ -164,7 +164,7 @@ Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:11<00:00, 2.93s/
 * The internal service url is used to run inference requests to the vLLM server. This service is only accessible from pods running within the same namespace i.e gaudi-validation. Run the below commands to create a sample pod and run requests.
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/test-pod.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.2/tests/gaudi/l2/test-pod.yaml
 ```
 
 Check for the pod
@@ -198,7 +198,7 @@ sh-5.1# curl http://vllm-workload.gaudi-validation.svc.cluster.local:8000/v1/com
 System Management Interface Tool (hl-smi) utility tool obtains information and monitors data of the Intel Gaudi AI accelerators.
 Run below command to check firmware version with the tool:
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/gaudi/l2/hl-smi-firmware_job.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.2/tests/gaudi/l2/hl-smi-firmware_job.yaml
 ```
 
 Verify Output:

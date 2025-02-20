@@ -24,7 +24,7 @@ Any contribution in this area is welcome.
 * Turn on `intel_iommu,sm_on` kernel parameter and load `vfio_pci` at boot for QAT and DSA provisioning
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-iommu-on.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.5.2/machine_configuration/100-intel-iommu-on.yaml
 ```
 
 Note: This will reboot the worker nodes when changing the kernel parameter through MCO.
