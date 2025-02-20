@@ -1,3 +1,6 @@
+# Copyright (c) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -10,7 +13,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: hl-smi-workload
-          image: vault.habana.ai/gaudi-docker/1.18.0/rhel9.4/habanalabs/pytorch-installer-2.4.0:1.18.0-524
+          image: vault.habana.ai/gaudi-docker/1.19.1/rhel9.4/habanalabs/pytorch-installer-2.5.1:1.19.1-26
           command: ["hl-smi"]
           resources:
             limits:

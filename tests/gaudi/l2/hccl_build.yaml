@@ -1,3 +1,6 @@
+# Copyright (c) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+---
 apiVersion: image.openshift.io/v1
 kind: ImageStream
 metadata:
@@ -13,13 +16,13 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 'hccl-demo-workload:1.18.0-524'
+      name: 'hccl-demo-workload:1.19.1-26'
   strategy:
     type: Docker
   source:
     type: Dockerfile
     dockerfile: |
-      ARG BUILDER=vault.habana.ai/gaudi-docker/1.18.0/rhel9.4/habanalabs/pytorch-installer-2.4.0:1.18.0-524
+      ARG BUILDER=vault.habana.ai/gaudi-docker/1.19.1/rhel9.4/habanalabs/pytorch-installer-2.5.1:1.19.1-26
       FROM ${BUILDER} AS builder
 
       WORKDIR /
