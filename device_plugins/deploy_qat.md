@@ -69,9 +69,9 @@ Users can use the steps below to customize the QAT resource configuration:
 
     `asym;dc` and `dc;asym`: Configure all the QAT VF devices managed by the device plugin CR for asymmetric crypto and compression services. The resource created is `qat.intel.com/asym-dc`.
 
-    `sym`: Configure all the QAT VF devices managed by the device plugin CR for running symmetric crypto services. The resource created is `qat.intel.com/cy`. 
+    `sym`: Configure all the QAT VF devices managed by the device plugin CR for running symmetric crypto services. The resource created is `qat.intel.com/sym`. 
 
-    `asym`: Configure all the QAT VF devices managed by the device plugin CR for running asymmetric crypto services. The resource created is `qat.intel.com/cy`. 
+    `asym`: Configure all the QAT VF devices managed by the device plugin CR for running asymmetric crypto services. The resource created is `qat.intel.com/asym`. 
 
 
 2. Create QAT device plugin CR with -provisioning-config set as the name of the ConfigMap (created in step 1) in the qat_device_plugin.yaml file or set ConfigMap name in the provisioning-config option from web console. 
