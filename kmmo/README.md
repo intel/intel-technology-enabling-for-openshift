@@ -24,11 +24,14 @@ Follow the installation guide below to install the KMM operator via CLI or web c
 Canary deployment is enabled by default to deploy the driver container image only on specific node(s) to ensure the initial deployment succeeds prior to rollout to all the eligible nodes in the cluster. This safety mechanism can reduce risk and prevent a deployment from adversely affecting the entire cluster.
 
 ## Set alternative firmware path at runtime with KMM
+**NOTE**: This update is required only when using KMM version of v2.1.1 or lower. Starting with v2.2.0, it is not required.
+
 Follow the steps below to set the alternative firmware path at runtime.
 
-1. Update KMM operator `ConfigMap` to set `worker.setFirmwareClassPath` to `/var/lib/firmware`
+1. Update KMM operator `ConfigMap` to set `worker.firmwareHostPath` to `/var/lib/firmware`
+
 ``` 
-$ oc patch configmap kmm-operator-manager-config -n openshift-kmm --type='json' -p='[{"op": "add", "path": "/data/controller_config.yaml", "value": "healthProbeBindAddress: :8081\nmetricsBindAddress: 127.0.0.1:8080\nleaderElection:\n  enabled: true\n  resourceID: kmm.sigs.x-k8s.io\nwebhook:\n  disableHTTP2: true\n  port: 9443\nworker:\n  runAsUser: 0\n  seLinuxType: spc_t\n  setFirmwareClassPath: /var/lib/firmware"}]'
+$ oc patch configmap kmm-operator-manager-config -n openshift-kmm --type='json' -p='[{"op": "add", "path": "/data/controller_config.yaml", "value": "healthProbeBindAddress: :8081\nmetricsBindAddress: 127.0.0.1:8080\nleaderElection:\n  enabled: true\n  resourceID: kmm.sigs.x-k8s.io\nwebhook:\n  disableHTTP2: true\n  port: 9443\nworker:\n  runAsUser: 0\n  seLinuxType: spc_t\n  firmwareHostPath: /var/lib/firmware"}]'
 ```
 
 2. Delete the KMM operator controller pod for `ConfigMap` changes to take effect.
