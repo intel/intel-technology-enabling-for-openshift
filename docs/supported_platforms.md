@@ -44,6 +44,24 @@ Note: Please refer to your BIOS vendor for specific instructions. This is only a
 | Intel QAT | [Link](https://github.com/intel/qatlib/blob/7429ee2b7c837137ed11959a3c2cc3729dc15739/INSTALL#L104) |
 | Intel DSA | [Link](https://cdrdv2-public.intel.com/759709/353216-data-streaming-accelerator-user-guide-003.pdf) |
 
+## Component Matrix
+
+Below are the recommended components versions to use with this release of Intel Technology Enabling for OpenShift.
+
+| Name                                                | Version                                                                                       |
+|-----------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| Intel Technology Enabling for OpenShift             | 1.6.0                                                                                         |
+| RHOCP version                                       | 4.18.1                                                                                        |
+| Kubernetes version                                  | v1.31.5                                                                                       |
+| OS and Kernel                                       | Red Hat Enterprise CoreOS with Linux Kernel 5.14.0-427.50.2.el9_4.x86_64                      |
+| Intel Data Center GPU Driver for OpenShift          | 3.0.0                                                                                         |
+| Kernel Module Management Operator                   | 2.3.0                                                                                         |
+| Intel GPU out of tree (OOT) driver                  | I915_RELEASE=I915_24WW49.3_803.125_23.10.83_231129.89 </br> FIRMWARE_RELEASE=24WW51.4_1057.13 |
+| Intel Device Plugins Operator (on OCP)              | 0.29.1                                                                                        |
+| Node Feature Discovery Operator                     | 4.18.0-202502250302                                                                           |
+| RedHat OpenShift AI (RHOAI) operator                | NA                                                                                            |
+| OpenVINO operator                                   | NA                                                                                            |
+
 ## Support 
 
 ### Project life cycle introduction 
