@@ -2,9 +2,10 @@ Release Information
 ===================
 .. list-table:: 
    :align: left
-   :widths: 15 10 10 10 10 10 10 10 10 10 10 10 10 
+   :widths: 15 10 10 10 10 10 10 10 10 10 10 10 10 10 
 
    * - **Release**
+     - `1.6.0 <https://github.com/intel/intel-technology-enabling-for-openshift/releases/tag/v1.6.0>`_
      - `1.5.2 <https://github.com/intel/intel-technology-enabling-for-openshift/releases/tag/v1.5.2>`_
      - `1.5.1 <https://github.com/intel/intel-technology-enabling-for-openshift/releases/tag/v1.5.1>`_
      - `1.5.0 <https://github.com/intel/intel-technology-enabling-for-openshift/releases/tag/v1.5.0>`_
@@ -18,6 +19,7 @@ Release Information
      - `1.0.1 <https://github.com/intel/intel-technology-enabling-for-openshift/releases/tag/v1.0.1>`_
      - `1.0.0 <https://github.com/intel/intel-technology-enabling-for-openshift/releases/tag/v1.0.0>`_
    * - **Red Hat OpenShift Version**
+     - 4.18
      - 4.17
      - 4.17
      - 4.17
@@ -31,6 +33,7 @@ Release Information
      - 4.12
      - 4.12
    * - **Documentation**
+     - `1.6.0 <https://intel.github.io/intel-technology-enabling-for-openshift/v1.6.0/README.html>`_
      - `1.5.2 <https://intel.github.io/intel-technology-enabling-for-openshift/v1.5.2/README.html>`_
      - `1.5.1 <https://intel.github.io/intel-technology-enabling-for-openshift/v1.5.1/README.html>`_
      - `1.5.0 <https://intel.github.io/intel-technology-enabling-for-openshift/v1.5.0/README.html>`_
