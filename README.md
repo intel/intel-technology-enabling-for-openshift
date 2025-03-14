@@ -9,8 +9,14 @@ The project delivers a comprehensive full-stack solution for the Intel® Enterpr
 </div>
 
 ## Releases and Supported Platforms 
+Intel Technology Enabling for OpenShift is released in alignment with the OpenShift release cadence. It is recommended to use the latest release. 
+
+For details on supported features and components, refer to the links below: 
 - [Supported Intel hardware features](/docs/supported_platforms.md#supported-intel-hardware-features) 
-- [Release details](/docs/releases.rst)
+- [Component Matrix](/docs/supported_platforms.md#component-matrix) 
+
+To review the release history, please visit the following link: 
+- [Intel Technology Enabling for OpenShift Release details](/docs/releases.rst)
 
 ## Getting started
 See reference [BIOS Configuration](/docs/supported_platforms.md#bios-configuration) required for each feature.
