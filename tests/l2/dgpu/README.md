@@ -6,13 +6,13 @@ This workload runs [clinfo](https://github.com/Oblomov/clinfo) utilizing the i91
 *	Build the workload container image. 
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/clinfo_build.yaml 
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/l2/dgpu/clinfo_build.yaml 
 ```
 
 *	Deploy and execute the workload.
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/clinfo_job.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/l2/dgpu/clinfo_job.yaml
 ```
 
 * Check the results.
@@ -47,13 +47,13 @@ This workload runs ```hwinfo``` utilizing the i915 resource from GPU provisionin
 *	Build the workload container image. 
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/hwinfo_build.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/l2/dgpu/hwinfo_build.yaml
 ```
 
 *	Deploy and execute the workload.
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/hwinfo_job.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/l2/dgpu/hwinfo_job.yaml
 ```
 
 * Check the results
@@ -96,13 +96,13 @@ This workload runs [vainfo](https://github.com/intel/libva-utils) utilizing the 
 *	Build the workload container image.
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/vainfo_build.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/l2/dgpu/vainfo_build.yaml
 ```
 
 *	Deploy and execute the workload.
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/vainfo_job.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/l2/dgpu/vainfo_job.yaml
 ```
 
 * Check the results.
@@ -163,13 +163,13 @@ This workload runs various test programs from [libvpl](https://github.com/intel/
 *	Build the workload container image.
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/intelvpl_build.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/l2/dgpu/intelvpl_build.yaml
 ```
 
 *	Deploy and execute the workload.
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dgpu/intelvpl_job.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/l2/dgpu/intelvpl_job.yaml
 ```
 
 * Check the results.
