@@ -1,0 +1,16 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from https://docs.habana.ai/en/latest/Orchestration/HabanaAI_Operator/Deploying_HabanaAI_Operator.html#using-cli
+#
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+   name: gaudi-ai-sw-tools-operator
+   namespace: openshift-operators
+spec:
+   channel: alpha
+   installPlanApproval: Automatic
+   name: gaudi-ai-sw-tools-operator
+   source: certified-operators
+   sourceNamespace: openshift-marketplace
