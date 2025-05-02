@@ -1,13 +1,6 @@
 # Copyright (c) 2024 Intel Corporation
 # SPDX-License-Identifier: Apache-2.0
 
-apiVersion: image.openshift.io/v1
-kind: ImageStream
-metadata:
-  name: intel-dsa-workload
-  namespace: intel-dsa
-spec: {}
----
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
@@ -53,7 +46,6 @@ spec:
               secretKeyRef:
                 key: password
                 name: rh-auth
-
   output:
     to:
       kind: ImageStreamTag

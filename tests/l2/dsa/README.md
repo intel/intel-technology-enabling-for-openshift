@@ -6,6 +6,7 @@ This workload runs [accel-config](https://github.com/intel/idxd-config) sample t
 Please replace the credentials in buildconfig yaml with your RedHat account login credentials. 
 
 ```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dsa/dsa_imagestream.yaml 
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dsa/dsa_build.yaml 
 ```
 
@@ -15,10 +16,12 @@ $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/dsa_scc.yaml
 ```
       
-* Create the intel-dsa service account to use intel-dsa-scc
+* Create the intel-dsa serviceAccount, role and roleBinding to use intel-dsa-scc
   
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/dsa_rbac.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/dsa_serviceAccount.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/dsa_role.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/dsa_roleBinding.yaml
 ```
 
 * Deploy the accel-config workload job with intel-dsa service account
