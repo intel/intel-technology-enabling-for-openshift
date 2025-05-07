@@ -1,0 +1,12 @@
+# Copyright (c) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rh-auth
+  namespace: intel-dsa
+type: Opaque
+data:
+  username: # Add username
+  password: # Add password

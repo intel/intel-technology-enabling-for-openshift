@@ -1,9 +1,13 @@
 ### Verify Intel® Data Streaming Accelerator (DSA) Technology provisioning
 This workload runs [accel-config](https://github.com/intel/idxd-config) sample tests using RedHat built and distributed accel-config RPM packages from the rhel-9-for-x86_64-baseos-rpms repo. Refer to the [accel config readme](https://github.com/intel/idxd-config/blob/stable/README.md) for more details. 
 
-*	Build the workload container image
+* Create the RedHat auth secret. Please replace the credentials in the secret yaml with your RedHat account login credentials. 
 
-Please replace the credentials in buildconfig yaml with your RedHat account login credentials. 
+```
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dsa/rh_auth.yaml 
+```
+
+*	Build the workload container image
 
 ```
 $ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dsa/dsa_imagestream.yaml 
