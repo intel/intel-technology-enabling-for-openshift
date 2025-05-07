@@ -1,0 +1,27 @@
+- name: Create global OperatorGroup in openshift-operators namespace
+  k8s:
+    state: present
+    definition:
+      apiVersion: operators.coreos.com/v1alpha2
+      kind: OperatorGroup
+      metadata:
+        name: global-operators
+        namespace: openshift-operators
+
+- name: Create Intel Device Plugins Operator Subscription
+  k8s:
+    state: present
+    definition:
+      apiVersion: operators.coreos.com/v1alpha1
+      kind: Subscription
+      metadata:
+        labels:
+          operators.coreos.com/intel-device-plugins-operator.openshiftoperators: ""
+        name: intel-device-plugins-operator
+        namespace: openshift-operators
+      spec:
+        channel: alpha
+        installPlanApproval: Automatic
+        name: intel-device-plugins-operator
+        source: certified-operators
+        sourceNamespace: openshift-marketplace
