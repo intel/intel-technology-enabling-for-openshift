@@ -1,0 +1,8 @@
+# Copyright (c) 2025 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: intel-dsa-workload
+  namespace: intel-dsa
