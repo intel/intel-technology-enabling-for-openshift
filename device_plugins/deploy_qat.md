@@ -76,6 +76,38 @@ Users can use the steps below to customize the QAT resource configuration:
 
 2. Create QAT device plugin CR with -provisioning-config set as the name of the ConfigMap (created in step 1) in the qat_device_plugin.yaml file or set ConfigMap name in the provisioning-config option from web console. 
 
+# Multiple Custom Resources
+
+The [feature](https://github.com/intel/intel-device-plugins-for-kubernetes/tree/main/cmd/operator#multiple-custom-resources) can be used with a `nodeSelector` label representing the capabilities supported on the node. Multiple custom resources on nodes can be supported with different QAT capabilities.
+
+* For example, to assign the capability `sym` for a node: create the label on the node
+```
+oc label node <node_name> qat.mode=sym
+```
+* Deploy a new `QatDevicePlugin` Custom resource by adding the above label as a `nodeSelector` and choosing the configmap created with `sym` capability according to [QAT Resource Configuration](#qat-resource-configuration-experimental):
+
+```
+nodeSelector:
+    qat.mode: sym
+```
+* Verify that the device plugin CR is ready
+```
+$ oc get QatDevicePlugin
+```
+Output: 
+```
+NAME		        DESIRED		READY	NODE SELECTOR	                                    AGE
+qatdeviceplugin-sym  1 	        1       {"intel.feature.node.kubernetes.io/qat":"true","qat.mode":"sym"}     72m
+```
+
+* Check the resources on the node:
+```
+oc describe <node_name> | grep qat.intel.com
+    qat.intel.com/sym:                128
+    qat.intel.com/sym:                128
+    qat.intel.com/sym                0            0
+```
+
 # Run Intel QAT based workloads on RHOCP
 To run the Intel QAT based workloads as an unprivileged pod (see [issue](https://github.com/intel/intel-technology-enabling-for-openshift/issues/122)). The customized `qat-scc` Security Context Constraint (SCC) is provided to bind with service account and run the QAT based workload. 
 
