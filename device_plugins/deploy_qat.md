@@ -80,17 +80,25 @@ Users can use the steps below to customize the QAT resource configuration:
 
 The [feature](https://github.com/intel/intel-device-plugins-for-kubernetes/tree/main/cmd/operator#multiple-custom-resources) can be used with a `nodeSelector` label representing the capabilities supported on the node. Multiple custom resources on nodes can be supported with different QAT capabilities.
 
-* For example, to assign the capability `sym` for a node: create the label on the node
+* For example, to assign the capabilities `sym` and `asym` for two nodes: create the labels on the nodes
 ```
-oc label node <node_name> qat.mode=sym
+oc label node <node1_name> qat.mode=sym
+oc label node <node2_name> qat.mode=asym
 ```
-* Deploy a new `QatDevicePlugin` Custom resource by adding the above label as a `nodeSelector` and choosing the configmap created with `sym` capability according to [QAT Resource Configuration](#qat-resource-configuration-experimental):
+* Create a separate `QatDevicePlugin` by adding each of the above labels in `nodeSelector` and choose the configmaps created with `sym` and `asym` capabilities respectively. Please refer to [QAT Resource Configuration](#qat-resource-configuration-experimental).
 
+`qatdeviceplugin-sym`
 ```
 nodeSelector:
     qat.mode: sym
 ```
-* Verify that the device plugin CR is ready
+`qatdeviceplugin-asym`
+```
+nodeSelector:
+    qat.mode: asym
+```
+
+* Verify that the device plugin CRs are ready
 ```
 $ oc get QatDevicePlugin
 ```
@@ -98,14 +106,20 @@ Output:
 ```
 NAME		        DESIRED		READY	NODE SELECTOR	                                    AGE
 qatdeviceplugin-sym  1 	        1       {"intel.feature.node.kubernetes.io/qat":"true","qat.mode":"sym"}     72m
+qatdeviceplugin-asym  1 	        1       {"intel.feature.node.kubernetes.io/qat":"true","qat.mode":"asym"}     71m
 ```
 
-* Check the resources on the node:
+* Check the resources on the nodes:
 ```
-oc describe <node_name> | grep qat.intel.com
+oc describe <node1_name> | grep qat.intel.com
     qat.intel.com/sym:                128
     qat.intel.com/sym:                128
     qat.intel.com/sym                0            0
+
+oc describe <node2_name> | grep qat.intel.com
+    qat.intel.com/asym:                128
+    qat.intel.com/asym:                128
+    qat.intel.com/asym                0            0
 ```
 
 # Run Intel QAT based workloads on RHOCP
