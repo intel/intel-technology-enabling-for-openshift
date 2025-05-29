@@ -16,10 +16,10 @@ spec:
     dockerfile: |
         ARG BUILDER=registry.access.redhat.com/ubi9:latest 
         ARG BASE=registry.access.redhat.com/ubi9-minimal:latest
-        ARG LINUX_SGX_VERSION=2.24
+        ARG LINUX_SGX_VERSION=2.26
         FROM ${BUILDER} AS builder
 
-        ARG SGX_SDK=sgx_linux_x64_sdk_2.24.100.3.bin
+        ARG SGX_SDK=sgx_linux_x64_sdk_2.26.100.0.bin
         ARG LINUX_SGX_VERSION
 
         RUN dnf -y update && \
@@ -33,7 +33,7 @@ spec:
 
         # SGX SDK installed in /opt/intel directory
         WORKDIR /opt/intel
-        RUN wget https://download.01.org/intel-sgx/sgx-linux/$LINUX_SGX_VERSION/distro/rhel9.2-server/$SGX_SDK \
+        RUN wget https://download.01.org/intel-sgx/sgx-linux/$LINUX_SGX_VERSION/distro/rhel9.4-server/$SGX_SDK \
             && chmod +x  $SGX_SDK \
             && echo "yes" | ./$SGX_SDK \
             && rm $SGX_SDK
@@ -52,7 +52,7 @@ spec:
 
         # Download SGX PSW and install SGX runtime components to create SGX enclave
         WORKDIR /opt/intel
-        RUN wget https://download.01.org/intel-sgx/sgx-linux/$LINUX_SGX_VERSION/distro/rhel9.2-server/sgx_rpm_local_repo.tgz \
+        RUN wget https://download.01.org/intel-sgx/sgx-linux/$LINUX_SGX_VERSION/distro/rhel9.4-server/sgx_rpm_local_repo.tgz \
             && sha256sum sgx_rpm_local_repo.tgz \
             && tar xvf sgx_rpm_local_repo.tgz \
             && rm -rf sgx_rpm_local_repo.tgz
@@ -74,13 +74,13 @@ spec:
     dockerStrategy:
       buildArgs:
           - name: "BUILDER"
-            value: "registry.access.redhat.com/ubi9:9.2"
+            value: "registry.access.redhat.com/ubi9:9.4"
           - name: "BASE"
-            value: "registry.access.redhat.com/ubi9-minimal:9.2"
+            value: "registry.access.redhat.com/ubi9-minimal:9.4"
           - name: "SGX_SDK"
-            value: "sgx_linux_x64_sdk_2.24.100.3.bin"
+            value: "sgx_linux_x64_sdk_2.26.100.0.bin"
           - name: "LINUX_SGX_VERSION"
-            value: "2.24"
+            value: "2.26"
   output:
     to:
       kind: ImageStreamTag
