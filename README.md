@@ -23,10 +23,10 @@ See reference [BIOS Configuration](/docs/supported_platforms.md#bios-configurati
 
 ### Provisioning RHOCP cluster   
 Use one of these two options to provision an RHOCP cluster: 
-- Use the methods introduced in [RHOCP documentation](https://docs.openshift.com/container-platform/4.16/installing/index.html). 
+- Use the methods introduced in [RHOCP documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installation_overview/ocp-installation-overview). 
 - Use [Distributed CI](https://doc.distributed-ci.io/) as we do in this project.  
 
-In this project, we provisioned RHOCP 4.16 on a bare-metal multi-node cluster. For details about the supported RHOCP infrastructure, see the [Supported Platforms](/docs/supported_platforms.md) page.
+In this project, we provisioned RHOCP 4.18 on a bare-metal multi-node cluster. For details about the supported RHOCP infrastructure, see the [Supported Platforms](/docs/supported_platforms.md) page.
 
 ### Provisioning Intel hardware features on RHOCP
 If you are familiar with the steps mentioned below to provision the accelerators, you can use [One-Click](/one_click/README.md) solution as a reference to provision the accelerator automatically.
