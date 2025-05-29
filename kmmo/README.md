@@ -17,8 +17,8 @@ Intel data center GPU driver container images are released from [Intel Data Cent
 
 ## Install KMM operator
 Follow the installation guide below to install the KMM operator via CLI or web console. 
-- [Install from CLI](https://docs.openshift.com/container-platform/4.16/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-cli_kernel-module-management-operator)
-- [Install from web console](https://docs.openshift.com/container-platform/4.16/hardware_enablement/kmm-kernel-module-management.html#kmm-install-using-web-console_kernel-module-management-operator)
+- [Install from CLI](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/specialized_hardware_and_driver_enablement/kernel-module-management-operator#kmm-install-using-cli_kernel-module-management-operator)
+- [Install from web console](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/specialized_hardware_and_driver_enablement/kernel-module-management-operator#kmm-install-using-web-console_kernel-module-management-operator)
 
 ## Canary deployment with KMM
 Canary deployment is enabled by default to deploy the driver container image only on specific node(s) to ensure the initial deployment succeeds prior to rollout to all the eligible nodes in the cluster. This safety mechanism can reduce risk and prevent a deployment from adversely affecting the entire cluster.
