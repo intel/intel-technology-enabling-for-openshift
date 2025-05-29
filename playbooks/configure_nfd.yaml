@@ -1,0 +1,17 @@
+- name: NFD - Create NFD discovery CR
+  k8s: 
+    state: present
+    definition: '{{ item }}'
+    wait: yes
+    wait_condition:
+      type: Available
+      status: 'False'                                                                                                                                                                                    
+  with_items: '{{ lookup("url", "https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/nfd/node-feature-discovery-openshift.yaml", split_lines=False) | from_yaml_all | list }}'
+  when: (item is not none)  
+- name: NFD - Create NFD rules instance CR
+  k8s: 
+    state: present
+    definition: '{{ item }}'
+    wait: yes                                                                                                                                                                             
+  with_items: '{{ lookup("url", "https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/nfd/node-feature-rules-openshift.yaml", split_lines=False) | from_yaml_all | list }}'
+  when: (item is not none)

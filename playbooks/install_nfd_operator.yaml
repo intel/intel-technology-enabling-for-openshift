@@ -1,0 +1,38 @@
+- name: Create namespace for Node Feature Discovery
+  k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: openshift-nfd
+
+- name: Create operator group for Node Feature Discovery
+  k8s:
+    state: present
+    definition:
+      apiVersion: operators.coreos.com/v1
+      kind: OperatorGroup
+      metadata:
+        generateName: openshift-nfd-
+        name: openshift-nfd
+        namespace: openshift-nfd
+      spec:
+        targetNamespaces:
+        - openshift-nfd
+
+- name: Subscribe to Node Feature Discovery operator
+  k8s:
+    state: present
+    definition:
+      apiVersion: operators.coreos.com/v1alpha1
+      kind: Subscription
+      metadata:
+        name: nfd
+        namespace: openshift-nfd
+      spec:
+        channel: "stable"
+        installPlanApproval: Automatic
+        name: nfd
+        source: redhat-operators
+        sourceNamespace: openshift-marketplace

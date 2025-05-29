@@ -1,0 +1,78 @@
+- hosts: localhost
+  gather_facts: no
+  vars:
+    kubeconfig_path: "~/.kube/mojave-config"
+  environment:
+    KUBECONFIG: "{{ kubeconfig_path }}"
+  vars_prompt:
+    - name: "install_operators"
+      prompt: "Do you want to install operators? 'Yes' to install NFD Operator and Intel Device Plugins Operator, or 'No' to skip"
+      private: no
+    - name: "validation_feature"
+      prompt: "Which Intel feature do you want to validate? Enter 1 for Intel SGX, 2 for Intel QAT, 3 for Intel DSA, 4 for Intel GPU"
+      private: no
+  
+  tasks:
+  - name: Validate Inputs
+    block: 
+    - name: Invalid Install Operators Input
+      fail:
+        msg: "Invalid input for Install Operators. Please enter a valid option for Install Operators (Yes/No)."
+      when: install_operators not in ["Yes", "No"]
+    - name: Invalid Validation Feature Input
+      fail:
+        msg: "Invalid input for validation feature. Please enter a valid option (1-4)."
+      when: validation_feature not in ["1", "2", "3", "4"]
+
+  - name: Install Operators
+    block:
+    - name: NFD - Install NFD Operator
+      include_tasks: install_nfd_operator.yaml
+    - name: IDPO - Install Intel Device Plugins Operator
+      include_tasks: install_device_plugins_operator.yaml
+    - name: NFD - Wait until the nfd-operator-controller Deployment is available
+      k8s_info:
+        kind: Deployment
+        wait: yes
+        name: nfd-controller-manager
+        label_selectors:
+          - operators.coreos.com/nfd.openshift-nfd
+          - control-plane=controller-manager
+        namespace: openshift-nfd
+        wait_condition:
+          type: Available
+          status: 'True'
+    - name: NFD - Configure NFD Operator
+      include_tasks: configure_nfd.yaml
+    - name: IDPO - Wait until the inteldeviceplugins-controller-manager Deployment is available
+      k8s_info:
+        kind: Deployment
+        name: inteldeviceplugins-controller-manager
+        namespace: openshift-operators
+        wait: yes
+        wait_condition:
+          type: Available
+          status: 'True'
+          reason: MinimumReplicasAvailable
+    when: install_operators == "Yes"
+
+  - name: Skip Operator Installation
+    debug:
+      msg: "Skipping operator installation as per user input."
+    when: install_operators == "No"
+
+  - name: Validate Intel SGX
+    include_tasks: validate_sgx.yaml
+    when: validation_feature == "1"
+
+  - name: Validate Intel QAT
+    include_tasks: validate_gpu.yaml
+    when: validation_feature == "2"
+
+  - name: Validate Intel DSA
+    include_tasks: validate_qat.yaml
+    when: validation_feature == "3"
+
+  - name: Validate Intel GPU
+    include_tasks: validate_dsa.yaml
+    when: validation_feature == "4"
