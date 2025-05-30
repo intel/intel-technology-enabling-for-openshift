@@ -19,7 +19,7 @@ Follow the steps below to install Intel Gaudi AI Accelerator Operator using Open
 
 ### Installation via Command Line Interface (CLI)
 ```
-oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/gaudi/gaudi_install_operator.yaml
+oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/gaudi/gaudi_install_operator.yaml
 ```
 
 ### Verify Installation via CLI
@@ -47,7 +47,7 @@ To create a Habana Gaudi device plugin CR, follow the steps below.
 ### Create CR via CLI
 Apply the CR yaml file:
 ```
-oc apply -f  https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/gaudi/gaudi_cluster_policy.yaml
+oc apply -f  https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/gaudi/gaudi_cluster_policy.yaml
 ```
 
 ### Verify the ClusterPolicy CR is created

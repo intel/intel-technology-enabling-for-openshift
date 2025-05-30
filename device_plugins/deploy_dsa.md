@@ -14,7 +14,7 @@
 ## Create CR via CLI
 Apply the CR yaml file:
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/device_plugins/dsa_device_plugin.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/device_plugins/dsa_device_plugin.yaml
 ```
 
 ## Verify via CLI

@@ -4,34 +4,34 @@ This workload runs [accel-config](https://github.com/intel/idxd-config) sample t
 * Create the RedHat auth secret. Please replace the credentials in the secret yaml with your RedHat account login credentials. 
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dsa/rh_auth.yaml 
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/tests/l2/dsa/rh_auth.yaml 
 ```
 
 *	Build the workload container image
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dsa/dsa_imagestream.yaml 
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dsa/dsa_build.yaml 
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/tests/l2/dsa/dsa_imagestream.yaml 
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/tests/l2/dsa/dsa_build.yaml 
 ```
 
 * Create SCC intel-dsa-scc for Intel DSA based workload, if this SCC is not created   
   
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/dsa_scc.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/security/dsa_scc.yaml
 ```
       
 * Create the intel-dsa serviceAccount, role and roleBinding to use intel-dsa-scc
   
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/dsa_serviceAccount.yaml
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/dsa_role.yaml
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/security/dsa_roleBinding.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/security/dsa_serviceAccount.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/security/dsa_role.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/security/dsa_roleBinding.yaml
 ```
 
 * Deploy the accel-config workload job with intel-dsa service account
   
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/dsa/dsa_job.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/tests/l2/dsa/dsa_job.yaml
 ```
 
 * Check the results.
