@@ -36,7 +36,7 @@ To enable the interactive mode, the OpenVINO notebook CR needs to be created and
 
 Create `AcceleratorProfile` in the `redhat-ods-applications` namespace 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/e2e/inference/accelerator_profile_flex140.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/e2e/inference/accelerator_profile_flex140.yaml
 ```
 
 3. Navigate to `openvino-notebooks` ImageStream and add the above created `AcceleratorProfile` key to the annotation field, as shown in the image below:
@@ -73,7 +73,7 @@ Follow the [link](https://github.com/openvinotoolkit/operator/blob/main/docs/not
   Deploy the ```accelerator_profile_gaudi.yaml``` in the redhat-ods-applications namespace.
 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/e2e/inference/accelerator_profile_gaudi.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/e2e/inference/accelerator_profile_gaudi.yaml
 ```
 ## Intel Gaudi AI Accelerator with Intel® Gaudi AI Software Tools Containers on OpenShift AI
 To use Intel Gaudi AI Accelerator with Intel® Gaudi AI Software Tools Containers on OpenShift AI, follow the [documentation](https://github.com/intel/ai-containers/blob/main/enterprise/redhat/openshift-ai/gaudi/README.md).

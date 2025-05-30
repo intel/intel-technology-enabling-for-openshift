@@ -3,13 +3,13 @@ This [SampleEnclave](https://github.com/intel/linux-sgx/tree/master/SampleCode/S
 
 * Build the container image. 
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/sgx/sgx_imagestream.yaml
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/sgx/sgx_build.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/tests/l2/sgx/sgx_imagestream.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/tests/l2/sgx/sgx_build.yaml
 ```
 
 * Deploy and run the workload.
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/tests/l2/sgx/sgx_job.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/tests/l2/sgx/sgx_job.yaml
 ```
 
 *	Check the results.

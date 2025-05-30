@@ -14,12 +14,12 @@ Note: As RHOCP cluster administrator, you might need to merge the NFD operator c
 
 1. Create `NodeFeatureDiscovery` CR instance.
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/nfd/node-feature-discovery-openshift.yaml 
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/nfd/node-feature-discovery-openshift.yaml 
 ```
 
 2.	Create `NodeFeatureRule` CR instance.
 ```
-$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/nfd/node-feature-rules-openshift.yaml
+$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.1/nfd/node-feature-rules-openshift.yaml
 ```
 
 ## Verification 
