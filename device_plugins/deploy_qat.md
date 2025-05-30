@@ -108,7 +108,15 @@ NAME		        DESIRED		READY	NODE SELECTOR	                                    A
 qatdeviceplugin-sym  1 	        1       {"intel.feature.node.kubernetes.io/qat":"true","qat.mode":"sym"}     72m
 qatdeviceplugin-asym  1 	        1       {"intel.feature.node.kubernetes.io/qat":"true","qat.mode":"asym"}     71m
 ```
-
+For more information about the CR and the node it is using:
+```
+$ oc get QatDevicePlugin -o=jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.nodeNames}{"\n"}{end}'
+```
+Output:
+```
+qatdeviceplugin-sym       ["node1"]
+qatdeviceplugin-asym      ["node2"]
+```
 * Check the resources on the nodes:
 ```
 oc describe <node1_name> | grep qat.intel.com
