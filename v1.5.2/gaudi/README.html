@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setting up Intel Gaudi AI Accelerator Operator &mdash; Intel® Technology Enabling for OpenShift*</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”" href="../one_click/README.html" />
+    <link rel="prev" title="Setting up Intel Device Plugins Operator" href="../device_plugins/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Intel® Technology Enabling for OpenShift*
+          </a>
+              <div class="version">
+                v1.5.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Intel® Technology Enabling for OpenShift*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nfd/README.html">Setting up Node Feature Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machine_configuration/README.html">Setting up Machine Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kmmo/README.html">Setting up Out of Tree Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../device_plugins/README.html">Setting up Intel Device Plugins Operator</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting up Intel Gaudi AI Accelerator Operator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisities">Prerequisities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-intel-gaudi-ai-accelerator-operator-on-red-hat-openshift">Install Intel Gaudi AI Accelerator Operator on Red Hat OpenShift</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-via-web-console">Installation via web console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verify-installation-via-web-console">Verify Installation via web console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-via-command-line-interface-cli">Installation via Command Line Interface (CLI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verify-installation-via-cli">Verify Installation via CLI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-intel-gaudi-ai-accelerator-operator-clusterpolicy-instance">Creating Intel Gaudi AI Accelerator Operator ClusterPolicy Instance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-cr-via-web-console">Create CR via web console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verify-via-web-console">Verify via web console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-cr-via-cli">Create CR via CLI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verify-the-clusterpolicy-cr-is-created">Verify the ClusterPolicy CR is created</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#verify-gaudi-provisioning">Verify Gaudi Provisioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resources-provided-by-habana-gaudi-device-plugin">Resources Provided by Habana Gaudi Device Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upgrade-intel-gaudi-spi-firmware">Upgrade Intel Gaudi SPI Firmware</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">One-Click Deployment:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../one_click/README.html">Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">End-to-end Solutions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../e2e/inference/README.html">Intel AI Inference End-to-End Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../e2e/inference/README.html#enable-intel-gaudi-ai-accelerator-with-rhoai">Enable Intel Gaudi AI Accelerator with RHOAI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/releases.html">Release Information</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Platforms:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/supported_platforms.html">Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Intel® Technology Enabling for OpenShift*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Setting up Intel Gaudi AI Accelerator Operator</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/gaudi/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setting-up-intel-gaudi-ai-accelerator-operator">
+<h1>Setting up Intel Gaudi AI Accelerator Operator<a class="headerlink" href="#setting-up-intel-gaudi-ai-accelerator-operator" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p><a class="reference external" href="https://catalog.redhat.com/software/container-stacks/detail/6683b2cce45daa25e36bddcb">Intel Gaudi AI Accelerator Operator</a> is used to provision Intel Gaudi Accelerator with OpenShift. The steps and yaml files mentioned in this document to provision the Gaudi accelerator are based on <a class="reference external" href="https://docs.habana.ai/en/latest/Orchestration/Intel_Gaudi_Base_Operator/index.html">Intel Gaudi AI Accelerator Operator for OpenShift</a>.</p>
+<p>If you are familiar with the steps here to manually provision the accelerator, the Red Hat certified Operator and Ansible based <a class="reference internal" href="../one_click/README.html#reference-playbook-–-habana-gaudi-provisioning"><span class="std std-ref">One-Click</span></a> solution can be used as a reference to provision the accelerator automatically.</p>
+</section>
+<section id="prerequisities">
+<h2>Prerequisities<a class="headerlink" href="#prerequisities" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>To Provision RHOCP cluster, follow steps <a class="reference internal" href="../README.html#provisioning-rhocp-cluster"><span class="std std-ref">here</span></a>.</p></li>
+</ul>
+</section>
+<section id="install-intel-gaudi-ai-accelerator-operator-on-red-hat-openshift">
+<h2>Install Intel Gaudi AI Accelerator Operator on Red Hat OpenShift<a class="headerlink" href="#install-intel-gaudi-ai-accelerator-operator-on-red-hat-openshift" title="Permalink to this heading"></a></h2>
+<section id="installation-via-web-console">
+<h3>Installation via web console<a class="headerlink" href="#installation-via-web-console" title="Permalink to this heading"></a></h3>
+<p>Follow the steps below to install Intel Gaudi AI Accelerator Operator using OpenShift web console:</p>
+<ol class="arabic simple">
+<li><p>In the OpenShift web console, navigate to <strong>Operator</strong> -&gt; <strong>OperatorHub</strong>.</p></li>
+<li><p>Search for <strong>Intel Gaudi AI Accelerator Operator</strong> in all items field -&gt; Click <strong>Install</strong>.</p></li>
+</ol>
+</section>
+<section id="verify-installation-via-web-console">
+<h3>Verify Installation via web console<a class="headerlink" href="#verify-installation-via-web-console" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Go to <strong>Operator</strong> -&gt; <strong>Installed Operators</strong>.</p></li>
+<li><p>Verify that the status of the operator is <strong>Succeeded</strong>.</p></li>
+</ol>
+</section>
+<section id="installation-via-command-line-interface-cli">
+<h3>Installation via Command Line Interface (CLI)<a class="headerlink" href="#installation-via-command-line-interface-cli" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oc</span> <span class="n">apply</span> <span class="o">-</span><span class="n">f</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">intel</span><span class="o">-</span><span class="n">technology</span><span class="o">-</span><span class="n">enabling</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">openshift</span><span class="o">/</span><span class="n">v1</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">gaudi</span><span class="o">/</span><span class="n">gaudi_install_operator</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+</section>
+<section id="verify-installation-via-cli">
+<h3>Verify Installation via CLI<a class="headerlink" href="#verify-installation-via-cli" title="Permalink to this heading"></a></h3>
+<p>Verify that the operator controller manager pod is up and running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oc</span> <span class="n">get</span> <span class="n">pods</span> <span class="o">-</span><span class="n">n</span> <span class="n">habana</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">operator</span>
+
+<span class="n">NAME</span>                                  <span class="n">READY</span>   <span class="n">STATUS</span>    <span class="n">RESTARTS</span>   <span class="n">AGE</span>
+<span class="n">controller</span><span class="o">-</span><span class="n">manager</span><span class="o">-</span><span class="mi">6</span><span class="n">c8459d9cb</span><span class="o">-</span><span class="n">fqs8h</span>   <span class="mi">2</span><span class="o">/</span><span class="mi">2</span>     <span class="n">Running</span>   <span class="mi">0</span>          <span class="mi">25</span><span class="n">m</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="creating-intel-gaudi-ai-accelerator-operator-clusterpolicy-instance">
+<h2>Creating Intel Gaudi AI Accelerator Operator ClusterPolicy Instance<a class="headerlink" href="#creating-intel-gaudi-ai-accelerator-operator-clusterpolicy-instance" title="Permalink to this heading"></a></h2>
+<p>To create a Habana Gaudi device plugin CR, follow the steps below.</p>
+<section id="create-cr-via-web-console">
+<h3>Create CR via web console<a class="headerlink" href="#create-cr-via-web-console" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Go to <strong>Operator</strong> -&gt; <strong>Installed Operators</strong>.</p></li>
+<li><p>Open <strong>Intel Gaudi AI Accelerator Operator</strong>.</p></li>
+<li><p>Navigate to tab <strong>Cluster Policy</strong>.</p></li>
+<li><p>Click <strong>Create ClusterPolicy</strong> -&gt; set correct parameters -&gt; Click <strong>Create</strong>. To set correct parameters please refer <a class="reference external" href="https://docs.habana.ai/en/latest/Installation_Guide/Additional_Installation/Kubernetes_Installation/Kubernetes_Operator.html#id1">Using RedHat OpenShift Container Platform Console</a>.</p></li>
+</ol>
+</section>
+<section id="verify-via-web-console">
+<h3>Verify via web console<a class="headerlink" href="#verify-via-web-console" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Verify CR by checking the status of <strong>Workloads</strong> -&gt; <strong>DaemonSet</strong> -&gt; <strong>habana-ai-device-plugin-ds</strong>,  <strong>habana-ai-driver-rhel-9-4-xxxxx</strong>, <strong>habana-ai-feature-discovery-ds</strong>, <strong>habana-ai-metric-exporter-ds</strong>, <strong>habana-ai-runtime-ds</strong>.</p></li>
+<li><p>Now <code class="docutils literal notranslate"><span class="pre">ClusterPolicy</span></code> is created.</p></li>
+</ol>
+</section>
+<section id="create-cr-via-cli">
+<h3>Create CR via CLI<a class="headerlink" href="#create-cr-via-cli" title="Permalink to this heading"></a></h3>
+<p>Apply the CR yaml file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oc</span> <span class="n">apply</span> <span class="o">-</span><span class="n">f</span>  <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">intel</span><span class="o">-</span><span class="n">technology</span><span class="o">-</span><span class="n">enabling</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">openshift</span><span class="o">/</span><span class="n">v1</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">gaudi</span><span class="o">/</span><span class="n">gaudi_cluster_policy</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+</section>
+<section id="verify-the-clusterpolicy-cr-is-created">
+<h3>Verify the ClusterPolicy CR is created<a class="headerlink" href="#verify-the-clusterpolicy-cr-is-created" title="Permalink to this heading"></a></h3>
+<p>You can use command below to verify that the <code class="docutils literal notranslate"><span class="pre">ClusterPolicy</span></code> CR has been created:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oc</span> <span class="n">get</span> <span class="n">pod</span> <span class="o">-</span><span class="n">n</span> <span class="n">habana</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">operator</span>
+
+<span class="n">NAME</span>                                                       <span class="n">READY</span>   <span class="n">STATUS</span>    <span class="n">RESTARTS</span>      <span class="n">AGE</span>
+<span class="n">habana</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">ds</span><span class="o">-</span><span class="n">thj7b</span>                           <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>             <span class="mi">10</span><span class="n">d</span>
+<span class="n">habana</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">driver</span><span class="o">-</span><span class="n">rhel</span><span class="o">-</span><span class="mi">9</span><span class="o">-</span><span class="mi">4</span><span class="o">-</span><span class="mi">416</span><span class="o">-</span><span class="mi">94</span><span class="o">-</span><span class="mi">202412170927</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="n">ds</span><span class="o">-</span><span class="n">vqhzb</span>   <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">2</span>             <span class="mi">10</span><span class="n">d</span>
+<span class="n">habana</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">feature</span><span class="o">-</span><span class="n">discovery</span><span class="o">-</span><span class="n">ds</span><span class="o">-</span><span class="n">ztl2j</span>                       <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">5</span>             <span class="mi">10</span><span class="n">d</span>
+<span class="n">habana</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">metric</span><span class="o">-</span><span class="n">exporter</span><span class="o">-</span><span class="n">ds</span><span class="o">-</span><span class="n">g5qqh</span>                         <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>             <span class="mi">10</span><span class="n">d</span>
+<span class="n">habana</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">operator</span><span class="o">-</span><span class="n">controller</span><span class="o">-</span><span class="n">manager</span><span class="o">-</span><span class="mi">6</span><span class="n">c995b5646</span><span class="o">-</span><span class="n">wl7cp</span>     <span class="mi">2</span><span class="o">/</span><span class="mi">2</span>     <span class="n">Running</span>   <span class="mi">0</span>             <span class="mi">10</span><span class="n">d</span>
+<span class="n">habana</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">runtime</span><span class="o">-</span><span class="n">ds</span><span class="o">-</span><span class="n">x49lf</span>                                 <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>             <span class="mi">10</span><span class="n">d</span>
+</pre></div>
+</div>
+<p>Alternatively, you can also check the status of the <code class="docutils literal notranslate"><span class="pre">ClusterPolicy</span></code> CR like below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oc</span> <span class="n">describe</span> <span class="n">ClusterPolicy</span> <span class="n">habana</span><span class="o">-</span><span class="n">ai</span> <span class="o">-</span><span class="n">n</span> <span class="n">habana</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">operator</span>
+
+<span class="n">Name</span><span class="p">:</span>         <span class="n">habana</span><span class="o">-</span><span class="n">ai</span>
+<span class="n">Namespace</span><span class="p">:</span>    <span class="n">habana</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">operator</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="n">Status</span><span class="p">:</span>
+  <span class="n">Conditions</span><span class="p">:</span>
+    <span class="n">Last</span> <span class="n">Transition</span> <span class="n">Time</span><span class="p">:</span>  <span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">21</span><span class="n">T18</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">46</span><span class="n">Z</span>
+    <span class="n">Message</span><span class="p">:</span>               <span class="n">All</span> <span class="n">resources</span> <span class="n">have</span> <span class="n">been</span> <span class="n">successfully</span> <span class="n">reconciled</span>
+    <span class="n">Reason</span><span class="p">:</span>                <span class="n">Reconciled</span>
+    <span class="n">Status</span><span class="p">:</span>                <span class="kc">True</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="verify-gaudi-provisioning">
+<h2>Verify Gaudi Provisioning<a class="headerlink" href="#verify-gaudi-provisioning" title="Permalink to this heading"></a></h2>
+<p>After the <code class="docutils literal notranslate"><span class="pre">ClusterPolicy</span></code> instance CR is created, it will take some time for the operator to download the Gaudi OOT driver source code and build it on-premise with the help of the KMM operator. The OOT driver module binaries will be loaded into the RHCOS kernel on each node with Gaudi cards labelled by feature discovery. Then, the Gaudi device plugin can advertise the Gaudi resources listed in the table for the pods on OpenShit to use. Run the command below to check the availability of Gaudi resources:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oc</span> <span class="n">describe</span> <span class="n">node</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">habana</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">gaudi</span>
+
+  <span class="n">habana</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">gaudi</span><span class="p">:</span>    <span class="mi">8</span> <span class="o">-&gt;</span> <span class="n">Gaudi</span> <span class="n">cards</span> <span class="n">number</span> <span class="n">on</span> <span class="n">the</span> <span class="n">cluster</span>
+  <span class="n">habana</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">gaudi</span><span class="p">:</span>    <span class="mi">8</span> <span class="o">-&gt;</span> <span class="n">Gaudi</span> <span class="n">cards</span> <span class="n">number</span> <span class="n">allocatble</span> <span class="n">on</span> <span class="n">the</span> <span class="n">cluster</span>
+  <span class="n">habana</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">gaudi</span>    <span class="mi">4</span>       <span class="mi">4</span> <span class="o">-&gt;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">Gaudi</span> <span class="n">cards</span> <span class="n">allocated</span> <span class="ow">and</span> <span class="n">number</span> <span class="n">of</span> <span class="n">Gardi</span> <span class="n">cards</span> <span class="n">available</span>
+</pre></div>
+</div>
+<p>To view the metrics on a node with Gaudi card, refer <a class="reference external" href="https://docs.habana.ai/en/latest/Orchestration/Prometheus_Metric_Exporter.html?highlight=metrics#collecting-metrics">Collecting Metrics</a>.</p>
+</section>
+<section id="resources-provided-by-habana-gaudi-device-plugin">
+<h2>Resources Provided by Habana Gaudi Device Plugin<a class="headerlink" href="#resources-provided-by-habana-gaudi-device-plugin" title="Permalink to this heading"></a></h2>
+<p>The resources provided are the user interface for customers to claim and consume the hardware features from the user pods. See below table for the details:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Resources</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Habana Gaudi</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">habana.ai/gaudi</span></code></p></td>
+<td><p>Number of Habana Gaudi Card resources ready to claim</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="upgrade-intel-gaudi-spi-firmware">
+<h2>Upgrade Intel Gaudi SPI Firmware<a class="headerlink" href="#upgrade-intel-gaudi-spi-firmware" title="Permalink to this heading"></a></h2>
+<p>Refer <a class="reference internal" href="Gaudi-SPI-Firmware-Upgrade.html"><span class="std std-doc">Upgrade Intel Gaudi SPI Firmware</span></a> to upgrade the SPI Firmware on Intel Gaudi.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../device_plugins/README.html" class="btn btn-neutral float-left" title="Setting up Intel Device Plugins Operator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../one_click/README.html" class="btn btn-neutral float-right" title="Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Intel® Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Versions</span>
+      v1.5.2
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/">development</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.6.1">v1.6.1</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.6.0">v1.6.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.5.2">v1.5.2</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.5.1">v1.5.1</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.5.0">v1.5.0</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.4.0">v1.4.0</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.1">v1.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.0">v1.3.0</a></dd>
+          
+        
+      </dl>
+      
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
