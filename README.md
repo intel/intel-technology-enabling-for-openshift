@@ -9,7 +9,7 @@ The project delivers a comprehensive full-stack solution for the Intel® Enterpr
 </div>
 
 ## Releases and Supported Platforms 
-Intel Technology Enabling for OpenShift is released in alignment with the OpenShift release cadence. It is recommended to use the latest release. 
+Intel Enterprise AI foundation for OpenShift is released in alignment with the OpenShift release cadence. It is recommended to use the latest release. 
 
 For details on supported features and components, refer to the links below: 
 - [Supported Intel hardware features](/docs/supported_platforms.md#supported-intel-hardware-features) 
