@@ -5,7 +5,7 @@ The project delivers a comprehensive full-stack solution for the Intel® Enterpr
 ![Alt text](/docs/images/Intel-Technology-Enabling-for-OpenShift-Architecture.png)
 
 <div align="center">
-  Figure-1 Intel Technology Enabling for OpenShift Architecture 
+  Figure-1 Intel Enterprise AI foundation for OpenShift Architecture 
 </div>
 
 ## Releases and Supported Platforms 
