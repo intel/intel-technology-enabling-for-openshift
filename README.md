@@ -12,7 +12,7 @@ The project delivers a comprehensive full-stack solution for the Intel® Enterpr
 Intel Enterprise AI foundation for OpenShift is released in alignment with the OpenShift release cadence. It is recommended to use the latest release. 
 
 For details on supported features and components, refer to the links below: 
-- [Supported Intel hardware features](/docs/supported_platforms.md#supported-intel-hardware-features) 
+- [Supported Intel AI Accelerator and CPU features](/docs/supported_platforms.md#supported-intel-hardware-features) 
 - [Component Matrix](/docs/supported_platforms.md#component-matrix) 
 
 To review the release history, please visit the following link: 
