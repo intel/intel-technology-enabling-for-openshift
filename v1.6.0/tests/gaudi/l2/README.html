@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verify Intel® Gaudi® AI Accelerator Provisioning &mdash; Intel® Technology Enabling for OpenShift*</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Intel® Technology Enabling for OpenShift*
+          </a>
+              <div class="version">
+                v1.6.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">Intel® Technology Enabling for OpenShift*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nfd/README.html">Setting up Node Feature Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../machine_configuration/README.html">Setting up Machine Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../kmmo/README.html">Setting up Out of Tree Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../device_plugins/README.html">Setting up Intel Device Plugins Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gaudi/README.html">Setting up Intel Gaudi AI Accelerator Operator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">One-Click Deployment:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../one_click/README.html">Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">End-to-end Solutions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../e2e/inference/README.html">Intel AI Inference End-to-End Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../e2e/inference/README.html#enable-intel-gaudi-ai-accelerator-with-rhoai">Enable Intel Gaudi AI Accelerator with RHOAI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html">Release Information</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Platforms:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/supported_platforms.html">Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Intel® Technology Enabling for OpenShift*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Verify Intel® Gaudi® AI Accelerator Provisioning</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/tests/gaudi/l2/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="verify-intel-gaudi-ai-accelerator-provisioning">
+<h1>Verify Intel® Gaudi® AI Accelerator Provisioning<a class="headerlink" href="#verify-intel-gaudi-ai-accelerator-provisioning" title="Permalink to this heading"></a></h1>
+<section id="hl-smi">
+<h2>hl-smi<a class="headerlink" href="#hl-smi" title="Permalink to this heading"></a></h2>
+<p>System Management Interface Tool (hl-smi) utility tool obtains information and monitors data of the Intel Gaudi AI accelerators.
+<code class="docutils literal notranslate"><span class="pre">hl-smi</span></code> tool is packaged with the Gaudi base image. Run below command to deploy and execute the tool:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/gaudi/l2/hl-smi_job.yaml
+</pre></div>
+</div>
+<p>Verify Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pods -n gaudi-validation
+NAME                         READY   STATUS      RESTARTS   AGE
+hl-smi-workload-2-f5qgs      0/1     Completed   0          27m
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc logs hl-smi-workload-2-f5qgs -n gaudi-validation
++-----------------------------------------------------------------------------+
+| HL-SMI Version:                                hl-1.17.1-fw-51.5.0          |
+| Driver Version:                                     1.17.1-78932ae          |
+|-------------------------------+----------------------+----------------------+
+| AIP  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | AIP-Util  Compute M. |
+|===============================+======================+======================|
+|   0  HL-225              N/A  | 0000:4d:00.0     N/A |                   0  |
+| N/A   31C   N/A    95W / 600W |    768MiB / 98304MiB |     0%           N/A |
+|-------------------------------+----------------------+----------------------+
+|   1  HL-225              N/A  | 0000:b4:00.0     N/A |                   0  |
+| N/A   28C   N/A    85W / 600W |    768MiB / 98304MiB |     0%           N/A |
+|-------------------------------+----------------------+----------------------+
+| Compute Processes:                                               AIP Memory |
+|  AIP       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|   0        N/A   N/A    N/A                                      N/A        |
+|   1        N/A   N/A    N/A                                      N/A        |
++=============================================================================+
+</pre></div>
+</div>
+</section>
+<section id="hccl">
+<h2>HCCL<a class="headerlink" href="#hccl" title="Permalink to this heading"></a></h2>
+<p>HCCL (Habana Collective Communication Library) demo is a program that demonstrates HCCL usage and supports communication via Gaudi based scale-out or Host NIC scale-out. Refer <a class="reference external" href="https://github.com/HabanaAI/hccl_demo/tree/main?tab=readme-ov-file#hccl-demo">HCCL Demo</a> for more details.</p>
+<p>Build the workload container image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/gaudi/l2/hccl_build.yaml
+</pre></div>
+</div>
+<p>Create service account with required permissions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc create sa hccl-demo-anyuid-sa -n gaudi-validation
+$ oc adm policy add-scc-to-user anyuid -z hccl-demo-anyuid-sa -n gaudi-validation
+</pre></div>
+</div>
+<p>Deploy and execute the workload:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/gaudi/l2/hccl_job.yaml
+</pre></div>
+</div>
+<p>Verify Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pods -n gaudi-validation
+NAME                         READY   STATUS      RESTARTS   AGE
+hccl-demo-workload-1-build   0/1     Completed   0          23m
+hccl-demo-workload-wq8mx     0/1     Completed   0          10m
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc logs hccl-demo-workload-wq8mx -n gaudi-validation
+Affinity: Numa mapping directory: /tmp/affinity_topology_output
+Affinity: Script has not been executed before, going to execute...
+Affinity: Script has finished successfully
+Welcome to HCCL demo
+.
+.
+.
+####################################################################################################
+[BENCHMARK] hcclAllReduce(src!=dst, data_size=33554432, count=8388608, dtype=float, iterations=1000)
+[BENCHMARK]     NW Bandwidth   : 258.209121 GB/s
+[BENCHMARK]     Algo Bandwidth : 147.548069 GB/s
+####################################################################################################
+</pre></div>
+</div>
+</section>
+<section id="vllm">
+<h2>vLLM<a class="headerlink" href="#vllm" title="Permalink to this heading"></a></h2>
+<p>vLLM is a serving engine for LLM’s. The following workloads deploys a VLLM server with an LLM using Intel Gaudi. Refer to <a class="reference external" href="https://github.com/HabanaAI/vllm-fork.git">Intel Gaudi vLLM fork</a> for more details.</p>
+<p>Use the gaudi-validation project</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc project gaudi-validation
+</pre></div>
+</div>
+<p>Build the workload container image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/gaudi/l2/vllm_buildconfig.yaml
+
+</pre></div>
+</div>
+<p>Check if the build has completed</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get builds
+NAMESPACE           NAME               TYPE     FROM         STATUS     STARTED       DURATION
+gaudi-validation   vllm-workload-1    Docker   Dockerfile   Complete   7 minutes ago   4m58s
+
+</pre></div>
+</div>
+<p>Deploy the workload:</p>
+<ul class="simple">
+<li><p>Update the hugging face token in the <code class="docutils literal notranslate"><span class="pre">vllm_hf_secret.yaml</span></code> file, refer to <a class="reference external" href="https://huggingface.co/docs/hub/en/security-tokens">link</a> for more details.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/gaudi/l2/vllm_hf_secret.yaml
+</pre></div>
+</div>
+<p>meta-llama/Llama-3.1-8B model is used in this deployment and the hugging face token is used to access such gated models.</p>
+<ul class="simple">
+<li><p>For the PV setup with NFS, refer to <a class="reference external" href="https://docs.openshift.com/container-platform/4.17/storage/persistent_storage/persistent-storage-nfs.html">documentation</a>.</p></li>
+<li><p>The vLLM pod needs to access the host’s shared memory for tensor parallel inference, which is mounted as a volume.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/gaudi/l2/vllm_deployment.yaml
+</pre></div>
+</div>
+<p>Create the vllm service</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oc</span> <span class="n">expose</span> <span class="n">deploy</span><span class="o">/</span><span class="n">vllm</span><span class="o">-</span><span class="n">workload</span>
+</pre></div>
+</div>
+<p>Verify Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pods
+NAME                             READY   STATUS      RESTARTS   AGE
+vllm-workload-1-build            0/1     Completed   0          19m
+vllm-workload-55f7c6cb7b-cwj2b   1/1     Running     0          8m36s
+
+$ oc get svc
+NAME            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+vllm-workload   ClusterIP   1.2.3.4          &lt;none&gt;        8000/TCP   114s
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc logs vllm-workload-55f7c6cb7b-cwj2b 
+
+INFO 10-30 19:35:53 habana_model_runner.py:95] VLLM_DECODE_BS_BUCKET_MIN=32 (default:min)
+INFO 10-30 19:35:53 habana_model_runner.py:95] VLLM_DECODE_BS_BUCKET_STEP=32 (default:step)
+INFO 10-30 19:35:53 habana_model_runner.py:95] VLLM_DECODE_BS_BUCKET_MAX=256 (default:max)
+INFO 10-30 19:35:53 habana_model_runner.py:95] VLLM_PROMPT_SEQ_BUCKET_MIN=128 (default:min)
+INFO 10-30 19:35:53 habana_model_runner.py:95] VLLM_PROMPT_SEQ_BUCKET_STEP=128 (default:step)
+INFO 10-30 19:35:53 habana_model_runner.py:95] VLLM_PROMPT_SEQ_BUCKET_MAX=1024 (default:max)
+INFO 10-30 19:35:53 habana_model_runner.py:95] VLLM_DECODE_BLOCK_BUCKET_MIN=128 (default:min)
+INFO 10-30 19:35:53 habana_model_runner.py:95] VLLM_DECODE_BLOCK_BUCKET_STEP=128 (default:step)
+INFO 10-30 19:35:53 habana_model_runner.py:95] VLLM_DECODE_BLOCK_BUCKET_MAX=4096 (default:max)
+INFO 10-30 19:35:53 habana_model_runner.py:691] Prompt bucket config (min, step, max_warmup) bs:[1, 32, 64], seq:[128, 128, 1024]
+INFO 10-30 19:35:53 habana_model_runner.py:696] Decode bucket config (min, step, max_warmup) bs:[32, 32, 256], block:[128, 128, 4096]
+============================= HABANA PT BRIDGE CONFIGURATION ===========================
+PT_HPU_LAZY_MODE = 1
+PT_RECIPE_CACHE_PATH =
+PT_CACHE_FOLDER_DELETE = 0
+PT_HPU_RECIPE_CACHE_CONFIG =
+PT_HPU_MAX_COMPOUND_OP_SIZE = 9223372036854775807
+PT_HPU_LAZY_ACC_PAR_MODE = 1
+PT_HPU_ENABLE_REFINE_DYNAMIC_SHAPES = 0
+PT_HPU_EAGER_PIPELINE_ENABLE = 1
+PT_HPU_EAGER_COLLECTIVE_PIPELINE_ENABLE = 1
+---------------------------: System Configuration :---------------------------
+Num CPU Cores : 160
+CPU RAM : 1056371848 KB
+------------------------------------------------------------------------------
+INFO 10-30 19:35:56 selector.py:85] Using HabanaAttention backend.
+INFO 10-30 19:35:56 loader.py:284] Loading weights on hpu ...
+INFO 10-30 19:35:56 weight_utils.py:224] Using model weights format [&#39;*.safetensors&#39;, &#39;*.bin&#39;, &#39;*.pt&#39;]
+Loading safetensors checkpoint shards: 0% Completed | 0/4 [00:00&lt;?, ?it/s]
+Loading safetensors checkpoint shards: 25% Completed | 1/4 [00:03&lt;00:11, 3.87s/it]
+Loading safetensors checkpoint shards: 50% Completed | 2/4 [00:07&lt;00:07, 3.71s/it]
+Loading safetensors checkpoint shards: 75% Completed | 3/4 [00:10&lt;00:03, 3.59s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:11&lt;00:00, 2.49s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:11&lt;00:00, 2.93s/it]
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The internal service url is used to run inference requests to the vLLM server. This service is only accessible from pods running within the same namespace i.e gaudi-validation. Run the below commands to create a sample pod and run requests.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/gaudi/l2/test-pod.yaml
+</pre></div>
+</div>
+<p>Check for the pod</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pods
+NAME                           READY   STATUS      RESTARTS   AGE
+test                           1/1     Running     0          2s
+</pre></div>
+</div>
+<p>Use the command below to enter pod terminal to run curl requests</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc debug pod/test
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span><span class="o">-</span><span class="mf">5.1</span><span class="c1"># curl  &quot;http://vllm-workload.gaudi-validation.svc.cluster.local:8000/v1/models&quot;{&quot;object&quot;:&quot;list&quot;,&quot;data&quot;:[{&quot;id&quot;:&quot;meta-llama/Llama-3.1-8B&quot;,&quot;object&quot;:&quot;model&quot;,&quot;created&quot;:1730317412,&quot;owned_by&quot;:&quot;vllm&quot;,&quot;root&quot;:&quot;meta-llama/Llama-3.1-8B&quot;,&quot;parent&quot;:null,&quot;max_model_len&quot;:131072,&quot;permission&quot;:[{&quot;id&quot;:&quot;modelperm-452b2bd990834aa5a9416d083fcc4c9e&quot;,&quot;object&quot;:&quot;model_permission&quot;,&quot;created&quot;:1730317412,&quot;allow_create_engine&quot;:false,&quot;allow_sampling&quot;:true,&quot;allow_logprobs&quot;:true,&quot;allow_search_indices&quot;:false,&quot;allow_view&quot;:true,&quot;allow_fine_tuning&quot;:false,&quot;organization&quot;:&quot;*&quot;,&quot;group&quot;:null,&quot;is_blocking&quot;:false}]}]}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span><span class="o">-</span><span class="mf">5.1</span><span class="c1"># curl http://vllm-workload.gaudi-validation.svc.cluster.local:8000/v1/completions   -H &quot;Content-Type: application/json&quot;   -d &#39;{</span>
+        <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;meta-llama/Llama-3.1-8B&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;prompt&quot;</span><span class="p">:</span> <span class="s2">&quot;A constellation is a&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;max_tokens&quot;</span><span class="p">:</span> <span class="mi">10</span>
+      <span class="p">}</span><span class="s1">&#39;</span>
+<span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;cmpl-9a0442d0da67411081837a3a32a354f2&quot;</span><span class="p">,</span><span class="s2">&quot;object&quot;</span><span class="p">:</span><span class="s2">&quot;text_completion&quot;</span><span class="p">,</span><span class="s2">&quot;created&quot;</span><span class="p">:</span><span class="mi">1730321284</span><span class="p">,</span><span class="s2">&quot;model&quot;</span><span class="p">:</span><span class="s2">&quot;meta-llama/Llama-3.1-8B&quot;</span><span class="p">,</span><span class="s2">&quot;choices&quot;</span><span class="p">:[{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot; group of individual stars that forms a pattern or figure&quot;</span><span class="p">,</span><span class="s2">&quot;logprobs&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;finish_reason&quot;</span><span class="p">:</span><span class="s2">&quot;length&quot;</span><span class="p">,</span><span class="s2">&quot;stop_reason&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">}],</span><span class="s2">&quot;usage&quot;</span><span class="p">:{</span><span class="s2">&quot;prompt_tokens&quot;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="s2">&quot;total_tokens&quot;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="s2">&quot;completion_tokens&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">}}</span>
+</pre></div>
+</div>
+</section>
+<section id="check-firmware-version-with-hl-smi">
+<h2>Check firmware version with hl-smi<a class="headerlink" href="#check-firmware-version-with-hl-smi" title="Permalink to this heading"></a></h2>
+<p>System Management Interface Tool (hl-smi) utility tool obtains information and monitors data of the Intel Gaudi AI accelerators.
+Run below command to check firmware version with the tool:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.6.0/tests/gaudi/l2/hl-smi-firmware_job.yaml
+</pre></div>
+</div>
+<p>Verify Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pods -n gaudi-validation
+NAME                      READY   STATUS      RESTARTS   AGE
+hl-smi-firmware-pxhsn     0/1     Completed   0          11s
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc logs hl-smi-firmware-pxhsn -n gaudi-validation
+        Firmware [SPI] Version          : Preboot version hl-gaudi2-1.16.0-fw-50.1.2-sec-9 (May 26 2024 - 11:33:04)
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Intel® Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Versions</span>
+      v1.6.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/">development</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.6.1">v1.6.1</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.6.0">v1.6.0</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.5.2">v1.5.2</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.5.1">v1.5.1</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.5.0">v1.5.0</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.4.0">v1.4.0</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.1">v1.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.0">v1.3.0</a></dd>
+          
+        
+      </dl>
+      
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

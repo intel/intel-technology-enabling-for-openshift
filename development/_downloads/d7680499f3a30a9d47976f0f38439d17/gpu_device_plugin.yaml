@@ -1,0 +1,14 @@
+# Copyright (c) 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: deviceplugin.intel.com/v1
+kind: GpuDevicePlugin
+metadata:
+  name: gpudeviceplugin-sample
+spec:
+  image: registry.connect.redhat.com/intel/intel-gpu-plugin@sha256:e2c2ce658e78c35c425f16a4f8e85c5f32ce31848d9b53a644a05e7f8b7f71b0
+  preferredAllocationPolicy: none
+  sharedDevNum: 1
+  logLevel: 4
+  nodeSelector:
+    intel.feature.node.kubernetes.io/gpu: "true"
