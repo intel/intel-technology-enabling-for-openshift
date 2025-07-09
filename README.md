@@ -36,6 +36,14 @@ Provisioning AI accelerators and networks on a scalable OpenShift/Kubernetes clu
 
 The Other general Operators can be added in the future to extend the AI features.
 
+## Red Hat AI Platform with Intel AI technologies
+Intel and Red Hat have coordinated for years to deliver a production-quality open-source AI platform, built on the best provision of the Intel AI Accelerator computing and networking technologies. 
+
+The **Red Hat AI portfolio**, powered by **Intel AI technologies**, now includes:
+* [**Red Hat AI Inference Server**](https://www.redhat.com/en/about/press-releases/red-hat-unlocks-generative-ai-any-model-and-any-accelerator-across-hybrid-cloud-red-hat-ai-inference-server) leverages the [LLM-d](https://github.com/llm-d/llm-d) and [vLLM](https://github.com/vllm-project/vllm) projects, integrating with Llama Stack, Model Context Protocol (MCP), and the Open AI API to deliver standardized APIs for developing and deploying [OPEA-based](https://github.com/opea-project) and other production-grade GenAI applications scalable across edge, enterprise and cloud environments.
+* **Red Hat OpenShift AI Distributed Training** provides pre-training, SFT and RL for major GenAI foundation models at scale. With seamless integration of the Kubeflow Training Operator, Intel Gaudi Computing and RoCE Networking technology, enterprises can unlock the full potential of cutting-edge GenAI technologies to drive innovation in their domains.  See [Training and fine-tuning LLM Models with Intel Enterprise AI Foundation on OpenShift](https://github.com/intel/intel-technology-enabling-for-openshift/wiki/Fine-tunning-LLM-Models-with-Intel-Enterprise-AI-Foundation-on-OpenShift).
+* The operators to integrate [Intel Gaudi Software](https://docs.habana.ai/en/latest/index.html) or [OneAPI-based](https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html#gs.kgdasr) AI software into OpenShift AI
+
 ## Releases and Supported Platforms 
 Intel Enterprise AI foundation for OpenShift is released in alignment with the OpenShift release cadence. It is recommended to use the latest release. 
 
