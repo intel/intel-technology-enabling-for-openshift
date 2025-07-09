@@ -8,6 +8,19 @@ The project delivers a comprehensive full-stack solution for the Intel® Enterpr
   Figure-1 Intel Enterprise AI foundation for OpenShift Architecture 
 </div>
 
+## Infrastructure Foundation for Enterprise AI workloads
+This project delivers reference infrastructures powered by Intel AI hardware and software technologies, tailored for the cutting-edge **enterprise GenAI** workloads and seamlessly integrated with the [**Red Hat AI platform**](https://www.redhat.com/en/products/ai).
+
+The recommended **Infrastructure Cluster** is built with [**Intel® scalable Gaudi® Accelerator**](https://docs.habana.ai/en/latest/Gaudi_Overview/Gaudi_Architecture.html#gaudi-architecture) and standard servers. The [Intel® Xeon® processors](https://www.intel.com/content/www/us/en/products/details/processors/xeon/xeon6-product-brief.html ) are used in these Gaudi servers as worker nodes and in standard servers as highly available control plane nodes. This infrastructure is designed for **high availability**, **scalability**, and **efficiency** in **Retrieval-Augmented Generation (RAG) and other Large Language Model (LLM) inferencing** workloads.
+
+The [**Gaudi embedded RDMA over Converged Ethernet (RoCE) network**](https://docs.habana.ai/en/latest/PyTorch/PyTorch_Scaling_Guide/Theory_of_Distributed_Training.html#theory-of-distributed-training), along with the [**3 Ply Gaudi RoCE Network topology**](https://docs.habana.ai/en/latest/Management_and_Monitoring/Network_Configuration/Configure_E2E_Test_in_L3.html#generating-a-gaudinet-json-example) supports high-throughput and low latency LLM Parallel Pre-training and Post-training workloads, such as Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL). For more details, see: [Training and fun-tuning LLM Models with Intel Enterprise AI Foundation on OpenShift](https://github.com/intel/intel-technology-enabling-for-openshift/wiki/Fine-tunning-LLM-Models-with-Intel-Enterprise-AI-Foundation-on-OpenShift)
+
+This highly efficient infrastructure has been validated with cutting-edge enterprise AI workloads on the production-ready OpenShift platform, enabling users to easily evaluate and integrate it into their own AI environments.
+
+Additionally, Intel SGX, DSA, and QAT accelerators (available with Xeon processors) are supported to further enhance performance and security for AI workloads.
+
+For more details, see: [Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure](https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/docs/supported_platforms.md#supported-intel-hardware-features)
+
 ## Releases and Supported Platforms 
 Intel Enterprise AI foundation for OpenShift is released in alignment with the OpenShift release cadence. It is recommended to use the latest release. 
 
