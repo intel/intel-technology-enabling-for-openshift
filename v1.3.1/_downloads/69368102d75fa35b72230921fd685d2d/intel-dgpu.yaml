@@ -1,0 +1,24 @@
+# Copyright (c) 2022 - 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: kmm.sigs.x-k8s.io/v1beta1
+kind: Module
+metadata:
+  name: intel-dgpu
+  namespace: openshift-kmm
+spec:
+  moduleLoader:
+    container:
+      modprobe:
+        moduleName: i915
+        firmwarePath: /firmware
+        modulesLoadingOrder:
+          - i915
+          - mei_gsc
+      inTreeModulesToRemove: [i915, intel_vsec, mei_gsc, mei_me]
+      kernelMappings:
+        - regexp: '^.*\.x86_64$'
+          containerImage: registry.connect.redhat.com/intel/intel-data-center-gpu-driver-container:2.2.0-$KERNEL_FULL_VERSION
+  selector:
+    intel.feature.node.kubernetes.io/gpu: 'true'
+    intel.feature.node.kubernetes.io/dgpu-canary: 'true'

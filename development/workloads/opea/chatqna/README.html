@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deploy OPEA ChatQnA workload on OCP &mdash; Intel® Technology Enabling for OpenShift*</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Intel® Technology Enabling for OpenShift*
+          </a>
+              <div class="version">
+                development
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">Intel® Enterprise AI Foundation for OpenShift*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nfd/README.html">Setting up Node Feature Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../machine_configuration/README.html">Setting up Machine Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../kmmo/README.html">Setting up Out of Tree Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../device_plugins/README.html">Setting up Intel Device Plugins Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gaudi/README.html">Setting up Intel Gaudi AI Accelerator Operator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">One-Click Deployment:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../one_click/README.html">Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">End-to-end Solutions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../e2e/inference/README.html">Intel AI Inference End-to-End Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../e2e/inference/README.html#enable-intel-gaudi-ai-accelerator-with-rhoai">Enable Intel Gaudi AI Accelerator with RHOAI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html">Release Information</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Platforms:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/supported_platforms.html">Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Intel® Technology Enabling for OpenShift*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Deploy OPEA ChatQnA workload on OCP</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/workloads/opea/chatqna/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deploy-opea-chatqna-workload-on-ocp">
+<h1>Deploy OPEA ChatQnA workload on OCP<a class="headerlink" href="#deploy-opea-chatqna-workload-on-ocp" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>The workload is based on the <a class="reference external" href="https://github.com/opea-project/GenAIExamples/tree/v0.8/ChatQnA">OPEA ChatQnA Application</a> running on Intel® Gaudi Accelerator with OpenShift and OpenShift AI. Refer to the <a class="reference external" href="https://github.com/opea-project/GenAIExamples/tree/v0.8">OPEA Generative AI Examples</a> for more details about the OPEA workloads.</p>
+<p><strong>Note</strong>: It is still under heavy development, and the updates are expected.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>Provisioned RHOCP cluster. Follow steps <a class="reference internal" href="../../../README.html#provisioning-rhocp-cluster"><span class="std std-ref">here</span></a></p></li>
+<li><p>The Persistent storage using NFS is ready. Refer to <a class="reference external" href="https://docs.openshift.com/container-platform/4.16/storage/persistent_storage/persistent-storage-nfs.html">documentation</a> for the details to set it up.</p>
+<p><strong>Note</strong>: Refer to <a class="reference external" href="https://docs.openshift.com/container-platform/4.16/storage/index.html">documentation</a> for setting up other types of persistent storages.</p>
+</li>
+<li><p>Provisioned Intel Gaudi accelerator on RHOCP cluster. Follow steps <a class="reference internal" href="../../../gaudi/README.html"><span class="std std-doc">here</span></a></p></li>
+<li><p>RHOAI is installed. Follow steps <a class="reference internal" href="../../../e2e/inference/README.html#install-rhoai"><span class="std std-ref">here</span></a></p></li>
+<li><p>The Intel Gaudi AI accelerator is enabled with RHOAI. Follow steps <a class="reference internal" href="../../../e2e/inference/README.html#enable-intel-gaudi-ai-accelerator-with-rhoai"><span class="std std-ref">here</span></a></p></li>
+<li><p>Minio based S3 service ready for RHOAI. Follow steps <a class="reference external" href="https://ai-on-openshift.io/tools-and-applications/minio/minio/#create-a-matching-data-connection-for-minio">here</a></p></li>
+</ul>
+</section>
+<section id="deploy-model-serving-for-opea-chatqna-microservices-with-rhoai">
+<h2>Deploy Model Serving for OPEA ChatQnA Microservices with RHOAI<a class="headerlink" href="#deploy-model-serving-for-opea-chatqna-microservices-with-rhoai" title="Permalink to this heading"></a></h2>
+<section id="create-openshift-ai-data-science-project">
+<h3>Create OpenShift AI Data Science Project<a class="headerlink" href="#create-openshift-ai-data-science-project" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Search</span> <span class="pre">-&gt;</span> <span class="pre">Routes</span> <span class="pre">-&gt;</span> <span class="pre">rhods-dashboard</span></code> from the OCP web console and launch the RHOAI dashboard.</p></li>
+<li><p>Follow the dashboard and click <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Science</span> <span class="pre">Projects</span></code> to create a project. For example, <code class="docutils literal notranslate"><span class="pre">OPEA-chatqna-modserving</span></code>.</p></li>
+</ul>
+</section>
+<section id="preload-the-models">
+<h3>Preload the models<a class="headerlink" href="#preload-the-models" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Refer to <a class="reference external" href="https://huggingface.co/docs/hub/en/models-downloading">link</a> and download the model <a class="reference external" href="https://huggingface.co/meta-llama/Llama-2-70b-chat-hf">Llama2-70b-chat-hf</a>.</p></li>
+<li><p>Refer to <a class="reference external" href="https://ai-on-openshift.io/tools-and-applications/minio/minio/#create-a-matching-data-connection-for-minio">link</a> and upload the model to minio/s3 storage.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">OPEA-chatqna-modserving</span></code>, and choose <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Connection</span></code> section. In the fields, add your access and secret keys from minio. Follow <a class="reference external" href="https://ai-on-openshift.io/tools-and-applications/minio/minio/#create-a-matching-data-connection-for-minio">link</a>.</p></li>
+</ul>
+</section>
+<section id="launch-the-model-serving-with-intel-gaudi-ai-accelerator">
+<h3>Launch the Model Serving with Intel Gaudi AI Accelerator<a class="headerlink" href="#launch-the-model-serving-with-intel-gaudi-ai-accelerator" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Click on the Settings and choose <code class="docutils literal notranslate"><span class="pre">ServingRuntime</span></code>. Copy or import the <a class="reference download internal" download="" href="../../../_downloads/6d83684e9624bc9483c4b3c6d070e8b3/tgi_gaudi_servingruntime.yaml"><span class="xref download myst">tgi_gaudi_servingruntime.yaml</span></a>. The <a class="reference external" href="https://github.com/huggingface/tgi-gaudi">tgi-gaudi</a> serving runtime is used. Follow the image below.</p></li>
+</ul>
+<p><img alt="Alt text" src="../../../_images/tgi-serving-runtime.png" /></p>
+<ul class="simple">
+<li><p>In the project <code class="docutils literal notranslate"><span class="pre">OPEA-chatqna-modserving</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">Models</span></code> section and follow the image below.</p></li>
+</ul>
+<p><img alt="Alt text" src="../../../_images/rhoai-deploy-model.png" /></p>
+<ul class="simple">
+<li><p>The model server is now in the creation state. Once ready, the status will be updated to green and the inference endpoint can be seen. Refer to the image below.</p></li>
+</ul>
+<p><img alt="Alt text" src="../../../_images/model-server-status.png" /></p>
+</section>
+</section>
+<section id="deploy-chatqna-megaservice-and-database">
+<h2>Deploy ChatQnA Megaservice and Database<a class="headerlink" href="#deploy-chatqna-megaservice-and-database" title="Permalink to this heading"></a></h2>
+<section id="create-namespace">
+<h3>Create namespace<a class="headerlink" href="#create-namespace" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">oc</span> <span class="n">create</span> <span class="n">namespace</span> <span class="n">opea</span><span class="o">-</span><span class="n">chatqna</span>
+</pre></div>
+</div>
+</section>
+<section id="create-persistent-volumes">
+<h3>Create persistent volumes<a class="headerlink" href="#create-persistent-volumes" title="Permalink to this heading"></a></h3>
+<p>The NFS is used to create the Persistent Volumes for ChatQnA MegaService to claim and use.</p>
+<p>Make sure to update NFS server IP and path in <code class="docutils literal notranslate"><span class="pre">persistent_volumes.yaml</span></code> before applying command below.
+For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">nfs</span><span class="p">:</span>
+    <span class="n">server</span><span class="p">:</span> <span class="mf">10.20.1.2</span> <span class="c1"># nfs server</span>
+    <span class="n">path</span><span class="p">:</span> <span class="o">/</span><span class="n">my_nfs</span> <span class="c1"># nfs path</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/workloads/opea/chatqna/persistent_volumes.yaml
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Check that the persistent volumes are created:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pv
+NAME                           CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      
+chatqna-megaservice-pv-0        100Mi      RWO            Retain           Available
+chatqna-megaservice-pv-1        100Mi      RWO            Retain           Available
+chatqna-megaservice-pv-2        100Mi      RWO            Retain           Available
+
+</pre></div>
+</div>
+</section>
+<section id="building-opea-chatqna-megaservice-container-image">
+<h3>Building OPEA ChatQnA MegaService Container Image<a class="headerlink" href="#building-opea-chatqna-megaservice-container-image" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">create_megaservice_container</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</section>
+<section id="deploy-redis-vector-database-service">
+<h3>Deploy Redis Vector Database Service<a class="headerlink" href="#deploy-redis-vector-database-service" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/workloads/opea/chatqna/redis_deployment_service.yaml
+
+</pre></div>
+</div>
+<p>Check that the pod and service are running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pods
+NAME                                   READY   STATUS      RESTARTS   AGE
+redis-vector-db-6b5747bf7-sl8fr        1/1     Running     0          21s
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get svc
+NAME                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
+redis-vector-db       ClusterIP   1.2.3.4          &lt;none&gt;        6379/TCP,8001/TCP   43s
+</pre></div>
+</div>
+</section>
+<section id="deploy-chatqna-megaservice">
+<h3>Deploy ChatQnA MegaService<a class="headerlink" href="#deploy-chatqna-megaservice" title="Permalink to this heading"></a></h3>
+<p>Update the inference endpoint from the <image name> in the chatqna_megaservice_deployment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/workloads/opea/chatqna/chatqna_megaservice_deployment.yaml
+</pre></div>
+</div>
+<p>Check that the pod and service are running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pods
+NAME                                   READY   STATUS      RESTARTS   AGE
+chatqna-megaservice-54487649b5-sgsh2   1/1     Running     0          95s         
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get svc
+NAME                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
+chatqna-megaservice   ClusterIP   1.2.3.4          &lt;none&gt;        8000/TCP            99s
+</pre></div>
+</div>
+</section>
+<section id="verify-the-megaservice">
+<h3>Verify the Megaservice<a class="headerlink" href="#verify-the-megaservice" title="Permalink to this heading"></a></h3>
+<p>Use the command below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">curl</span> <span class="o">&lt;</span><span class="n">megaservice_pod_ip</span><span class="o">&gt;/</span><span class="n">v1</span><span class="o">/</span><span class="n">rag</span><span class="o">/</span><span class="n">chat_stream</span> \
+  <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
+  <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;query&quot;:&quot;What is a constellation?&quot;}&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Content-Type: application/json&#39;</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Intel® Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Versions</span>
+      development
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    
+      <dl>
+        <dt>Versions</dt>
+        
+           <strong> 
+          <dd><a href="/intel-technology-enabling-for-openshift/">development</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.6.1">v1.6.1</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.6.0">v1.6.0</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.5.2">v1.5.2</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.5.1">v1.5.1</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.5.0">v1.5.0</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.4.0">v1.4.0</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.1">v1.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.0">v1.3.0</a></dd>
+          
+        
+      </dl>
+      
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

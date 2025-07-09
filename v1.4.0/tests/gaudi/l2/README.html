@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verify Intel® Gaudi® AI Accelerator Provisioning &mdash; Intel® Technology Enabling for OpenShift*</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Intel® Technology Enabling for OpenShift*
+          </a>
+              <div class="version">
+                v1.4.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">Intel® Technology Enabling for OpenShift*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nfd/README.html">Setting up Node Feature Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../machine_configuration/README.html">Setting up Machine Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../kmmo/README.html">Setting up Out of Tree Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../device_plugins/README.html">Setting up Intel Device Plugins Operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gaudi/README.html">Setting up Intel Gaudi Base Operator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">One-Click Deployment:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../one_click/README.html">Deploy Intel Technology Enabling Solutions with Red Hat OpenShift using “One-Click”</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">End-to-end Solutions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../e2e/inference/README.html">Intel AI Inference End-to-End Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../e2e/inference/README.html#enable-intel-gaudi-ai-accelerator-with-rhoai">Enable Intel Gaudi AI Accelerator with RHOAI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html">Release Information</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Supported Platforms:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/supported_platforms.html">Supported Red Hat OpenShift Container Platform (RHOCP) Infrastructure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Intel® Technology Enabling for OpenShift*</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Verify Intel® Gaudi® AI Accelerator Provisioning</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/tests/gaudi/l2/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="verify-intel-gaudi-ai-accelerator-provisioning">
+<h1>Verify Intel® Gaudi® AI Accelerator Provisioning<a class="headerlink" href="#verify-intel-gaudi-ai-accelerator-provisioning" title="Permalink to this heading"></a></h1>
+<section id="hl-smi">
+<h2>hl-smi<a class="headerlink" href="#hl-smi" title="Permalink to this heading"></a></h2>
+<p>System Management Interface Tool (hl-smi) utility tool obtains information and monitors data of the Intel Gaudi AI accelerators.
+<code class="docutils literal notranslate"><span class="pre">hl-smi</span></code> tool is packaged with the Gaudi base image. Run below command to deploy and execute the tool:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.4.0/tests/gaudi/l2/hl-smi_job.yaml
+</pre></div>
+</div>
+<p>Verify Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pods
+NAME                         READY   STATUS      RESTARTS   AGE
+hl-smi-workload-2-f5qgs      0/1     Completed   0          27m
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc logs hl-smi-workload-2-f5qgs
++-----------------------------------------------------------------------------+
+| HL-SMI Version:                                hl-1.17.1-fw-51.5.0          |
+| Driver Version:                                     1.17.1-78932ae          |
+|-------------------------------+----------------------+----------------------+
+| AIP  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | AIP-Util  Compute M. |
+|===============================+======================+======================|
+|   0  HL-225              N/A  | 0000:4d:00.0     N/A |                   0  |
+| N/A   31C   N/A    95W / 600W |    768MiB / 98304MiB |     0%           N/A |
+|-------------------------------+----------------------+----------------------+
+|   1  HL-225              N/A  | 0000:b4:00.0     N/A |                   0  |
+| N/A   28C   N/A    85W / 600W |    768MiB / 98304MiB |     0%           N/A |
+|-------------------------------+----------------------+----------------------+
+| Compute Processes:                                               AIP Memory |
+|  AIP       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|   0        N/A   N/A    N/A                                      N/A        |
+|   1        N/A   N/A    N/A                                      N/A        |
++=============================================================================+
+</pre></div>
+</div>
+</section>
+<section id="hccl">
+<h2>HCCL<a class="headerlink" href="#hccl" title="Permalink to this heading"></a></h2>
+<p>HCCL (Habana Collective Communication Library) demo is a program that demonstrates HCCL usage and supports communication via Gaudi based scale-out or Host NIC scale-out. Refer <a class="reference external" href="https://github.com/HabanaAI/hccl_demo/tree/main?tab=readme-ov-file#hccl-demo">HCCL Demo</a> for more details.</p>
+<p>Build the workload container image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.4.0/tests/gaudi/l2/hccl_build.yaml
+</pre></div>
+</div>
+<p>Create service account with required permissions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc create sa hccl-demo-anyuid-sa -n hccl-demo
+$ oc adm policy add-scc-to-user anyuid -z hccl-demo-anyuid-sa -n hccl-demo
+</pre></div>
+</div>
+<p>Deploy and execute the workload:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.4.0/tests/gaudi/l2/hccl_job.yaml
+</pre></div>
+</div>
+<p>Verify Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc get pods
+NAME                         READY   STATUS      RESTARTS   AGE
+hccl-demo-workload-1-build   0/1     Completed   0          23m
+hccl-demo-workload-wq8mx     0/1     Completed   0          10m
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ oc logs hccl-demo-workload-wq8mx
+Affinity: Numa mapping directory: /tmp/affinity_topology_output
+Affinity: Script has not been executed before, going to execute...
+Affinity: Script has finished successfully
+Welcome to HCCL demo
+.
+.
+.
+####################################################################################################
+[BENCHMARK] hcclAllReduce(src!=dst, data_size=33554432, count=8388608, dtype=float, iterations=1000)
+[BENCHMARK]     NW Bandwidth   : 258.209121 GB/s
+[BENCHMARK]     Algo Bandwidth : 147.548069 GB/s
+####################################################################################################
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Intel® Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Versions</span>
+      v1.4.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/">development</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.6.1">v1.6.1</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.6.0">v1.6.0</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.5.2">v1.5.2</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.5.1">v1.5.1</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.5.0">v1.5.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.4.0">v1.4.0</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.1">v1.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/intel-technology-enabling-for-openshift/v1.3.0">v1.3.0</a></dd>
+          
+        
+      </dl>
+      
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
