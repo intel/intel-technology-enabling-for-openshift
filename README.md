@@ -44,6 +44,9 @@ The **Red Hat AI portfolio**, powered by **Intel AI technologies**, now includes
 * **Red Hat OpenShift AI Distributed Training** provides pre-training, SFT and RL for major GenAI foundation models at scale. With seamless integration of the Kubeflow Training Operator, Intel Gaudi Computing and RoCE Networking technology, enterprises can unlock the full potential of cutting-edge GenAI technologies to drive innovation in their domains.  See [Training and fine-tuning LLM Models with Intel Enterprise AI Foundation on OpenShift](https://github.com/intel/intel-technology-enabling-for-openshift/wiki/Fine-tunning-LLM-Models-with-Intel-Enterprise-AI-Foundation-on-OpenShift).
 * The operators to integrate [Intel Gaudi Software](https://docs.habana.ai/en/latest/index.html) or [OneAPI-based](https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html#gs.kgdasr) AI software into OpenShift AI
 
+## GenAI appplications and AI service
+GenAI applications and AI servcies are built with [OPEA (Open Platform for Enterprise AI)](https://github.com/opea-project). And the integration of OPEA with LLM-d based Red Hat AI inference server is under investigation. 
+
 ## Releases and Supported Platforms 
 Intel Enterprise AI foundation for OpenShift is released in alignment with the OpenShift release cadence. It is recommended to use the latest release. 
 
