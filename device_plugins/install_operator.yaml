@@ -15,7 +15,7 @@ metadata:
   name: intel-device-plugins-operator
   namespace: openshift-operators
 spec:
-  channel: alpha
+  channel: stable
   installPlanApproval: Automatic
   name: intel-device-plugins-operator
   source: certified-operators
