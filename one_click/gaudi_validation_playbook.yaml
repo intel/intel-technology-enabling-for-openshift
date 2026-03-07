@@ -1,0 +1,317 @@
+# Copyright (c) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+- hosts: localhost
+  vars: 
+    kubeconfig_path: "{{ ansible_env.HOME }}/.kube/config"
+    validation_namespace: "gaudi-validation" 
+    gaudi_base_pytorch_image: "vault.habana.ai/gaudi-docker/1.18.0/rhel9.4/habanalabs/pytorch-installer-2.4.0:1.18.0-524"
+  environment:
+    KUBECONFIG: "{{ kubeconfig_path }}" 
+  tasks:  
+    - name: Create namespace
+      k8s:
+        name: "{{ validation_namespace }}"
+        api_version: v1
+        kind: Namespace
+        state: present
+    - name: L1 - Verify Node label and all Operator Pods Running
+      tags:
+        - l1
+      block:
+        - name: Verify Provisioning
+          shell: |
+            oc get no -o json | jq '.items[].metadata.labels' | grep pci-1da3
+            oc get pods -n habana-ai-operator
+          register: l1_log
+        - name: Print Verification Logs
+          debug:
+            msg: "{{ l1_log.stdout_lines }}"
+    - name: L2 - hl-smi Workload Test
+      tags: 
+        - hl-smi
+        - l2
+      block: 
+        - name: hl-smi with 2 resources
+          kubernetes.core.k8s:
+            state: present
+            wait: yes
+            wait_condition:
+              type: Complete
+              status: "True"
+            definition:
+              apiVersion: batch/v1
+              kind: Job
+              metadata:
+                name: hl-smi-workload-2
+                namespace: "{{ validation_namespace }}"
+              spec:
+                template:
+                  metadata:
+                  spec:
+                    restartPolicy: Never
+                    containers:
+                      - name: hl-smi-workload-2
+                        image: "{{ gaudi_base_pytorch_image }}"
+                        command: ["hl-smi"]
+                        resources:
+                          limits:
+                            habana.ai/gaudi: 2
+                        imagePullPolicy: IfNotPresent
+        - name: Get log
+          kubernetes.core.k8s_log:
+            namespace: "{{ validation_namespace }}"
+            label_selectors:
+            - job-name=hl-smi-workload-2
+          register: hl_smi_log_2
+        - name: Print log
+          debug:
+            msg: "{{ hl_smi_log_2.log_lines }}"
+        - name: Pause to avoid race condition and Gaudi resources to be released
+          pause:
+            seconds: 15
+        - name: hl-smi with 4 resources
+          kubernetes.core.k8s:
+            state: present
+            wait: yes
+            wait_condition:
+              type: Complete
+              status: "True"
+            definition:
+              apiVersion: batch/v1
+              kind: Job
+              metadata:
+                name: hl-smi-workload-4
+                namespace: "{{ validation_namespace }}"
+              spec:
+                template:
+                  metadata:
+                  spec:
+                    restartPolicy: Never
+                    containers:
+                      - name: hl-smi-workload-4
+                        image: "{{ gaudi_base_pytorch_image }}"
+                        command: ["hl-smi"]
+                        resources:
+                          limits:
+                            habana.ai/gaudi: 4
+                        imagePullPolicy: IfNotPresent
+        - name: Get log
+          kubernetes.core.k8s_log:
+            namespace: "{{ validation_namespace }}"
+            label_selectors:
+            - job-name=hl-smi-workload-4
+          register: hl_smi_log_4
+        - name: Print log
+          debug:
+            msg: "{{ hl_smi_log_4.log_lines }}"
+        - name: Pause to avoid race condition and Gaudi resources to be released
+          pause:
+            seconds: 15
+        - name: hl-smi with 8 resources
+          kubernetes.core.k8s:
+            state: present
+            wait: yes
+            wait_condition:
+              type: Complete
+              status: "True"
+            definition:
+              apiVersion: batch/v1
+              kind: Job
+              metadata:
+                name: hl-smi-workload-8
+                namespace: "{{ validation_namespace }}"
+              spec:
+                template:
+                  metadata:
+                  spec:
+                    restartPolicy: Never
+                    containers:
+                      - name: hl-smi-workload-8
+                        image: "{{ gaudi_base_pytorch_image }}"
+                        command: ["hl-smi"]
+                        resources:
+                          limits:
+                            habana.ai/gaudi: 8
+                        imagePullPolicy: IfNotPresent
+        - name: Get log
+          kubernetes.core.k8s_log:
+            namespace: "{{ validation_namespace }}"
+            label_selectors:
+            - job-name=hl-smi-workload-8
+          register: hl_smi_log_8
+        - name: Print log
+          debug:
+            msg: "{{ hl_smi_log_8.log_lines }}"
+    - name: L2 - HCCL Demo Workload Test
+      tags:
+        - hccl
+        - l2
+      block:
+        - name: Build HCCL Demo Workload
+          shell: oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/refs/heads/main/tests/gaudi/l2/hccl_build.yaml
+          register: hccl_build_output
+        - name: 'Wait for HCCL workload Build to complete'
+          k8s_info:
+            api_version: build.openshift.io/v1
+            kind: Build
+            label_selectors:
+              - buildconfig = hccl-demo-workload
+            wait: yes
+            wait_timeout: 180
+            namespace: "{{ validation_namespace }}"
+            wait_condition:
+              type: Complete
+              status: "True"
+          when: hccl_build_output.stderr == ""
+        - name: Create ServiceAccount for HCCL
+          k8s:
+            state: present
+            kind: ServiceAccount
+            name: hccl-demo-anyuid-sa
+            namespace: "{{ validation_namespace }}" 
+        - name: Create ClusterRole and ClusterRoleBinding for HCCL
+          shell: oc adm policy add-scc-to-user anyuid -z hccl-demo-anyuid-sa -n "{{ validation_namespace }}"
+        - name: hccl_demo with 2 resources
+          kubernetes.core.k8s:
+            state: present
+            wait: yes
+            wait_condition:
+              type: Complete
+              status: "True"
+            definition:
+              apiVersion: batch/v1
+              kind: Job
+              metadata:
+                name: hccl-demo-workload-2
+                namespace: gaudi-validation
+              spec:
+                template:
+                  metadata:
+                  spec:
+                    restartPolicy: Never
+                    serviceAccountName: hccl-demo-anyuid-sa
+                    containers:
+                      - name: hccl-demo-workload-2
+                        image: image-registry.openshift-image-registry.svc:5000/hccl-demo/hccl-demo-workload:1.18.0-524
+                        workingDir: "/hccl_demo"
+                        command: ["/bin/bash",  "-c", "--"]
+                        ## sleep for 20 seconds to avoid race condition 
+                        args:
+                        - |
+                          sleep 20
+                          python3 run_hccl_demo.py --nranks 2 --node_id 0 --size 32m --test all_reduce --loop 1000 --ranks_per_node 2
+                          sleep 20
+                        env:
+                        - name: HCCL_COMM_ID
+                          value: '127.0.0.1:5555'
+                        resources:
+                          limits:
+                            habana.ai/gaudi: 2
+                        imagePullPolicy: IfNotPresent
+        - name: Get log
+          kubernetes.core.k8s_log:
+            namespace: "{{ validation_namespace }}"
+            label_selectors:
+            - job-name=hccl-demo-workload-2
+          register: hccl_log_2
+        - name: Print log
+          debug:
+            msg: "{{ hccl_log_2.log_lines }}"
+        - name: Pause to avoid race condition and Gaudi resources to be released
+          pause:
+            seconds: 15
+        - name: hccl_demo with 4 resources
+          kubernetes.core.k8s:
+            state: present
+            wait: yes
+            wait_condition:
+              type: Complete
+              status: "True"
+            definition:
+              apiVersion: batch/v1
+              kind: Job
+              metadata:
+                name: hccl-demo-workload-4
+                namespace: gaudi-validation
+              spec:
+                template:
+                  metadata:
+                  spec:
+                    restartPolicy: Never
+                    serviceAccountName: hccl-demo-anyuid-sa
+                    containers:
+                      - name: hccl-demo-workload-4
+                        image: image-registry.openshift-image-registry.svc:5000/hccl-demo/hccl-demo-workload:1.18.0-524
+                        workingDir: "/hccl_demo"
+                        command: ["/bin/bash",  "-c", "--"]
+                        ## sleep for 20 seconds to avoid race condition 
+                        args:
+                        - |
+                          sleep 20
+                          python3 run_hccl_demo.py --nranks 4 --node_id 0 --size 32m --test all_reduce --loop 1000 --ranks_per_node 4
+                          sleep 20
+                        env:
+                        - name: HCCL_COMM_ID
+                          value: '127.0.0.1:5555'
+                        resources:
+                          limits:
+                            habana.ai/gaudi: 4
+                        imagePullPolicy: IfNotPresent
+        - name: Get log
+          kubernetes.core.k8s_log:
+            namespace: "{{ validation_namespace }}"
+            label_selectors:
+            - job-name=hccl-demo-workload-4
+          register: hccl_log_4
+        - name: Print log
+          debug:
+            msg: "{{ hccl_log_4.log_lines }}"
+        - name: Pause to avoid race condition and Gaudi resources to be released
+          pause:
+            seconds: 15
+        - name: hccl_demo with 8 resources
+          kubernetes.core.k8s:
+            state: present
+            wait: yes
+            wait_condition:
+              type: Complete
+              status: "True"
+            definition:
+              apiVersion: batch/v1
+              kind: Job
+              metadata:
+                name: hccl-demo-workload-8
+                namespace: gaudi-validation
+              spec:
+                template:
+                  metadata:
+                  spec:
+                    restartPolicy: Never
+                    serviceAccountName: hccl-demo-anyuid-sa
+                    containers:
+                      - name: hccl-demo-workload-8
+                        image: image-registry.openshift-image-registry.svc:5000/hccl-demo/hccl-demo-workload:1.18.0-524
+                        workingDir: "/hccl_demo"
+                        command: ["/bin/bash",  "-c", "--"]
+                        ## sleep for 20 seconds to avoid race condition 
+                        args:
+                        - |
+                          sleep 20
+                          python3 run_hccl_demo.py --nranks 8 --node_id 0 --size 32m --test all_reduce --loop 1000 --ranks_per_node 8
+                          sleep 20
+                        env:
+                        - name: HCCL_COMM_ID
+                          value: '127.0.0.1:5555'
+                        resources:
+                          limits:
+                            habana.ai/gaudi: 8
+                        imagePullPolicy: IfNotPresent
+        - name: Get log
+          kubernetes.core.k8s_log:
+            namespace: "{{ validation_namespace }}"
+            label_selectors:
+            - job-name=hccl-demo-workload-8
+          register: hccl_log_8
+        - name: Print log
+          debug:
+            msg: "{{ hccl_log_8.log_lines }}"
