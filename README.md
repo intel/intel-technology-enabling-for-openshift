@@ -1,3 +1,10 @@
+## THIS PROJECT IS ARCHIVED
+
+Intel will not provide or guarantee development of or support for this project, including but not limited to, maintenance, bug fixes, new releases or updates. 
+Patches to this project are no longer accepted by Intel.  
+If you have an ongoing need to use this project, are interested in independently developing it, or would like to maintain patches for the community, please create your own fork of the project.  
+
+contact: webadmin@linux.intel.com
 # Intel® Enterprise AI Foundation for OpenShift*
 ## Overview
 The project delivers a comprehensive full-stack solution for the Intel® Enterprise AI Foundation on the [OpenShift platform](https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform), applicable across data center, cloud, and edge environments. It utilizes innovative [General Operators technology](https://github.com/intel/intel-technology-enabling-for-openshift/wiki/Intel-Technology-Enabling-for-OpenShift-Architecture-and-Working-Scope#architecture-options) to provision AI accelerators, including the Intel Gaudi Processor, Flex and Max GPUs, and Xeon CPU accelerators such as QAT, SGX, and DSA. Additionally, the project introduces solutions for integrating [Gaudi Software](https://docs.habana.ai/en/latest/index.html) or [OneAPI-based](https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html#gs.kgdasr) AI software into OpenShift AI. Key AI workload integrations, such as LLM inferencing, fine-tuning, and post-training for enterprise AI, are under development. The plans also include the GPU network provisioning and full-stack integration with OpenShift. 
